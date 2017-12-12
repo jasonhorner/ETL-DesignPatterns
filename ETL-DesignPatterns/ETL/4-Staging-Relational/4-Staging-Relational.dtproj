@@ -26,14 +26,70 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">GALACTICA</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABzoXwEUfsE21tky4ZGNqFQAAAAACAAAAAAAQZgAAAAEAACAAAADM4yTP2V+zosS8xYoojoEDvkIs4fQG/gtzueb03tRF2wAAAAAOgAAAAAIAACAAAABn5Q6439+GrZ1FonOZW8dhfiq/BU+3AuWf50sF2dSXBJAAAAD46ncCliJbjsDeBAnX6DstYROQ8T5WQvGoIs7E/3EVyoqTp529TNAIIHD2dg3qBWs9eu16H0wh7v1Iiv2BXFCObnpyayHyYlSL5e/J4CbPMd2soZRuif6lctW/dyJF1+E8Ama+JfrbJ4nfds8tSKg3d6BwkBge2SaTmVR9Eypm+Avr0ZHAOXCpYRNs+yezGKxAAAAAnBCMlYUdJ3aPZlDX+iBLr6YmtN00n6TPGKjxPV0kCFxhS9kslhApytpRNluo7yTbOJH0EBZT7P/FjIlxDC87Aw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEmLOG4+dNke1NfcjtJjpNAAAAAACAAAAAAAQZgAAAAEAACAAAADtx1EXKNzxXZm2Tibs9YiT8O6UYqJsoYDr7G2QI7vJDwAAAAAOgAAAAAIAACAAAAAH1ey8VQe4JUeZKEMfayh3T3VPJEzU4KGT3ZrZr+pdkpAAAAA8KVDUSzJcX4PxDJ/DbHZqlzzKSl3Z/HrZ0LpELw1WUR9mBlnTONmMkKf+0npemBOsiRParbV/Lg5g8DeZTLjyDqUdc/Jgul96qpP2DKlsGDdyCkh67/ljJduxn3bxDtvihmMjBUltFxL1KpAR05fbXsbT/tKQQi48tmTqKhbXXKenV+bzikuXdvjcCa+XOJFAAAAAxX78N8w0oC8Lgzn9LNpGtzk2x1cbwW5jo02jSXO/X3VXqfJTv/4ROdGLVWFM1OH73tvG3ygkenSaarSaxirLBQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
-        <SSIS:Packages />
+        <SSIS:Packages>
+          <SSIS:Package SSIS:Name="PersonExtract_CT.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="PersonExtract_CDC.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="PersonExtract_HASH.dtsx" SSIS:EntryPoint="1" />
+        </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
-          <SSIS:PackageInfo />
+          <SSIS:PackageInfo>
+            <SSIS:PackageMetaData SSIS:Name="PersonExtract_CT.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{952BC8C5-B9DB-430A-AE8A-273845840E40}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">PersonExtract_CT</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A4B891C8-31D1-4478-BF0E-830F8C5D4C6B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="PersonExtract_CDC.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{F9970BAA-0608-42FE-84E7-545E7C439C99}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">PersonExtract_CDC</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D09B1BC0-149F-4459-8288-63359971B650}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="PersonExtract_HASH.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{70E7C5C9-76B0-4E50-B331-CF24AEB76164}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">PersonExtract_HASH</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EB3D93E0-0C20-444D-AC11-36E01CC93148}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+          </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
       </SSIS:Project>
     </Manifest>
