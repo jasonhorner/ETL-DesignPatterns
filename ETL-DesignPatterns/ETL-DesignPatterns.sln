@@ -9,7 +9,13 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DW", "Databases\DW\DW.sqlpr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETL", "ETL", "{80100472-5C96-46B8-8503-8F93D0CD4E9E}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Demos", "ETL\Demos\Demos.dtproj", "{B67A1731-B059-4A04-B58D-6D7319E4DA1F}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "3-Staging-FlatFiles", "ETL\3-Staging-FlatFiles\3-Staging-FlatFiles.dtproj", "{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "1-BasicBiml", "ETL\1-BasicBiml\1-BasicBiml.dtproj", "{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "2-DataProfiling", "ETL\2-DataProfiling\2-DataProfiling.dtproj", "{54EA81BE-D94E-4465-8B69-6D0CC7821531}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "4-Staging-Relational", "ETL\4-Staging-Relational\4-Staging-Relational.dtproj", "{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +33,39 @@ Global
 		{88E273CA-721E-46EF-972E-E7800EFA4F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88E273CA-721E-46EF-972E-E7800EFA4F88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88E273CA-721E-46EF-972E-E7800EFA4F88}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Debug|Any CPU.ActiveCfg = Development
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Debug|Any CPU.Build.0 = Development
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Development|Any CPU.ActiveCfg = Development
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Development|Any CPU.Build.0 = Development
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Release|Any CPU.ActiveCfg = Development
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F}.Release|Any CPU.Build.0 = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Debug|Any CPU.ActiveCfg = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Debug|Any CPU.Build.0 = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Development|Any CPU.ActiveCfg = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Development|Any CPU.Build.0 = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Release|Any CPU.ActiveCfg = Development
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658}.Release|Any CPU.Build.0 = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Debug|Any CPU.ActiveCfg = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Debug|Any CPU.Build.0 = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Development|Any CPU.ActiveCfg = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Development|Any CPU.Build.0 = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Release|Any CPU.ActiveCfg = Development
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD}.Release|Any CPU.Build.0 = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Debug|Any CPU.ActiveCfg = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Debug|Any CPU.Build.0 = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Development|Any CPU.ActiveCfg = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Development|Any CPU.Build.0 = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Release|Any CPU.ActiveCfg = Development
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531}.Release|Any CPU.Build.0 = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Debug|Any CPU.ActiveCfg = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Debug|Any CPU.Build.0 = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Development|Any CPU.ActiveCfg = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Development|Any CPU.Build.0 = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Release|Any CPU.ActiveCfg = Development
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{88E273CA-721E-46EF-972E-E7800EFA4F88} = {3703F30D-D925-4C62-A5BA-56343E38B38B}
-		{B67A1731-B059-4A04-B58D-6D7319E4DA1F} = {80100472-5C96-46B8-8503-8F93D0CD4E9E}
+		{7173C78F-7C67-4EC2-87F6-0CC68BAD8658} = {80100472-5C96-46B8-8503-8F93D0CD4E9E}
+		{E609B664-4C4B-4DE9-8DD1-87C45527DBCD} = {80100472-5C96-46B8-8503-8F93D0CD4E9E}
+		{54EA81BE-D94E-4465-8B69-6D0CC7821531} = {80100472-5C96-46B8-8503-8F93D0CD4E9E}
+		{7542BE5E-6832-4C87-8F7F-3F98CFED3D6B} = {80100472-5C96-46B8-8503-8F93D0CD4E9E}
 	EndGlobalSection
 EndGlobal
