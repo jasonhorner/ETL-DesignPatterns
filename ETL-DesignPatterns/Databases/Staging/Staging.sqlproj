@@ -64,15 +64,39 @@
     <Folder Include="Security\" />
     <Folder Include="Auditing\" />
     <Folder Include="Auditing\Stored Procedures\" />
+    <Folder Include="_Deployment" />
+    <Folder Include="AWLTSRC\" />
+    <Folder Include="AWLTSRC\Tables\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="ETL\Stored Procedures\" />
+    <Folder Include="AWLTSRC\Stored Procedures\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="AWDWSRC\" />
+    <Folder Include="AWDWSRC\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
     <Build Include="ETL\Tables\PackageAudit.sql" />
     <Build Include="Security\cathrinew.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="Auditing\Stored Procedures\PackageAuditStart.sql" />
     <Build Include="Auditing\Stored Procedures\PackageAuditStop.sql" />
     <Build Include="Security\Auditing.sql" />
     <Build Include="Security\ETL.sql" />
+    <Build Include="ETL\Tables\cdc_states.sql" />
+    <Build Include="ETL\Tables\ChangeTrackingLatestVersion.sql" />
+    <Build Include="AWLTSRC\Tables\Customer_UPD.sql" />
+    <Build Include="AWLTSRC\Tables\Customer_DEL.sql" />
+    <Build Include="AWLTSRC\Tables\Customer_INS.sql" />
+    <Build Include="dbo\Tables\Person.sql" />
+    <Build Include="ETL\Stored Procedures\GetChangeTrackingLatestVersion.sql" />
+    <Build Include="AWLTSRC\Stored Procedures\CustomerMerge.sql" />
+    <Build Include="Security\AWLTSRC.sql" />
+    <Build Include="Security\AWDWSRC.sql" />
+    <Build Include="Security\Stage.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="AWLTSRC\Tables\Customer_STG.sql" />
+    <Build Include="AWLTSRC\Tables\Customer.sql" />
+    <Build Include="AWDWSRC\Tables\Person.sql" />
   </ItemGroup>
 </Project>

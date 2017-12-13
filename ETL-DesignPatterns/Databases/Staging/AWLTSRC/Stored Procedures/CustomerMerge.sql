@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [AWLTSRC].[CustomerMerge]
+
+AS
+BEGIN
+	-- TODO Add Merge Code here
+	SET NOCOUNT ON;
+
+END
