@@ -41,4 +41,3 @@
 GO
 ALTER TABLE [dbo].[Person] ADD  CONSTRAINT [DF_Person_CDCOperation]  DEFAULT (' ') FOR [CDCOperation]
 GO
-ALTER TABLE [dbo].[Person] ADD  CONSTRAINT [DF_AWDWSRCPerson_CDCOperation]  DEFAULT (' ') FOR [CDCOperation]
