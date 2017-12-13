@@ -11,8 +11,9 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="PersonExtract_CT"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{448D0CEA-9F4B-422A-9810-AABADFD82D94}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{28BAED31-7ECB-4280-975E-B0E884FFD90B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -175,7 +176,7 @@
                 <connection
                   refId="Package\Load Staging\Customer DEST.Connections[OleDbConnection]"
                   connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLDB]"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -532,6 +533,14 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\Get Change Tracking Info"
           TopLeft="115.75,46.5" />
         <NodeLayout
+          Size="140,42"
+          Id="Package\Load Staging"
+          TopLeft="157.5,383.25" />
+        <NodeLayout
+          Size="151.5,42"
+          Id="Package\Merge Changes"
+          TopLeft="149.5,444" />
+        <NodeLayout
           Size="159.5,42"
           Id="Package\Truncate Staging"
           TopLeft="164,300" />
@@ -557,10 +566,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="140,42"
-          Id="Package\Load Staging"
-          TopLeft="157.5,383.25" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="243.75,342">
@@ -595,10 +600,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="151.5,42"
-          Id="Package\Merge Changes"
-          TopLeft="149.5,444" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="297.5,404.25">
@@ -675,14 +676,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Staging\Customer SRC">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Staging\Customer DEST">
     <Properties>
       <Property>
@@ -692,6 +685,14 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Staging\Customer SRC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
