@@ -1,0 +1,58 @@
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <Connections>
+        <AdoNetConnection Name="WWI" Provider="System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;" />
+        <FileConnection Name="Results.xml" FileUsageType="CreateFile" FilePath="C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling\Results.xml" />
+    </Connections>
+    
+    <Packages>
+        <Package Name="DataProfiling">
+            <Tasks>
+                <DataProfiling Name="Data Profiling" OverwriteDestination="true">
+                    
+                    <FileOutput ConnectionName="Results.xml" />
+                    
+                    <ProfileRequests>
+                        
+                        <ColumnNullRatioProfileRequest Name="NullRatioReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" />
+                        
+                        <ColumnValueDistributionProfileRequest Name="ValueDistReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" />
+                        
+                        <ColumnLengthDistributionProfileRequest Name="LengthDistReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" />
+                        
+                        <ColumnStatisticsProfileRequest Name="StatisticsReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" />
+                        
+                        <ColumnPatternProfileRequest Name="PatternReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" />
+                        
+                        <CandidateKeyProfileRequest Name="KeyReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems">
+                            <KeyColumns>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                            </KeyColumns>
+                        </CandidateKeyProfileRequest>
+                        
+                        <FunctionalDependencyProfileRequest Name="FuncReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems">
+                            <DeterminantColumns>
+                                <Column>*</Column>
+                            </DeterminantColumns>
+                        </FunctionalDependencyProfileRequest>
+                            
+                        <ValueInclusionProfileRequest Name="InclusionReq" ConnectionName="WWI" SchemaId="Warehouse" TableId="StockItems" SupersetTableOrViewSchemaId="Warehouse" SupersetTableOrViewTableId="StockGroups">
+                            <SupersetInclusionColumns>
+                                <Column>*</Column>
+                            </SupersetInclusionColumns>
+                            <SubsetInclusionColumns>
+                                <Column>*</Column>
+                            </SubsetInclusionColumns>
+                        </ValueInclusionProfileRequest>
+                    
+                    </ProfileRequests>
+                
+                </DataProfiling>
+            </Tasks>
+        </Package>
+    </Packages>
+</Biml>

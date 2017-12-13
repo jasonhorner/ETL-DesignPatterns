@@ -28,37 +28,34 @@
           </SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
-        <SSIS:Packages>
-          <SSIS:Package SSIS:Name="DataProfiling.dtsx" SSIS:EntryPoint="1" />
-        </SSIS:Packages>
+        <SSIS:Packages />
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
-          <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="DataProfiling.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{F95DCACC-818F-4B6D-94E0-7A25AA63EC7D}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DataProfiling</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D26369DD-594E-4472-BAE2-B573102D9670}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-          </SSIS:PackageInfo>
+          <SSIS:PackageInfo />
         </SSIS:DeploymentInfo>
       </SSIS:Project>
     </Manifest>
   </DeploymentModelSpecificContent>
   <ControlFlowParts />
-  <Miscellaneous />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>201-DataProfiling-OneTable-Manual.biml</Name>
+      <FullPath>201-DataProfiling-OneTable-Manual.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>202-DataProfiling-OneTable-Biml.biml</Name>
+      <FullPath>202-DataProfiling-OneTable-Biml.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>203-DataProfiling-AllTables-SeparateFiles.biml</Name>
+      <FullPath>203-DataProfiling-AllTables-SeparateFiles.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>204-DataProfiling-AllTables-OneFile.biml</Name>
+      <FullPath>204-DataProfiling-AllTables-OneFile.biml</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
   <Configurations>
     <Configuration>
       <Name>Development</Name>
@@ -69,7 +66,13 @@
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
         <TargetServerVersion>SQLServer2017</TargetServerVersion>
-        <ParameterConfigurationValues />
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2017-12-13T14:33:43.335655Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
       </Options>
     </Configuration>
   </Configurations>

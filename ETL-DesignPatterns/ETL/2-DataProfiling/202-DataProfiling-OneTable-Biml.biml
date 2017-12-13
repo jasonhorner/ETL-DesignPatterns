@@ -1,0 +1,62 @@
+<#
+
+    var ConnectionName = "WWI";
+    var ConnectionString = @"Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;";
+    
+    var SchemaName = "Warehouse"; // Warehouse / Application
+    var TableName = "StockItems"; // StockItems / Cities
+    
+    var OutputFolder = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling";
+    var OutputFileName = "Results_" + SchemaName + "_" + TableName + ".xml";
+    
+#>
+    
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <Connections>
+        <AdoNetConnection Name="<#=ConnectionName#>" Provider="System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ConnectionString="<#=ConnectionString#>" />
+        <FileConnection Name="<#=OutputFileName#>" FileUsageType="CreateFile" FilePath="<#=OutputFolder#>\<#=OutputFileName#>" />
+    </Connections>
+    
+    <Packages>
+        <Package Name="DataProfiling_<#=SchemaName#>_<#=TableName#>">
+            <Tasks>
+                <DataProfiling Name="Data Profiling - <#=SchemaName#> <#=TableName#>" OverwriteDestination="true">
+                    
+                    <FileOutput ConnectionName="<#=OutputFileName#>" />
+                    
+                    <ProfileRequests>
+                        
+                        <ColumnNullRatioProfileRequest Name="NullRatioReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>" />
+                        
+                        <ColumnValueDistributionProfileRequest Name="ValueDistReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>" />
+                        
+                        <ColumnLengthDistributionProfileRequest Name="LengthDistReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>" />
+                        
+                        <ColumnStatisticsProfileRequest Name="StatisticsReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>" />
+                        
+                        <ColumnPatternProfileRequest Name="PatternReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>" />
+                        
+                        <CandidateKeyProfileRequest Name="KeyReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>">
+                            <KeyColumns>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                                <Column></Column>
+                            </KeyColumns>
+                        </CandidateKeyProfileRequest>
+                            
+                        <FunctionalDependencyProfileRequest Name="FuncReq" ConnectionName="<#=ConnectionName#>" SchemaId="<#=SchemaName#>" TableId="<#=TableName#>">
+                            <DeterminantColumns>
+                                <Column>*</Column>
+                            </DeterminantColumns>
+                        </FunctionalDependencyProfileRequest>
+                        
+                    </ProfileRequests>
+                        
+                </DataProfiling>
+            </Tasks>
+        </Package>
+    </Packages>
+</Biml>
