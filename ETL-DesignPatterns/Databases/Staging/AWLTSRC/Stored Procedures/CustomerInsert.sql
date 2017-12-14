@@ -23,3 +23,4 @@ INSERT INTO AWLTSRC.Customer
            
 	
 RETURN 0
+END
