@@ -1,6 +1,4 @@
 ﻿CREATE PROCEDURE [AWLTSRC].[CustomerInsert]
-	@param1 int = 0,
-	@param2 int
 AS
 BEGIN
 		SET NOCOUNT ON;
@@ -12,13 +10,16 @@ INSERT INTO AWLTSRC.Customer
 		   ,Firstname
            ,LastName
            ,EmailAddress
-           ,CDCOperation)
+           ,CDCOperation
+		   ,HashKey
+		   )
    SELECT 
      ins.CustomerId
      ,ins.Firstname
 	 ,ins.LastName
 	,ins.EmailAddress
 	 ,ins.CDCOperation
+	 ,ins.HashKey
        FROM AWLTSRC.Customer_INS ins;
            
 	

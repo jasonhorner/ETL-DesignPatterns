@@ -12,8 +12,8 @@
   DTS:ObjectName="PersonExtract_HASH"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{AA449FBA-9021-4AE2-92A2-0B3448E22B1A}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{7C59F4E6-DF29-401F-A2D3-B6BDFBFF4EC0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -130,7 +130,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="LookupSql">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT * From dbo.person</DTS:VariableValue>
+        DTS:DataType="8">SELECT CustomerId, HashKey FROM AWLTSRC.Customer</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -141,7 +141,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.53</DTS:VariableValue>
+        DTS:DataType="8">1.0.58</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -168,7 +168,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="SelectSQL">
       <DTS:VariableValue
-        DTS:DataType="8">SELECT * FROM dbo.Customer</DTS:VariableValue>
+        DTS:DataType="8">SELECT   CustomerId, Firstname, LastName, EmailAddress ,CONVERT(NCHAR(40),HASHBYTES('SHA1', CONCAT('|', FirstName,  '|',  LastName, '|', EmailAddress)),2) AS CurrentHashKey FROM [dbo].[Customer]</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -255,6 +255,156 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Process Changes\Add Insert Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Insert Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Process Changes\Add Insert Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Process Changes\Add Insert Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]"
+                      name="CDCOperation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)"I"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)"I"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Process Changes\Add Insert Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Process Changes\Add Operation"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Operation"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Process Changes\Add Operation.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Process Changes\Add Operation.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Process Changes\Add Operation.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\Add Operation.Outputs[Derived Column Output].Columns[CDCOperation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Process Changes\Add Operation.Outputs[Derived Column Output].Columns[CDCOperation]"
+                      name="CDCOperation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)"U"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)"U"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Process Changes\Add Operation.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Process Changes\Add Operation.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\Add Operation.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Add Operation.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Process Changes\Add Operation.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Add Operation.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Process Changes\AWLT Customer Source"
               componentClassID="Microsoft.OLEDBSource"
@@ -355,6 +505,16 @@
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                       name="EmailAddress"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentHashKey]"
+                      length="40"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]"
+                      name="CurrentHashKey"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -377,6 +537,11 @@
                       dataType="wstr"
                       length="50"
                       name="EmailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="CurrentHashKey" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -408,6 +573,12 @@
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                       name="EmailAddress" />
                     <outputColumn
+                      refId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[CurrentHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[CurrentHashKey]"
+                      name="CurrentHashKey" />
+                    <outputColumn
                       refId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
@@ -419,951 +590,6 @@
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Process Changes\Calculate Hash"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
-              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
-              name="Calculate Hash"
-              version="11">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Stores the source code of the component"
-                  isArray="true"
-                  name="SourceCode"
-                  state="cdata">
-                  <arrayElements
-                    arrayElementCount="30">
-                    <arrayElement
-                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
-*  Microsoft SQL Server Integration Services component wrapper
-*  This module defines the base class for your component
-*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
-
-using System;
-using System.Data;
-using Microsoft.SqlServer.Dts.Pipeline;
-using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
-using Microsoft.SqlServer.Dts.Runtime.Wrapper;
-
-public class UserComponent: ScriptComponent
-{
-    public Connections Connections;
-    public Variables Variables;
-    public UserComponent()
-    {
-        Connections = new Connections(this);
-        Variables = new Variables(this);
-    }
-
-    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
-    {
-
-        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
-        {
-            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
-        }
-
-    }
-
-    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
-    {
-        while (Buffer.NextRow())
-        {
-            Input0_ProcessInputRow(Buffer);
-        }
-    }
-
-    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
-    {
-    }
-
-}
-
-public class Connections
-{
-    ScriptComponent ParentComponent;
-
-    public Connections(ScriptComponent Component)
-    {
-        ParentComponent = Component;
-    }
-
-}
-
-public class Variables
-{
-    ScriptComponent ParentComponent;
-
-    public Variables(ScriptComponent Component)
-    {
-        ParentComponent = Component;
-    }
-
-}
-]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-</root>]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
-/* The Script Component allows you to perform virtually any operation that can be accomplished in
- * a .Net application within the context of an Integration Services data flow.
- *
- * Expand the other regions which have "Help" prefixes for examples of specific ways to use
- * Integration Services features within this script component. */
-#endregion
-
-#region Namespaces
-using System;
-using System.Data;
-using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
-using Microsoft.SqlServer.Dts.Runtime.Wrapper;
-#endregion
-
-/// <summary>
-/// This is the class to which to add your code.  Do not change the name, attributes, or parent
-/// of this class.
-/// </summary>
-[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
-public class ScriptMain : UserComponent
-{
-    #region Help:  Using Integration Services variables and parameters
-    /* To use a variable in this script, first ensure that the variable has been added to
-     * either the list contained in the ReadOnlyVariables property or the list contained in
-     * the ReadWriteVariables property of this script component, according to whether or not your
-     * code needs to write into the variable.  To do so, save this script, close this instance of
-     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
-     * Script Transformation Editor window.
-     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
-     *
-     * Example of reading from a variable or parameter:
-     *  DateTime startTime = Variables.MyStartTime;
-     *
-     * Example of writing to a variable:
-     *  Variables.myStringVariable = "new value";
-     */
-    #endregion
-
-    #region Help:  Using Integration Services Connnection Managers
-    /* Some types of connection managers can be used in this script component.  See the help topic
-     * "Working with Connection Managers Programatically" for details.
-     *
-     * To use a connection manager in this script, first ensure that the connection manager has
-     * been added to either the list of connection managers on the Connection Managers page of the
-     * script component editor.  To add the connection manager, save this script, close this instance of
-     * Visual Studio, and add the Connection Manager to the list.
-     *
-     * If the component needs to hold a connection open while processing rows, override the
-     * AcquireConnections and ReleaseConnections methods.
-     * 
-     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
-     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
-     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
-     *
-     * Example of using a File connection manager to acquire a file path:
-     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
-     *  string filePath = (string)rawConnection;
-     *
-     * Example of releasing a connection manager:
-     *  Connections.SalesDB.ReleaseConnection(rawConnection);
-     */
-    #endregion
-
-    #region Help:  Firing Integration Services Events
-    /* This script component can fire events.
-     *
-     * Example of firing an error event:
-     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
-     *
-     * Example of firing an information event:
-     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
-     *
-     * Example of firing a warning event:
-     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
-     */
-    #endregion
-
-    /// <summary>
-    /// This method is called once, before rows begin to be processed in the data flow.
-    ///
-    /// You can remove this method if you don't need to do anything here.
-    /// </summary>
-    public override void PreExecute()
-    {
-        base.PreExecute();
-        /*
-         * Add your code here
-         */
-    }
-
-    /// <summary>
-    /// This method is called after all the rows have passed through this component.
-    ///
-    /// You can delete this method if you don't need to do anything here.
-    /// </summary>
-    public override void PostExecute()
-    {
-        base.PostExecute();
-        /*
-         * Add your code here
-         */
-    }
-
-    /// <summary>
-    /// This method is called once for every row that passes through the component from Input0.
-    ///
-    /// Example of reading a value from a column in the the row:
-    ///  string zipCode = Row.ZipCode
-    ///
-    /// Example of writing a value to a column in the row:
-    ///  Row.ZipCode = zipCode
-    /// </summary>
-    /// <param name="Row">The row that is currently passing through the component</param>
-    public override void Input0_ProcessInputRow(Input0Buffer Row)
-    {
-        /*
-         * Add your code here
-         * 
-         */
-        Row.CurrentHashkey = "UNKNOWN";
-    }
-
-}
-]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
-*  Microsoft SQL Server Integration Services buffer wrappers
-*  This module defines classes for accessing data flow buffers
-*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
-
-
-
-using System;
-using System.Data;
-using Microsoft.SqlServer.Dts.Pipeline;
-using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
-
-public class Input0Buffer: ScriptBuffer
-
-{
-    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
-        : base(Buffer, BufferColumnIndexes, OutputMap)
-    {
-    }
-
-    public String Firstname
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[0]);
-        }
-    }
-    public bool Firstname_IsNull
-    {
-        get
-        {
-            return IsNull(0);
-        }
-    }
-
-    public String LastName
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[1]);
-        }
-    }
-    public bool LastName_IsNull
-    {
-        get
-        {
-            return IsNull(1);
-        }
-    }
-
-    public String EmailAddress
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[2]);
-        }
-    }
-    public bool EmailAddress_IsNull
-    {
-        get
-        {
-            return IsNull(2);
-        }
-    }
-
-    public String CurrentHashkey
-    {
-        set
-        {
-            this[3] = value;
-        }
-    }
-    public bool CurrentHashkey_IsNull
-    {
-        set
-        {
-            if (value)
-            {
-                SetNull(3);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    new public bool NextRow()
-    {
-        return base.NextRow();
-    }
-
-    new public bool EndOfRowset()
-    {
-        return base.EndOfRowset();
-    }
-
-}
-]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_1da98f0e381d49f88c24c73765bb8123.Properties.Settings.get_Default():SC_1da98f0e381d49f88c24c73765bb8123.Properties.Sett" +
-    "ings")]
-
-namespace SC_1da98f0e381d49f88c24c73765bb8123.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}
-]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[SC_1da98f0e381d49f88c24c73765bb8123.csproj]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1cec4e74-d3b2-46fe-aea1-fa6a8b1ff3f8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SC_1da98f0e381d49f88c24c73765bb8123</RootNamespace>
-    <AssemblyName>SC_1da98f0e381d49f88c24c73765bb8123</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>.\bin\Debug\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugSymbols>false</DebugSymbols>
-    <Optimize>true</Optimize>
-    <OutputPath>.\bin\Release\</OutputPath>
-    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Compile Include="main.cs" />
-    <Compile Include="BufferWrapper.cs" />
-    <Compile Include="ComponentWrapper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <!-- Include the build rules for a C# project.-->
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
-  <ProjectExtensions>
-    <VisualStudio>
-      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
-        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
-        <Host Name="ScriptComponent" GeneratedNamespace="SC_1da98f0e381d49f88c24c73765bb8123" IconIndex="0"></Host>
-        <ProjectClient>
-          <HostIdentifier>SSIS_SC130</HostIdentifier>
-        </ProjectClient>
-      </FlavorProperties>
-    </VisualStudio>
-  </ProjectExtensions>
-</Project>]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Project]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
-	<msb:PropertyGroup>
-		<msb:Language>msBuild</msb:Language>
-		<msb:CodeName>SC_1da98f0e381d49f88c24c73765bb8123</msb:CodeName>
-		<msb:DisplayName>SC_1da98f0e381d49f88c24c73765bb8123</msb:DisplayName>
-		<msb:ProjectId>{D6BC1C9C-C8E0-4781-A10D-80DD20339FDA}</msb:ProjectId>
-	</msb:PropertyGroup>
-	<msb:ItemGroup>
-		<msb:Project Include="SC_1da98f0e381d49f88c24c73765bb8123.csproj"/>
-		<msb:File Include="Properties\Settings.settings"/>
-		<msb:File Include="Properties\AssemblyInfo.cs"/>
-		<msb:File Include="Properties\Resources.resx"/>
-		<msb:File Include="Properties\Resources.Designer.cs"/>
-		<msb:File Include="BufferWrapper.cs"/>
-		<msb:File Include="main.cs"/>
-		<msb:File Include="Properties\Settings.Designer.cs"/>
-		<msb:File Include="ComponentWrapper.cs"/>
-	</msb:ItemGroup>
-</c:Project>]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("SC_1da98f0e381d49f88c24c73765bb8123")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SC_1da98f0e381d49f88c24c73765bb8123")]
-[assembly: AssemblyCopyright("Copyright @  2017")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.0.0")]
-]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_1da98f0e381d49f88c24c73765bb8123.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
-    "rceManager")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_1da98f0e381d49f88c24c73765bb8123.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
-    "fo")]
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_1da98f0e381d49f88c24c73765bb8123.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
-    "):Void")]
-
-namespace SC_1da98f0e381d49f88c24c73765bb8123.Properties {
-    
-    
-    /// <summary>
-    ///   A strongly-typed resource class, for looking up localized strings, etc.
-    /// </summary>
-    // This class was auto-generated by the StronglyTypedResourceBuilder
-    // class via a tool like ResGen or Visual Studio.
-    // To add or remove a member, edit your .ResX file then rerun ResGen
-    // with the /str option, or rebuild your VS project.
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class Resources {
-        
-        private static global::System.Resources.ResourceManager resourceMan;
-        
-        private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
-        }
-        
-        /// <summary>
-        ///   Returns the cached ResourceManager instance used by this class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if ((resourceMan == null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_1da98f0e381d49f88c24c73765bb8123.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
-            }
-        }
-        
-        /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
-        ///   resource lookups using this strongly typed resource class.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
-    }
-}
-]]></arrayElement>
-                  </arrayElements>
-                </property>
-                <property
-                  dataType="System.String"
-                  description="Stores the binary representation of the component"
-                  isArray="true"
-                  name="BinaryCode"
-                  state="cdata">
-                  <arrayElements
-                    arrayElementCount="2">
-                    <arrayElement
-                      dataType="System.String"><![CDATA[SC_1da98f0e381d49f88c24c73765bb8123.dll]]></arrayElement>
-                    <arrayElement
-                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAABqMloAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAljIA
-AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAEQyAABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
-AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAnBIAAAAgAAAAFAAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAB4
-MgAAAAAAAEgAAAACAAUA5CEAAKgPAAABAAAAAAAAAIwxAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACioyA3IBAABwbwwAAAYqHgIoEAAA
-BioqAgMEBSgSAAAKKlICexMAAAoCexQAAAoWlG8VAAAKKiICFigWAAAKKlICexMAAAoCexQAAAoX
-lG8VAAAKKiICFygWAAAKKlICexMAAAoCexQAAAoYlG8VAAAKKiICGCgWAAAKKiYCGQMoFwAACipa
-AywIAhkoGAAACipyEQAAcHMZAAAKeh4CKBoAAAoqHgIoGwAACip+AigcAAAKAgJzFAAABn0BAAAE
-AgJzFQAABn0CAAAEKpIEcq4AAHAabx0AAAosFQIFAgMoHgAACg4EcwUAAAZvEgAABipKKwcCA28T
-AAAGA28OAAAGLfEqBio6AigfAAAKAgN9AwAABCo6AigfAAAKAgN9BAAABCoeAigfAAAKKq5+BQAA
-BC0ecr4AAHDQBwAAAiggAAAKbyEAAApzIgAACoAFAAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4H
-AAAEKh4CKCMAAAoqLnMbAAAGgAcAAAQqAAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAA
-BQBsAAAAzAUAACN+AAA4BgAAkAYAACNTdHJpbmdzAAAAAMgMAAAwAQAAI1VTAPgNAAAQAAAAI0dV
-SUQAAAAIDgAAoAEAACNCbG9iAAAAAAAAAAIAAAFXFaABCQEAAAD6ATMAFgAAAQAAAB8AAAAIAAAA
-BwAAABwAAAAPAAAAIwAAABAAAAADAAAACwAAAAwAAAABAAAABAAAAAEAAAAAAAgDAQAAAAAABgD/
-AaIEBgCTAqIEBgBLAY8EDwAWBQAABgB4AeQDBgDiAeQDBgDDAeQDBgB6AuQDBgAfAuQDBgA4AuQD
-BgCPAeQDBgCqAc4CCgBTApgACgBhBJgADgBSBJgACgAtBJgACgDtBZgABgCwBZwDBgAuAY8EBgBy
-BMIEBgAhBM8DEgD+APICEgBfAfICEgDmALoDBgATAaIEBgD2A5wDBgDrApwDBgAQBJwDBgC5AJwD
-BgBPAJwDBgCFBuQDAAAAACUAAAAAAAEAAQABABAArwMAABAAAQABAAEAEABFBAAAOQABAAUAAQAQ
-AM8FAABFAAEAEAABABAAkwUAAEkAAwAUAAEAEABUBQAASQAEABUAAAAQAMkEJQVJAAUAFgAAARAA
-gwUlBWEABwAaAAYAkwVzAAYAVAV3AAEA3QV7AAEA3QV7ABEAowN/ABEA1gCDABEAPwCHAFAgAAAA
-AMYAsQIGAAEAWCAAAAAAxgC8AgYAAQBgIAAAAADGAE8GiwABAG0gAAAAAIYYggQGAAIAdSAAAAAA
-hhiCBBsAAgCAIAAAAACGCIoAkQAFAJUgAAAAAIYIRAM9AAUAniAAAAAAhghzAJEABQCzIAAAAACG
-CDADPQAFALwgAAAAAIYInwWRAAUA0SAAAAAAhghZAz0ABQDaIAAAAACGCG4GEAAFAOQgAAAAAIYI
-cQOVAAYA+yAAAAAAhgBmBj0ABwADIQAAAACGALcFPQAHAAshAAAAAIYYggQGAAcAKyEAAAAAxgBC
-BpoABwBQIQAAAADGATsGiwALAGMhAAAAAMYBTwaLAAwAZSEAAAAAhhiCBKQADQB0IQAAAACGGIIE
-pAAOAIMhAAAAAIMYggQGAA8AiyEAAAAAkwhuBKoADwC3IQAAAACTCL4ArwAPAL4hAAAAAJMIygC0
-AA8AxiEAAAAAlgjDBboAEADNIQAAAACGGIIEBgAQANUhAAAAAJEYiAS/ABAAAAABAGoGAAABAGcE
-AAACAF4FAAADADsEAAABAMgCAAABAMgCAAABAC4AAAACAIAAAAADAGcEAAAEADsEAAABAGcEAAAB
-AGoGAAABAPMFAAABAPMFAAABAMgCCQCCBAEAEQCCBAYAGQCCBAoAKQCCBBAAMQCCBBAAOQCCBBAA
-QQCCBBAASQCCBBAAUQCCBBAAWQCCBBAAYQCCBBAAaQCCBAYAmQCCBAYAuQCCBBUAyQCCBAYAiQCx
-AgYAiQC8AgYAcQCCBBsAcQBnBCUAcQBeBSkAeQDoAi0AcQCEAzIAcQCTAzcAcQCLAwEA0QCCBBAA
-cQBmBj0AcQC3BT0AiQCCBAYA2QCMBUEAiQByBUgAkQCCBAYA6QBhAE4A6QCBBlUAoQCCBFoAwQCC
-BAYALgALANoALgATAOMALgAbAAIBLgAjAAsBLgArADQBLgAzADQBLgA7ADQBLgBDAAsBLgBLADoB
-LgBTADQBLgBbAFEBQwBjAJsB4QB7AJsB4wBrAJsBKQFzAAIBSQFzAAIBAwABAAcACQAIAAsAAACO
-AMMAAABIA8cAAAB3AMMAAAA0A8cAAACjBcMAAABdA8cAAAByBsMAAAB1A8cAAAByBMsAAADeANAA
-AADHBdUAAgAGAAMAAgAHAAUAAgAIAAcAAgAJAAkAAgAKAAsAAgALAA0AAQAMAA8AAQANABEAAgAX
-ABMAAgAYABUAAQAZABUAAgAaABcABIAAAAEAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAAGEA
-NgAAAAAADgAAAAAAAAAAAAAAagD9BQAAAAAOAAAAAAAAAAAAAABqABoGAAAAAAQAAAAAAAAAAAAA
-AGEAnAMAAAAAAAAAAAEAAADTBAAAAAAAU0NfMWRhOThmMGUzODFkNDlmODhjMjRjNzM3NjViYjgx
-MjMAPE1vZHVsZT4ASW5wdXRJRABtc2NvcmxpYgBkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVI
-YW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAZ2V0X0xhc3ROYW1lAElucHV0TmFtZQBnZXRfRmlyc3Ru
-YW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBpcGVsaW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0
-X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAEVkaXRvckJy
-b3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNv
-ZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUA
-QXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRG
-cmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5
-RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3Nl
-bWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1Njcmlw
-dENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1
-bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAdmFsdWUA
-U3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBHZXRTdHJpbmcAU3lzdGVtLkNvbXBvbmVudE1vZGVs
-AFNDXzFkYTk4ZjBlMzgxZDQ5Zjg4YzI0YzczNzY1YmI4MTIzLmRsbABnZXRfTGFzdE5hbWVfSXNO
-dWxsAGdldF9GaXJzdG5hbWVfSXNOdWxsAGdldF9FbWFpbEFkZHJlc3NfSXNOdWxsAHNldF9DdXJy
-ZW50SGFzaGtleV9Jc051bGwAU2V0TnVsbABzZXRfSXRlbQBTeXN0ZW0AcmVzb3VyY2VNYW4AU2Ny
-aXB0TWFpbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0u
-UmVmbGVjdGlvbgBJbnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAFN0cmluZ0NvbXBhcmlzb24AQ3Vs
-dHVyZUluZm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVm
-ZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAC5jdG9yAC5jY3RvcgBTeXN0ZW0u
-RGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3Vy
-Y2VzAFNDXzFkYTk4ZjBlMzgxZDQ5Zjg4YzI0YzczNzY1YmI4MTIzLlByb3BlcnRpZXMuUmVzb3Vy
-Y2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTQ18xZGE5OGYwZTM4MWQ0OWY4OGMyNGM3Mzc2
-NWJiODEyMy5Qcm9wZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVt
-bkluZGV4ZXMAU2V0dGluZ3MARXF1YWxzAENvbm5lY3Rpb25zAGdldF9FbWFpbEFkZHJlc3MAT2Jq
-ZWN0AEVuZE9mUm93c2V0AGdldF9EZWZhdWx0AFVzZXJDb21wb25lbnQAUGFyZW50Q29tcG9uZW50
-AFNjcmlwdENvbXBvbmVudABNaWNyb3NvZnQuU3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29mdC5T
-cWxTZXJ2ZXIuUGlwZWxpbmVIb3N0AElucHV0MF9Qcm9jZXNzSW5wdXQASW5wdXQwX1Byb2Nlc3NJ
-bnB1dFJvdwBOZXh0Um93AHNldF9DdXJyZW50SGFzaGtleQBnZXRfQXNzZW1ibHkAAAAAD1UATgBL
-AE4ATwBXAE4AAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkAIABjAGEAbgBuAG8AdAAg
-AGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcAbgAgAGEAIAB2AGEA
-bAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABlAGEAZAAuAAAPSQBu
-AHAAdQB0ACAAMAAAcVMAQwBfADEAZABhADkAOABmADAAZQAzADgAMQBkADQAOQBmADgAOABjADIA
-NABjADcAMwA3ADYANQBiAGIAOAAxADIAMwAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBv
-AHUAcgBjAGUAcwAAS+4p0V1WbE2nA4uz/qEA0QAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQkg
-AwESPR0IEkEDBhI9AwYdCAQgAQ4IBCABAggFIAIBCBwDIAACBiACAg4RcQUgAR0ICAYAARJ1EXkE
-IAASfQYgAgEOEn0It3pcVhk04IkIiYRdzYCAzJEDBhIUAwYSGAMGEkUDBhJRAwYSVQMGEiAFIAEB
-EgwDIAAOBCABAQIJIAQBCA4SPRJBBSABARJFBAAAElEEAAASVQUAAQESVQQAABIgAwAAAQMoAA4D
-KAACBAgAElEECAASVQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dz
-AQgBAAIAAAAAACgBACNTQ18xZGE5OGYwZTM4MWQ0OWY4OGMyNGM3Mzc2NWJiODEyMwAABQEAAAAA
-FgEAEUNvcHlyaWdodCBAICAyMDE3AABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjUBAFQO
-FEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNQQBAAAAtAAAAM7K774BAAAA
-kQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00
-LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkj
-U3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAA
-AGwyAAAAAAAAAAAAAIYyAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4MgAAAAAAAAAAAAAAAF9D
-b3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
-SAAAAFhAAADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
-AAAAvQTv/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
-AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
-AAAAAAAAALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAA
-MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
-AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
-AABTAEMAXwAxAGQAYQA5ADgAZgAwAGUAMwA4ADEAZAA0ADkAZgA4ADgAYwAyADQAYwA3ADMANwA2
-ADUAYgBiADgAMQAyADMAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
-MAAuADAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADEAZABhADkAOABm
-ADAAZQAzADgAMQBkADQAOQBmADgAOABjADIANABjADcAMwA3ADYANQBiAGIAOAAxADIAMwAuAGQA
-bABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBo
-AHQAIABAACAAIAAyADAAMQA3AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMA
-AAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8AMQBk
-AGEAOQA4AGYAMABlADMAOAAxAGQANAA5AGYAOAA4AGMAMgA0AGMANwAzADcANgA1AGIAYgA4ADEA
-MgAzAC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADEAZABh
-ADkAOABmADAAZQAzADgAMQBkADQAOQBmADgAOABjADIANABjADcAMwA3ADYANQBiAGIAOAAxADIA
-MwAAADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4
-AAgAAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAmDIAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
-                  </arrayElements>
-                </property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
-                  name="VSTAProjectName"
-                  typeConverter="NOTBROWSABLE">SC_1da98f0e381d49f88c24c73765bb8123</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the programming language used by the script."
-                  name="ScriptLanguage"
-                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a comma-separated list of read-only variables."
-                  name="ReadOnlyVariables"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a comma-separated list of read/write variables."
-                  name="ReadWriteVariables"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
-                <property
-                  dataType="System.String"
-                  description="List of breakpoints present on the script."
-                  isArray="true"
-                  name="BreakpointCollection"
-                  typeConverter="NOTBROWSABLE">
-                  <arrayElements
-                    arrayElementCount="0" />
-                </property>
-                <property
-                  dataType="System.String"
-                  description="Checksum to match component metedata against compiled codes."
-                  name="MetadataChecksum140"
-                  typeConverter="NOTBROWSABLE">85</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Process Changes\Calculate Hash.Inputs[Input 0]"
-                  hasSideEffects="true"
-                  name="Input 0">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Process Changes\Calculate Hash.Inputs[Input 0].Columns[Firstname]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Firstname"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Calculate Hash.Inputs[Input 0].Columns[LastName]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastName"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Calculate Hash.Inputs[Input 0].Columns[EmailAddress]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="EmailAddress"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Process Changes\Calculate Hash.Outputs[Output 0]"
-                  name="Output 0"
-                  synchronousInputId="Package\Process Changes\Calculate Hash.Inputs[Input 0]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Process Changes\Calculate Hash.Outputs[Output 0].Columns[CurrentHashkey]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Process Changes\Calculate Hash.Outputs[Output 0].Columns[CurrentHashkey]"
-                      name="CurrentHashkey" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1388,17 +614,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedName="CustomerId"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
                     <inputColumn
-                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[CurrentHashkey]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="CurrentHashkey"
-                      lineageId="Package\Process Changes\Calculate Hash.Outputs[Output 0].Columns[CurrentHashkey]" />
+                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[CurrentHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CurrentHashKey"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                     <inputColumn
                       refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[ExistingHashkey]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="wstr"
+                      cachedLength="40"
                       cachedName="ExistingHashkey"
                       lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]" />
                     <inputColumn
@@ -1425,7 +649,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]} &amp;&amp; #{Package\Process Changes\Calculate Hash.Outputs[Output 0].Columns[CurrentHashkey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]}</property>
+                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]} &amp;&amp; #{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1604,6 +828,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedName="EmailAddress"
                       externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                    <inputColumn
+                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CDCOperation"
+                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]" />
+                    <inputColumn
+                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CurrentHashKey"
+                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1632,6 +871,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="str"
                       length="1"
                       name="CDCOperation" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="HashKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1759,6 +1003,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedName="EmailAddress"
                       externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                    <inputColumn
+                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CurrentHashKey"
+                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1787,6 +1038,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       dataType="str"
                       length="1"
                       name="CDCOperation" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="HashKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1858,13 +1114,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CustomerId, CAST(NULL as varchar(50)) AS Hashkey FROM [AWLTSRC].[Customer]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CustomerId, Hashkey FROM [AWLTSRC].[Customer]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT CustomerId, CAST(NULL as varchar(50)) AS Hashkey FROM [AWLTSRC].[Customer]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT CustomerId, Hashkey FROM [AWLTSRC].[Customer]) [refTable]
 where [refTable].[CustomerId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1896,7 +1152,7 @@ where [refTable].[CustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Hashkey" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Hashkey" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1954,10 +1210,9 @@ where [refTable].[CustomerId] = ?</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
-                      length="50"
+                      length="40"
                       lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]"
                       name="ExistingHashkey"
                       truncationRowDisposition="FailComponent">
@@ -2112,6 +1367,16 @@ where [refTable].[CustomerId] = ?</property>
               name="DeletedRows"
               startId="Package\Process Changes\Conditional Split.Outputs[DeletedRows]" />
             <path
+              refId="Package\Process Changes.Paths[Derived Column Output]"
+              endId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Process Changes\Add Operation.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Process Changes.Paths[Derived Column Output1]"
+              endId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Process Changes.Paths[IgnoredRows]"
               endId="Package\Process Changes\Ignored Row Count.Inputs[Row Count Input 1]"
               name="IgnoredRows"
@@ -2128,24 +1393,19 @@ where [refTable].[CustomerId] = ?</property>
               startId="Package\Process Changes\HashKeyLookup.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Process Changes.Paths[OLE DB Source Output]"
-              endId="Package\Process Changes\Calculate Hash.Inputs[Input 0]"
+              endId="Package\Process Changes\HashKeyLookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Process Changes.Paths[Output 0]"
-              endId="Package\Process Changes\HashKeyLookup.Inputs[Lookup Input]"
-              name="Output 0"
-              startId="Package\Process Changes\Calculate Hash.Outputs[Output 0]" />
-            <path
               refId="Package\Process Changes.Paths[Row Count Output 1]"
-              endId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input]"
-              name="Row Count Output 1"
-              startId="Package\Process Changes\Insert Row Count.Outputs[Row Count Output 1]" />
-            <path
-              refId="Package\Process Changes.Paths[Row Count Output 11]"
-              endId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Process Changes\Add Operation.Inputs[Derived Column Input]"
               name="Row Count Output 1"
               startId="Package\Process Changes\Update Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Process Changes.Paths[Row Count Output 11]"
+              endId="Package\Process Changes\Add Insert Column.Inputs[Derived Column Input]"
+              name="Row Count Output 1"
+              startId="Package\Process Changes\Insert Row Count.Outputs[Row Count Output 1]" />
             <path
               refId="Package\Process Changes.Paths[UpdatedRows]"
               endId="Package\Process Changes\Update Row Count.Inputs[Row Count Input 1]"
@@ -2253,7 +1513,7 @@ where [refTable].[CustomerId] = ?</property>
         <NodeLayout
           Size="161.5,42"
           Id="Package\Process Changes\Insert Row Count"
-          TopLeft="707,311.5" />
+          TopLeft="707,209.5" />
         <NodeLayout
           Size="218.5,42"
           Id="Package\Process Changes\CustomerUpdates Destination"
@@ -2261,34 +1521,34 @@ where [refTable].[CustomerId] = ?</property>
         <NodeLayout
           Size="170.5,42"
           Id="Package\Process Changes\Ignored Row Count"
-          TopLeft="483.5,413.5" />
+          TopLeft="483.5,311.5" />
         <NodeLayout
           Size="167,42"
           Id="Package\Process Changes\Update Row Count"
-          TopLeft="31.25,413.5" />
+          TopLeft="31.25,311.5" />
         <NodeLayout
           Size="154,42"
           Id="Package\Process Changes\HashKeyLookup"
-          TopLeft="710.75,209.5" />
+          TopLeft="710.75,107.5" />
         <NodeLayout
           Size="190,42"
           Id="Package\Process Changes\AWLT Customer Source"
-          TopLeft="712.75,5.5" />
+          TopLeft="692.75,5.5" />
         <NodeLayout
           Size="180,42"
           Id="Package\Process Changes\Customer Destination"
-          TopLeft="714.75,413.5" />
+          TopLeft="707.75,413.5" />
         <NodeLayout
           Size="155,42"
           Id="Package\Process Changes\Conditional Split"
-          TopLeft="491.25,311.5" />
+          TopLeft="491.25,209.5" />
         <NodeLayout
           Size="163.5,42"
           Id="Package\Process Changes\Delete Row Count"
-          TopLeft="259,413.5" />
+          TopLeft="259,311.5" />
         <EdgeLayout
           Id="Package\Process Changes.Paths[UpdatedRows]"
-          TopLeft="532,353.5">
+          TopLeft="532,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2323,64 +1583,8 @@ where [refTable].[CustomerId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Process Changes.Paths[Row Count Output 11]"
-          TopLeft="114.75,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[Row Count Output 1]"
-          TopLeft="787.75,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="17,60"
-              Start="0,0"
-              End="17,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="13,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="13,30"
-                    Point2="17,30"
-                    Point3="17,34" />
-                  <mssgle:LineSegment
-                    End="17,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Process Changes.Paths[Lookup Match Output]"
-          TopLeft="763.416666666667,251.5">
+          TopLeft="763.416666666667,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2416,7 +1620,7 @@ where [refTable].[CustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Process Changes.Paths[DeletedRows]"
-          TopLeft="568.75,353.5">
+          TopLeft="568.75,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2450,69 +1654,9 @@ where [refTable].[CustomerId] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="148.5,42"
-          Id="Package\Process Changes\Calculate Hash"
-          TopLeft="706.25,107.5" />
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[OLE DB Source Output]"
-          TopLeft="807.75,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-27.25,60"
-              Start="0,0"
-              End="-27.25,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-23.25,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-23.25,30"
-                    Point2="-27.25,30"
-                    Point3="-27.25,34" />
-                  <mssgle:LineSegment
-                    End="-27.25,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[Output 0]"
-          TopLeft="784.125,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Process Changes.Paths[IgnoredRows]"
-          TopLeft="605.5,353.5">
+          TopLeft="605.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2548,7 +1692,7 @@ where [refTable].[CustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Process Changes.Paths[New Rows]"
-          TopLeft="812.083333333333,251.5">
+          TopLeft="812.083333333333,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2580,6 +1724,136 @@ where [refTable].[CustomerId] = ?</property>
             <mssgm:EdgeLabel
               BoundingBox="-67.9730533854167,29.3701799485861,111.6127734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[OLE DB Source Output]"
+          TopLeft="787.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Process Changes\Add Operation"
+          TopLeft="41.25,413.5" />
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Row Count Output 1]"
+          TopLeft="114.75,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Derived Column Output]"
+          TopLeft="114.75,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Process Changes\Add Insert Column"
+          TopLeft="714.25,311.5" />
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Row Count Output 11]"
+          TopLeft="787.75,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10,60"
+              Start="0,0"
+              End="10,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="6,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6,30"
+                    Point2="10,30"
+                    Point3="10,34" />
+                  <mssgle:LineSegment
+                    End="10,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Derived Column Output1]"
+          TopLeft="797.75,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -1,6 +1,4 @@
 ﻿CREATE PROCEDURE [AWLTSRC].[CustomerUpdate]
-	@param1 int = 0,
-	@param2 int
 AS
 BEGIN
 		SET NOCOUNT ON;
@@ -12,6 +10,7 @@ BEGIN
 			,dest.LastName = updts.LastName
 			,dest.EmailAddress = updts.EmailAddress
 			,dest.CDCOperation = updts.CDCOperation
+			,dest.HashKey = updts.HashKey
 			-- TODO Add Audit Columns
 		FROM 
 			AWLTSRC.Customer	dest, 
