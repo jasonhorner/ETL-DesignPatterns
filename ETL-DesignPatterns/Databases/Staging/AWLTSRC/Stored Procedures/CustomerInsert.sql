@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[CustomerInsert]
+﻿CREATE PROCEDURE [AWLTSRC].[CustomerInsert]
 	@param1 int = 0,
 	@param2 int
 AS

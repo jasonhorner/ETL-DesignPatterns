@@ -1,15 +1,14 @@
 ﻿CREATE PROCEDURE [AWLTSRC].[CustomerDelete]
-	@param1 int = 0,
-	@param2 int
+
 AS
 	BEGIN
 		SET NOCOUNT ON;
 		--TODO Add Error Handling, Logging, and Row Counts
 
-		DELETE FROM  cust 
-		FROM AWLTSRC.Customer AS cust 
+		DELETE FROM  dest
+		FROM AWLTSRC.Customer AS dest
 		WHERE EXISTS (
-		SELECT * FROM AWLTSRC.Customer_DEL del WHERE a.CustomerId = del.CustomerId
+		SELECT * FROM AWLTSRC.Customer_DEL del WHERE dest.CustomerId = del.CustomerId
 		);
 
 		/*
