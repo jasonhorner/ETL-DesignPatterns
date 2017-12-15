@@ -82,6 +82,7 @@
     <Folder Include="AWDWSRC\" />
     <Folder Include="AWDWSRC\Tables\" />
     <Folder Include="Auditing\Tables\" />
+    <Folder Include="AWDWSRC\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
@@ -112,6 +113,11 @@
     <Build Include="AWLTSRC\Stored Procedures\CustomerInsert.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_HASH.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_HASH.sql" />
+    <Build Include="AWDWSRC\Tables\Customer_STG.sql" />
+    <Build Include="AWDWSRC\Tables\Customer.sql" />
+    <Build Include="AWDWSRC\Stored Procedures\CustomerPreLoad_CDC.sql" />
+    <Build Include="AWDWSRC\Stored Procedures\CustomerPostLoad_CDC.sql" />
+    <Build Include="AWDWSRC\Stored Procedures\CustomerMerge.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />

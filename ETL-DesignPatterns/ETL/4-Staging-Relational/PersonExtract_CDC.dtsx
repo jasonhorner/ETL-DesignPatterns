@@ -12,8 +12,8 @@
   DTS:ObjectName="PersonExtract_CDC"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{3377ADCA-EC78-4780-BA34-41A0CB1CCB8B}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{B6544EB3-4176-461F-92B8-DF69EF7AFCBB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -123,7 +123,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.36</DTS:VariableValue>
+        DTS:DataType="8">1.0.38</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -1329,26 +1329,6 @@
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[__$start_lsn]"
-                          cachedDataType="bytes"
-                          cachedLength="10"
-                          cachedName="__$start_lsn"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$start_lsn]"
-                          lineageId="Package\CDC Processing\CDC Process\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[__$operation]"
-                          cachedDataType="i4"
-                          cachedName="__$operation"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$operation]"
-                          lineageId="Package\CDC Processing\CDC Process\Union All.Outputs[Union All Output 1].Columns[__$operation]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[__$update_mask]"
-                          cachedDataType="bytes"
-                          cachedLength="128"
-                          cachedName="__$update_mask"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$update_mask]"
-                          lineageId="Package\CDC Processing\CDC Process\Union All.Outputs[Union All Output 1].Columns[__$update_mask]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
                           cachedDataType="i4"
                           cachedName="CustomerKey"
@@ -1543,12 +1523,6 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
                           lineageId="Package\CDC Processing\CDC Process\Union All.Outputs[Union All Output 1].Columns[CommuteDistance]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[__$command_id]"
-                          cachedDataType="i4"
-                          cachedName="__$command_id"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$command_id]"
-                          lineageId="Package\CDC Processing\CDC Process\Union All.Outputs[Union All Output 1].Columns[__$command_id]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1559,20 +1533,6 @@
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$start_lsn]"
-                          dataType="bytes"
-                          length="10"
-                          name="__$start_lsn" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$operation]"
-                          dataType="i4"
-                          name="__$operation" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$update_mask]"
-                          dataType="bytes"
-                          length="128"
-                          name="__$update_mask" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
                           dataType="i4"
@@ -1709,10 +1669,6 @@
                           dataType="wstr"
                           length="15"
                           name="CommuteDistance" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$command_id]"
-                          dataType="i4"
-                          name="__$command_id" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
                           codePage="1252"
@@ -3571,11 +3527,11 @@
               version="1">
               <components>
                 <component
-                  refId="Package\CDC Processing\InitialLoad\OLE DB Destination"
+                  refId="Package\CDC Processing\InitialLoad\AWDW Person Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="OLE DB Destination"
+                  name="AWDW Person Destination"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -3628,7 +3584,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Connections[OleDbConnection]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Connections[OleDbConnection]"
                       connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
                       connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
                       description="The OLE DB runtime connection used to access the database."
@@ -3636,384 +3592,372 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
                           cachedDataType="i4"
                           cachedName="CustomerKey"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GeographyKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[GeographyKey]"
                           cachedDataType="i4"
                           cachedName="GeographyKey"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[GeographyKey]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[GeographyKey]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerAlternateKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[CustomerAlternateKey]"
                           cachedDataType="wstr"
                           cachedLength="15"
                           cachedName="CustomerAlternateKey"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Title]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[Title]"
                           cachedDataType="wstr"
                           cachedLength="8"
                           cachedName="Title"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Title]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="FirstName"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MiddleName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[MiddleName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="MiddleName"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MiddleName]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MiddleName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="LastName"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
                           cachedDataType="bool"
                           cachedName="NameStyle"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameStyle]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NameStyle]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BirthDate]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[BirthDate]"
                           cachedDataType="dbDate"
                           cachedName="BirthDate"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[BirthDate]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
                           cachedDataType="wstr"
                           cachedLength="1"
                           cachedName="MaritalStatus"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Suffix]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[Suffix]"
                           cachedDataType="wstr"
                           cachedLength="10"
                           cachedName="Suffix"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Suffix]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Suffix]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
                           cachedDataType="wstr"
                           cachedLength="1"
                           cachedName="Gender"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Gender]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="EmailAddress"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[YearlyIncome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[YearlyIncome]"
                           cachedDataType="cy"
                           cachedName="YearlyIncome"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalChildren]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[TotalChildren]"
                           cachedDataType="ui1"
                           cachedName="TotalChildren"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalChildren]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[TotalChildren]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NumberChildrenAtHome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[NumberChildrenAtHome]"
                           cachedDataType="ui1"
                           cachedName="NumberChildrenAtHome"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EnglishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[EnglishEducation]"
                           cachedDataType="wstr"
                           cachedLength="40"
                           cachedName="EnglishEducation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SpanishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[SpanishEducation]"
                           cachedDataType="wstr"
                           cachedLength="40"
                           cachedName="SpanishEducation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FrenchEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[FrenchEducation]"
                           cachedDataType="wstr"
                           cachedLength="40"
                           cachedName="FrenchEducation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EnglishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[EnglishOccupation]"
                           cachedDataType="wstr"
                           cachedLength="100"
                           cachedName="EnglishOccupation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SpanishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[SpanishOccupation]"
                           cachedDataType="wstr"
                           cachedLength="100"
                           cachedName="SpanishOccupation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FrenchOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[FrenchOccupation]"
                           cachedDataType="wstr"
                           cachedLength="100"
                           cachedName="FrenchOccupation"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HouseOwnerFlag]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[HouseOwnerFlag]"
                           cachedDataType="wstr"
                           cachedLength="1"
                           cachedName="HouseOwnerFlag"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NumberCarsOwned]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[NumberCarsOwned]"
                           cachedDataType="ui1"
                           cachedName="NumberCarsOwned"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
                           cachedDataType="wstr"
                           cachedLength="120"
                           cachedName="AddressLine1"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
                           cachedDataType="wstr"
                           cachedLength="120"
                           cachedName="AddressLine2"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine2]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
                           cachedDataType="wstr"
                           cachedLength="20"
                           cachedName="Phone"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Phone]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateFirstPurchase]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[DateFirstPurchase]"
                           cachedDataType="dbDate"
                           cachedName="DateFirstPurchase"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]" />
                         <inputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CommuteDistance]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].Columns[CommuteDistance]"
                           cachedDataType="wstr"
                           cachedLength="15"
                           cachedName="CommuteDistance"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]" />
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$start_lsn]"
-                          dataType="bytes"
-                          length="10"
-                          name="__$start_lsn" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$operation]"
-                          dataType="i4"
-                          name="__$operation" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$update_mask]"
-                          dataType="bytes"
-                          length="128"
-                          name="__$update_mask" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
                           dataType="i4"
                           name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
                           dataType="i4"
                           name="GeographyKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
                           dataType="wstr"
                           length="15"
                           name="CustomerAlternateKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
                           dataType="wstr"
                           length="8"
                           name="Title" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
                           dataType="wstr"
                           length="50"
                           name="MiddleName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
                           dataType="bool"
                           name="NameStyle" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
                           dataType="dbDate"
                           name="BirthDate" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
                           dataType="wstr"
                           length="1"
                           name="MaritalStatus" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
                           dataType="wstr"
                           length="10"
                           name="Suffix" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
                           dataType="wstr"
                           length="1"
                           name="Gender" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
                           dataType="cy"
                           name="YearlyIncome" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
                           dataType="ui1"
                           name="TotalChildren" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
                           dataType="ui1"
                           name="NumberChildrenAtHome" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
                           dataType="wstr"
                           length="40"
                           name="EnglishEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
                           dataType="wstr"
                           length="40"
                           name="SpanishEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
                           dataType="wstr"
                           length="40"
                           name="FrenchEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
                           dataType="wstr"
                           length="100"
                           name="EnglishOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
                           dataType="wstr"
                           length="100"
                           name="SpanishOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
                           dataType="wstr"
                           length="100"
                           name="FrenchOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
                           dataType="wstr"
                           length="1"
                           name="HouseOwnerFlag" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
                           dataType="ui1"
                           name="NumberCarsOwned" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
                           dataType="wstr"
                           length="120"
                           name="AddressLine1" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
                           dataType="wstr"
                           length="120"
                           name="AddressLine2" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
                           dataType="wstr"
                           length="20"
                           name="Phone" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
                           dataType="dbDate"
                           name="DateFirstPurchase" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
                           dataType="wstr"
                           length="15"
                           name="CommuteDistance" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[__$command_id]"
-                          dataType="i4"
-                          name="__$command_id" />
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="CDCOperation" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -4022,11 +3966,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\CDC Processing\InitialLoad\OLE DB Source"
+                  refId="Package\CDC Processing\InitialLoad\AWDW Person Source"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="OLE DB Source"
+                  name="AWDW Person Source"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -4071,7 +4015,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Source.Connections[OleDbConnection]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Connections[OleDbConnection]"
                       connectionManagerID="{76D6C067-F758-4EE8-8E7A-EC43FC5F548B}:external"
                       connectionManagerRefId="Project.ConnectionManagers[AWDW Source OLEDB]"
                       description="The OLE DB runtime connection used to access the database."
@@ -4079,611 +4023,611 @@
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerKey]"
                           name="CustomerKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[GeographyKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[GeographyKey]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GeographyKey]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[GeographyKey]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[GeographyKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[GeographyKey]"
                           name="GeographyKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAlternateKey]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAlternateKey]"
                           length="15"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]"
                           name="CustomerAlternateKey"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Title]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
                           length="8"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Title]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Title]"
                           name="Title"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                           name="FirstName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
                           name="MiddleName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[LastName]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[LastName]"
                           name="LastName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
                           dataType="bool"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
                           name="NameStyle"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[BirthDate]"
                           dataType="dbDate"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[BirthDate]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[BirthDate]"
                           name="BirthDate"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]"
                           name="MaritalStatus"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Suffix]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Suffix]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
                           length="10"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Suffix]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Suffix]"
                           name="Suffix"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Gender]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Gender]"
                           name="Gender"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                           name="EmailAddress"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[YearlyIncome]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[YearlyIncome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]"
                           name="YearlyIncome"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalChildren]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[TotalChildren]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalChildren]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalChildren]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[TotalChildren]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[TotalChildren]"
                           name="TotalChildren"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumberChildrenAtHome]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NumberChildrenAtHome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]"
                           name="NumberChildrenAtHome"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishEducation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishEducation]"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]"
                           name="EnglishEducation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishEducation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishEducation]"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]"
                           name="SpanishEducation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchEducation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchEducation]"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]"
                           name="FrenchEducation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishOccupation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishOccupation]"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]"
                           name="EnglishOccupation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishOccupation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishOccupation]"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]"
                           name="SpanishOccupation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchOccupation]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchOccupation]"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]"
                           name="FrenchOccupation"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]"
                           name="HouseOwnerFlag"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]"
                           name="NumberCarsOwned"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
                           length="120"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
                           name="AddressLine1"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
                           length="120"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
                           name="AddressLine2"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Phone]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
                           length="20"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[Phone]"
                           name="Phone"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]"
                           dataType="dbDate"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateFirstPurchase]"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[DateFirstPurchase]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]"
                           name="DateFirstPurchase"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
+                          externalMetadataColumnId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
                           length="15"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]"
                           name="CommuteDistance"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerKey]"
                           dataType="i4"
                           name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GeographyKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[GeographyKey]"
                           dataType="i4"
                           name="GeographyKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAlternateKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerAlternateKey]"
                           dataType="wstr"
                           length="15"
                           name="CustomerAlternateKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
                           dataType="wstr"
                           length="8"
                           name="Title" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
                           dataType="wstr"
                           length="50"
                           name="MiddleName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
                           dataType="bool"
                           name="NameStyle" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[BirthDate]"
                           dataType="dbDate"
                           name="BirthDate" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[MaritalStatus]"
                           dataType="wstr"
                           length="1"
                           name="MaritalStatus" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
                           dataType="wstr"
                           length="10"
                           name="Suffix" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
                           dataType="wstr"
                           length="1"
                           name="Gender" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[YearlyIncome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[YearlyIncome]"
                           dataType="cy"
                           name="YearlyIncome" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TotalChildren]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[TotalChildren]"
                           dataType="ui1"
                           name="TotalChildren" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumberChildrenAtHome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NumberChildrenAtHome]"
                           dataType="ui1"
                           name="NumberChildrenAtHome" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishEducation]"
                           dataType="wstr"
                           length="40"
                           name="EnglishEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishEducation]"
                           dataType="wstr"
                           length="40"
                           name="SpanishEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchEducation]"
                           dataType="wstr"
                           length="40"
                           name="FrenchEducation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[EnglishOccupation]"
                           dataType="wstr"
                           length="100"
                           name="EnglishOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[SpanishOccupation]"
                           dataType="wstr"
                           length="100"
                           name="SpanishOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[FrenchOccupation]"
                           dataType="wstr"
                           length="100"
                           name="FrenchOccupation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[HouseOwnerFlag]"
                           dataType="wstr"
                           length="1"
                           name="HouseOwnerFlag" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[NumberCarsOwned]"
                           dataType="ui1"
                           name="NumberCarsOwned" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
                           dataType="wstr"
                           length="120"
                           name="AddressLine1" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
                           dataType="wstr"
                           length="120"
                           name="AddressLine2" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
                           dataType="wstr"
                           length="20"
                           name="Phone" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateFirstPurchase]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[DateFirstPurchase]"
                           dataType="dbDate"
                           name="DateFirstPurchase" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output].ExternalColumns[CommuteDistance]"
                           dataType="wstr"
                           length="15"
                           name="CommuteDistance" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CustomerKey]"
                           name="CustomerKey" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GeographyKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[GeographyKey]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GeographyKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[GeographyKey]"
                           name="GeographyKey" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerAlternateKey]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CustomerAlternateKey]"
                           dataType="wstr"
                           length="15"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerAlternateKey]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CustomerAlternateKey]"
                           name="CustomerAlternateKey" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Title]"
                           dataType="wstr"
                           length="8"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Title]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Title]"
                           name="Title" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                           name="FirstName" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
                           name="MiddleName" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
                           name="LastName" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
                           dataType="bool"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
                           name="NameStyle" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
                           dataType="dbDate"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[BirthDate]"
                           name="BirthDate" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
                           dataType="wstr"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[MaritalStatus]"
                           name="MaritalStatus" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
                           dataType="wstr"
                           length="10"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
                           name="Suffix" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
                           dataType="wstr"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
                           name="Gender" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                           name="EmailAddress" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[YearlyIncome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[YearlyIncome]"
                           dataType="cy"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[YearlyIncome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[YearlyIncome]"
                           name="YearlyIncome" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalChildren]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[TotalChildren]"
                           dataType="ui1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TotalChildren]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[TotalChildren]"
                           name="TotalChildren" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumberChildrenAtHome]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NumberChildrenAtHome]"
                           dataType="ui1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumberChildrenAtHome]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NumberChildrenAtHome]"
                           name="NumberChildrenAtHome" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EnglishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EnglishEducation]"
                           dataType="wstr"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EnglishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EnglishEducation]"
                           name="EnglishEducation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SpanishEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[SpanishEducation]"
                           dataType="wstr"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SpanishEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[SpanishEducation]"
                           name="SpanishEducation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FrenchEducation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FrenchEducation]"
                           dataType="wstr"
                           length="40"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FrenchEducation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FrenchEducation]"
                           name="FrenchEducation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EnglishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EnglishOccupation]"
                           dataType="wstr"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EnglishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[EnglishOccupation]"
                           name="EnglishOccupation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SpanishOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[SpanishOccupation]"
                           dataType="wstr"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SpanishOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[SpanishOccupation]"
                           name="SpanishOccupation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FrenchOccupation]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FrenchOccupation]"
                           dataType="wstr"
                           length="100"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FrenchOccupation]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[FrenchOccupation]"
                           name="FrenchOccupation" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
                           dataType="wstr"
                           length="1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[HouseOwnerFlag]"
                           name="HouseOwnerFlag" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
                           dataType="ui1"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[NumberCarsOwned]"
                           name="NumberCarsOwned" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
                           dataType="wstr"
                           length="120"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
                           name="AddressLine1" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
                           dataType="wstr"
                           length="120"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
                           name="AddressLine2" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
                           dataType="wstr"
                           length="20"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
                           name="Phone" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateFirstPurchase]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[DateFirstPurchase]"
                           dataType="dbDate"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateFirstPurchase]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[DateFirstPurchase]"
                           name="DateFirstPurchase" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
                           dataType="wstr"
                           length="15"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[CommuteDistance]"
                           name="CommuteDistance" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -4726,10 +4670,10 @@
                   refId="Package\CDC Processing\InitialLoad.Paths[OLE DB Source Output]"
                   endId="Package\CDC Processing\InitialLoad\Select Row Count.Inputs[Row Count Input 1]"
                   name="OLE DB Source Output"
-                  startId="Package\CDC Processing\InitialLoad\OLE DB Source.Outputs[OLE DB Source Output]" />
+                  startId="Package\CDC Processing\InitialLoad\AWDW Person Source.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\CDC Processing\InitialLoad.Paths[Row Count Output 1]"
-                  endId="Package\CDC Processing\InitialLoad\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\CDC Processing\InitialLoad\AWDW Person Destination.Inputs[OLE DB Destination Input]"
                   name="Row Count Output 1"
                   startId="Package\CDC Processing\InitialLoad\Select Row Count.Outputs[Row Count Output 1]" />
               </paths>
@@ -5492,48 +5436,26 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\CDC Processing\InitialLoad\OLE DB Source"
+          Size="182.5,42"
+          Id="Package\CDC Processing\InitialLoad\AWDW Person Source"
           TopLeft="247,130" />
+        <NodeLayout
+          Size="203.5,42"
+          Id="Package\CDC Processing\InitialLoad\AWDW Person Destination"
+          TopLeft="262.5,442" />
         <NodeLayout
           Size="162,42"
           Id="Package\CDC Processing\InitialLoad\Select Row Count"
           TopLeft="248.5,258" />
-        <EdgeLayout
-          Id="Package\CDC Processing\InitialLoad.Paths[OLE DB Source Output]"
-          TopLeft="325.75,172">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86"
-              Start="0,0"
-              End="0,78.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\CDC Processing\InitialLoad\OLE DB Destination"
-          TopLeft="262.5,442" />
         <EdgeLayout
           Id="Package\CDC Processing\InitialLoad.Paths[Row Count Output 1]"
           TopLeft="329.5,300">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="18.5,142"
+              EndConnector="34.75,142"
               Start="0,0"
-              End="18.5,134.5">
+              End="34.75,134.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -5544,13 +5466,47 @@
                     Point2="0,71"
                     Point3="4,71" />
                   <mssgle:LineSegment
-                    End="14.5,71" />
+                    End="30.75,71" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.5,71"
-                    Point2="18.5,71"
-                    Point3="18.5,75" />
+                    Point1="30.75,71"
+                    Point2="34.75,71"
+                    Point3="34.75,75" />
                   <mssgle:LineSegment
-                    End="18.5,134.5" />
+                    End="34.75,134.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\InitialLoad.Paths[OLE DB Source Output]"
+          TopLeft="338.25,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.75,86"
+              Start="0,0"
+              End="-8.75,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39"
+                    Point2="0,43"
+                    Point3="-4,43" />
+                  <mssgle:LineSegment
+                    End="-4.75,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.75,43"
+                    Point2="-8.75,43"
+                    Point3="-8.75,47" />
+                  <mssgle:LineSegment
+                    End="-8.75,78.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5563,7 +5519,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\InitialLoad\OLE DB Source">
+    design-time-name="Package\CDC Processing\InitialLoad\AWDW Person Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -5576,7 +5532,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\InitialLoad\OLE DB Destination">
+    design-time-name="Package\CDC Processing\InitialLoad\AWDW Person Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

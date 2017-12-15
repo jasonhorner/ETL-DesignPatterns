@@ -1,1 +1,3 @@
 ﻿CREATE SCHEMA [AWDWSRC]
+    AUTHORIZATION [dbo];
+

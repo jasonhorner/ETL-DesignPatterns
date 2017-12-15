@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[CustomerPreLoad_HASH]
+﻿CREATE PROCEDURE [AWLTSRC].[CustomerPreLoad_HASH]
 	@initStagingTable bit = 0
 AS
 BEGIN

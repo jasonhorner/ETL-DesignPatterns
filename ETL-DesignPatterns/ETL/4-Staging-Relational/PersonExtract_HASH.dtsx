@@ -12,8 +12,8 @@
   DTS:ObjectName="PersonExtract_HASH"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{7C59F4E6-DF29-401F-A2D3-B6BDFBFF4EC0}">
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{743BE789-D8A2-41ED-81E4-99C9CB3F98C6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -141,7 +141,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.58</DTS:VariableValue>
+        DTS:DataType="8">1.0.59</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -234,7 +234,7 @@
           SQLTask:SqlStatementSource="[AWLTSRC].[CustomerPreLoad_HASH]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="@initStagingTable"
-            SQLTask:DtsVariableName="User::InitStaging"
+            SQLTask:DtsVariableName="User::InitStagingTable"
             SQLTask:ParameterDirection="Input"
             SQLTask:DataType="3"
             SQLTask:ParameterSize="-1" />
@@ -1448,16 +1448,16 @@ where [refTable].[CustomerId] = ?</property>
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="180,42"
-          Id="Package\Process Changes"
-          TopLeft="5.50000000000003,107.5" />
-        <NodeLayout
-          Size="180,42"
           Id="Package\PostLoad"
           TopLeft="5.50000000000003,209.5" />
         <NodeLayout
           Size="180,42"
           Id="Package\Preload"
           TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Process Changes"
+          TopLeft="5.50000000000003,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="95.5,47.5">
@@ -1878,7 +1878,7 @@ where [refTable].[CustomerId] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1888,7 +1888,7 @@ where [refTable].[CustomerId] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

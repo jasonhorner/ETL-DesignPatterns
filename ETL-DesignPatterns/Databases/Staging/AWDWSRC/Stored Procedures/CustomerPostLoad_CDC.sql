@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [AWDWSRC].[CustomerPostLoad_CDC]
+AS
+BEGIN
+
+SET NOCOUNT ON;
+
+--EXECUTE [AWDWSRC].[CustomerDelete];
+--EXECUTE [AWDWSRC].[CustomerUpdate];
+--EXECUTE [AWDWSRC].[CustomerInsert];
+
+
+RETURN 0
+END
