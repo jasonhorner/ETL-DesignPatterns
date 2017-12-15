@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [AWLTSRC].[CustomerPostLoad_CT]
+AS
+BEGIN
+
+SET NOCOUNT ON;
+
+EXECUTE [AWLTSRC].[CustomerDelete];
+EXECUTE [AWLTSRC].[CustomerUpdate];
+EXECUTE [AWLTSRC].[CustomerInsert];
+
+
+RETURN 0
+END

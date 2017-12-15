@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{C7277E36-0790-4D4A-A897-97B9453477ED}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{E3099E5D-CD7B-429B-BA5D-610A15BA5DCC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -56,17 +56,17 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Get Change Tracking Info"
+      DTS:refId="Package\Change Tracking Processing"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{DF4B50E1-4ACF-4C07-8D97-B2391F4CDEE7}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Get Change Tracking Info">
+      DTS:ObjectName="Change Tracking Processing">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Get Change Tracking Info\Get Destination Latest Version"
+          DTS:refId="Package\Change Tracking Processing\Get Destination Latest Version"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Get Destination Latest Version"
           DTS:DTSID="{9F5A9578-5EF3-4965-84D3-D52B0E98E3E1}"
@@ -84,7 +84,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Get Change Tracking Info\Get Source Latest Version"
+          DTS:refId="Package\Change Tracking Processing\Get Source Latest Version"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{1FCC3714-E301-4837-A0A2-3E8D2B2C22AD}"
@@ -100,208 +100,206 @@
               SQLTask:SqlStatementSource="SELECT CHANGE_TRACKING_CURRENT_VERSION()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
-      </DTS:Executables>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Load Staging"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{FD752C81-8610-4BC7-BB71-713BD0816043}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Load Staging"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\Load Staging\AWLT Customer DEST"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="AWLT Customer DEST"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Staging\AWLT Customer DEST.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="FirstName"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]" />
-                    <inputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastName"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="EmailAddress"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      dataType="i4"
-                      name="CustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      dataType="wstr"
-                      length="50"
-                      name="Firstname" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      dataType="wstr"
-                      length="50"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
-                      dataType="wstr"
-                      length="50"
-                      name="EmailAddress" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="CDCOperation" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      dataType="wstr"
-                      length="40"
-                      name="HashKey" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load Staging\AWLT Customer SRC"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="AWLT Customer SRC"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+        <DTS:Executable
+          DTS:refId="Package\Change Tracking Processing\Process CT"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{e6c868ce-bcc7-43cc-bba7-7fbe57979215}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process CT"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="AWLT Customer DEST"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Connections[OleDbConnection]"
+                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                          cachedDataType="i4"
+                          cachedName="CustomerId"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          dataType="i4"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          dataType="wstr"
+                          length="50"
+                          name="Firstname" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="CDCOperation" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                          dataType="wstr"
+                          length="40"
+                          name="HashKey" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="AWLT Customer SRC"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
   ct.CustomerId
 , c.FirstName
 , c.LastName
@@ -311,211 +309,235 @@ FROM CHANGETABLE(CHANGES dbo.Customer, ?) ct
 LEFT JOIN dbo.customer c
 ON c.CustomerId = ct.CustomerId
 WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATION_VERSION)) AS VALUE(v)) &lt;= ?</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping">"Parameter0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"Parameter1:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Staging\AWLT Customer SRC.Connections[OleDbConnection]"
-                  connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AWLT Source OLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
-                      name="CustomerId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
-                      name="FirstName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
-                      name="LastName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
-                      name="EmailAddress"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
-                      length="1"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
-                      name="Operation"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
-                      dataType="i4"
-                      name="CustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
-                      dataType="wstr"
-                      length="50"
-                      name="FirstName" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
-                      dataType="wstr"
-                      length="50"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
-                      dataType="wstr"
-                      length="50"
-                      name="EmailAddress" />
-                    <externalMetadataColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
-                      dataType="wstr"
-                      length="1"
-                      name="Operation" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
-                      dataType="i4"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
-                      name="CustomerId" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
-                      name="FirstName" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
-                      name="LastName" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
-                      name="EmailAddress" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
-                      dataType="wstr"
-                      length="1"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
-                      name="Operation" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Load Staging.Paths[OLE DB Source Output]"
-              endId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"Parameter1:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Connections[OleDbConnection]"
+                      connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AWLT Source OLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                          name="CustomerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
+                          name="FirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
+                          name="LastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                          name="EmailAddress"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
+                          length="1"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
+                          name="Operation"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                          dataType="i4"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
+                          dataType="wstr"
+                          length="1"
+                          name="Operation" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                          name="CustomerId" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                          name="FirstName" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          name="LastName" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                          name="EmailAddress" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
+                          name="Operation" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[OLE DB Source Output]"
+                  endId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Change Tracking Processing.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7D26504A-5ACC-4028-97ED-1446148900D5}"
+          DTS:From="Package\Change Tracking Processing\Get Source Latest Version"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Change Tracking Processing\Process CT" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{A592DD8B-F110-45CD-B9B0-E65C6CFE1BC4}"
+          DTS:From="Package\Change Tracking Processing\Get Destination Latest Version"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Change Tracking Processing\Process CT" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Merge Changes"
+      DTS:refId="Package\PostLoad"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{3C29EC92-8C69-4047-816C-2E0FCA46B897}"
+      DTS:DTSID="{768BD59D-CD20-44E0-A0F4-E51174496155}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Merge Changes"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Truncate Staging"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{E5C39A16-07B0-4D5C-A8EB-67750081EC26}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Truncate Staging"
+      DTS:ObjectName="PostLoad"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSTG.Customer;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+          SQLTask:IsStoredProc="True"
+          SQLTask:SqlStatementSource="AWLTSRC.CustomerPostLoad_CT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PreLoad"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{19482494-3B24-4254-969C-14536A32B0A0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PreLoad"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+          SQLTask:IsStoredProc="True"
+          SQLTask:SqlStatementSource="AWLTSRC.CustomerPreLoad_CT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -523,27 +545,19 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{E4AE8849-E337-4540-B938-F5FF62AA061F}"
-      DTS:From="Package\Get Change Tracking Info"
+      DTS:DTSID="{EDCECCFA-396C-4FF8-8FBB-C4D95D1340EE}"
+      DTS:From="Package\Change Tracking Processing"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Truncate Staging" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
-      DTS:CreationName=""
-      DTS:DTSID="{B228672E-8A80-4771-B149-99F2C0BF20EA}"
-      DTS:From="Package\Truncate Staging"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Load Staging" />
+      DTS:To="Package\PostLoad" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{8339754C-FFF6-4248-A0D0-6F7043552D7A}"
-      DTS:From="Package\Load Staging"
+      DTS:DTSID="{A471EB67-3A47-4522-B74D-1F3B4AFA657C}"
+      DTS:From="Package\PreLoad"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Merge Changes" />
+      DTS:To="Package\Change Tracking Processing" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -559,113 +573,135 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="221.5,42"
-          Id="Package\Get Change Tracking Info\Get Destination Latest Version"
-          TopLeft="13.75,17.5" />
+          Id="Package\Change Tracking Processing\Get Destination Latest Version"
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="200.5,42"
-          Id="Package\Get Change Tracking Info\Get Source Latest Version"
-          TopLeft="20,84.25" />
+          Id="Package\Change Tracking Processing\Get Source Latest Version"
+          TopLeft="288,5.5" />
+        <NodeLayout
+          Size="130.5,42"
+          Id="Package\Change Tracking Processing\Process CT"
+          TopLeft="323,107.5" />
+        <EdgeLayout
+          Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint]"
+          TopLeft="388.25,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.4166666666666,60"
+              Start="0,0"
+              End="20.4166666666666,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5639666919001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5639666919001"
+                    Point2="0,35.5639666919001"
+                    Point3="4,35.5639666919001" />
+                  <mssgle:LineSegment
+                    End="16.4166666666666,35.5639666919001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.4166666666666,35.5639666919001"
+                    Point2="20.4166666666666,35.5639666919001"
+                    Point3="20.4166666666666,39.5639666919001" />
+                  <mssgle:LineSegment
+                    End="20.4166666666666,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 1]"
+          TopLeft="116.25,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="251.583333333333,60"
+              Start="0,0"
+              End="251.583333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5639666919001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5639666919001"
+                    Point2="0,35.5639666919001"
+                    Point3="4,35.5639666919001" />
+                  <mssgle:LineSegment
+                    End="247.583333333333,35.5639666919001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="247.583333333333,35.5639666919001"
+                    Point2="251.583333333333,35.5639666919001"
+                    Point3="251.583333333333,39.5639666919001" />
+                  <mssgle:LineSegment
+                    End="251.583333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="267,177"
-          Size="267,220"
-          Id="Package\Get Change Tracking Info"
-          TopLeft="115.75,46.5" />
+          IsExpanded="False"
+          PanelSize="494,204.5"
+          Size="234,43"
+          Id="Package\Change Tracking Processing"
+          TopLeft="5.50000000000003,107.5" />
         <NodeLayout
-          Size="140,42"
-          Id="Package\Load Staging"
-          TopLeft="157.5,383.25" />
+          Size="121.5,42"
+          Id="Package\PostLoad"
+          TopLeft="61.75,210.5" />
         <NodeLayout
-          Size="151.5,42"
-          Id="Package\Merge Changes"
-          TopLeft="149.5,444" />
-        <NodeLayout
-          Size="159.5,42"
-          Id="Package\Truncate Staging"
-          TopLeft="164,300" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="246.5,266.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33.5"
-              Start="0,0"
-              End="0,26">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="243.75,342">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-16.25,41.25"
-              Start="0,0"
-              End="-16.25,33.75">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.625" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.625"
-                    Point2="0,20.625"
-                    Point3="-4,20.625" />
-                  <mssgle:LineSegment
-                    End="-12.25,20.625" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-12.25,20.625"
-                    Point2="-16.25,20.625"
-                    Point3="-16.25,24.625" />
-                  <mssgle:LineSegment
-                    End="-16.25,33.75" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="117,42"
+          Id="Package\PreLoad"
+          TopLeft="64,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="297.5,404.25">
+          TopLeft="122.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="3.5,60.75"
+              EndConnector="0,60"
               Start="0,0"
-              End="11,60.75">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="22,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22,0"
-                    Point2="26,0"
-                    Point3="26,4" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="122.5,150.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="26,56.75" />
-                  <mssgle:CubicBezierSegment
-                    Point1="26,56.75"
-                    Point2="26,60.75"
-                    Point3="22,60.75" />
-                  <mssgle:LineSegment
-                    End="11,60.75" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -678,20 +714,20 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load Staging">
+    design-time-name="Package\Change Tracking Processing\Process CT">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Load Staging\AWLT Customer SRC"
-          TopLeft="176.5,71" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="183.5,42"
-          Id="Package\Load Staging\AWLT Customer DEST"
+          Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
           TopLeft="179.25,180.25" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
+          TopLeft="176.5,71" />
         <EdgeLayout
-          Id="Package\Load Staging.Paths[OLE DB Source Output]"
+          Id="Package\Change Tracking Processing\Process CT.Paths[OLE DB Source Output]"
           TopLeft="268,113">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -709,32 +745,13 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Staging\AWLT Customer DEST">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Staging\AWLT Customer SRC">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
