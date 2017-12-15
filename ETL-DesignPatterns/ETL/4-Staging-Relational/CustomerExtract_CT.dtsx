@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{26804D41-A331-4CDA-9BC7-0C7CB48202C0}">
+  DTS:VersionBuild="30"
+  DTS:VersionGUID="{F7564C95-B39B-400C-93E9-BAAABFFA9C7F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -37,6 +37,42 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{C059F6B9-F3E2-43BC-B758-7189F2489E82}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6C8F9D6-4597-4296-A5ED-84DAB287B4C0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IgnoredRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F853AD8C-5A7D-4237-8792-255F7C0D7E78}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D7A90F60-29CE-4C7E-A304-1236559C78ED}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SelectRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{04C7FD2B-A811-490C-97AA-016A83ECC589}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -52,6 +88,15 @@
       DTS:ObjectName="SourceTableName">
       <DTS:VariableValue
         DTS:DataType="8">dbo.foo</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AFD569EA-DB6C-412E-A159-CB20FCC52B4D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -143,7 +188,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
+                      name="OpenRowset">[AWLTSRC].[Customer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -342,7 +387,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
-                      name="ParameterMapping">"0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"2:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
+                      name="ParameterMapping">"0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"1:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
                   </properties>
                   <connections>
                     <connection
@@ -486,13 +531,717 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                     </output>
                   </outputs>
                 </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="AWLT Customer_STG DEST"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Connections[OleDbConnection]"
+                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                          cachedDataType="i4"
+                          cachedName="CustomerId"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="FirstName"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[EmailAddress]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          dataType="i4"
+                          name="CustomerId" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          dataType="wstr"
+                          length="50"
+                          name="Firstname" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="CDCOperation" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                          dataType="wstr"
+                          length="40"
+                          name="HashKey" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Combine Changes"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Combine Changes"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1]"
+                      name="Union All Input 1">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1].Columns[CustomerId]"
+                          cachedDataType="i4"
+                          cachedName="CustomerId"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="FirstName"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="LastName"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[LastName]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1].Columns[Operation]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Operation"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[Operation]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2]"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2].Columns[CustomerId]"
+                          cachedDataType="i4"
+                          cachedName="CustomerId"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2].Columns[FirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="FirstName"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2].Columns[LastName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="LastName"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[LastName]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2].Columns[Operation]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Operation"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[Operation]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 3]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 3">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]"
+                          name="CustomerId" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]"
+                          name="FirstName" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[LastName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[LastName]"
+                          name="LastName" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[EmailAddress]"
+                          name="EmailAddress" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[Operation]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[Operation]"
+                          name="Operation" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Delete Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Delete Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::DeleteRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Delete Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Delete Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Delete Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Ignored Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Ignored Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::IgnoredRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Ignored Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Ignored Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Ignored Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Insert Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Insert Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::InsertRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Insert Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Insert Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Insert Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Process Changes"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="Process Changes"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input].Columns[Operation]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Operation"
+                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Insert Rows]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Insert Rows"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]} == "I"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">Operation == "I"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Update Rows]"
+                      description="Output 2 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Update Rows"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]} == "U"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">Operation == "U"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Delete Rows]"
+                      description="Output 3 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Delete Rows"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]} == "D"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">Operation == "D"</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">2</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Ignore Rows]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Ignore Rows"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Select Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Select Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::SelectRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Select Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Select Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Select Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Change Tracking Processing\Process CT\Update Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Update Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::UpdateRowCount</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Change Tracking Processing\Process CT\Update Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Change Tracking Processing\Process CT\Update Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Change Tracking Processing\Process CT\Update Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
               </components>
               <paths>
                 <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Delete Rows]"
+                  endId="Package\Change Tracking Processing\Process CT\Delete Row Count.Inputs[Row Count Input 1]"
+                  name="Delete Rows"
+                  startId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Delete Rows]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Ignore Rows]"
+                  endId="Package\Change Tracking Processing\Process CT\Ignored Row Count.Inputs[Row Count Input 1]"
+                  name="Ignore Rows"
+                  startId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Ignore Rows]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Insert Rows]"
+                  endId="Package\Change Tracking Processing\Process CT\Insert Row Count.Inputs[Row Count Input 1]"
+                  name="Insert Rows"
+                  startId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Insert Rows]" />
+                <path
                   refId="Package\Change Tracking Processing\Process CT.Paths[OLE DB Source Output]"
-                  endId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
+                  endId="Package\Change Tracking Processing\Process CT\Select Row Count.Inputs[Row Count Input 1]"
                   name="OLE DB Source Output"
                   startId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 1]"
+                  endId="Package\Change Tracking Processing\Process CT\Process Changes.Inputs[Conditional Split Input]"
+                  name="Row Count Output 1"
+                  startId="Package\Change Tracking Processing\Process CT\Select Row Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 11]"
+                  endId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
+                  name="Row Count Output 1"
+                  startId="Package\Change Tracking Processing\Process CT\Insert Row Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 12]"
+                  endId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 1]"
+                  name="Row Count Output 1"
+                  startId="Package\Change Tracking Processing\Process CT\Delete Row Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 13]"
+                  endId="Package\Change Tracking Processing\Process CT\Combine Changes.Inputs[Union All Input 2]"
+                  name="Row Count Output 1"
+                  startId="Package\Change Tracking Processing\Process CT\Update Row Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Union All Output 1]"
+                  endId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input]"
+                  name="Union All Output 1"
+                  startId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1]" />
+                <path
+                  refId="Package\Change Tracking Processing\Process CT.Paths[Update Rows]"
+                  endId="Package\Change Tracking Processing\Process CT\Update Row Count.Inputs[Row Count Input 1]"
+                  name="Update Rows"
+                  startId="Package\Change Tracking Processing\Process CT\Process Changes.Outputs[Update Rows]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -680,40 +1429,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\PreLoad"
           TopLeft="64,5.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="122.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="130,60"
-              Start="0,0"
-              End="130,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="126,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="126,30"
-                    Point2="130,30"
-                    Point3="130,34" />
-                  <mssgle:LineSegment
-                    End="130,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="252.5,355">
           <EdgeLayout.Curve>
@@ -747,36 +1462,32 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Change Tracking Processing\Process CT">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="183.5,42"
-          Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
-          TopLeft="179.25,180.25" />
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
-          TopLeft="176.5,71" />
         <EdgeLayout
-          Id="Package\Change Tracking Processing\Process CT.Paths[OLE DB Source Output]"
-          TopLeft="268,113">
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="122.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,67.25"
+              EndConnector="130,60"
               Start="0,0"
-              End="0,59.75">
+              End="130,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,59.75" />
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="126,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="126,30"
+                    Point2="130,30"
+                    Point3="130,34" />
+                  <mssgle:LineSegment
+                    End="130,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -787,9 +1498,365 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Change Tracking Processing\Process CT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Change Tracking Processing\Process CT\Update Row Count"
+          TopLeft="238.75,311.5" />
+        <NodeLayout
+          Size="163.5,42"
+          Id="Package\Change Tracking Processing\Process CT\Delete Row Count"
+          TopLeft="466.5,311.5" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
+          TopLeft="233.75,5.5" />
+        <NodeLayout
+          Size="170.5,42"
+          Id="Package\Change Tracking Processing\Process CT\Ignored Row Count"
+          TopLeft="672.5,293.5" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Change Tracking Processing\Process CT\Process Changes"
+          TopLeft="243.25,209.5" />
+        <NodeLayout
+          Size="208.5,42"
+          Id="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST"
+          TopLeft="213.25,515.5" />
+        <NodeLayout
+          Size="161.5,42"
+          Id="Package\Change Tracking Processing\Process CT\Insert Row Count"
+          TopLeft="16.5,311.5" />
+        <NodeLayout
+          Size="183.5,42"
+          Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
+          TopLeft="5.50000000000006,413.5" />
+        <NodeLayout
+          Size="163.5,42"
+          Id="Package\Change Tracking Processing\Process CT\Combine Changes"
+          TopLeft="249.5,413.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Change Tracking Processing\Process CT\Select Row Count"
+          TopLeft="241.25,107.5" />
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Update Rows]"
+          TopLeft="322.25,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.6415234375,20.4453125,59.283046875,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Union All Output 1]"
+          TopLeft="331.25,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.7499999999999,60"
+              Start="0,0"
+              End="-13.7499999999999,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-9.74999999999994,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.74999999999994,30"
+                    Point2="-13.7499999999999,30"
+                    Point3="-13.7499999999999,34" />
+                  <mssgle:LineSegment
+                    End="-13.7499999999999,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 13]"
+          TopLeft="322.25,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.9166666666667,60"
+              Start="0,0"
+              End="-16.9166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6511205330103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6511205330103"
+                    Point2="0,35.6511205330103"
+                    Point3="-4,35.6511205330103" />
+                  <mssgle:LineSegment
+                    End="-12.9166666666667,35.6511205330103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.9166666666667,35.6511205330103"
+                    Point2="-16.9166666666667,35.6511205330103"
+                    Point3="-16.9166666666667,39.6511205330103" />
+                  <mssgle:LineSegment
+                    End="-16.9166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 12]"
+          TopLeft="548.25,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-191.083333333333,60"
+              Start="0,0"
+              End="-191.083333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6511205330103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6511205330103"
+                    Point2="0,35.6511205330103"
+                    Point3="-4,35.6511205330103" />
+                  <mssgle:LineSegment
+                    End="-187.083333333333,35.6511205330103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-187.083333333333,35.6511205330103"
+                    Point2="-191.083333333333,35.6511205330103"
+                    Point3="-191.083333333333,39.6511205330103" />
+                  <mssgle:LineSegment
+                    End="-191.083333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 11]"
+          TopLeft="97.25,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Row Count Output 1]"
+          TopLeft="322.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[OLE DB Source Output]"
+          TopLeft="322.25,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Insert Rows]"
+          TopLeft="284.75,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-187.5,60"
+              Start="0,0"
+              End="-187.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6639004149378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6639004149378"
+                    Point2="0,20.6639004149378"
+                    Point3="-4,20.6639004149378" />
+                  <mssgle:LineSegment
+                    End="-183.5,20.6639004149378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-183.5,20.6639004149378"
+                    Point2="-187.5,20.6639004149378"
+                    Point3="-187.5,24.6639004149378" />
+                  <mssgle:LineSegment
+                    End="-187.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-120.7391796875,25.6639004149378,53.978359375,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Ignore Rows]"
+          TopLeft="367.25,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="390.5,42"
+              Start="0,0"
+              End="390.5,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.63716814159292" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.63716814159292"
+                    Point2="0,12.6371681415929"
+                    Point3="4,12.6371681415929" />
+                  <mssgle:LineSegment
+                    End="386.5,12.6371681415929" />
+                  <mssgle:CubicBezierSegment
+                    Point1="386.5,12.6371681415929"
+                    Point2="390.5,12.6371681415929"
+                    Point3="390.5,16.6371681415929" />
+                  <mssgle:LineSegment
+                    End="390.5,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="166.6808203125,17.6371681415929,57.138359375,11.3359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Change Tracking Processing\Process CT.Paths[Delete Rows]"
+          TopLeft="359.75,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.5,60"
+              Start="0,0"
+              End="188.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6639004149378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6639004149378"
+                    Point2="0,20.6639004149378"
+                    Point3="4,20.6639004149378" />
+                  <mssgle:LineSegment
+                    End="184.5,20.6639004149378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184.5,20.6639004149378"
+                    Point2="188.5,20.6639004149378"
+                    Point3="188.5,24.6639004149378" />
+                  <mssgle:LineSegment
+                    End="188.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="66.292421875,25.6639004149378,55.91515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer DEST">
+    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer SRC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -802,10 +1869,15 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer SRC">
+    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer DEST">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
