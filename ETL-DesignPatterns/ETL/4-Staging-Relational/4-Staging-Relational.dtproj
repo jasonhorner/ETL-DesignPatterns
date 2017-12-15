@@ -29,9 +29,9 @@
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="PersonExtract_CT.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="PersonExtract_CDC.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="PersonExtract_HASH.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CustomerExtract_CDC.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CustomerExtract_CT.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CustomerExtract_HASH.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Staging ADONET.conmgr" />
@@ -142,7 +142,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=etldp.database.windows.net;User ID=jhorner;Initial Catalog=AdventureworksLT;Application Name=SSIS-PersonExtract_CT-{F25EB8B6-EE98-48FD-B18D-FAD9C38271DB}etldp.database.windows.net.AdventureworksLT.jhorner1;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=AdventureworksLT;Integrated Security=True;Application Name=SSIS-PersonExtract_CT-{F25EB8B6-EE98-48FD-B18D-FAD9C38271DB}etldp.database.windows.net.AdventureworksLT.jhorner1;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -201,7 +201,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">etldp.database.windows.net</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">localhost</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -216,7 +216,6 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">jhorner</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -231,7 +230,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=etldp.database.windows.net;User ID=jhorner;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -290,7 +289,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">etldp.database.windows.net</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">localhost</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -305,7 +304,6 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">jhorner</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -575,16 +573,16 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="PersonExtract_CT.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="CustomerExtract_CDC.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{952BC8C5-B9DB-430A-AE8A-273845840E40}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">PersonExtract_CT</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{AF4AEB62-9EDE-44E5-B9AF-BFCD32E48AFE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CustomerExtract_CDC</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">39</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{28BAED31-7ECB-4280-975E-B0E884FFD90B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F6FE013B-CEF9-42E8-939E-085763E389D0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -592,16 +590,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="PersonExtract_CDC.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="CustomerExtract_CT.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{E8F37A5E-BFF6-4C15-8521-01348961DCE5}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">PersonExtract_CDC</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{B29BDBD7-677C-41D8-83CE-86500C6DC159}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CustomerExtract_CT</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">36</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3377ADCA-EC78-4780-BA34-41A0CB1CCB8B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E4845E2B-482B-4D3F-AFCE-F894F128DBCD}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -609,16 +607,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="PersonExtract_HASH.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="CustomerExtract_HASH.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{5E9C53B4-8F6A-4965-8D20-AA2A77AFC0C4}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">PersonExtract_HASH</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{81B04AD9-EB5F-4C79-89D0-20ABEE56ACB7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CustomerExtract_HASH</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">40</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">60</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D4C23F13-0503-4368-997E-B720F59C7E4D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{39C8B2AA-EDAF-4B13-95D7-FA0508EF6625}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

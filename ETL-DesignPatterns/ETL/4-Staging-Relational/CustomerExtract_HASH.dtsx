@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-SJMBD02"
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
-  DTS:DTSID="{5E9C53B4-8F6A-4965-8D20-AA2A77AFC0C4}"
+  DTS:DTSID="{81B04AD9-EB5F-4C79-89D0-20ABEE56ACB7}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3006.16"
   DTS:LocaleID="1033"
-  DTS:ObjectName="PersonExtract_HASH"
+  DTS:ObjectName="CustomerExtract_HASH"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="59"
-  DTS:VersionGUID="{743BE789-D8A2-41ED-81E4-99C9CB3F98C6}">
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{A4E8E568-13E1-4CFC-8F5F-90220F7680E0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -141,7 +141,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.59</DTS:VariableValue>
+        DTS:DataType="8">1.0.62</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -406,6 +406,181 @@
               </outputs>
             </component>
             <component
+              refId="Package\Process Changes\AWLT Customer Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="AWLT Customer Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[AWLTSRC].[Customer_INS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Process Changes\AWLT Customer Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                      cachedDataType="i4"
+                      cachedName="CustomerId"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Firstname"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmailAddress"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="CDCOperation"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]" />
+                    <inputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CurrentHashKey"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      dataType="i4"
+                      name="CustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      dataType="wstr"
+                      length="50"
+                      name="Firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CDCOperation" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="HashKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Process Changes\AWLT Customer Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\AWLT Customer Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\AWLT Customer Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Process Changes\AWLT Customer Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -596,320 +771,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Process Changes\Conditional Split"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Conditional Split"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[CurrentHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="CurrentHashKey"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[ExistingHashkey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="ExistingHashkey"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input].Columns[ExistingCustomerId]"
-                      cachedDataType="i4"
-                      cachedName="ExistingCustomerId"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Process Changes\Conditional Split.Outputs[UpdatedRows]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="UpdatedRows"
-                  synchronousInputId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]} &amp;&amp; #{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]}</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">CustomerId == ExistingCustomerId &amp;&amp; CurrentHashkey != ExistingHashkey</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Process Changes\Conditional Split.Outputs[DeletedRows]"
-                  description="Output 1 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="DeletedRows"
-                  synchronousInputId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression"> FALSE </property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression"> FALSE </property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">1</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Process Changes\Conditional Split.Outputs[IgnoredRows]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="IgnoredRows"
-                  synchronousInputId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Process Changes\Conditional Split.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Process Changes\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Process Changes\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Process Changes\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Process Changes\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Process Changes\Customer Destination"
+              refId="Package\Process Changes\AWLT Customer Update Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Customer Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[AWLTSRC].[Customer_INS]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Process Changes\Customer Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Firstname"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="LastName"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="EmailAddress"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="CDCOperation"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
-                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]" />
-                    <inputColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="CurrentHashKey"
-                      externalMetadataColumnId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      dataType="i4"
-                      name="CustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      dataType="wstr"
-                      length="50"
-                      name="Firstname" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      dataType="wstr"
-                      length="50"
-                      name="LastName" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
-                      dataType="wstr"
-                      length="50"
-                      name="EmailAddress" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="CDCOperation" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      dataType="wstr"
-                      length="40"
-                      name="HashKey" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Process Changes\Customer Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Process Changes\Customer Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Process Changes\Customer Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Process Changes\Customer Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Process Changes\Customer Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Process Changes\CustomerUpdates Destination"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="CustomerUpdates Destination"
+              name="AWLT Customer Update Destination"
               usesDispositions="true"
               version="4">
               <properties>
@@ -962,7 +828,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Process Changes\CustomerUpdates Destination.Connections[OleDbConnection]"
+                  refId="Package\Process Changes\AWLT Customer Update Destination.Connections[OleDbConnection]"
                   connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -970,76 +836,76 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
                       cachedDataType="i4"
                       cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
                     <inputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Firstname"
-                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
                     <inputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="LastName"
-                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                     <inputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
                     <inputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="CurrentHashKey"
-                      externalMetadataColumnId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
                       dataType="i4"
                       name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
                       dataType="wstr"
                       length="50"
                       name="Firstname" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       dataType="wstr"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       dataType="wstr"
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
                       codePage="1252"
                       dataType="str"
                       length="1"
                       name="CDCOperation" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
                       dataType="wstr"
                       length="40"
                       name="HashKey" />
@@ -1048,22 +914,156 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Process Changes\CustomerUpdates Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Process Changes\AWLT Customer Update Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Process Changes\CustomerUpdates Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Process Changes\AWLT Customer Update Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Process Changes\CustomerUpdates Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Process Changes\CustomerUpdates Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Process Changes\AWLT Customer Update Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Process Changes\Check for changes"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Check for changes"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[CustomerId]"
+                      cachedDataType="i4"
+                      cachedName="CustomerId"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                    <inputColumn
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[CurrentHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CurrentHashKey"
+                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
+                    <inputColumn
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingHashkey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ExistingHashkey"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]" />
+                    <inputColumn
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingCustomerId]"
+                      cachedDataType="i4"
+                      cachedName="ExistingCustomerId"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Process Changes\Check for changes.Outputs[UpdatedRows]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="UpdatedRows"
+                  synchronousInputId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]} &amp;&amp; #{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">CustomerId == ExistingCustomerId &amp;&amp; CurrentHashKey != ExistingHashkey</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Process Changes\Check for changes.Outputs[DeletedRows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="DeletedRows"
+                  synchronousInputId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression"> FALSE </property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression"> FALSE </property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Process Changes\Check for changes.Outputs[IgnoredRows]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="IgnoredRows"
+                  synchronousInputId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Process Changes\Check for changes.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Process Changes\Check for changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Check for changes.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Process Changes\Check for changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Process Changes\Check for changes.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1362,30 +1362,30 @@ where [refTable].[CustomerId] = ?</property>
           </components>
           <paths>
             <path
+              refId="Package\Process Changes.Paths[Changed Rows]"
+              endId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input]"
+              name="Changed Rows"
+              startId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Process Changes.Paths[DeletedRows]"
               endId="Package\Process Changes\Delete Row Count.Inputs[Row Count Input 1]"
               name="DeletedRows"
-              startId="Package\Process Changes\Conditional Split.Outputs[DeletedRows]" />
+              startId="Package\Process Changes\Check for changes.Outputs[DeletedRows]" />
             <path
               refId="Package\Process Changes.Paths[Derived Column Output]"
-              endId="Package\Process Changes\CustomerUpdates Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\Process Changes\Add Operation.Outputs[Derived Column Output]" />
             <path
               refId="Package\Process Changes.Paths[Derived Column Output1]"
-              endId="Package\Process Changes\Customer Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output]" />
             <path
               refId="Package\Process Changes.Paths[IgnoredRows]"
               endId="Package\Process Changes\Ignored Row Count.Inputs[Row Count Input 1]"
               name="IgnoredRows"
-              startId="Package\Process Changes\Conditional Split.Outputs[IgnoredRows]" />
-            <path
-              refId="Package\Process Changes.Paths[Lookup Match Output]"
-              endId="Package\Process Changes\Conditional Split.Inputs[Conditional Split Input]"
-              name="Lookup Match Output"
-              startId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output]" />
+              startId="Package\Process Changes\Check for changes.Outputs[IgnoredRows]" />
             <path
               refId="Package\Process Changes.Paths[New Rows]"
               endId="Package\Process Changes\Insert Row Count.Inputs[Row Count Input 1]"
@@ -1410,7 +1410,7 @@ where [refTable].[CustomerId] = ?</property>
               refId="Package\Process Changes.Paths[UpdatedRows]"
               endId="Package\Process Changes\Update Row Count.Inputs[Row Count Input 1]"
               name="UpdatedRows"
-              startId="Package\Process Changes\Conditional Split.Outputs[UpdatedRows]" />
+              startId="Package\Process Changes\Check for changes.Outputs[UpdatedRows]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1511,122 +1511,58 @@ where [refTable].[CustomerId] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="161.5,42"
-          Id="Package\Process Changes\Insert Row Count"
-          TopLeft="707,209.5" />
+          Size="165.5,42"
+          Id="Package\Process Changes\Check for changes"
+          TopLeft="491.25,209.5" />
         <NodeLayout
-          Size="218.5,42"
-          Id="Package\Process Changes\CustomerUpdates Destination"
+          Size="248,42"
+          Id="Package\Process Changes\AWLT Customer Update Destination"
           TopLeft="5.5,515.5" />
-        <NodeLayout
-          Size="170.5,42"
-          Id="Package\Process Changes\Ignored Row Count"
-          TopLeft="483.5,311.5" />
         <NodeLayout
           Size="167,42"
           Id="Package\Process Changes\Update Row Count"
           TopLeft="31.25,311.5" />
         <NodeLayout
+          Size="147,42"
+          Id="Package\Process Changes\Add Operation"
+          TopLeft="41.25,413.5" />
+        <NodeLayout
+          Size="161.5,42"
+          Id="Package\Process Changes\Insert Row Count"
+          TopLeft="707,209.5" />
+        <NodeLayout
+          Size="163.5,42"
+          Id="Package\Process Changes\Delete Row Count"
+          TopLeft="259,311.5" />
+        <NodeLayout
           Size="154,42"
           Id="Package\Process Changes\HashKeyLookup"
           TopLeft="710.75,107.5" />
+        <NodeLayout
+          Size="170.5,42"
+          Id="Package\Process Changes\Ignored Row Count"
+          TopLeft="483.5,311.5" />
         <NodeLayout
           Size="190,42"
           Id="Package\Process Changes\AWLT Customer Source"
           TopLeft="692.75,5.5" />
         <NodeLayout
-          Size="180,42"
-          Id="Package\Process Changes\Customer Destination"
+          Size="167,42"
+          Id="Package\Process Changes\Add Insert Column"
+          TopLeft="714.25,311.5" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Process Changes\AWLT Customer Insert Destination"
           TopLeft="707.75,413.5" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Process Changes\Conditional Split"
-          TopLeft="491.25,209.5" />
-        <NodeLayout
-          Size="163.5,42"
-          Id="Package\Process Changes\Delete Row Count"
-          TopLeft="259,311.5" />
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[UpdatedRows]"
-          TopLeft="532,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-417.25,60.0000000000001"
-              Start="0,0"
-              End="-417.25,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.6765327695561" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.6765327695561"
-                    Point2="0,20.6765327695561"
-                    Point3="-4,20.6765327695561" />
-                  <mssgle:LineSegment
-                    End="-413.25,20.6765327695561" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-413.25,20.6765327695561"
-                    Point2="-417.25,20.6765327695561"
-                    Point3="-417.25,24.6765327695561" />
-                  <mssgle:LineSegment
-                    End="-417.25,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-239.4665234375,25.6765327695561,61.683046875,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[Lookup Match Output]"
-          TopLeft="763.416666666667,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-194.666666666667,60"
-              Start="0,0"
-              End="-194.666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-190.666666666667,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-190.666666666667,24.3701799485861"
-                    Point2="-194.666666666667,24.3701799485861"
-                    Point3="-194.666666666667,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-194.666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-145.524720052083,29.3701799485861,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Process Changes.Paths[DeletedRows]"
-          TopLeft="568.75,251.5">
+          TopLeft="574,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-228,60"
+              EndConnector="-233.25,60"
               Start="0,0"
-              End="-228,52.5">
+              End="-233.25,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -1637,169 +1573,59 @@ where [refTable].[CustomerId] = ?</property>
                     Point2="0,30"
                     Point3="-4,30" />
                   <mssgle:LineSegment
-                    End="-224,30" />
+                    End="-229.25,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="-224,30"
-                    Point2="-228,30"
-                    Point3="-228,34" />
+                    Point1="-229.25,30"
+                    Point2="-233.25,30"
+                    Point3="-233.25,34" />
                   <mssgle:LineSegment
-                    End="-228,52.5" />
+                    End="-233.25,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-143.157578125,35,58.31515625,9.7490234375"
+              BoundingBox="-145.782578125,35,58.31515625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Process Changes.Paths[IgnoredRows]"
-          TopLeft="605.5,251.5">
+          Id="Package\Process Changes.Paths[UpdatedRows]"
+          TopLeft="534.625,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-36.75,60"
+              EndConnector="-419.875,60"
               Start="0,0"
-              End="-36.75,52.5">
+              End="-419.875,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.676532769556" />
+                    End="0,16.6342913776016" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.676532769556"
-                    Point2="0,20.676532769556"
-                    Point3="-4,20.676532769556" />
+                    Point1="0,16.6342913776016"
+                    Point2="0,20.6342913776016"
+                    Point3="-4,20.6342913776016" />
                   <mssgle:LineSegment
-                    End="-32.75,20.676532769556" />
+                    End="-415.875,20.6342913776016" />
                   <mssgle:CubicBezierSegment
-                    Point1="-32.75,20.676532769556"
-                    Point2="-36.75,20.676532769556"
-                    Point3="-36.75,24.676532769556" />
+                    Point1="-415.875,20.6342913776016"
+                    Point2="-419.875,20.6342913776016"
+                    Point3="-419.875,24.6342913776016" />
                   <mssgle:LineSegment
-                    End="-36.75,52.5" />
+                    End="-419.875,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.1441796875,25.676532769556,59.538359375,11.6630859375"
+              BoundingBox="-240.7790234375,25.6342913776016,61.683046875,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[New Rows]"
-          TopLeft="812.083333333333,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-24.3333333333334,60"
-              Start="0,0"
-              End="-24.3333333333334,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-20.3333333333334,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-20.3333333333334,24.3701799485861"
-                    Point2="-24.3333333333334,24.3701799485861"
-                    Point3="-24.3333333333334,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-24.3333333333334,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-67.9730533854167,29.3701799485861,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[OLE DB Source Output]"
-          TopLeft="787.75,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Process Changes\Add Operation"
-          TopLeft="41.25,413.5" />
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[Row Count Output 1]"
-          TopLeft="114.75,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Process Changes.Paths[Derived Column Output]"
-          TopLeft="114.75,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Process Changes\Add Insert Column"
-          TopLeft="714.25,311.5" />
         <EdgeLayout
           Id="Package\Process Changes.Paths[Row Count Output 11]"
           TopLeft="787.75,251.5">
@@ -1835,8 +1661,8 @@ where [refTable].[CustomerId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Process Changes.Paths[Derived Column Output1]"
-          TopLeft="797.75,353.5">
+          Id="Package\Process Changes.Paths[Row Count Output 1]"
+          TopLeft="114.75,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1856,11 +1682,217 @@ where [refTable].[CustomerId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[OLE DB Source Output]"
+          TopLeft="787.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[New Rows]"
+          TopLeft="812.083333333333,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.3333333333334,60"
+              Start="0,0"
+              End="-24.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-20.3333333333334,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-20.3333333333334,24.3701799485861"
+                    Point2="-24.3333333333334,24.3701799485861"
+                    Point3="-24.3333333333334,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-24.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-35.7042447916667,29.3701799485861,47.07515625,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Changed Rows]"
+          TopLeft="763.416666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-189.416666666667,60"
+              Start="0,0"
+              End="-189.416666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-185.416666666667,24.3701799485861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-185.416666666667,24.3701799485861"
+                    Point2="-189.416666666667,24.3701799485861"
+                    Point3="-189.416666666667,28.3701799485861" />
+                  <mssgle:LineSegment
+                    End="-189.416666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.148430989583,29.3701799485861,66.8801953125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[IgnoredRows]"
+          TopLeft="613.375,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-44.625,60"
+              Start="0,0"
+              End="-44.625,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.6342913776016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6342913776016"
+                    Point2="0,20.6342913776016"
+                    Point3="-4,20.6342913776016" />
+                  <mssgle:LineSegment
+                    End="-40.625,20.6342913776016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40.625,20.6342913776016"
+                    Point2="-44.625,20.6342913776016"
+                    Point3="-44.625,24.6342913776016" />
+                  <mssgle:LineSegment
+                    End="-44.625,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-52.0816796875,25.6342913776016,59.538359375,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Derived Column Output1]"
+          TopLeft="797.75,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31,60"
+              Start="0,0"
+              End="31,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="27,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,30"
+                    Point2="31,30"
+                    Point3="31,34" />
+                  <mssgle:LineSegment
+                    End="31,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[Derived Column Output]"
+          TopLeft="114.75,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.75,60"
+              Start="0,0"
+              End="14.75,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="10.75,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.75,30"
+                    Point2="14.75,30"
+                    Point3="14.75,34" />
+                  <mssgle:LineSegment
+                    End="14.75,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelinePath
+    design-time-name="Package\Process Changes.Paths[New Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Process Changes.Paths[Changed Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
   <PipelineComponentMetadata
-    design-time-name="Package\Process Changes\CustomerUpdates Destination">
+    design-time-name="Package\Process Changes\AWLT Customer Update Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1904,7 +1936,7 @@ where [refTable].[CustomerId] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Process Changes\Customer Destination">
+    design-time-name="Package\Process Changes\AWLT Customer Insert Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

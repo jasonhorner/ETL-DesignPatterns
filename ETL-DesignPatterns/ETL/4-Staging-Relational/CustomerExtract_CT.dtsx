@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-SJMBD02"
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
-  DTS:DTSID="{952BC8C5-B9DB-430A-AE8A-273845840E40}"
+  DTS:DTSID="{B29BDBD7-677C-41D8-83CE-86500C6DC159}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3006.16"
   DTS:LocaleID="1033"
-  DTS:ObjectName="PersonExtract_CT"
+  DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{28BAED31-7ECB-4280-975E-B0E884FFD90B}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{C7277E36-0790-4D4A-A897-97B9453477ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -22,7 +22,16 @@
       DTS:DTSID="{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
-      DTS:ObjectName="BeginVersion">
+      DTS:ObjectName="CTBeginVersion">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7912D714-6535-4D0F-AC3F-9C1371A57339}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CTEndVersion">
       <DTS:VariableValue
         DTS:DataType="20">0</DTS:VariableValue>
     </DTS:Variable>
@@ -31,25 +40,16 @@
       DTS:DTSID="{04C7FD2B-A811-490C-97AA-016A83ECC589}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="DatabaseName">
+      DTS:ObjectName="SourceDatabaseName">
       <DTS:VariableValue
         DTS:DataType="8">Staging</DTS:VariableValue>
-    </DTS:Variable>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{7912D714-6535-4D0F-AC3F-9C1371A57339}"
-      DTS:IncludeInDebugDump="6789"
-      DTS:Namespace="User"
-      DTS:ObjectName="EndVersion">
-      <DTS:VariableValue
-        DTS:DataType="20">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{7332AD91-61C0-4D63-8DCA-C7FE99527D72}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
-      DTS:ObjectName="TableName">
+      DTS:ObjectName="SourceTableName">
       <DTS:VariableValue
         DTS:DataType="8">dbo.foo</DTS:VariableValue>
     </DTS:Variable>
@@ -117,11 +117,11 @@
           version="1">
           <components>
             <component
-              refId="Package\Load Staging\Customer DEST"
+              refId="Package\Load Staging\AWLT Customer DEST"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Customer DEST"
+              name="AWLT Customer DEST"
               usesDispositions="true"
               version="4">
               <properties>
@@ -132,7 +132,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[AWLTSTG].[Customer]</property>
+                  name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -174,7 +174,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Staging\Customer DEST.Connections[OleDbConnection]"
+                  refId="Package\Load Staging\AWLT Customer DEST.Connections[OleDbConnection]"
                   connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -182,53 +182,93 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input]"
+                  refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
+                      cachedDataType="i4"
+                      cachedName="CustomerId"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]" />
+                    <inputColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmailAddress"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                  </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
                       dataType="i4"
                       name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
                       dataType="wstr"
                       length="50"
                       name="Firstname" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       dataType="wstr"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       dataType="wstr"
                       length="50"
                       name="EmailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="CDCOperation" />
+                    <externalMetadataColumn
+                      refId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="HashKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Staging\Customer DEST.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Staging\Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Staging\Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Staging\Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load Staging\AWLT Customer DEST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -237,11 +277,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load Staging\Customer SRC"
+              refId="Package\Load Staging\AWLT Customer SRC"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Customer SRC"
+              name="AWLT Customer SRC"
               usesDispositions="true"
               version="7">
               <properties>
@@ -291,11 +331,11 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
+                  name="ParameterMapping">"Parameter0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"Parameter1:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Staging\Customer SRC.Connections[OleDbConnection]"
+                  refId="Package\Load Staging\AWLT Customer SRC.Connections[OleDbConnection]"
                   connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:external"
                   connectionManagerRefId="Project.ConnectionManagers[AWLT Source OLEDB]"
                   description="The OLE DB runtime connection used to access the database."
@@ -303,131 +343,131 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output]"
+                  refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]"
                       name="CustomerId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                       name="EmailAddress"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
+                      externalMetadataColumnId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
                       length="1"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[Operation]"
                       name="Operation"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
                       dataType="i4"
                       name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                       dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                       dataType="wstr"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
                       dataType="wstr"
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output].ExternalColumns[Operation]"
                       dataType="wstr"
                       length="1"
                       name="Operation" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
                       dataType="i4"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
                       name="CustomerId" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                       name="EmailAddress" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[Operation]"
                       name="Operation" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -439,9 +479,9 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           <paths>
             <path
               refId="Package\Load Staging.Paths[OLE DB Source Output]"
-              endId="Package\Load Staging\Customer DEST.Inputs[OLE DB Destination Input]"
+              endId="Package\Load Staging\AWLT Customer DEST.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Staging\Customer SRC.Outputs[OLE DB Source Output]" />
+              startId="Package\Load Staging\AWLT Customer SRC.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -643,16 +683,16 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="146,42"
-          Id="Package\Load Staging\Customer SRC"
+          Size="177,42"
+          Id="Package\Load Staging\AWLT Customer SRC"
           TopLeft="176.5,71" />
         <NodeLayout
-          Size="152.5,42"
-          Id="Package\Load Staging\Customer DEST"
+          Size="183.5,42"
+          Id="Package\Load Staging\AWLT Customer DEST"
           TopLeft="179.25,180.25" />
         <EdgeLayout
           Id="Package\Load Staging.Paths[OLE DB Source Output]"
-          TopLeft="252.5,113">
+          TopLeft="268,113">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -676,7 +716,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Staging\Customer DEST">
+    design-time-name="Package\Load Staging\AWLT Customer DEST">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -689,7 +729,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Staging\Customer SRC">
+    design-time-name="Package\Load Staging\AWLT Customer SRC">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
