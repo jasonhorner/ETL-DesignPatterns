@@ -4,10 +4,8 @@ BEGIN
 
 SET NOCOUNT ON;
 
-EXECUTE [AWLTSRC].[CustomerDelete];
-EXECUTE [AWLTSRC].[CustomerUpdate];
-EXECUTE [AWLTSRC].[CustomerInsert];
-
+-- Modifications(updates and deletes) in a single table
+EXECUTE [AWLTSRC].[CustomerMerge];
 
 RETURN 0
 END

@@ -14,9 +14,8 @@ END
 
 
 -- Remove Data From Staging tables
---TRUNCATE TABLE [AWDWSRC].[Customer_DEL];
---TRUNCATE TABLE [AWDWSRC].[Customer_UPD];
---TRUNCATE TABLE [AWDWSRC].[Customer_INS];
+TRUNCATE TABLE [AWDWSRC].[Customer_STG];
+
 	
 
 RETURN 0

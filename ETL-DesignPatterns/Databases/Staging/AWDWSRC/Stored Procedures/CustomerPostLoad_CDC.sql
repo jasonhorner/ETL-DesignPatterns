@@ -3,11 +3,9 @@ AS
 BEGIN
 
 SET NOCOUNT ON;
-
---EXECUTE [AWDWSRC].[CustomerDelete];
---EXECUTE [AWDWSRC].[CustomerUpdate];
---EXECUTE [AWDWSRC].[CustomerInsert];
-
+  
+  -- Modifications and New Rows are in single table ()
+  EXECUTE [AWDWSRC].[CustomerMerge]
 
 RETURN 0
 END

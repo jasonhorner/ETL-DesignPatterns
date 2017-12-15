@@ -18,7 +18,6 @@ BEGIN
 					,dest.LastName = stg.LastName
 					,dest.EmailAddress = stg.EmailAddress
 					,dest.CDCOperation = stg.CDCOperation
-				    ,dest.HashKey = stg.HashKey
 	
 		/*
 		OUTPUT $action, Inserted.CustomerId, Inserted.Firstname, 
