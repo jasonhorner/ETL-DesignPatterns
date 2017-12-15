@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{E3099E5D-CD7B-429B-BA5D-610A15BA5DCC}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{26804D41-A331-4CDA-9BC7-0C7CB48202C0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -80,7 +80,15 @@
             <SQLTask:SqlTaskData
               SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
               SQLTask:IsStoredProc="True"
-              SQLTask:SqlStatementSource="etl.GetChangeTrackingLatestVersion" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="etl.GetChangeTrackingLatestVersion"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="VersionId"
+                SQLTask:DtsVariableName="User::CTBeginVersion"
+                SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -97,7 +105,12 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}"
-              SQLTask:SqlStatementSource="SELECT CHANGE_TRACKING_CURRENT_VERSION()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="SELECT CHANGE_TRACKING_CURRENT_VERSION() AS ChangeTrackingCurrentVersion;"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ChangeTrackingCurrentVersion"
+                SQLTask:DtsVariableName="User::CTEndVersion" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -329,7 +342,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                     <property
                       dataType="System.String"
                       description="The mappings between the parameters in the SQL command and variables."
-                      name="ParameterMapping">"Parameter0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"Parameter1:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
+                      name="ParameterMapping">"0:Input",{2A058B49-4BCC-406E-AFD8-4A9ADA3E5251};"2:Input",{7912D714-6535-4D0F-AC3F-9C1371A57339};</property>
                   </properties>
                   <connections>
                     <connection
@@ -653,15 +666,15 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
-          IsExpanded="False"
+          IsExpanded="True"
           PanelSize="494,204.5"
-          Size="234,43"
+          Size="494,247.5"
           Id="Package\Change Tracking Processing"
           TopLeft="5.50000000000003,107.5" />
         <NodeLayout
           Size="121.5,42"
           Id="Package\PostLoad"
-          TopLeft="61.75,210.5" />
+          TopLeft="203,522.166666666667" />
         <NodeLayout
           Size="117,42"
           Id="Package\PreLoad"
@@ -672,14 +685,26 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="130,60"
               Start="0,0"
-              End="0,52.5">
+              End="130,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="126,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="126,30"
+                    Point2="130,30"
+                    Point3="130,34" />
+                  <mssgle:LineSegment
+                    End="130,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -690,18 +715,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="122.5,150.5">
+          TopLeft="252.5,355">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="11.2500000000001,167.166666666667"
               Start="0,0"
-              End="0,52.5">
+              End="11.2500000000001,159.666666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,79.5833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,79.5833333333333"
+                    Point2="0,83.5833333333333"
+                    Point3="4,83.5833333333333" />
+                  <mssgle:LineSegment
+                    End="7.25000000000009,83.5833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.25000000000009,83.5833333333333"
+                    Point2="11.2500000000001,83.5833333333333"
+                    Point3="11.2500000000001,87.5833333333333" />
+                  <mssgle:LineSegment
+                    End="11.2500000000001,159.666666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -717,7 +754,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
     design-time-name="Package\Change Tracking Processing\Process CT">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="183.5,42"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
@@ -745,13 +782,32 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer DEST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Change Tracking Processing\Process CT\AWLT Customer SRC">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
