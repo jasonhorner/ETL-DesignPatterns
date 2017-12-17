@@ -32,6 +32,7 @@
     <ReadCommittedSnapshot>True</ReadCommittedSnapshot>
     <MemoryOptimizedElevateToSnapshot>True</MemoryOptimizedElevateToSnapshot>
     <DbScopedConfigOptimizerHotfixes>On</DbScopedConfigOptimizerHotfixes>
+    <ValidateCasingOnIdentifiers>True</ValidateCasingOnIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -86,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
-    <Build Include="ETL\Tables\PackageAudit.sql" />
     <Build Include="Security\cathrinew.sql" />
     <Build Include="Auditing\Stored Procedures\PackageAuditStart.sql" />
     <Build Include="Auditing\Stored Procedures\PackageAuditStop.sql" />
@@ -102,7 +102,7 @@
     <Build Include="AWLTSRC\Stored Procedures\CustomerMerge.sql" />
     <Build Include="Security\AWLTSRC.sql" />
     <Build Include="Security\AWDWSRC.sql" />
-    <Build Include="Security\Stage.sql" />
+    <Build Include="Security\Staging.sql" />
     <Build Include="AWLTSRC\Tables\Customer_STG.sql" />
     <Build Include="AWLTSRC\Tables\Customer.sql" />
     <Build Include="AWDWSRC\Tables\Person.sql" />
@@ -119,6 +119,7 @@
     <Build Include="AWDWSRC\Stored Procedures\CustomerMerge.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_CT.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_CT.sql" />
+    <Build Include="Auditing\Tables\PackageAudit.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />

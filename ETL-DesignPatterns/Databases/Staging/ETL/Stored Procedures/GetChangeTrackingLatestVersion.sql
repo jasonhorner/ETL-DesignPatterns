@@ -7,10 +7,10 @@ AS
 BEGIN
 
 	SELECT
-	@VersionId = [Version] 
+	@versionId = [Version] 
 	FROM [ETL].[ChangeTrackingLatestVersion]
 	WHERE TableName = @tableName
-    AND  @DatabaseName = @DatabaseName;
+    AND  @databaseName = @DatabaseName;
 
 	RETURN 0;
 

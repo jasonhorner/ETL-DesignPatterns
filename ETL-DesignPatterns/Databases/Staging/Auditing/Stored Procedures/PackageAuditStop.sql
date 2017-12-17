@@ -1,8 +1,5 @@
-﻿
-
-
---DROP PROCEDURE IF EXISTS Auditing.PackageAuditStop;
-CREATE   PROCEDURE Auditing.PackageAuditStop (
+﻿--DROP PROCEDURE IF EXISTS Auditing.PackageAuditStop;
+CREATE PROCEDURE Auditing.PackageAuditStop (
 	@PackageAuditID INT
 	,@SourceRowCount INT = NULL
 	,@NewRowCount INT = NULL
@@ -16,7 +13,7 @@ CREATE   PROCEDURE Auditing.PackageAuditStop (
 AS
 BEGIN
 	SET NOCOUNT ON;
-	UPDATE etl.PackageAudit SET
+	UPDATE Auditing.PackageAudit SET
 		PackageStopTime = SYSDATETIME()
 		,SourceRowCount = @SourceRowCount
 		,NewRowCount = @NewRowCount
