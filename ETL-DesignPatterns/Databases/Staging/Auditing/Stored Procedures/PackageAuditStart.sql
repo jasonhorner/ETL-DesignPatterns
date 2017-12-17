@@ -1,6 +1,6 @@
 ﻿
 --DROP PROCEDURE IF EXISTS Auditing.PackageAuditStart;
-CREATE   PROCEDURE Auditing.PackageAuditStart (
+CREATE PROCEDURE Auditing.PackageAuditStart (
 	@PackageID UNIQUEIDENTIFIER
 	,@PackageName NVARCHAR(255)
 	,@ParentPackageID UNIQUEIDENTIFIER = NULL
@@ -12,7 +12,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 	DECLARE @PackageAuditID INT;
-	INSERT INTO etl.PackageAudit (
+	INSERT INTO Auditing.PackageAudit (
 		PackageID
 		,PackageName
 		,ParentPackageID

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [ETL].[PackageAudit] (
+﻿CREATE TABLE [Auditing].[PackageAudit] (
     [PackageAuditID]         INT              IDENTITY (1, 1) NOT NULL,
     [PackageID]              UNIQUEIDENTIFIER NOT NULL,
     [PackageName]            NVARCHAR (255)   NOT NULL,

@@ -10,9 +10,9 @@ BEGIN
 		USING (SELECT * FROM AWLTSRC.Customer_STG AS stg)   
 			AS stg 
 		ON (dest.CustomerId = stg.CustomerId)  
-		WHEN MATCHED AND stg.cdcOperation = 'D'  
+		WHEN MATCHED AND stg.CDCOperation = 'D'  
 			THEN DELETE  
-		WHEN MATCHED AND stg.CdcOperation = 'U'  
+		WHEN MATCHED AND stg.CDCOperation = 'U'  
 			THEN UPDATE SET 
 					 dest.Firstname = stg.Firstname
 					,dest.LastName = stg.LastName
