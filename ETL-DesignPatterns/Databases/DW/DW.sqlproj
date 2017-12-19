@@ -57,5 +57,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="DW\" />
+    <Folder Include="DW\Tables\" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Security\" />
+    <Folder Include="_Deployment" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="DW\Tables\ProductDimension.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
+    <Build Include="DW\Tables\CustomerDimension.sql" />
+    <Build Include="Security\DW.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_Deployment\DW-LOCAL.publish.xml" />
   </ItemGroup>
 </Project>
