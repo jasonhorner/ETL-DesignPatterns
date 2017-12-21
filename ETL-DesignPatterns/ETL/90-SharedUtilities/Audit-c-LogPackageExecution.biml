@@ -1,0 +1,98 @@
+<#@ property name="LoggingType" type="String" required="True" #>
+<#@ property name="Connection" type="AstConnectionBaseNode" required="False" #>
+<#
+    String ConnectionName;
+    try {
+        ConnectionName = Connection.Name;
+    } catch (Exception e) {
+        AstConnectionBaseNode AuditingConnection = RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Auditing").FirstOrDefault();
+        if (AuditingConnection != null) {
+            ConnectionName = AuditingConnection.Name;
+        } else {
+            ConnectionName = "";
+            ValidationReporter.Report(Severity.Error, "No Auditing connection has been specified.");
+        }
+    }
+    
+#>
+<# if (LoggingType == "Start") { #>
+<ExecuteSQL Name="Log Package Execution Start" ConnectionName="<#=ConnectionName#>" ResultSet="SingleRow" >
+    <DirectInput>EXECUTE Auditing.LogPackageExecutionStart
+        @PackageID = ?
+        ,@PackageName = ?
+        ,@ParentPackageID = ?
+        ,@ParentPackageName = ?
+        ,@ServerExecutionID = ?
+        ,@PackageStartTime = ?;
+    </DirectInput>
+    <Parameters>
+        <Parameter Name="0" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
+        <Parameter Name="1" VariableName="System.PackageName" DataType="String" Length="-1"/>
+        <Parameter Name="2" VariableName="ParentPackageID" DataType="Guid" Length="-1"/>
+        <Parameter Name="3" VariableName="ParentPackageName" DataType="String" Length="-1"/>
+        <Parameter Name="4" VariableName="System.ServerExecutionID" DataType="Int64" Length="-1"/>
+        <Parameter Name="5" VariableName="System.StartTime" DataType="Date" Length="-1"/>
+    </Parameters>
+    <Results>
+        <Result Name="PackageExecutionID" VariableName="User.PackageExecutionID" />
+    </Results>
+</ExecuteSQL>
+<# } else if (LoggingType == "Stop") { #>
+<ExecuteSQL Name="Log Package Execution Stop" ConnectionName="<#=ConnectionName#>">
+    <DirectInput>EXECUTE Auditing.LogPackageExecutionStop
+        @PackageExecutionID = ?
+        ,@SourceRowCount = ?
+        ,@NewRowCount = ?
+        ,@ChangedRowCount = ?
+        ,@ExistingRowCount = ?
+        ,@DeletedRowCount = ?
+        ,@FlatFileErrorsRowCount = ?;
+    </DirectInput>
+    <Parameters>
+        <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+        <Parameter Name="1" VariableName="User.SourceRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="2" VariableName="User.NewRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="3" VariableName="User.ChangedRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="4" VariableName="User.ExistingRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="5" VariableName="User.DeletedRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="6" VariableName="User.FlatFileErrorsRowCount" DataType="Int32" Length="-1" />
+    </Parameters>
+</ExecuteSQL>
+<# } else if (LoggingType == "Error") { #>
+<Events>
+    <Event Name="OnError" EventType="OnError">
+        <Tasks>
+            <Container Name="Log Errors" ConstraintMode="Linear">
+                <Tasks>
+                    <ExecuteSQL Name="Log Package Error" ConnectionName="<#=ConnectionName#>">
+                        <DirectInput>EXECUTE Auditing.LogPackageError
+                            @PackageExecutionID = ?
+                            ,@PackageID = ?
+                            ,@PackageName = ?
+                            ,@ServerExecutionID = ?
+                            ,@ErrorCode = ?
+                            ,@ErrorDescription = ?;
+                        </DirectInput>
+                        <Parameters>
+                            <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" />
+                            <Parameter Name="1" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
+                            <Parameter Name="2" VariableName="System.PackageName" DataType="String" Length="-1"/>
+                            <Parameter Name="3" VariableName="System.ServerExecutionID" DataType="Int64" Length="-1"/>
+                            <Parameter Name="4" VariableName="System.ErrorCode" DataType="Int32" />
+                            <Parameter Name="5" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
+                        </Parameters>
+                    </ExecuteSQL>
+                    <ExecuteSQL Name="Log Package Execution Error" ConnectionName="<#=ConnectionName#>">
+                        <DirectInput>EXECUTE Auditing.LogPackageExecutionError
+                            @PackageExecutionID = ?;
+                        </DirectInput>
+                        <Parameters>
+                            <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+                        </Parameters>
+                    </ExecuteSQL>
+                </Tasks>
+            </Container>
+        </Tasks>
+    </Event>
+</Events>
+<# } #>

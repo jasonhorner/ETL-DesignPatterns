@@ -1,0 +1,78 @@
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
+<#@ import namespace="System.Data" #>
+<#@ template tier="0" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        RootNode.ObjectTag["ProjectName"] = "1-BasicBiml";
+        RootNode.ObjectTag["ProjectProtectionLevel"] = "DontSaveSensitive";
+        RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\1-BasicBiml\Project.params";
+    #>
+    
+	<Connections>
+	    
+		<OleDbConnection Name="Auditing" CreateInProject="true" ConnectionString="Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;">
+			<Annotations>
+			    <Annotation Tag="ConnectionType">Auditing</Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManagerAuditingConnectionString</Annotation>
+			</Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerAuditingConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		
+		<OleDbConnection Name="WWI" CreateInProject="true" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;">
+		    <Annotations>
+		        <Annotation Tag="ConnectionType">Source</Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManagerWWIConnectionString</Annotation>
+		    </Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerWWIConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		
+		<OleDbConnection Name="Staging" CreateInProject="true" ConnectionString="Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;">
+			<Annotations>
+			    <Annotation Tag="ConnectionType">Destination</Annotation>
+				<Annotation Tag="Database">Staging</Annotation>
+				<Annotation Tag="Schema">WWISRC</Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManagerStagingConnectionString</Annotation>
+			</Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerStagingConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		    
+	</Connections>
+	    
+	<Databases>
+		<Database Name="Staging" ConnectionName="Staging" />
+	</Databases>
+        
+	<Schemas>
+		<Schema Name="WWISRC" DatabaseName="Staging" />
+	</Schemas>
+	    
+    <Tables>
+
+        <#
+            var SourceConnection = SchemaManager.CreateConnectionNode("WWI", "Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;");
+            var TablesToInclude = ExternalDataAccess.GetDataTable(SourceConnection, "SELECT name AS TableName FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["TableName"].ToString()).ToList();
+        #>
+        
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity, true, 0).TableNodes) { #>
+            <Table Name="<#=table.Schema#>_<#=table.Name#>" SchemaName="Staging.WWISRC">
+                <Columns>
+                    <#=table.Columns.GetBiml()#>
+                </Columns>
+                <Annotations>
+                    <Annotation AnnotationType="Tag" Tag="SourceConnection"><#=SourceConnection#></Annotation>
+                    <Annotation AnnotationType="Tag" Tag="SourceSchemaTableName"><#=table.Schema#> <#=table.Name#></Annotation>
+                    <Annotation AnnotationType="Tag" Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
+                </Annotations>
+            </Table>
+        <# } #>
+            
+    </Tables>
+	
+</Biml>

@@ -1,0 +1,25 @@
+<#@ property name="RowCountType" type="String" required="True" #>
+
+<# if (RowCountType == "Source") { #>
+    <RowCount Name="Count New Rows" VariableName="User.SourceRowCount" />
+<# } #>
+
+<# if (RowCountType == "New") { #>
+    <RowCount Name="Count New Rows" VariableName="User.NewRowCount" />
+<# } #>
+
+<# if (RowCountType == "Changed") { #>
+    <RowCount Name="Count New Rows" VariableName="User.ChangedRowCount" />
+<# } #>
+
+<# if (RowCountType == "Existing") { #>
+    <RowCount Name="Count New Rows" VariableName="User.ExistingRowCount" />
+<# } #>
+
+<# if (RowCountType == "Deleted") { #>
+    <RowCount Name="Count New Rows" VariableName="User.DeletedRowCount" />
+<# } #>
+
+<# if (RowCountType == "FlatFileErrors") { #>
+    <RowCount Name="Count New Rows" VariableName="User.FlatFileErrorsRowCount" />
+<# } #>
