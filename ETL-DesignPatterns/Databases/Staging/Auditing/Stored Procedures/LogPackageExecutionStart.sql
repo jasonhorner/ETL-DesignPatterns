@@ -1,6 +1,5 @@
 ﻿
---DROP PROCEDURE IF EXISTS Auditing.PackageAuditStart;
-CREATE PROCEDURE Auditing.PackageAuditStart (
+CREATE PROCEDURE [Auditing].[LogPackageExecutionStart] (
 	@PackageID UNIQUEIDENTIFIER
 	,@PackageName NVARCHAR(255)
 	,@ParentPackageID UNIQUEIDENTIFIER = NULL
@@ -11,14 +10,15 @@ CREATE PROCEDURE Auditing.PackageAuditStart (
 AS
 BEGIN
 	SET NOCOUNT ON;
-	DECLARE @PackageAuditID INT;
-	INSERT INTO Auditing.PackageAudit (
+	DECLARE @PackageExecutionID INT;
+	INSERT INTO Auditing.PackageExecution (
 		PackageID
 		,PackageName
 		,ParentPackageID
 		,ParentPackageName
 		,ServerExecutionID
 		,PackageStartTime
+		,ExecutionStatus
 	)
 	SELECT
 		@PackageID
@@ -26,7 +26,9 @@ BEGIN
 		,@ParentPackageID
 		,@ParentPackageName
 		,@ServerExecutionID
-		,@PackageStartTime;
-	SELECT @PackageAuditID = SCOPE_IDENTITY();
-	SELECT @PackageAuditID AS PackageAuditID;
+		,@PackageStartTime
+		,'Running'
+	;
+	SELECT @PackageExecutionID = SCOPE_IDENTITY();
+	SELECT @PackageExecutionID AS PackageExecutionID;
 END

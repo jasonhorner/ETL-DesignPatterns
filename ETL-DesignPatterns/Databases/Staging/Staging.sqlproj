@@ -84,11 +84,11 @@
     <Folder Include="AWDWSRC\Tables\" />
     <Folder Include="Auditing\Tables\" />
     <Folder Include="AWDWSRC\Stored Procedures\" />
+    <Folder Include="WWISRC\" />
+    <Folder Include="WWISRC\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
-    <Build Include="Auditing\Stored Procedures\PackageAuditStart.sql" />
-    <Build Include="Auditing\Stored Procedures\PackageAuditStop.sql" />
     <Build Include="Security\Auditing.sql" />
     <Build Include="Security\ETL.sql" />
     <Build Include="ETL\Tables\cdc_states.sql" />
@@ -118,8 +118,45 @@
     <Build Include="AWDWSRC\Stored Procedures\CustomerMerge.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_CT.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_CT.sql" />
-    <Build Include="Auditing\Tables\PackageAudit.sql" />
     <Build Include="Security\WWISRC.sql" />
+    <Build Include="Security\Meta.sql" />
+    <Build Include="WWISRC\Tables\Application_Cities.sql" />
+    <Build Include="WWISRC\Tables\Application_Countries.sql" />
+    <Build Include="WWISRC\Tables\Application_DeliveryMethods.sql" />
+    <Build Include="WWISRC\Tables\Application_PaymentMethods.sql" />
+    <Build Include="WWISRC\Tables\Application_People.sql" />
+    <Build Include="WWISRC\Tables\Application_StateProvinces.sql" />
+    <Build Include="WWISRC\Tables\Application_SystemParameters.sql" />
+    <Build Include="WWISRC\Tables\Application_TransactionTypes.sql" />
+    <Build Include="WWISRC\Tables\Purchasing_PurchaseOrderLines.sql" />
+    <Build Include="WWISRC\Tables\Purchasing_PurchaseOrders.sql" />
+    <Build Include="WWISRC\Tables\Purchasing_SupplierCategories.sql" />
+    <Build Include="WWISRC\Tables\Purchasing_Suppliers.sql" />
+    <Build Include="WWISRC\Tables\Purchasing_SupplierTransactions.sql" />
+    <Build Include="WWISRC\Tables\Sales_BuyingGroups.sql" />
+    <Build Include="WWISRC\Tables\Sales_CustomerCategories.sql" />
+    <Build Include="WWISRC\Tables\Sales_Customers.sql" />
+    <Build Include="WWISRC\Tables\Sales_CustomerTransactions.sql" />
+    <Build Include="WWISRC\Tables\Sales_InvoiceLines.sql" />
+    <Build Include="WWISRC\Tables\Sales_Invoices.sql" />
+    <Build Include="WWISRC\Tables\Sales_OrderLines.sql" />
+    <Build Include="WWISRC\Tables\Sales_Orders.sql" />
+    <Build Include="WWISRC\Tables\Sales_SpecialDeals.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_ColdRoomTemperatures.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_Colors.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_PackageTypes.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_StockGroups.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_StockItemHoldings.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_StockItems.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_StockItemStockGroups.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_StockItemTransactions.sql" />
+    <Build Include="WWISRC\Tables\Warehouse_VehicleTemperatures.sql" />
+    <Build Include="Auditing\Tables\PackageExecution.sql" />
+    <Build Include="Auditing\Tables\PackageError.sql" />
+    <Build Include="Auditing\Stored Procedures\LogPackageExecutionStop.sql" />
+    <Build Include="Auditing\Stored Procedures\LogPackageExecutionStart.sql" />
+    <Build Include="Auditing\Stored Procedures\LogPackageExecutionError.sql" />
+    <Build Include="Auditing\Stored Procedures\LogPackageError.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />
