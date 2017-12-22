@@ -17,4 +17,3 @@
     [DeletedRowCount]        INT              NULL,
     [FlatFileErrorsRowCount] INT              NULL
 );
-

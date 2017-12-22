@@ -1,5 +1,16 @@
-USE Staging;
+USE Admin;
 GO
+
+/* --------------------------------------------------
+-- Create Schemas
+-------------------------------------------------- */
+DECLARE @query nvarchar(4000);
+SET @query = 'CREATE SCHEMA [Meta] AUTHORIZATION [dbo];';
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'Meta')
+EXEC(@query);
+GO
+
+
 
 /* --------------------------------------------------
 -- Cleanup

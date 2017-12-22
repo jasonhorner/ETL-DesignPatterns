@@ -8,4 +8,3 @@
     [ErrorCode]          INT              NOT NULL,
     [ErrorDescription]   NVARCHAR (MAX)   NOT NULL
 );
-

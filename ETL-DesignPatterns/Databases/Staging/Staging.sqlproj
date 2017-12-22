@@ -70,8 +70,6 @@
     <Folder Include="ETL\" />
     <Folder Include="ETL\Tables\" />
     <Folder Include="Security\" />
-    <Folder Include="Auditing\" />
-    <Folder Include="Auditing\Stored Procedures\" />
     <Folder Include="_Deployment" />
     <Folder Include="AWLTSRC\" />
     <Folder Include="AWLTSRC\Tables\" />
@@ -82,14 +80,14 @@
     <Folder Include="Scripts\" />
     <Folder Include="AWDWSRC\" />
     <Folder Include="AWDWSRC\Tables\" />
-    <Folder Include="Auditing\Tables\" />
     <Folder Include="AWDWSRC\Stored Procedures\" />
     <Folder Include="WWISRC\" />
     <Folder Include="WWISRC\Tables\" />
+    <Folder Include="Auditing\" />
+    <Folder Include="Auditing\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
-    <Build Include="Security\Auditing.sql" />
     <Build Include="Security\ETL.sql" />
     <Build Include="ETL\Tables\cdc_states.sql" />
     <Build Include="ETL\Tables\ChangeTrackingLatestVersion.sql" />
@@ -105,7 +103,6 @@
     <Build Include="AWLTSRC\Tables\Customer_STG.sql" />
     <Build Include="AWLTSRC\Tables\Customer.sql" />
     <Build Include="AWDWSRC\Tables\Person.sql" />
-    <Build Include="Auditing\Tables\FileMonitorHistory.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerUpdate.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerDelete.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerInsert.sql" />
@@ -119,7 +116,6 @@
     <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_CT.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_CT.sql" />
     <Build Include="Security\WWISRC.sql" />
-    <Build Include="Security\Meta.sql" />
     <Build Include="WWISRC\Tables\Application_Cities.sql" />
     <Build Include="WWISRC\Tables\Application_Countries.sql" />
     <Build Include="WWISRC\Tables\Application_DeliveryMethods.sql" />
@@ -151,12 +147,8 @@
     <Build Include="WWISRC\Tables\Warehouse_StockItemStockGroups.sql" />
     <Build Include="WWISRC\Tables\Warehouse_StockItemTransactions.sql" />
     <Build Include="WWISRC\Tables\Warehouse_VehicleTemperatures.sql" />
-    <Build Include="Auditing\Tables\PackageExecution.sql" />
-    <Build Include="Auditing\Tables\PackageError.sql" />
-    <Build Include="Auditing\Stored Procedures\LogPackageExecutionStop.sql" />
-    <Build Include="Auditing\Stored Procedures\LogPackageExecutionStart.sql" />
-    <Build Include="Auditing\Stored Procedures\LogPackageExecutionError.sql" />
-    <Build Include="Auditing\Stored Procedures\LogPackageError.sql" />
+    <Build Include="Auditing\Tables\FileMonitorHistory.sql" />
+    <Build Include="Security\Auditing.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />

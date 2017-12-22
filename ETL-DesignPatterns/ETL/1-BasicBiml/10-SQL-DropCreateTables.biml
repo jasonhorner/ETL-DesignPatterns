@@ -1,9 +1,9 @@
 <#@ template tier="10" #>
 <Biml xmlns="http://schemas.varigence.com/biml.xsd">
-    <Annotations>
-        <Annotation Tag="SQLScript_DropCreateTables">
+<Annotations>
+<Annotation Tag="SQLScript_DropCreateTables">
     
-<#="/* Create Staging Schemas */"#>
+<#="/* Create Schemas */"#>
 <# foreach (var schema in RootNode.Schemas) { #>
 DECLARE @query nvarchar(4000);
 SET @query = 'CREATE SCHEMA [<#=schema.Name#>];';
@@ -11,11 +11,11 @@ IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'<#=schema.Name#>')
 EXEC(@query);
 <# } #>
 
-<#="/* Create Staging Tables */"#>
+<#="/* Create Tables */"#>
 <# foreach (var table in RootNode.Tables) { #>
 <#=table.GetDropAndCreateDdl()#>
 <# } #>
     
-        </Annotation>
-    </Annotations>
+</Annotation>
+</Annotations>
 </Biml>
