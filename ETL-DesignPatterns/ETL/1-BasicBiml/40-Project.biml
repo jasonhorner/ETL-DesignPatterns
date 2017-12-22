@@ -19,7 +19,7 @@
             
             <Packages>
                 <# foreach (var package in RootNode.Packages) { #>
-                    <Package PackageName="<#=package.ScopedName#>" />
+                    <Package PackageName="<#=package.ScopedName#>" IsEntryPoint="<#=(package.Name.Contains("Master") ? "true" : "false")#>" />
                 <# } #>
             </Packages>
                 

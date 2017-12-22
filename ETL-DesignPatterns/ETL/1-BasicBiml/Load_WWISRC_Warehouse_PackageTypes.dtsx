@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="12/22/2017 15:52:29" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{91AF348E-C179-4326-88FB-775063F6B847}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Load_WWISRC_Warehouse_PackageTypes" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{BDE9CDFD-6356-4567-ACDE-EB18E862DA13}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{098F3F1E-725E-4C0E-8B0D-AF3913C5B76B}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{C62A40A9-FEF7-4ED2-983F-95CFB0752153}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{E038DBBE-8662-4392-A955-49B4A68A032F}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{B32E9828-60E3-4142-B980-250643C54CBC}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SourceRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6128D808-F93C-433C-AA20-25EDFEEBA77D}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="NewRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{75A36D87-F4BC-4375-BB21-7783684F2A77}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ChangedRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{CD725B37-4748-41AD-912D-7470AFB41D87}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ExistingRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{23893893-46DA-491A-B524-4796DBC22489}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeletedRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{2215A9A1-7E22-4AF1-8AF4-E006B80FD695}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="FlatFileErrorsRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{E4FAA249-561A-4EE8-BEAE-A046E276106D}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@ServerExecutionID = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="20" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="7" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ResultName="PackageExecutionID"></SQLTask:ResultBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{93FD4FAE-C4CB-4AE7-BF72-F4D5838EAAA0}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate WWISRC Warehouse_PackageTypes" DTS:refId="Package\Truncate WWISRC Warehouse_PackageTypes" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE WWISRC.Warehouse_PackageTypes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{AFEEF429-3848-4995-AD5C-EF1AFF5229A0}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Load WWISRC Warehouse_PackageTypes" DTS:refId="Package\Load WWISRC Warehouse_PackageTypes" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
+          <components>
+            <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="Source WWI Warehouse PackageTypes" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes" usesDispositions="true" version="7">
+              <connections>
+                <connection connectionManagerID="{BB730CE3-0C06-422E-A8A9-E09330FDE59B}:external" connectionManagerRefId="Project.ConnectionManagers[WWI]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Connections[OleDbConnection]"></connection>
+              </connections>
+              <outputs>
+                <output name="Output" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn dataType="i4" name="PackageTypeID" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[PackageTypeID]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="wstr" length="50" name="PackageTypeName" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[PackageTypeName]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="i4" name="LastEditedBy" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[LastEditedBy]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidFrom" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[ValidFrom]" scale="7"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidTo" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[ValidTo]" scale="7"></externalMetadataColumn>
+                  </externalMetadataColumns>
+                  <outputColumns>
+                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[PackageTypeID]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeID]" name="PackageTypeID" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeID]" truncationRowDisposition="FailComponent"></outputColumn>
+                    <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[PackageTypeName]" length="50" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeName]" name="PackageTypeName" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeName]" truncationRowDisposition="FailComponent"></outputColumn>
+                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[LastEditedBy]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[LastEditedBy]" name="LastEditedBy" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[LastEditedBy]" truncationRowDisposition="FailComponent"></outputColumn>
+                    <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[ValidFrom]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidFrom]" name="ValidFrom" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidFrom]" scale="7" truncationRowDisposition="FailComponent"></outputColumn>
+                    <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].ExternalColumns[ValidTo]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidTo]" name="ValidTo" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidTo]" scale="7" truncationRowDisposition="FailComponent"></outputColumn>
+                  </outputColumns>
+                </output>
+                <output isErrorOut="true" name="Error" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error]">
+                  <externalMetadataColumns></externalMetadataColumns>
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[PackageTypeID]" name="PackageTypeID" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[PackageTypeID]"></outputColumn>
+                    <outputColumn dataType="wstr" length="50" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[PackageTypeName]" name="PackageTypeName" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[PackageTypeName]"></outputColumn>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[LastEditedBy]" name="LastEditedBy" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[LastEditedBy]"></outputColumn>
+                    <outputColumn dataType="dbTimeStamp2" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ValidFrom]" name="ValidFrom" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ValidFrom]" scale="7"></outputColumn>
+                    <outputColumn dataType="dbTimeStamp2" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ValidTo]" name="ValidTo" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ValidTo]" scale="7"></outputColumn>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [PackageTypeID], [PackageTypeName], [LastEditedBy], [ValidFrom], [ValidTo] FROM [Warehouse].[PackageTypes];</property>
+                <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Count New Rows" refId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows">
+              <inputs>
+                <input hasSideEffects="true" name="Source WWI Warehouse PackageTypes_Output_Count New Rows" refId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows.Inputs[Source WWI Warehouse PackageTypes_Output_Count New Rows]">
+                  <externalMetadataColumns></externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output name="Output" refId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows.Outputs[Output]" synchronousInputId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows.Inputs[Source WWI Warehouse PackageTypes_Output_Count New Rows]">
+                  <externalMetadataColumns></externalMetadataColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::NewRowCount</property>
+              </properties>
+            </component>
+            <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination WWISRC Warehouse_PackageTypes" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes" usesDispositions="true" version="4">
+              <connections>
+                <connection connectionManagerID="{FFAB2FC5-68C8-4EAD-8467-BD5C67655145}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Connections[OleDbConnection]"></connection>
+              </connections>
+              <inputs>
+                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes]">
+                  <externalMetadataColumns isUsed="True">
+                    <externalMetadataColumn dataType="i4" name="PackageTypeID" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[PackageTypeID]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="wstr" length="50" name="PackageTypeName" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[PackageTypeName]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="i4" name="LastEditedBy" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[LastEditedBy]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidFrom" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[ValidFrom]" scale="7"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidTo" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[ValidTo]" scale="7"></externalMetadataColumn>
+                  </externalMetadataColumns>
+                  <inputColumns>
+                    <inputColumn cachedDataType="i4" cachedName="PackageTypeID" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[PackageTypeID]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeID]" name="" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].Columns[PackageTypeID]"></inputColumn>
+                    <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="PackageTypeName" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[PackageTypeName]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[PackageTypeName]" name="" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].Columns[PackageTypeName]"></inputColumn>
+                    <inputColumn cachedDataType="i4" cachedName="LastEditedBy" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[LastEditedBy]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[LastEditedBy]" name="" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].Columns[LastEditedBy]"></inputColumn>
+                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidFrom" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[ValidFrom]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidFrom]" name="" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].Columns[ValidFrom]"></inputColumn>
+                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidTo" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].ExternalColumns[ValidTo]" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output].Columns[ValidTo]" name="" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes].Columns[ValidTo]"></inputColumn>
+                  </inputColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Outputs[Error]" synchronousInputId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes]">
+                  <externalMetadataColumns></externalMetadataColumns>
+                  <outputColumns>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                    <outputColumn dataType="i4" lineageId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                  </outputColumns>
+                </output>
+              </outputs>
+              <properties>
+                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">WWISRC.Warehouse_PackageTypes</property>
+                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+            </component>
+          </components>
+          <paths>
+            <path endId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows.Inputs[Source WWI Warehouse PackageTypes_Output_Count New Rows]" name="Source WWI Warehouse PackageTypes_Output_Count New Rows" refId="Package\Load WWISRC Warehouse_PackageTypes.Paths[Source WWI Warehouse PackageTypes_Output_Count New Rows]" startId="Package\Load WWISRC Warehouse_PackageTypes\Source WWI Warehouse PackageTypes.Outputs[Output]"></path>
+            <path endId="Package\Load WWISRC Warehouse_PackageTypes\Destination WWISRC Warehouse_PackageTypes.Inputs[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes]" name="Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes" refId="Package\Load WWISRC Warehouse_PackageTypes.Paths[Count New Rows_Output_Destination WWISRC Warehouse_PackageTypes]" startId="Package\Load WWISRC Warehouse_PackageTypes\Count New Rows.Outputs[Output]"></path>
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A6D314F5-A17A-4047-9BBA-7D4B854E2929}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SourceRowCount = ?&#xA;        ,@NewRowCount = ?&#xA;        ,@ChangedRowCount = ?&#xA;        ,@ExistingRowCount = ?&#xA;        ,@DeletedRowCount = ?&#xA;        ,@FlatFileErrorsRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SourceRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::NewRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ChangedRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ExistingRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::DeletedRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::FlatFileErrorsRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{99B6C787-5BE0-4406-A295-10ADA2362C9C}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Truncate WWISRC Warehouse_PackageTypes" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Truncate WWISRC Warehouse_PackageTypes]" DTS:To="Package\Truncate WWISRC Warehouse_PackageTypes"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{1AD2B233-84B4-4494-844A-817571ADE6FC}" DTS:From="Package\Truncate WWISRC Warehouse_PackageTypes" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Truncate WWISRC Warehouse_PackageTypes_To_Load WWISRC Warehouse_PackageTypes" DTS:refId="Package.PrecedenceConstraints[Constraint_Truncate WWISRC Warehouse_PackageTypes_To_Load WWISRC Warehouse_PackageTypes]" DTS:To="Package\Load WWISRC Warehouse_PackageTypes"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{0D9FAC09-D98C-41F3-839A-B0CCC30E5FF4}" DTS:From="Package\Load WWISRC Warehouse_PackageTypes" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load WWISRC Warehouse_PackageTypes_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load WWISRC Warehouse_PackageTypes_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{A3871ABB-F39E-4F97-84AE-A9D1A224D154}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{D4AA0C10-5BC0-458E-B81E-F1607B73C880}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{65B6F7D4-7623-441E-ADE7-3C36AC8B3C1E}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="20" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{E771B193-DE5B-4127-8760-3886DC8F02A3}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{7EF0A57C-4215-4F67-BAD6-470FEDD05F09}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:Variables>
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{6885BE13-FF87-4388-95A8-FD917F995FE4}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+          <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+</DTS:Executable>
