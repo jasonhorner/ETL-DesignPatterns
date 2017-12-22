@@ -1,0 +1,41 @@
+<#@ template tier="30" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+	<Packages>
+	    
+		<Package Name="Master_<#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>" ConstraintMode="Linear">
+		    
+            <Parameters>
+                <#@ include file="..\90-SharedUtilities\Audit-i-PackageParameters.biml" #>
+            </Parameters>
+            
+            <Variables>
+                <#@ include file="..\90-SharedUtilities\Audit-i-PackageVariables.biml" #>
+            </Variables>
+            
+			<Tasks>
+			    
+			    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Start")#>
+			    
+				<Container Name="Load <#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>">
+				    <Tasks>
+        				<# foreach (var package in RootNode.Packages) { #>
+        					<ExecutePackage Name="Execute <#=package.Name#>">
+        						<ExternalProjectPackage Package="<#=package.PackageFileName#>" />
+        						<#@ include file="..\90-SharedUtilities\Audit-i-PackageParametersBindings.biml" #>
+        					</ExecutePackage>
+        				<# } #>
+				    </Tasks>
+				</Container>
+				
+			    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Stop")#>
+			        
+			</Tasks>
+			
+		    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Error")#>
+		        
+		</Package>
+		    
+	</Packages>
+	    
+</Biml>
