@@ -1,0 +1,107 @@
+<#@ template tier="0" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        /* Variables used in multiple Biml files */
+        RootNode.ObjectTag["ProjectName"] = "4-Staging-Relational";
+        RootNode.ObjectTag["ProjectProtectionLevel"] = "DontSaveSensitive";
+        RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\4-Staging-Relational\Project.params";
+        RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
+        
+        /* Excel Metadata */
+        int ProjectID = 3;
+        var MetadataConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;";
+        DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Project$] WHERE ProjectID = {0}", ProjectID)).Rows[0];
+        DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["SourceConnectionName"])).Rows[0];
+        DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
+        
+        /* Variables used in this Biml file */
+        var AuditingConnectionString = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var SourceConnection = SchemaManager.CreateConnectionNode(Source["ConnectionName"].ToString(), Source["ConnectionString"].ToString());
+    #>
+    
+    <Connections>
+    
+    	<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml", AuditingConnectionString)#>
+	    
+        <OleDbConnection Name="<#=Source["ConnectionName"]#>" CreateInProject="<#=Source["SSISCreateInProject"]#>" ConnectionString="<#=Source["ConnectionString"]#>">
+			<Annotations>
+			    <Annotation Tag="ConnectionType">Source</Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=Source["ConnectionName"]#>ConnectionString</Annotation>
+			</Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=Source["ConnectionName"]#>ConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		
+        <OleDbConnection Name="<#=Destination["ConnectionName"]#>" CreateInProject="<#=Destination["SSISCreateInProject"]#>" ConnectionString="<#=Destination["ConnectionString"]#>">
+			<Annotations>
+			    <Annotation Tag="ConnectionType">Destination</Annotation>
+				<Annotation Tag="Database"><#=Destination["DatabaseName"]#></Annotation>
+				<Annotation Tag="Schema"><#=Project["DestinationSchemaName"]#></Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=Destination["ConnectionName"]#>ConnectionString</Annotation>
+			</Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=Destination["ConnectionName"]#>ConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+	        
+	</Connections>
+	    
+	<Databases>
+		<Database Name="<#=Destination["DatabaseName"]#>" ConnectionName="<#=Destination["ConnectionName"]#>" />
+	</Databases>
+        
+	<Schemas>
+		<Schema Name="<#=Project["DestinationSchemaName"]#>" DatabaseName="<#=Destination["DatabaseName"]#>" />
+	</Schemas>
+	    
+     <Tables>
+        
+        <# foreach (var table in GetDatabaseSchemaWithoutTemporalTables(SourceConnection, new List<string>{"dbo"}, new List<string>{"Customer"}).TableNodes) { #>
+            
+            <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Insert","_INS"},{"Update","_UPD"},{"Delete","_DEL"}}; #>
+            <# foreach (var supportTable in SupportTables) { #>
+                <Table Name="<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
+                    <Columns>
+                        <#=table.Columns.GetBiml()#>
+                        <Column Name="CDCOperation" DataType="AnsiStringFixedLength" Length="1" IsNullable="true" />
+                        <Column Name="HashKey" DataType="StringFixedLength" Length="40" IsNullable="true" />
+                    </Columns>
+                    <Keys>
+                        <PrimaryKey Name="PK_<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>">
+                            <Columns>
+                                <#=table.PreferredKey.Columns.GetBiml()#>
+                            </Columns>
+                        </PrimaryKey>
+                    </Keys>
+                    <Annotations>
+                        <Annotation Tag="CoreTableName"><#=Project["DestinationSchemaName"]#>.<#=table.Schema#>_<#=table.Name#></Annotation>
+                        <Annotation Tag="SupportTableType"><#=supportTable.Key#></Annotation>
+                        <Annotation Tag="SourceConnection"><#=SourceConnection#></Annotation>
+                        <Annotation Tag="SourceSchemaName"><#=table.Schema#></Annotation>
+                        <Annotation Tag="SourceTableName"><#=table.Name#></Annotation>
+                        <Annotation Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
+                    </Annotations>
+                </Table>
+            <# } #>
+            
+        <# } #>
+            
+    </Tables>
+    
+</Biml>
+
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
+<#@ import namespace="System.Data" #>
+<#+
+    private static ImportResults GetDatabaseSchemaWithoutTemporalTables(AstOleDbConnectionNode connection) {
+        var TablesToInclude = ExternalDataAccess.GetDataTable(connection, "SELECT name FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["name"].ToString()).ToList();
+        return connection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity);
+    }
+    
+    private static ImportResults GetDatabaseSchemaWithoutTemporalTables(AstOleDbConnectionNode connection, List<string> schemas, List<string> tables) {
+        var TablesToInclude = ExternalDataAccess.GetDataTable(connection, "SELECT name FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["name"].ToString()).ToList().Intersect(tables);
+        return connection.GetDatabaseSchema(schemas, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity);
+    }
+#>

@@ -8,16 +8,16 @@
 			<Package Name="Load_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
 			    
 			    <Parameters>
-			        <#@ include file="..\90-SharedUtilities\Audit-i-PackageParameters.biml" #>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
 			    </Parameters>
 				
 				<Variables>
-					<#@ include file="..\90-SharedUtilities\Audit-i-PackageVariables.biml" #>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
 				</Variables>
 				
 				<Tasks>
 				    
-				    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Start")#>
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
 				
 					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
 						<DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#></DirectInput>
@@ -26,24 +26,24 @@
 					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
 						<Transformations>
 
-                            <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
+                            <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
 								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
 							</OleDbSource>
 							
-				            <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-RowCount.biml", "New")#>
+				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "New")#>
 							
-							<OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+							<OleDbDestination Name="Destination <#=table.Connection.Name#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
 								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
 							</OleDbDestination>
 						    
 						</Transformations>
 					</Dataflow>
 					    
-				    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Stop")#>
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
 				        
 				</Tasks>
 				
-			    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Error")#>
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
 				
 			</Package>
 			

@@ -1,34 +1,33 @@
+<#@ property name="PackageProject" type="Varigence.Languages.Biml.Project.AstPackageProjectNode" #>
+<#@ property name="ProjectParameterPath" type="String" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Text" #>
 <#@ template tier="99" #>
 <Biml xmlns="http://schemas.varigence.com/biml.xsd">
 <Annotations>
-<Annotation Tag="Utility_CreateProjectParameters">
+<Annotation Tag="Utility_OverwriteProjectParameters">
 <#
     String outputMessage;
-    
-    var project = RootNode.PackageProjects.FirstOrDefault();
-    if (project == null) {
-        outputMessage = "PackageProject does not exist.";
+    if (PackageProject == null) {
+        outputMessage = "The PackageProject parameter is missing";
     } else {
-        var projectPath = RootNode.ObjectTag["ProjectParametersPath"].ToString();
-        if (projectPath == "") {
-            outputMessage = @"RootNode.ObjectTag[""ProjectParametersPath""] does not exist.";
-        } else if (project.Parameters.Count == 0) {
-            outputMessage = @"No project parameters defined in PackageProject.";
+        if (ProjectParameterPath == null || ProjectParameterPath == "") {
+            outputMessage = "The ProjectParameterPath parameter is missing";
+        } else if (PackageProject.Parameters.Count == 0) {
+            outputMessage = @"No project parameters defined in PackageProject";
         } else {
         
             try {
             
-                var fileAttributes = File.GetAttributes(projectPath);
+                var fileAttributes = File.GetAttributes(ProjectParameterPath);
                 if ((fileAttributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly) {
-                    File.SetAttributes(projectPath, (fileAttributes & ~FileAttributes.ReadOnly));
+                    File.SetAttributes(ProjectParameterPath, (fileAttributes & ~FileAttributes.ReadOnly));
                 }
                 
                 StringBuilder parameters = new StringBuilder();
                 parameters.AppendLine("<?xml version=\"1.0\"?>");
                 parameters.AppendLine("<SSIS:Parameters xmlns:SSIS=\"www.microsoft.com/SqlServer/SSIS\">");
-                foreach (var parameter in project.Parameters) {
+                foreach (var parameter in PackageProject.Parameters) {
                 parameters.AppendFormat("<SSIS:Parameter SSIS:Name=\"{0}\">", parameter.Name).AppendLine();
                 parameters.AppendLine("<SSIS:Properties>");
                 parameters.AppendFormat("<SSIS:Property SSIS:Name=\"ID\">{{{0}}}</SSIS:Property>", (parameter.Id == Guid.Empty ?  Guid.NewGuid() : parameter.Id)).AppendLine();
@@ -44,12 +43,12 @@
                 }
                 parameters.AppendLine("</SSIS:Parameters>");
                 
-                File.WriteAllText(projectPath, parameters.ToString());
+                File.WriteAllText(ProjectParameterPath, parameters.ToString());
                 
                 outputMessage = "Parameters created successfully!";
             
             } catch (Exception e) {
-                outputMessage = String.Format("Error writing Project Parameters to Project.params. Make sure the path \"{0}\" is correct and that this project uses the Project Deployment Model", projectPath);
+                outputMessage = String.Format("Error writing project parameters to Project.params. Make sure the path \"{0}\" is correct and that this project uses the Project Deployment Model", ProjectParameterPath);
             }
         }
     }

@@ -4,16 +4,13 @@ GO
 /* --------------------------------------------------
 -- Create Schemas
 -------------------------------------------------- */
-DECLARE @query nvarchar(4000);
-SET @query = 'CREATE SCHEMA [Meta] AUTHORIZATION [dbo];';
+DECLARE @query nvarchar(4000) = 'CREATE SCHEMA [Meta] AUTHORIZATION [dbo];';
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'Meta')
-EXEC(@query);
+    EXEC (@query);
 GO
 
-
-
 /* --------------------------------------------------
--- Cleanup
+-- Cleanup Views
 -------------------------------------------------- */
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vItemColumn') AND type IN (N'V'))
 	DROP VIEW Meta.vItemColumn;
@@ -23,8 +20,16 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vItem') 
 	DROP VIEW Meta.vItem;
 GO
 
+--IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vProjectConnection') AND type IN (N'V'))
+--	DROP VIEW Meta.vProjectConnection;
+--GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vProject') AND type IN (N'V'))
 	DROP VIEW Meta.vProject;
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vProjectType') AND type IN (N'V'))
+	DROP VIEW Meta.vProjectType;
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vConnection') AND type IN (N'V'))
@@ -39,33 +44,47 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vConnect
 	DROP VIEW Meta.vConnectionType;
 GO
 
+/* --------------------------------------------------
+-- Cleanup Tables
+-------------------------------------------------- */
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ItemColumn') AND type IN (N'U'))
 BEGIN
     ALTER TABLE Meta.ItemColumn SET (SYSTEM_VERSIONING = OFF);
     DROP TABLE Meta.ItemColumn_History;
     DROP TABLE Meta.ItemColumn;
-END
+END;
+GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Item') AND type IN (N'U'))
 BEGIN
     ALTER TABLE Meta.Item SET (SYSTEM_VERSIONING = OFF);
     DROP TABLE Meta.Item_History;
     DROP TABLE Meta.Item;
-END
+END;
 GO
+
+--IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ProjectConnection') AND type IN (N'U'))
+--BEGIN
+--    ALTER TABLE Meta.ProjectConnection SET (SYSTEM_VERSIONING = OFF);
+--    DROP TABLE Meta.ProjectConnection_History;
+--    DROP TABLE Meta.ProjectConnection;
+--END;
+--GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Project') AND type IN (N'U'))
 BEGIN
     ALTER TABLE Meta.Project SET (SYSTEM_VERSIONING = OFF);
     DROP TABLE Meta.Project_History;
     DROP TABLE Meta.Project;
-END
+END;
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ProjectType') AND type IN (N'U'))
 BEGIN
+    ALTER TABLE Meta.ProjectType SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.ProjectType_History;
     DROP TABLE Meta.ProjectType;
-END
+END;
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Connection') AND type IN (N'U'))
@@ -73,19 +92,23 @@ BEGIN
     ALTER TABLE Meta.Connection SET (SYSTEM_VERSIONING = OFF);
     DROP TABLE Meta.Connection_History;
     DROP TABLE Meta.Connection;
-END
+END;
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ConnectionManagerType') AND type IN (N'U'))
 BEGIN
+    ALTER TABLE Meta.ConnectionManagerType SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.ConnectionManagerType_History;
     DROP TABLE Meta.ConnectionManagerType;
-END
+END;
 GO
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ConnectionType') AND type IN (N'U'))
 BEGIN
+    ALTER TABLE Meta.ConnectionType SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.ConnectionType_History;
     DROP TABLE Meta.ConnectionType;
-END
+END;
 GO
 
 
@@ -99,27 +122,15 @@ BEGIN
         ConnectionTypeID SMALLINT IDENTITY(1, 1) NOT NULL
        ,ConnectionType VARCHAR(20) NOT NULL
        ,ConnectionTypeDescription VARCHAR(200) NULL
+       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
        ,CONSTRAINT PK_ConnectionType PRIMARY KEY (ConnectionTypeID)
-       ,CONSTRAINT UQ_ConnectionTypeCode UNIQUE (ConnectionType)
-    );
+       ,CONSTRAINT UQ_ConnectionType UNIQUE (ConnectionType)
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ConnectionType_History));
 END;
 GO
-
-INSERT INTO Meta.ConnectionType (
-    ConnectionType
-)
-VALUES
-    ('Admin') /* For Configurations */
-   ,('Auditing') /* For Custom Logging */
-   ,('ETL') /* For Sources and Destinations */
-   ,('Logging') /* For Standard Logging */
-   ,('Metadata') /* For Metadata Management */
-;
-GO
-
--- SELECT * FROM Meta.ConnectionType
-
-
 
 /* --------------------------------------------------
 -- Create Metadata Table: ConnectionManagerType
@@ -130,26 +141,15 @@ BEGIN
         ConnectionManagerTypeID SMALLINT IDENTITY(1, 1) NOT NULL
        ,ConnectionManagerType VARCHAR(20) NOT NULL
        ,ConnectionManagerTypeDescription VARCHAR(200) NULL
+       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
        ,CONSTRAINT PK_ConnectionManagerType PRIMARY KEY (ConnectionManagerTypeID)
        ,CONSTRAINT UQ_ConnectionManagerType UNIQUE (ConnectionManagerType)
-    );
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ConnectionManagerType_History));
 END;
 GO
-
-INSERT INTO Meta.ConnectionManagerType (
-    ConnectionManagerType
-)
-VALUES
-    ('AdoNet')
-   ,('Excel')
-   ,('FlatFile')
-   ,('OleDb')
-;
-GO
-
--- SELECT * FROM Meta.ConnectionManagerType
-
-
 
 /* --------------------------------------------------
 -- Create Metadata Table: Connection
@@ -180,31 +180,24 @@ BEGIN
 END;
 GO
 
-INSERT INTO Meta.Connection (
-     ConnectionName
-    ,ConnectionTypeID
-    ,ConnectionManagerTypeID
-    ,ConnectionString
-    ,DatabaseName
-    ,SSISCreateInProject
-    ,SSISParameterize
-    ,SSISParameterIsRequired
-    ,SSISParameterIsSensitive
-)
-VALUES
-     ('Auditing', 2, 4, 'Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;'             , 'Staging'             , 1, 1, 1, 0)
-    ,('Staging' , 3, 4, 'Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;'             , 'Staging'             , 1, 1, 1, 0)
-    ,('AW'      , 3, 4, 'Data Source=.;Initial Catalog=AdventureWorks;Provider=SQLNCLI11.1;Integrated Security=SSPI;'      , 'AdventureWorks'      , 1, 1, 1, 0)
-    ,('AWDW'    , 3, 4, 'Data Source=.;Initial Catalog=AdventureWorksDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;'    , 'AdventureWorksDW'    , 1, 1, 1, 0)
-    ,('AWLT'    , 3, 4, 'Data Source=.;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;'    , 'AdventureWorksLT'    , 1, 1, 1, 0)
-    ,('WWI'     , 3, 4, 'Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;'  , 'WideWorldImporters'  , 1, 1, 1, 0)
-    ,('WWIDW'   , 3, 4, 'Data Source=.;Initial Catalog=WideWorldImportersDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'WideWorldImportersDW', 1, 1, 1, 0)
-;
+/* --------------------------------------------------
+-- Create Metadata Table: ProjectType
+-------------------------------------------------- */
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ProjectType') AND type IN (N'U'))
+BEGIN
+    CREATE TABLE Meta.ProjectType (
+        ProjectTypeID SMALLINT IDENTITY(1, 1) NOT NULL
+       ,ProjectType VARCHAR(20) NOT NULL
+       ,ProjectTypeDescription VARCHAR(200) NULL
+       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
+       ,CONSTRAINT PK_ProjectType PRIMARY KEY (ProjectTypeID)
+       ,CONSTRAINT UQ_ProjectType UNIQUE (ProjectType)
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ProjectType_History));
+END;
 GO
-
--- SELECT * FROM Meta.Connection;
-
-
 
 /* --------------------------------------------------
 -- Create Metadata Table: Project
@@ -212,44 +205,48 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Project') AND type IN (N'U'))
 BEGIN
     CREATE TABLE Meta.Project (
-        ProjectID                   INT           IDENTITY(1, 1) NOT NULL
-       ,ProjectName                 VARCHAR(50)   NOT NULL
-       ,ProjectDescription          VARCHAR(1000) NULL
-       ,ProjectType                 VARCHAR(10)   NOT NULL /* (STG / DWH / DM) */
-       ,SourceConnectionID          INT           NOT NULL
-       ,DestinationConnectionID     INT           NOT NULL
-       ,DestinationSchemaName       VARCHAR(10)   NOT NULL
-       ,ValidFrom                   DATETIME2     GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
-       ,ValidTo                     DATETIME2     GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+        ProjectID INT IDENTITY(1, 1) NOT NULL
+       ,ProjectName VARCHAR(50) NOT NULL
+       ,ProjectDescription VARCHAR(1000) NULL
+       ,ProjectTypeID SMALLINT NOT NULL
+       ,SourceConnectionID INT NOT NULL
+       ,DestinationConnectionID INT NOT NULL
+       ,DestinationSchemaName VARCHAR(10) NULL
+       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
        ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
        ,CONSTRAINT PK_Project PRIMARY KEY (ProjectID)
        ,CONSTRAINT UQ_Project UNIQUE (ProjectName)
+       ,CONSTRAINT FK_Project_ProjectType FOREIGN KEY (ProjectTypeID) REFERENCES Meta.ProjectType (ProjectTypeID)
        ,CONSTRAINT FK_Project_SourceConnection FOREIGN KEY (SourceConnectionID) REFERENCES Meta.Connection(ConnectionID)
        ,CONSTRAINT FK_Project_DestinationConnection FOREIGN KEY (DestinationConnectionID) REFERENCES Meta.Connection(ConnectionID)
     )
     WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.Project_History));
-END
+END;
 GO
 
-INSERT INTO Meta.Project (
-    ProjectName
-   ,ProjectType
-   ,SourceConnectionID
-   ,DestinationConnectionID
-   ,DestinationSchemaName
-)
-VALUES
-     ('Staging AdventureWorks'      , 'STG', 5, 4, 'AWSRC')
-    ,('Staging AdventureWorksDW'    , 'STG', 6, 4, 'AWDWSRC')
-    ,('Staging AdventureWorksLT'    , 'STG', 7, 4, 'AWLTSRC')
-    ,('Staging WideWorldImporters'  , 'STG', 8, 4, 'WWISRC')
-    ,('Staging WideWorldImportersDW', 'STG', 9, 4, 'WWIDWSRC')
-;
-GO
-
--- SELECT * FROM Meta.Project;
-
-
+--/* --------------------------------------------------
+---- Create Metadata Table: ProjectConnection
+---------------------------------------------------- */
+--IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ProjectConnection') AND type IN (N'U'))
+--BEGIN
+--    CREATE TABLE Meta.ProjectConnection (
+--        ProjectConnectionID INT IDENTITY(1, 1) NOT NULL
+--       ,ProjectID INT NOT NULL
+--       ,SourceConnectionID INT NOT NULL
+--       ,DestinationConnectionID INT NOT NULL
+--       ,DestinationSchemaName VARCHAR(20) NOT NULL
+--       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+--       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+--       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
+--       ,CONSTRAINT PK_ProjectConnection PRIMARY KEY (ProjectConnectionID)
+--       ,CONSTRAINT FK_ProjectConnection_Project FOREIGN KEY (ProjectID) REFERENCES Meta.Project (ProjectID)
+--       ,CONSTRAINT FK_ProjectConnection_SourceConnection FOREIGN KEY (SourceConnectionID) REFERENCES Meta.Connection (ConnectionID)
+--       ,CONSTRAINT FK_ProjectConnection_DestinationConnection FOREIGN KEY (DestinationConnectionID) REFERENCES Meta.Connection (ConnectionID)
+--    )
+--    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ProjectConnection_History));
+--END;
+--GO
 
 /* --------------------------------------------------
 -- Create Metadata Table: Item
@@ -290,22 +287,8 @@ BEGIN
        ,CONSTRAINT FK_Item_Project FOREIGN KEY (ProjectID) REFERENCES Meta.Project(ProjectID)
     )
     WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.Item_History));
-END
+END;
 GO
-
-INSERT INTO Meta.Item (
-	ItemName
-	,ItemType
-	,ProjectID
-	,SSISLoadPattern
-) VALUES
-	('Customer', 'T', 3, 'TruncLoad')
-;
-GO
-
--- SELECT * FROM Meta.Item
-
-
 
 /* --------------------------------------------------
 -- Create Metadata Table: ItemColumn
@@ -339,113 +322,126 @@ BEGIN
 END;
 GO
 
-INSERT INTO Meta.ItemColumn (
-    ItemID
-   ,Ordinal
-   ,ItemColumnName
-   ,DataType
-   ,DataTypeLength
-   ,DataTypePrecision
-   ,DataTypeScale
-   ,DerivedColumnReplaceExisting
-   ,DerivedColumnExpression
-)
-VALUES
-     (1, 1, 'CustomerId', 'Int32', 0, 0, 0, 0, '')
-    ,(1, 2, 'Firstname', 'AnsiString', 50, 0, 0, 0, '')
-    ,(1, 3, 'LastName', 'AnsiString', 50, 0, 0, 0, '')
-    ,(1, 4, 'EmailAddress', 'AnsiString', 50, 0, 0, 0, '')
-;
-GO
-
--- SELECT * FROM Meta.ItemColumn;
-
 
 
 /* --------------------------------------------------
 -- Create Metadata Views
 -------------------------------------------------- */
-CREATE VIEW Meta.vConnectionType
+CREATE OR ALTER VIEW Meta.vConnectionType
 AS
-SELECT ct.ConnectionType
-FROM Meta.ConnectionType AS ct;
+    SELECT ct.ConnectionType
+    FROM Meta.ConnectionType AS ct;
 GO
 
-CREATE VIEW Meta.vConnectionManagerType
+CREATE OR ALTER VIEW Meta.vConnectionManagerType
 AS
-SELECT cmt.ConnectionManagerType
-FROM Meta.ConnectionManagerType AS cmt;
+    SELECT cmt.ConnectionManagerType
+    FROM Meta.ConnectionManagerType AS cmt;
 GO
 
-CREATE VIEW Meta.vConnection
+CREATE OR ALTER VIEW Meta.vConnection
 AS
-SELECT
-    c.ConnectionName
-   ,ct.ConnectionType
-   ,cmt.ConnectionManagerType
-   ,c.ConnectionString
-   ,c.DatabaseName
-   ,c.SSISCreateInProject
-   ,c.SSISParameterize
-   ,c.SSISParameterIsRequired
-   ,c.SSISParameterIsSensitive
-FROM Meta.Connection AS c
-INNER JOIN Meta.ConnectionType AS ct ON c.ConnectionTypeID = ct.ConnectionTypeID
-INNER JOIN Meta.ConnectionManagerType AS cmt ON c.ConnectionManagerTypeID = cmt.ConnectionManagerTypeID
-;
+    SELECT
+       c.ConnectionName
+       ,ct.ConnectionType
+       ,cmt.ConnectionManagerType
+       ,c.ConnectionString
+       ,c.DatabaseName
+       ,IIF(c.SSISCreateInProject = 1, 'true', 'false') AS SSISCreateInProject
+       ,IIF(c.SSISParameterize = 1, 'true', 'false') AS SSISParameterize
+       ,IIF(c.SSISParameterIsRequired = 1, 'true', 'false') AS SSISParameterIsRequired
+       ,IIF(c.SSISParameterIsSensitive = 1, 'true', 'false') AS SSISParameterIsSensitive
+    FROM Meta.Connection AS c
+    INNER JOIN Meta.ConnectionType AS ct ON c.ConnectionTypeID = ct.ConnectionTypeID
+    INNER JOIN Meta.ConnectionManagerType AS cmt ON c.ConnectionManagerTypeID = cmt.ConnectionManagerTypeID
+    ;
 GO
 
-CREATE VIEW Meta.vProject
+CREATE OR ALTER VIEW Meta.vProjectType
 AS
-SELECT
-    p.ProjectName
-   ,p.ProjectType
-   ,sc.ConnectionName AS SourceConnectionName
-   ,dc.ConnectionName AS DestinationConnectionName
-   ,p.DestinationSchemaName
-FROM Meta.Project AS p
-INNER JOIN Meta.Connection AS sc ON p.SourceConnectionID = sc.ConnectionID
-INNER JOIN Meta.Connection AS dc ON p.DestinationConnectionID = dc.ConnectionID
-;
+    SELECT pt.ProjectType
+    FROM Meta.ProjectType AS pt;
 GO
 
-CREATE VIEW Meta.vItem AS
-SELECT 
-	i.ItemName
-	,i.ItemType
-	,p.ProjectName
-	,i.FlatFileExtension
-	,i.FlatFileType
-	,i.FlatFileIsUnicode
-	,i.FlatFileColumnDelimiter
-	,i.FlatFileRowDelimiter
-	,i.SSISLoadPattern
-	,i.SSISParallelDataFlows
-	,i.SSISParallelDataFlowsColumn
-FROM Meta.Item AS i
-INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
-;
+CREATE OR ALTER VIEW Meta.vProject
+AS
+    SELECT
+        p.ProjectID
+       ,p.ProjectName
+       ,pt.ProjectType
+       ,sc.ConnectionName AS SourceConnectionName
+       ,dc.ConnectionName AS DestinationConnectionName
+       ,p.DestinationSchemaName
+    FROM Meta.Project AS p
+    INNER JOIN Meta.ProjectType AS pt ON p.ProjectTypeID = pt.ProjectTypeID
+    INNER JOIN Meta.Connection AS sc ON p.SourceConnectionID = sc.ConnectionID
+    INNER JOIN Meta.Connection AS dc ON p.DestinationConnectionID = dc.ConnectionID
+    ;
 GO
 
-CREATE VIEW Meta.vItemColumn AS
-SELECT 
-	i.ItemName
-	,ic.ItemColumnName
-	,CONCAT(i.ItemName,'_', ic.ItemColumnName) AS ScopedItemColumnName
-	,ic.Ordinal
-	,ic.ChangeType
-	,ic.IsNullable
-	,ic.IsPrimaryKey
-	,ic.IsIdentity
-	,ic.DataType
-	,ic.DataTypeLength
-	,ic.DataTypePrecision
-	,ic.DataTypeScale
-	,ic.DerivedColumnReplaceExisting
-	,ic.DerivedColumnExpression
-	,CONCAT(p.ProjectName, '/', i.ItemName) AS LogicalDisplayFolder
-FROM Meta.ItemColumn ic
-INNER JOIN Meta.Item i ON ic.ItemID = i.ItemID
-INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
-;
+--CREATE OR ALTER VIEW Meta.vProjectConnection
+--AS
+--    SELECT
+--       p.ProjectName
+--       ,pt.ProjectType
+--       ,sc.ConnectionName AS SourceConnectionName
+--       ,scmt.ConnectionManagerType AS SourceConnectionManagerType
+--       ,sc.ConnectionString AS SourceConnectionString
+--       ,sc.DatabaseName AS SourceDatabaseName
+--       ,dc.ConnectionName AS DestinationConnectionName
+--       ,dcmt.ConnectionManagerType AS DestinationConnectionManagerType
+--       ,dc.ConnectionString AS DestinationConnectionString
+--       ,dc.DatabaseName AS DestinationDatabaseName
+--       ,pc.DestinationSchemaName
+--    FROM Meta.ProjectConnection AS pc
+--    INNER JOIN Meta.Project AS p ON pc.ProjectID = p.ProjectID
+--    INNER JOIN Meta.ProjectType AS pt ON p.ProjectTypeID = pt.ProjectTypeID
+--    INNER JOIN Meta.Connection AS sc ON pc.SourceConnectionID = sc.ConnectionID
+--    INNER JOIN Meta.ConnectionType AS sct ON sc.ConnectionTypeID = sct.ConnectionTypeID
+--    INNER JOIN Meta.ConnectionManagerType AS scmt ON sc.ConnectionManagerTypeID = scmt.ConnectionManagerTypeID
+--    INNER JOIN Meta.Connection AS dc ON pc.DestinationConnectionID = dc.ConnectionID
+--    INNER JOIN Meta.ConnectionType AS dct ON dc.ConnectionTypeID = dct.ConnectionTypeID
+--    INNER JOIN Meta.ConnectionManagerType AS dcmt ON dc.ConnectionManagerTypeID = dcmt.ConnectionManagerTypeID
+--    ;
+--GO
+
+CREATE OR ALTER VIEW Meta.vItem AS
+    SELECT 
+	    i.ItemName
+	    ,i.ItemType
+	    ,p.ProjectName
+	    ,i.FlatFileExtension
+	    ,i.FlatFileType
+	    ,i.FlatFileIsUnicode
+	    ,i.FlatFileColumnDelimiter
+	    ,i.FlatFileRowDelimiter
+	    ,i.SSISLoadPattern
+	    ,i.SSISParallelDataFlows
+	    ,i.SSISParallelDataFlowsColumn
+    FROM Meta.Item AS i
+    INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
+    ;
+GO
+
+CREATE OR ALTER VIEW Meta.vItemColumn AS
+    SELECT 
+	    i.ItemName
+	    ,ic.ItemColumnName
+	    ,CONCAT(i.ItemName,'_', ic.ItemColumnName) AS ScopedItemColumnName
+	    ,ic.Ordinal
+	    ,ic.ChangeType
+	    ,ic.IsNullable
+	    ,ic.IsPrimaryKey
+	    ,ic.IsIdentity
+	    ,ic.DataType
+	    ,ic.DataTypeLength
+	    ,ic.DataTypePrecision
+	    ,ic.DataTypeScale
+	    ,ic.DerivedColumnReplaceExisting
+	    ,ic.DerivedColumnExpression
+	    ,CONCAT(p.ProjectName, '/', i.ItemName) AS LogicalDisplayFolder
+    FROM Meta.ItemColumn ic
+    INNER JOIN Meta.Item i ON ic.ItemID = i.ItemID
+    INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
+    ;
 GO

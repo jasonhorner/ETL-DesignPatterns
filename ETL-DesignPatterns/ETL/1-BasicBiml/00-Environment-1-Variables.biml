@@ -1,0 +1,80 @@
+<#@ template tier="0" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        /* Variables used in multiple Biml files */
+        RootNode.ObjectTag["ProjectName"] = "1-BasicBiml";
+        RootNode.ObjectTag["ProjectProtectionLevel"] = "DontSaveSensitive";
+        RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\1-BasicBiml\Project.params";
+        RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
+        
+        /* Metadatada from Variables */
+        var SourceConnectionName = "WWI";
+        var SourceConnectionString = "Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var DestinationConnectionName = "Staging";
+        var DestinationConnectionString = "Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var DestinationDatabaseName = "Staging";
+        var DestinationSchemaName = "WWISRC";
+        
+        /* Variables used in this Biml file */
+        var AuditingConnection = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var SourceConnection = SchemaManager.CreateConnectionNode(SourceConnectionName, SourceConnectionString);
+    #>
+    
+	<Connections>
+	    
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml", AuditingConnection)#>
+		
+		<OleDbConnection Name="<#=SourceConnectionName#>" CreateInProject="true" ConnectionString="<#=SourceConnectionString#>">
+		    <Annotations>
+		        <Annotation Tag="ConnectionType">Source</Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=SourceConnectionName#>ConnectionString</Annotation>
+		    </Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=SourceConnectionName#>ConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		
+		<OleDbConnection Name="<#=DestinationConnectionName#>" CreateInProject="true" ConnectionString="<#=DestinationConnectionString#>">
+			<Annotations>
+			    <Annotation Tag="ConnectionType">Destination</Annotation>
+				<Annotation Tag="Database"><#=DestinationDatabaseName#></Annotation>
+				<Annotation Tag="Schema"><#=DestinationSchemaName#></Annotation>
+			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=DestinationConnectionName#>ConnectionString</Annotation>
+			</Annotations>
+		    <Expressions>
+		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=DestinationConnectionName#>ConnectionString]</Expression>
+		    </Expressions>
+		</OleDbConnection>
+		    
+	</Connections>
+	    
+	<Databases>
+		<Database Name="<#=DestinationDatabaseName#>" ConnectionName="<#=DestinationConnectionName#>" />
+	</Databases>
+        
+	<Schemas>
+		<Schema Name="<#=DestinationSchemaName#>" DatabaseName="<#=DestinationDatabaseName#>" />
+	</Schemas>
+	    
+    <Tables>
+        <# var TablesToInclude = ExternalDataAccess.GetDataTable(SourceConnection, "SELECT name AS TableName FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["TableName"].ToString()).ToList();#>
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity, true, 0).TableNodes) { #>
+            <Table Name="<#=table.Schema#>_<#=table.Name#>" SchemaName="<#=DestinationDatabaseName#>.<#=DestinationSchemaName#>">
+                <Columns>
+                    <#=table.Columns.GetBiml()#>
+                </Columns>
+                <Annotations>
+                    <Annotation Tag="SourceConnection"><#=SourceConnection#></Annotation>
+                    <Annotation Tag="SourceSchemaName"><#=table.Schema#></Annotation>
+                    <Annotation Tag="SourceTableName"><#=table.Name#></Annotation>
+                    <Annotation Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
+                </Annotations>
+            </Table>
+        <# } #>
+    </Tables>
+	
+</Biml>
+
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
+<#@ import namespace="System.Data" #>

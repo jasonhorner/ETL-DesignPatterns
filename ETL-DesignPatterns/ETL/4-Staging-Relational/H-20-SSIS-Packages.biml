@@ -1,0 +1,62 @@
+<#@ template tier="20" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	
+	<Packages>
+		
+		<# foreach (var table in RootNode.Tables.Where(t => t.GetTag("SupportTableType") == "Core")) { #>
+			
+			<Package Name="Load_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
+			    
+			    <Parameters>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
+			    </Parameters>
+				
+				<Variables>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
+                    <Variable Name="InitStagingTable" DataType="Boolean">False</Variable>
+				</Variables>
+				
+				<Tasks>
+				    
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
+				
+					<ExecuteSQL Name="PreLoad" ConnectionName="<#=table.Connection.Name#>" ResultSet="None">
+						<DirectInput>EXECUTE <#=table.Schema#>.<#=table.Name#>_PreLoad @InitStagingTable = ?</DirectInput>
+					    <Parameters>
+					        <Parameter Name="0" VariableName="User.InitStagingTable" DataType="Boolean" />
+					    </Parameters>
+					</ExecuteSQL>
+					
+					<Dataflow Name="Process <#=table.Schema#> <#=table.Name#>">
+						<Transformations>
+
+                            <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
+								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
+							</OleDbSource>
+							
+				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "New")#>
+							
+							<OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
+							</OleDbDestination>
+						    
+						</Transformations>
+					</Dataflow>
+					    
+					<ExecuteSQL Name="PostLoad" ConnectionName="<#=table.Connection.Name#>" ResultSet="None">
+						<DirectInput>EXECUTE <#=table.Schema#>.<#=table.Name#>_PostLoad</DirectInput>
+					</ExecuteSQL>
+					
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
+				        
+				</Tasks>
+				
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+				
+			</Package>
+			
+		<# } #>
+			
+	</Packages>
+	
+</Biml>

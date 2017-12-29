@@ -6,34 +6,34 @@
 		<Package Name="Master_<#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>" ConstraintMode="Linear">
 		    
             <Parameters>
-                <#@ include file="..\90-SharedUtilities\Audit-i-PackageParameters.biml" #>
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
             </Parameters>
             
             <Variables>
-                <#@ include file="..\90-SharedUtilities\Audit-i-PackageVariables.biml" #>
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
             </Variables>
             
 			<Tasks>
-			    
-			    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Start")#>
+			   
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
 			    
 				<Container Name="Load <#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>">
 				    <Tasks>
         				<# foreach (var package in RootNode.Packages) { #>
         					<ExecutePackage Name="Execute <#=package.Name#>">
         						<ExternalProjectPackage Package="<#=package.PackageFileName#>" />
-        						<#@ include file="..\90-SharedUtilities\Audit-i-PackageParametersBindings.biml" #>
+		                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParametersBindings.biml")#>
         					</ExecutePackage>
         				<# } #>
 				    </Tasks>
 				</Container>
 				
-			    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Stop")#>
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
 			        
 			</Tasks>
 			
-		    <#=CallBimlScript(@"..\90-SharedUtilities\Audit-c-LogPackageExecution.biml", "Error")#>
-		        
+	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+	        
 		</Package>
 		    
 	</Packages>

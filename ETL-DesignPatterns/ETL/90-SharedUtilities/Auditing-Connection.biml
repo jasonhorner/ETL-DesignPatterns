@@ -1,0 +1,10 @@
+<#@ property name="ConnectionString" type="String" required="True" #>
+<OleDbConnection Name="Auditing" CreateInProject="true" ConnectionString="<#=ConnectionString#>">
+	<Annotations>
+	    <Annotation Tag="ConnectionType">Auditing</Annotation>
+	    <Annotation Tag="ProjectParameterName">ConnectionManagerAuditingConnectionString</Annotation>
+	</Annotations>
+    <Expressions>
+        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerAuditingConnectionString]</Expression>
+    </Expressions>
+</OleDbConnection>
