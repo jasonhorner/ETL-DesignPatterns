@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Person](
+﻿CREATE TABLE [AWDWSRC].[dbo_DimCustomer](
     /*
 	[__$start_lsn] [binary](10) NULL,
 	[__$operation] [int] NULL,
@@ -38,6 +38,3 @@
 	*/
 	[CDCOperation] [char](1) NULL
 ) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[Person] ADD  CONSTRAINT [DF_Person_CDCOperation]  DEFAULT (' ') FOR [CDCOperation]
-GO

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [AWDWSRC].[Person](
+﻿CREATE TABLE [AWDWSRC].[dbo_DimCustomer_STG](
     /*
 	[__$start_lsn] [binary](10) NULL,
 	[__$operation] [int] NULL,

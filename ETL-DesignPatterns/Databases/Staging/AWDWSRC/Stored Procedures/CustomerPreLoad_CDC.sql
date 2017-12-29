@@ -8,13 +8,13 @@ SET NOCOUNT ON;
 IF @initStagingTable  = 1
 BEGIN
 
-TRUNCATE TABLE [AWDWSRC].[Customer];
+TRUNCATE TABLE [AWDWSRC].[dbo_DimCustomer];
 
 END
 
 
 -- Remove Data From Staging tables
-TRUNCATE TABLE [AWDWSRC].[Customer_STG];
+TRUNCATE TABLE [AWDWSRC].[dbo_DimCustomer_STG];
 
 	
 

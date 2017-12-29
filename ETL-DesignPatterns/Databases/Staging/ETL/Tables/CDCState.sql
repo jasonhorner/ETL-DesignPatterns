@@ -1,4 +1,4 @@
-﻿CREATE TABLE [ETL].[cdc_states] (
+﻿CREATE TABLE [ETL].[CDCState] (
     [name]  NVARCHAR (256) NOT NULL,
     [state] NVARCHAR (256) NOT NULL
 );

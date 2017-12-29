@@ -73,8 +73,6 @@
     <Folder Include="_Deployment" />
     <Folder Include="AWLTSRC\" />
     <Folder Include="AWLTSRC\Tables\" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
     <Folder Include="ETL\Stored Procedures\" />
     <Folder Include="AWLTSRC\Stored Procedures\" />
     <Folder Include="Scripts\" />
@@ -83,8 +81,6 @@
     <Folder Include="AWDWSRC\Stored Procedures\" />
     <Folder Include="WWISRC\" />
     <Folder Include="WWISRC\Tables\" />
-    <Folder Include="Auditing\" />
-    <Folder Include="Auditing\Tables\" />
     <Folder Include="Stage\" />
     <Folder Include="Stage\Tables\" />
     <Folder Include="AWSRC\" />
@@ -93,26 +89,24 @@
   <ItemGroup>
     <Build Include="ETL\Tables\FlatFileErrors.sql" />
     <Build Include="Security\ETL.sql" />
-    <Build Include="ETL\Tables\cdc_states.sql" />
+    <Build Include="ETL\Tables\CDCState.sql" />
     <Build Include="ETL\Tables\ChangeTrackingLatestVersion.sql" />
     <Build Include="AWLTSRC\Tables\Customer_UPD.sql" />
     <Build Include="AWLTSRC\Tables\Customer_DEL.sql" />
     <Build Include="AWLTSRC\Tables\Customer_INS.sql" />
-    <Build Include="dbo\Tables\Person.sql" />
     <Build Include="ETL\Stored Procedures\GetChangeTrackingLatestVersion.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerMerge.sql" />
     <Build Include="Security\AWLTSRC.sql" />
     <Build Include="Security\AWDWSRC.sql" />
     <Build Include="AWLTSRC\Tables\Customer_STG.sql" />
     <Build Include="AWLTSRC\Tables\Customer.sql" />
-    <Build Include="AWDWSRC\Tables\Person.sql" />
+    <Build Include="AWDWSRC\Tables\dbo_DimCustomer.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerUpdate.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerDelete.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerInsert.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_HASH.sql" />
     <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_HASH.sql" />
-    <Build Include="AWDWSRC\Tables\Customer_STG.sql" />
-    <Build Include="AWDWSRC\Tables\Customer.sql" />
+    <Build Include="AWDWSRC\Tables\dbo_DimCustomer_STG.sql" />
     <Build Include="AWDWSRC\Stored Procedures\CustomerPreLoad_CDC.sql" />
     <Build Include="AWDWSRC\Stored Procedures\CustomerPostLoad_CDC.sql" />
     <Build Include="AWDWSRC\Stored Procedures\CustomerMerge.sql" />
@@ -150,8 +144,6 @@
     <Build Include="WWISRC\Tables\Warehouse_StockItemStockGroups.sql" />
     <Build Include="WWISRC\Tables\Warehouse_StockItemTransactions.sql" />
     <Build Include="WWISRC\Tables\Warehouse_VehicleTemperatures.sql" />
-    <Build Include="Auditing\Tables\FileMonitorHistory.sql" />
-    <Build Include="Security\Auditing.sql" />
     <Build Include="Stage\Tables\ProductDimension.sql" />
     <Build Include="Stage\Tables\CustomerDimension.sql" />
     <Build Include="Security\Stage.sql" />
@@ -259,6 +251,10 @@
     <Build Include="AWSRC\Tables\Person_StateProvince.sql" />
     <Build Include="AWSRC\Tables\Person_PhoneNumberType.sql" />
     <Build Include="Security\AWSRC.sql" />
+    <Build Include="Stage\Tables\ErrorScreenTableDimension.sql" />
+    <Build Include="Stage\Tables\ErrorScreenFact.sql" />
+    <Build Include="Stage\Tables\ErrorScreenDimension.sql" />
+    <Build Include="Stage\Tables\ErrorScreenBatchDimension.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />
