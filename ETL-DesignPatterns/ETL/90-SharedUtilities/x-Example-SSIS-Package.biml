@@ -25,7 +25,17 @@
                             <ExternalTableInput Table="Auditing.PackageExecution" />
 						</OleDbSource>
 						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Source")#>
+						
 			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "New")#>
+						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Changed")#>
+						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Existing")#>
+						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Deleted")#>
+						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "FlatFileErrors")#>
 						
 						<OleDbDestination Name="Destination" ConnectionName="Auditing">
 							<ExternalTableOutput Table="Auditing.PackageExecution" />
