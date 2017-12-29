@@ -1,0 +1,13 @@
+<#@ template tier="0" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        RootNode.ObjectTag["UtilitiesPath"] = @"";
+        var AuditingConnection = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+    #>
+    
+	<Connections>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml", AuditingConnection)#>
+	</Connections>
+	
+</Biml>

@@ -1,25 +1,22 @@
 <#@ property name="RowCountType" type="String" required="True" #>
-
-<# if (RowCountType == "Source") { #>
-    <RowCount Name="Count New Rows" VariableName="User.SourceRowCount" />
-<# } #>
-
-<# if (RowCountType == "New") { #>
-    <RowCount Name="Count New Rows" VariableName="User.NewRowCount" />
-<# } #>
-
-<# if (RowCountType == "Changed") { #>
-    <RowCount Name="Count New Rows" VariableName="User.ChangedRowCount" />
-<# } #>
-
-<# if (RowCountType == "Existing") { #>
-    <RowCount Name="Count New Rows" VariableName="User.ExistingRowCount" />
-<# } #>
-
-<# if (RowCountType == "Deleted") { #>
-    <RowCount Name="Count New Rows" VariableName="User.DeletedRowCount" />
-<# } #>
-
-<# if (RowCountType == "FlatFileErrors") { #>
-    <RowCount Name="Count New Rows" VariableName="User.FlatFileErrorsRowCount" />
+<#@ property name="InputPath" type="String" #>
+<#
+    List<String> ValidCountTypes = new List<String>{"Source","New","Changed","Existing","Deleted","FlatFileErrors"};
+    if (!ValidCountTypes.Contains(RowCountType)) {
+        return "";
+    }
+    
+    String OutputPathName;
+    try {
+        OutputPathName = InputPath;
+    } catch (Exception e) {
+        OutputPathName = null;
+    }
+#>
+<# if (OutputPathName == null) { #>
+    <RowCount Name="Count <#=RowCountType#> Rows" VariableName="User.<#=RowCountType#>RowCount" />
+<# } else { #>
+    <RowCount Name="Count <#=RowCountType#> Rows" VariableName="User.<#=RowCountType#>RowCount">
+        <InputPath OutputPathName="<#=OutputPathName#>" />
+    </RowCount>
 <# } #>

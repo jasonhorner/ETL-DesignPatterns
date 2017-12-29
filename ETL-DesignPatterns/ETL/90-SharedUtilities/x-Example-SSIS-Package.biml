@@ -1,0 +1,48 @@
+<#@ template tier="10" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+	<Packages>
+		
+		<Package Name="Example Package with Auditing Framework" ConstraintMode="Linear">
+		    
+		    <Parameters>
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
+		    </Parameters>
+			
+			<Variables>
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
+			</Variables>
+			
+			<Tasks>
+			    
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
+				
+				<Dataflow Name="Dataflow">
+				    
+					<Transformations>
+
+                        <OleDbSource Name="Source" ConnectionName="Auditing">
+                            <ExternalTableInput Table="Auditing.PackageExecution" />
+						</OleDbSource>
+						
+			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "New")#>
+						
+						<OleDbDestination Name="Destination" ConnectionName="Auditing">
+							<ExternalTableOutput Table="Auditing.PackageExecution" />
+						</OleDbDestination>
+					    
+					</Transformations>
+					    
+				</Dataflow>
+				
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
+			        
+			</Tasks>
+			
+		    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+			
+		</Package>
+			
+	</Packages>
+	
+</Biml>
