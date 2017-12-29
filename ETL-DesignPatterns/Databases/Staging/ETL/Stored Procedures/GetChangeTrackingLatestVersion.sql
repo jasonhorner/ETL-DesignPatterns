@@ -5,6 +5,8 @@
 
 AS
 BEGIN
+    
+	SET NOCOUNT ON
 
 	SELECT
 	@versionId = [Version] 

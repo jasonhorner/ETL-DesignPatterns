@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{F7564C95-B39B-400C-93E9-BAAABFFA9C7F}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{88FC75BC-50C6-4AC4-9AE7-A1CE95C4EF81}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -131,6 +131,18 @@
                 SQLTask:ParameterName="VersionId"
                 SQLTask:DtsVariableName="User::CTBeginVersion"
                 SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="User::SourceTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="User::SourceDatabaseName"
+                SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="11"
                 SQLTask:ParameterSize="-1" />
             </SQLTask:SqlTaskData>
@@ -1334,15 +1346,15 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="221.5,42"
+          Size="222,42"
           Id="Package\Change Tracking Processing\Get Destination Latest Version"
-          TopLeft="5.5,5.5" />
+          TopLeft="1.5,5.5" />
         <NodeLayout
-          Size="200.5,42"
+          Size="200,42"
           Id="Package\Change Tracking Processing\Get Source Latest Version"
           TopLeft="288,5.5" />
         <NodeLayout
-          Size="130.5,42"
+          Size="130,42"
           Id="Package\Change Tracking Processing\Process CT"
           TopLeft="323,107.5" />
         <EdgeLayout
@@ -1381,30 +1393,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 1]"
-          TopLeft="116.25,47.5">
+          TopLeft="112.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="251.583333333333,60"
+              EndConnector="255.166666666667,60"
               Start="0,0"
-              End="251.583333333333,52.5">
+              End="255.166666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5639666919001" />
+                    End="0,31.5623100303951" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.5639666919001"
-                    Point2="0,35.5639666919001"
-                    Point3="4,35.5639666919001" />
+                    Point1="0,31.5623100303951"
+                    Point2="0,35.5623100303951"
+                    Point3="4,35.5623100303951" />
                   <mssgle:LineSegment
-                    End="247.583333333333,35.5639666919001" />
+                    End="251.166666666667,35.5623100303951" />
                   <mssgle:CubicBezierSegment
-                    Point1="247.583333333333,35.5639666919001"
-                    Point2="251.583333333333,35.5639666919001"
-                    Point3="251.583333333333,39.5639666919001" />
+                    Point1="251.166666666667,35.5623100303951"
+                    Point2="255.166666666667,35.5623100303951"
+                    Point3="255.166666666667,39.5623100303951" />
                   <mssgle:LineSegment
-                    End="251.583333333333,52.5" />
+                    End="255.166666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1416,12 +1428,12 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="494,204.5"
-          Size="494,247.5"
+          PanelSize="494,204"
+          Size="494,248"
           Id="Package\Change Tracking Processing"
           TopLeft="5.50000000000003,107.5" />
         <NodeLayout
-          Size="121.5,42"
+          Size="122,42"
           Id="Package\PostLoad"
           TopLeft="203,522.166666666667" />
         <NodeLayout
@@ -1430,30 +1442,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           TopLeft="64,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="252.5,355">
+          TopLeft="252.5,355.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11.2500000000001,167.166666666667"
+              EndConnector="11.5,166.666666666667"
               Start="0,0"
-              End="11.2500000000001,159.666666666667">
+              End="11.5,159.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.5833333333333" />
+                    End="0,79.3333333333335" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,79.5833333333333"
-                    Point2="0,83.5833333333333"
-                    Point3="4,83.5833333333333" />
+                    Point1="0,79.3333333333335"
+                    Point2="0,83.3333333333335"
+                    Point3="4,83.3333333333335" />
                   <mssgle:LineSegment
-                    End="7.25000000000009,83.5833333333333" />
+                    End="7.49999999999997,83.3333333333335" />
                   <mssgle:CubicBezierSegment
-                    Point1="7.25000000000009,83.5833333333333"
-                    Point2="11.2500000000001,83.5833333333333"
-                    Point3="11.2500000000001,87.5833333333333" />
+                    Point1="7.49999999999997,83.3333333333335"
+                    Point2="11.5,83.3333333333335"
+                    Point3="11.5,87.3333333333335" />
                   <mssgle:LineSegment
-                    End="11.2500000000001,159.666666666667" />
+                    End="11.5,159.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1509,7 +1521,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\Change Tracking Processing\Process CT\Update Row Count"
           TopLeft="238.75,311.5" />
         <NodeLayout
-          Size="163.5,42"
+          Size="164,42"
           Id="Package\Change Tracking Processing\Process CT\Delete Row Count"
           TopLeft="466.5,311.5" />
         <NodeLayout
@@ -1517,7 +1529,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
           TopLeft="233.75,5.5" />
         <NodeLayout
-          Size="170.5,42"
+          Size="170,42"
           Id="Package\Change Tracking Processing\Process CT\Ignored Row Count"
           TopLeft="672.5,293.5" />
         <NodeLayout
@@ -1525,19 +1537,19 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\Change Tracking Processing\Process CT\Process Changes"
           TopLeft="243.25,209.5" />
         <NodeLayout
-          Size="208.5,42"
+          Size="208,42"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST"
           TopLeft="213.25,515.5" />
         <NodeLayout
-          Size="161.5,42"
+          Size="162,42"
           Id="Package\Change Tracking Processing\Process CT\Insert Row Count"
           TopLeft="16.5,311.5" />
         <NodeLayout
-          Size="183.5,42"
+          Size="184,42"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
           TopLeft="5.50000000000006,413.5" />
         <NodeLayout
-          Size="163.5,42"
+          Size="164,42"
           Id="Package\Change Tracking Processing\Process CT\Combine Changes"
           TopLeft="249.5,413.5" />
         <NodeLayout
