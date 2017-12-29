@@ -1,3 +1,3 @@
-﻿CREATE SCHEMA [ETL]
+﻿CREATE SCHEMA [Stage]
     AUTHORIZATION [dbo];
 
