@@ -1,0 +1,27 @@
+﻿CREATE TABLE [AWSRC].[Production_Product_ondisk] (
+    [ProductID]             INT            NOT NULL,
+    [Name]                  NVARCHAR (50)  NOT NULL,
+    [ProductNumber]         NVARCHAR (25)  NOT NULL,
+    [MakeFlag]              BIT            NOT NULL,
+    [FinishedGoodsFlag]     BIT            NOT NULL,
+    [Color]                 NVARCHAR (15)  NULL,
+    [SafetyStockLevel]      SMALLINT       NOT NULL,
+    [ReorderPoint]          SMALLINT       NOT NULL,
+    [StandardCost]          MONEY          NOT NULL,
+    [ListPrice]             MONEY          NOT NULL,
+    [Size]                  NVARCHAR (5)   NULL,
+    [SizeUnitMeasureCode]   NCHAR (3)      NULL,
+    [WeightUnitMeasureCode] NCHAR (3)      NULL,
+    [Weight]                DECIMAL (8, 2) NULL,
+    [DaysToManufacture]     INT            NOT NULL,
+    [ProductLine]           NCHAR (2)      NULL,
+    [Class]                 NCHAR (2)      NULL,
+    [Style]                 NCHAR (2)      NULL,
+    [ProductSubcategoryID]  INT            NULL,
+    [ProductModelID]        INT            NULL,
+    [SellStartDate]         DATETIME2 (7)  NOT NULL,
+    [SellEndDate]           DATETIME2 (7)  NULL,
+    [DiscontinuedDate]      DATETIME2 (7)  NULL,
+    [ModifiedDate]          DATETIME2 (7)  NOT NULL
+);
+

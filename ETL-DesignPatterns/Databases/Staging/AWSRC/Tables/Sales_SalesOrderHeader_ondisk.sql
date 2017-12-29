@@ -1,0 +1,26 @@
+﻿CREATE TABLE [AWSRC].[Sales_SalesOrderHeader_ondisk] (
+    [SalesOrderID]           INT            NOT NULL,
+    [RevisionNumber]         TINYINT        NOT NULL,
+    [OrderDate]              DATETIME2 (7)  NOT NULL,
+    [DueDate]                DATETIME2 (7)  NOT NULL,
+    [ShipDate]               DATETIME2 (7)  NULL,
+    [Status]                 TINYINT        NOT NULL,
+    [OnlineOrderFlag]        BIT            NOT NULL,
+    [PurchaseOrderNumber]    NVARCHAR (25)  NULL,
+    [AccountNumber]          NVARCHAR (15)  NULL,
+    [CustomerID]             INT            NOT NULL,
+    [SalesPersonID]          INT            NOT NULL,
+    [TerritoryID]            INT            NULL,
+    [BillToAddressID]        INT            NOT NULL,
+    [ShipToAddressID]        INT            NOT NULL,
+    [ShipMethodID]           INT            NOT NULL,
+    [CreditCardID]           INT            NULL,
+    [CreditCardApprovalCode] VARCHAR (15)   NULL,
+    [CurrencyRateID]         INT            NULL,
+    [SubTotal]               MONEY          NOT NULL,
+    [TaxAmt]                 MONEY          NOT NULL,
+    [Freight]                MONEY          NOT NULL,
+    [Comment]                NVARCHAR (128) NULL,
+    [ModifiedDate]           DATETIME2 (7)  NOT NULL
+);
+

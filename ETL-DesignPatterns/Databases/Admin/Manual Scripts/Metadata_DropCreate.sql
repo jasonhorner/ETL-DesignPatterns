@@ -173,7 +173,6 @@ BEGIN
        ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
        ,CONSTRAINT PK_Connection PRIMARY KEY (ConnectionID)
        ,CONSTRAINT UQ_Connection UNIQUE (ConnectionName)
-       ,CONSTRAINT FK_Connection_ConnectionType FOREIGN KEY (ConnectionTypeID) REFERENCES Meta.ConnectionType (ConnectionTypeID)
        ,CONSTRAINT FK_Connection_ConnectionManagerType FOREIGN KEY (ConnectionManagerTypeID) REFERENCES Meta.ConnectionManagerType (ConnectionManagerTypeID)
     )
     WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.Connection_History));

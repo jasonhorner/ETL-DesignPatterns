@@ -64,6 +64,9 @@
     <Folder Include="Auditing\Stored Procedures\" />
     <Folder Include="Security\" />
     <Folder Include="_Deployment" />
+    <Folder Include="Meta\" />
+    <Folder Include="Meta\Tables\" />
+    <Folder Include="Meta\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Auditing\Tables\PackageError.sql" />
@@ -73,8 +76,20 @@
     <Build Include="Auditing\Stored Procedures\LogPackageExecutionStart.sql" />
     <Build Include="Auditing\Stored Procedures\LogPackageExecutionStop.sql" />
     <Build Include="Security\Auditing.sql" />
+    <Build Include="Meta\Tables\Project_History.sql" />
+    <Build Include="Meta\Tables\Project.sql" />
+    <Build Include="Meta\Tables\ProjectType_History.sql" />
+    <Build Include="Meta\Tables\ProjectType.sql" />
+    <Build Include="Meta\Tables\Connection_History.sql" />
+    <Build Include="Meta\Tables\Connection.sql" />
+    <Build Include="Meta\Tables\ConnectionManagerType_History.sql" />
+    <Build Include="Meta\Tables\ConnectionManagerType.sql" />
+    <Build Include="Meta\Views\vProject.sql" />
+    <Build Include="Meta\Views\vConnection.sql" />
+    <Build Include="Security\Meta.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Admin-LOCAL.publish.xml" />
+    <None Include="_Deployment\DevSync.scmp" />
   </ItemGroup>
 </Project>
