@@ -19,25 +19,33 @@
 				    
 				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
 				
-					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
-						<DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#></DirectInput>
-					</ExecuteSQL>
-					
-					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
-						<Transformations>
-
-                            <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
-								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
-							</OleDbSource>
-							
-				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Insert")#>
-							
-							<OleDbDestination Name="Destination <#=table.Connection.Name#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
-								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
-							</OleDbDestination>
-						    
-						</Transformations>
-					</Dataflow>
+				    <Container Name="Truncate and Load <#=table.Schema#> <#=table.Name#>" ConstraintMode="Linear">
+				        <Tasks>
+				            
+        					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+        						<DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#></DirectInput>
+        					</ExecuteSQL>
+        					
+        					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
+        						<Transformations>
+        
+                                    <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
+        								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
+        							</OleDbSource>
+        							
+        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Select")#>
+        				            
+        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Insert")#>
+        							
+        							<OleDbDestination Name="Destination <#=table.Connection.Name#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+        								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
+        							</OleDbDestination>
+        						    
+        						</Transformations>
+        					</Dataflow>
+					    
+				        </Tasks>
+				    </Container>
 					    
 				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
 				        

@@ -1,0 +1,36 @@
+<#@ property name="TableType" type="String" required="False" #>
+<#
+    
+    String TableTypeName;
+    try {
+        TableTypeName = TableType;
+        List<String> ValidTableTypes = new List<String>{"Insert","Update","Delete"};
+        if (!ValidTableTypes.Contains(TableTypeName)) {
+            return "";
+        }
+    } catch (Exception e) {
+        TableTypeName = null;
+    }
+#>
+
+<# if (TableTypeName == "Insert") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"I"</Column>
+<Column Name="InsertDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="IsDeleted" DataType="Boolean">0</Column>
+<# } #>
+
+<# if (TableTypeName == "Update") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"U"</Column>
+<Column Name="UpdateDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="IsDeleted" DataType="Boolean">0</Column>
+<# } #>
+
+<# if (TableTypeName == "Delete") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"D"</Column>
+<Column Name="UpdateDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="IsDeleted" DataType="Boolean">1</Column>
+<# } #>
+
+<Column Name="PackageExecutionID" DataType="Int32">@[User::PackageExecutionID]</Column>
+<Column Name="ServerExecutionID" DataType="Int32">@[System::ServerExecutionID]</Column>
+<Column Name="BatchID" DataType="Int32">@[$Package::BatchID]</Column>

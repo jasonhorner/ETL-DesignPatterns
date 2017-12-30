@@ -1,0 +1,146 @@
+<#@ template tier="20" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	
+	<Packages>
+		
+		<# foreach (var table in RootNode.Tables.Where(t => t.GetTag("SupportTableType") == "Core")) { #>
+			
+			<Package Name="Extract_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
+			    
+			    <Parameters>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
+			    </Parameters>
+				
+				<Variables>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
+                    <Variable Name="InitStagingTable" DataType="Boolean">False</Variable>
+				</Variables>
+				
+				<Tasks>
+				    
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
+				    
+				    <Container Name="Hash Extract <#=table.Schema#> <#=table.Name#>" ConstraintMode="Linear">
+				        <Tasks>
+				            
+        					<ExecuteSQL Name="PreLoad" ConnectionName="<#=table.Connection.Name#>" ResultSet="None">
+        						<DirectInput>EXECUTE <#=table.Schema#>.<#=table.Name#>_PreLoad @InitStagingTable = ?</DirectInput>
+        					    <Parameters>
+        					        <Parameter Name="0" VariableName="User.InitStagingTable" DataType="Boolean" />
+        					    </Parameters>
+        					</ExecuteSQL>
+        					
+        					<Dataflow Name="Extract <#=table.Schema#> <#=table.Name#>">
+        						<Transformations>
+        
+                                    <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
+        								<DirectInput>SELECT <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', ", null) #>)), 2) AS Current<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
+        							</OleDbSource>
+        							
+        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Select")#>
+        							
+                                    <Lookup Name="Lookup HashKey" OleDbConnectionName="<#=table.Connection#>" NoMatchBehavior="RedirectRowsToNoMatchOutput">
+                                        <DirectInput>SELECT <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true || c.GetTag("IsHashKeyColumn") == "True")#> FROM <#=table.SchemaQualifiedName#></DirectInput>
+                                        <Inputs>
+                                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true)) { #>
+                                                <Column SourceColumn="<#=column.Name#>" TargetColumn="<#=column.Name#>" />
+                                            <# } #>
+                                        </Inputs>
+                                        <Outputs>
+                                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true || c.GetTag("IsHashKeyColumn") == "True")) { #>
+                                                <Column SourceColumn="<#=column.Name#>" TargetColumn="Existing<#=column.Name#>" />
+                                            <# } #>
+                                        </Outputs>
+                                    </Lookup>
+        							
+        							<!-- Start New Rows Flow -->
+        							
+        							<# dynamic outRCInsert; #>
+        				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCInsert, "Insert", "Lookup HashKey.NoMatch", "New Rows")#>
+        							
+                                    <DerivedColumns Name="Add ETL Columns - Insert">
+                                        <InputPath OutputPathName="<#=outRCInsert.RowCountPathName.ToString()#>.Output" />
+                                        <Columns>
+    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Insert")#>
+                                        </Columns>
+                                    </DerivedColumns>
+                                    
+                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_INS" ConnectionName="<#=table.Connection.Name#>">
+                                        <InputPath OutputPathName="Add ETL Columns - Insert.Output" />
+                                        <Columns>
+                                            <Column SourceColumn="Current<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                                        </Columns>
+                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_INS" />
+                                    </OleDbDestination>
+                                    
+        						    <!-- End New Rows Flow -->
+        						    
+        						    <!-- Start Existing Rows Flow -->
+        						    
+                                    <ConditionalSplit Name="Split on Change Type">
+                                        <InputPath OutputPathName="Lookup HashKey.Match" PathAnnotation="PathName" SsisName="Existing Rows" />
+                                        <OutputPaths>
+                                            <OutputPath Name="Updated">
+                                                <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => c.Column.Name + " == Existing" + c.Column.Name))#> &amp;&amp; Current<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> != Existing<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#></Expression>
+                                            </OutputPath>
+                                            <OutputPath Name="Deleted">
+                                                <Expression>FALSE</Expression>
+                                            </OutputPath>
+                                        </OutputPaths>
+                                    </ConditionalSplit>
+                                    
+                                        <!-- Start Ignored Rows -->
+        							    <# dynamic outRCIgnore; #>
+        				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCIgnore, "Ignore", "Split on Change Type.Default", "Ignored Rows")#>
+                                        <!-- End Ignored Rows -->
+                                        
+                                        <!-- Start Deleted Rows -->
+        							    <# dynamic outRCDelete; #>
+        				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCDelete, "Delete", "Split on Change Type.Deleted", "Deleted Rows")#>
+                                        <!-- End Deleted Rows -->
+                                        
+                                        <!-- Start Updated Rows -->
+        							    <# dynamic outRCUpdate; #>
+        				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCUpdate, "Update", "Split on Change Type.Updated", "Updated Rows")#>
+                                        
+                                        <DerivedColumns Name="Add ETL Columns - Update">
+                                            <InputPath OutputPathName="<#=outRCUpdate.RowCountPathName.ToString()#>.Output" />
+                                            <Columns>
+        				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Update")#>
+                                            </Columns>
+                                        </DerivedColumns>
+                                        
+                                        <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_UPD" ConnectionName="<#=table.Connection.Name#>">
+                                            <InputPath OutputPathName="Add ETL Columns - Update.Output" />
+                                            <Columns>
+                                                <Column SourceColumn="Current<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                                            </Columns>
+                                            <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_UPD" />
+                                        </OleDbDestination>
+                                        <!-- End Updated Rows -->
+        						    
+        						    <!-- End Existing Rows Flow -->
+        						    
+        						</Transformations>
+        					</Dataflow>
+        					    
+        					<ExecuteSQL Name="PostLoad" ConnectionName="<#=table.Connection.Name#>" ResultSet="None">
+        						<DirectInput>EXECUTE <#=table.Schema#>.<#=table.Name#>_PostLoad</DirectInput>
+        					</ExecuteSQL>
+					
+				        </Tasks>
+				    </Container>
+					
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
+				        
+				</Tasks>
+				
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+				
+			</Package>
+			
+		<# } #>
+			
+	</Packages>
+	
+</Biml>

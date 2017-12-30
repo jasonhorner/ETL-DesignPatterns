@@ -18,20 +18,22 @@
 <# if (LoggingType == "Start") { #>
 <ExecuteSQL Name="Log Package Execution Start" ConnectionName="<#=ConnectionName#>" ResultSet="SingleRow" >
     <DirectInput>EXECUTE Auditing.LogPackageExecutionStart
-        @PackageID = ?
+        @ServerExecutionID = ?
+        ,@BatchID = ?
+        ,@PackageID = ?
         ,@PackageName = ?
         ,@ParentPackageID = ?
         ,@ParentPackageName = ?
-        ,@ServerExecutionID = ?
         ,@PackageStartTime = ?;
     </DirectInput>
     <Parameters>
-        <Parameter Name="0" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
-        <Parameter Name="1" VariableName="System.PackageName" DataType="String" Length="-1"/>
-        <Parameter Name="2" VariableName="ParentPackageID" DataType="Guid" Length="-1"/>
-        <Parameter Name="3" VariableName="ParentPackageName" DataType="String" Length="-1"/>
-        <Parameter Name="4" VariableName="System.ServerExecutionID" DataType="Int64" Length="-1"/>
-        <Parameter Name="5" VariableName="System.StartTime" DataType="Date" Length="-1"/>
+        <Parameter Name="0" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
+        <Parameter Name="1" VariableName="BatchID" DataType="Int32" Length="-1"/>
+        <Parameter Name="2" VariableName="System.PackageID" DataType="String" Length="-1"/>
+        <Parameter Name="3" VariableName="System.PackageName" DataType="String" Length="-1"/>
+        <Parameter Name="4" VariableName="ParentPackageID" DataType="String" Length="-1"/>
+        <Parameter Name="5" VariableName="ParentPackageName" DataType="String" Length="-1"/>
+        <Parameter Name="6" VariableName="System.StartTime" DataType="Date" Length="-1"/>
     </Parameters>
     <Results>
         <Result Name="PackageExecutionID" VariableName="User.PackageExecutionID" />
@@ -44,8 +46,8 @@
         ,@SelectRowCount = ?
         ,@InsertRowCount = ?
         ,@UpdateRowCount = ?
-        ,@IgnoreRowCount = ?
         ,@DeleteRowCount = ?
+        ,@IgnoreRowCount = ?
         ,@ErrorRowCount = ?;
     </DirectInput>
     <Parameters>
@@ -67,19 +69,21 @@
                     <ExecuteSQL Name="Log Package Error" ConnectionName="<#=ConnectionName#>">
                         <DirectInput>EXECUTE Auditing.LogPackageError
                             @PackageExecutionID = ?
+                            ,@ServerExecutionID = ?
+                            ,@BatchID = ?
                             ,@PackageID = ?
                             ,@PackageName = ?
-                            ,@ServerExecutionID = ?
                             ,@ErrorCode = ?
                             ,@ErrorDescription = ?;
                         </DirectInput>
                         <Parameters>
                             <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" />
-                            <Parameter Name="1" VariableName="System.PackageID" DataType="Guid" Length="-1"/>
-                            <Parameter Name="2" VariableName="System.PackageName" DataType="String" Length="-1"/>
-                            <Parameter Name="3" VariableName="System.ServerExecutionID" DataType="Int64" Length="-1"/>
-                            <Parameter Name="4" VariableName="System.ErrorCode" DataType="Int32" />
-                            <Parameter Name="5" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
+                            <Parameter Name="1" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
+                            <Parameter Name="2" VariableName="BatchID" DataType="Int32" Length="-1"/>
+                            <Parameter Name="3" VariableName="System.PackageID" DataType="String" Length="-1"/>
+                            <Parameter Name="4" VariableName="System.PackageName" DataType="String" Length="-1"/>
+                            <Parameter Name="5" VariableName="System.ErrorCode" DataType="Int32" />
+                            <Parameter Name="6" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
                         </Parameters>
                     </ExecuteSQL>
                     <ExecuteSQL Name="Log Package Execution Error" ConnectionName="<#=ConnectionName#>">

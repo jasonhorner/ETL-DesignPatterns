@@ -22,7 +22,7 @@
 					<Transformations>
 
                         <OleDbSource Name="Source" ConnectionName="Auditing">
-                            <ExternalTableInput Table="Auditing.PackageExecution" />
+                            <DirectInput>SELECT 1 AS ColumnName;</DirectInput>
 						</OleDbSource>
 						
 			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Select")#>
@@ -36,10 +36,6 @@
 			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Ignore")#>
 						
 			            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Error")#>
-						
-						<OleDbDestination Name="Destination" ConnectionName="Auditing">
-							<ExternalTableOutput Table="Auditing.PackageExecution" />
-						</OleDbDestination>
 					    
 					</Transformations>
 					    

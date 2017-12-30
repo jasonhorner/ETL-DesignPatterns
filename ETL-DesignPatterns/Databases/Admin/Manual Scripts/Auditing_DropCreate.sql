@@ -49,9 +49,10 @@ BEGIN
 	CREATE TABLE Auditing.PackageError (
 		PackageErrorID INT IDENTITY(1, 1) NOT NULL
 	   ,PackageExecutionID INT NOT NULL
-	   ,PackageID UNIQUEIDENTIFIER NOT NULL
+	   ,ServerExecutionID INT NOT NULL
+	   ,BatchID INT NULL
+	   ,PackageID NVARCHAR(255) NOT NULL
 	   ,PackageName NVARCHAR(255) NOT NULL
-	   ,ServerExecutionID BIGINT NOT NULL
 	   ,PackageErrorTime DATETIME2(7) NOT NULL
 	   ,ErrorCode INT NOT NULL
 	   ,ErrorDescription NVARCHAR(MAX) NOT NULL
@@ -63,11 +64,12 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.
 BEGIN
 	CREATE TABLE Auditing.PackageExecution (
 		PackageExecutionID INT IDENTITY(1, 1) NOT NULL
-	   ,PackageID UNIQUEIDENTIFIER NOT NULL
+	   ,ServerExecutionID INT NOT NULL
+	   ,BatchID INT NULL
+	   ,PackageID NVARCHAR(255) NOT NULL
 	   ,PackageName NVARCHAR(255) NOT NULL
-	   ,ParentPackageID UNIQUEIDENTIFIER NULL
+	   ,ParentPackageID NVARCHAR(255) NULL
 	   ,ParentPackageName NVARCHAR(255) NULL
-	   ,ServerExecutionID BIGINT NOT NULL
 	   ,PackageStartTime DATETIME2(7) NOT NULL
 	   ,PackageStopTime DATETIME2(7) NULL
 	   ,PackageDurationSeconds AS (DATEDIFF(SECOND, PackageStartTime, PackageStopTime))
@@ -88,9 +90,10 @@ GO
 -------------------------------------------------- */
 CREATE OR ALTER PROCEDURE Auditing.LogPackageError (
     @PackageExecutionID INT
-   ,@PackageID UNIQUEIDENTIFIER
+   ,@ServerExecutionID INT
+   ,@BatchID INT
+   ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
-   ,@ServerExecutionID BIGINT
    ,@ErrorCode INT
    ,@ErrorDescription NVARCHAR(MAX)
 )
@@ -99,18 +102,20 @@ BEGIN
     SET NOCOUNT ON;
     INSERT INTO Auditing.PackageError (
         PackageExecutionID
+       ,ServerExecutionID
+	   ,BatchID
        ,PackageID
        ,PackageName
-       ,ServerExecutionID
        ,PackageErrorTime
        ,ErrorCode
        ,ErrorDescription
     )
     SELECT
         @PackageExecutionID
+       ,@ServerExecutionID
+	   ,@BatchID
        ,@PackageID
        ,@PackageName
-       ,@ServerExecutionID
        ,SYSDATETIME()
        ,@ErrorCode
        ,@ErrorDescription;
@@ -131,11 +136,12 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionStart (
-    @PackageID UNIQUEIDENTIFIER
+    @ServerExecutionID INT
+   ,@BatchID INT
+   ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
-   ,@ParentPackageID UNIQUEIDENTIFIER = NULL
-   ,@ParentPackageName NVARCHAR(255) = NULL
-   ,@ServerExecutionID BIGINT
+   ,@ParentPackageID NVARCHAR(255)
+   ,@ParentPackageName NVARCHAR(255)
    ,@PackageStartTime DATETIME2
 )
 AS
@@ -143,20 +149,22 @@ BEGIN
     SET NOCOUNT ON;
     DECLARE @PackageExecutionID INT;
     INSERT INTO Auditing.PackageExecution (
-        PackageID
+       ServerExecutionID
+       ,BatchID
+	   ,PackageID
        ,PackageName
        ,ParentPackageID
        ,ParentPackageName
-       ,ServerExecutionID
        ,PackageStartTime
        ,ExecutionStatus
     )
     SELECT
-        @PackageID
+        @ServerExecutionID
+       ,@BatchID
+	   ,@PackageID
        ,@PackageName
        ,@ParentPackageID
        ,@ParentPackageName
-       ,@ServerExecutionID
        ,@PackageStartTime
        ,'Running';
     SELECT @PackageExecutionID = SCOPE_IDENTITY();

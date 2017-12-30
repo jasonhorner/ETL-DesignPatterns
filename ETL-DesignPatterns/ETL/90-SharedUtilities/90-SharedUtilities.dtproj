@@ -12,11 +12,11 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="DontSaveSensitive" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{10e0153c-aa7a-4182-9d00-9bc9f34caf43}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">90-SharedUtilities</SSIS:Property>
-          <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+          <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
           <SSIS:Property SSIS:Name="VersionComments">
@@ -26,11 +26,11 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">PEGASUS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqQlMViEV3UOaIWDI3SA5pAAAAAACAAAAAAAQZgAAAAEAACAAAADzscbjNHBOsAVhZFk+yIxcrGUuFW7PJtL1L8tNC3Q4HQAAAAAOgAAAAAIAACAAAAD0ycnmFGQskA2aA3oSwMj01G5Ls6Z81uDhiVcecH/9I5AAAABfSVVx8qXrBP65PFPaH1+mKy07Sf1RYjslcZw6uzZV7JzpbGjCOL8/YVCT4ZhKAx9m7GFxUF80XMYoBXMtC8/rnbbz7S6/cAxlh1lT1fZy0HP+L8JpQg3UqhDU3bPh2rxx2cFCKuIh0jSu84uy8+9pffYr3pI0b+30fODzYLFCa4xf9Q4r7JLOyYG+BtTvPrtAAAAAEexn7JSm+voZXFENRopOuN4kaRnYvXHT70lTZE0AgDh6wbasiEC+v+EcvINnSVAetAvH7T/N8WR4Cvq8l8eCMg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Example Package with Auditing Framework.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Example Master Package with Auditing Framework.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Auditing.conmgr" />
@@ -114,23 +114,23 @@
           <SSIS:PackageInfo>
             <SSIS:PackageMetaData SSIS:Name="Example Package with Auditing Framework.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{5E20F892-F836-4CEF-8F76-43622C3DFB7C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{8B7B9979-70FB-4396-802A-E20CD19E5305}</SSIS:Property>
                 <SSIS:Property SSIS:Name="Name">Example Package with Auditing Framework</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{DD9E0200-0806-431F-876D-1AA8F9DD4B34}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{913F42B4-06CB-45BE-9297-7D7B4F27D0B6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="ParentPackageID">
+                <SSIS:Parameter SSIS:Name="BatchID">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{99A97B4E-6440-4D99-8460-2B04D4B9DB6F}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{DAF44077-CBFB-4B05-8513-B92797DC4F58}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -138,13 +138,27 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">00000000-0000-0000-0000-000000000000</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="ParentPackageID">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{2CC08D91-ED11-468E-A793-D2FE7AEF8316}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="ParentPackageName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{3B68BBA4-9949-4F18-A63B-B9FDCBB5DB58}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">{A21CBEEF-7446-4817-B337-FB607FB6C081}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -152,6 +166,67 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Example Master Package with Auditing Framework.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{7044811E-33C4-4733-87E9-D2D06C31BA24}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Example Master Package with Auditing Framework</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2F8EC2DC-FFBF-4DD9-B180-9D495C7401AA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="BatchID">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{11C00295-23FA-4ABE-BFAB-8140B2F357CD}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="ParentPackageID">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{7BBE1AA8-0CB5-411A-BFBC-12E258DA73F9}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="ParentPackageName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{2EF1E924-E52A-4CAE-8E99-B6B5AB4CFE3D}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -189,12 +264,24 @@
       <FullPath>Auditing-RowCount.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
+      <Name>ETL-DerivedColumns.biml</Name>
+      <FullPath>ETL-DerivedColumns.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>ETL-TableColumns.biml</Name>
+      <FullPath>ETL-TableColumns.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Utility-OverwriteProjectParameters.biml</Name>
       <FullPath>Utility-OverwriteProjectParameters.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>x-Example-Environment.biml</Name>
       <FullPath>x-Example-Environment.biml</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>x-Example-SSIS-MasterPackage.biml</Name>
+      <FullPath>x-Example-SSIS-MasterPackage.biml</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>x-Example-SSIS-Package.biml</Name>
@@ -215,7 +302,13 @@
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
         <TargetServerVersion>SQLServer2017</TargetServerVersion>
-        <ParameterConfigurationValues />
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2017-12-30T19:29:51.8465307Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
       </Options>
     </Configuration>
   </Configurations>

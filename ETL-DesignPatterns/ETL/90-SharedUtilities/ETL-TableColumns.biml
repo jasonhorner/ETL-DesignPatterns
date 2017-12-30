@@ -1,0 +1,57 @@
+<#@ property name="TableType" type="String" required="False" #>
+<#
+    
+    String TableTypeName;
+    try {
+        TableTypeName = TableType;
+        List<String> ValidTableTypes = new List<String>{"Core","Insert","Update","Delete"};
+        if (!ValidTableTypes.Contains(TableTypeName)) {
+            return "";
+        }
+    } catch (Exception e) {
+        TableTypeName = null;
+    }
+#>
+<# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="ChangeType" DataType="AnsiStringFixedLength" Length="1" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<# } #>
+<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
+<Column Name="InsertDate" DataType="DateTime2" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<# } #>
+<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="UpdateDate" DataType="DateTime2" IsNullable="true">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<# } #>
+<# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="IsDeleted" DataType="Boolean" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<# } #>
+<Column Name="PackageExecutionID" DataType="Int32" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<Column Name="ServerExecutionID" DataType="Int32" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<Column Name="BatchID" DataType="Int32" IsNullable="false">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>

@@ -3,8 +3,6 @@
     
     <#
         /* Variables used in multiple Biml files */
-        RootNode.ObjectTag["ProjectName"] = "4-Staging-Relational";
-        RootNode.ObjectTag["ProjectProtectionLevel"] = "DontSaveSensitive";
         RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\4-Staging-Relational\Project.params";
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
@@ -58,15 +56,20 @@
 	    
      <Tables>
         
-        <# foreach (var table in GetDatabaseSchemaWithoutTemporalTables(SourceConnection, new List<string>{"dbo"}, new List<string>{"Customer"}).TableNodes) { #>
+        <# foreach (var table in GetDatabaseSchemaWithoutTemporalTables(SourceConnection, new List<string>{"dbo"}, new List<string>{""}).TableNodes) { #>
             
             <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Insert","_INS"},{"Update","_UPD"},{"Delete","_DEL"}}; #>
             <# foreach (var supportTable in SupportTables) { #>
                 <Table Name="<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
                     <Columns>
                         <#=table.Columns.GetBiml()#>
-                        <Column Name="CDCOperation" DataType="AnsiStringFixedLength" Length="1" IsNullable="true" />
-                        <Column Name="HashKey" DataType="StringFixedLength" Length="40" IsNullable="true" />
+                        <Column Name="HashKey" DataType="StringFixedLength" Length="40" IsNullable="true">
+                            <Annotations>
+                                <Annotation Tag="IsETLColumn">True</Annotation>
+                                <Annotation Tag="IsHashKeyColumn">True</Annotation>
+                            </Annotations>
+                        </Column>
+    				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-TableColumns.biml", supportTable.Key)#>
                     </Columns>
                     <Keys>
                         <PrimaryKey Name="PK_<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>">

@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="12/31/2017 00:21:30" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{F92E4604-03EC-4761-B622-E1064CB9D662}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Extract_AWLTSRC_dbo_BuildVersion" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{57479A7D-DDE1-4644-B0B5-76D717A5FC13}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{0C1BE945-EEFF-4949-8198-C06A9B436318}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{5ADF456D-C19E-4599-B67E-24247AAC38AC}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{91F42637-4244-4A97-989C-3B7E0F6A1BD4}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9B42F6EE-2359-4109-BB78-19E8F1CAC13E}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{9A2748C4-C81B-484A-9BC3-553F41A052E3}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{FB5B7F23-E62B-4E9C-86BB-E01A0EF8815F}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{5A228745-069A-48E0-BD01-7481E64AAAE2}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{61A7DCB3-E823-43F5-A72E-2BEB327ED254}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6C6857B4-0470-4689-8A0C-FC2A3B3FFAA7}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{5C75E668-2115-4996-83E7-E7A7A6B6EEBE}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{871DD70F-731D-4A6A-A798-865B75E9DD8E}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InitStagingTable">
+      <DTS:VariableValue DTS:DataType="11">False</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{98CDFD37-7A23-49D6-9778-D4EDA6604958}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @ServerExecutionID = ?&#xA;        ,@BatchID = ?&#xA;        ,@PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="7" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ResultName="PackageExecutionID"></SQLTask:ResultBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{37D8D021-70D7-45B1-BCFB-66B7A1933286}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Hash Extract AWLTSRC dbo_BuildVersion" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{9FE7FC28-7901-428A-B6C8-4C79B23C8D8B}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="PreLoad" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\PreLoad" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="EXECUTE AWLTSRC.dbo_BuildVersion_PreLoad @InitStagingTable = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::InitStagingTable" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{09C581DC-0213-4FF5-A675-0C5B1F90AE77}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Extract AWLTSRC dbo_BuildVersion" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:ObjectData>
+            <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
+              <components>
+                <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="Destination" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination" usesDispositions="true" version="7">
+                  <connections>
+                    <connection connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Connections[OleDbConnection]"></connection>
+                  </connections>
+                  <outputs>
+                    <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output]">
+                      <externalMetadataColumns isUsed="True">
+                        <externalMetadataColumn dataType="ui1" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[SystemInformationID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="25" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[Database Version]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[VersionDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[ModifiedDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="40" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[HashKey]"></externalMetadataColumn>
+                      </externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="ui1" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[SystemInformationID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[SystemInformationID]" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[SystemInformationID]" sortKeyPosition="1" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[Database Version]" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[Database Version]" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[Database Version]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[VersionDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[VersionDate]" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[VersionDate]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[ModifiedDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[ModifiedDate]" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[ModifiedDate]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].ExternalColumns[HashKey]" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[HashKey]" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[HashKey]" truncationRowDisposition="FailComponent"></outputColumn>
+                      </outputColumns>
+                    </output>
+                    <output isErrorOut="true" isSorted="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="ui1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[SystemInformationID]" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[SystemInformationID]" sortKeyPosition="1"></outputColumn>
+                        <outputColumn dataType="wstr" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[Database Version]" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[Database Version]"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[VersionDate]" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[VersionDate]"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ModifiedDate]" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ModifiedDate]"></outputColumn>
+                        <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[HashKey]" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[HashKey]"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                    <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
+                    <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                    <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SystemInformationID], [Database Version], [VersionDate], [ModifiedDate], CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT('|', [Database Version], '|', [VersionDate], '|', [ModifiedDate])), 2) AS HashKey FROM AWLTSRC.dbo_BuildVersion WHERE IsDeleted = 0 ORDER BY [SystemInformationID]</property>
+                    <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
+                    <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                    <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                    <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                    <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="Source" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source" usesDispositions="true" version="7">
+                  <connections>
+                    <connection connectionManagerID="{0B8625E2-A793-4E46-AABD-F6986883D437}:external" connectionManagerRefId="Project.ConnectionManagers[AWLT]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Connections[OleDbConnection]"></connection>
+                  </connections>
+                  <outputs>
+                    <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output]">
+                      <externalMetadataColumns isUsed="True">
+                        <externalMetadataColumn dataType="ui1" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[SystemInformationID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="25" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[Database Version]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[VersionDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[ModifiedDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="40" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[HashKey]"></externalMetadataColumn>
+                      </externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="ui1" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[SystemInformationID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[SystemInformationID]" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[SystemInformationID]" sortKeyPosition="1" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[Database Version]" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[Database Version]" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[Database Version]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[VersionDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[VersionDate]" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[VersionDate]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[ModifiedDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[ModifiedDate]" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[ModifiedDate]" truncationRowDisposition="FailComponent"></outputColumn>
+                        <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].ExternalColumns[HashKey]" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[HashKey]" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[HashKey]" truncationRowDisposition="FailComponent"></outputColumn>
+                      </outputColumns>
+                    </output>
+                    <output isErrorOut="true" isSorted="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="ui1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[SystemInformationID]" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[SystemInformationID]" sortKeyPosition="1"></outputColumn>
+                        <outputColumn dataType="wstr" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[Database Version]" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[Database Version]"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[VersionDate]" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[VersionDate]"></outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ModifiedDate]" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ModifiedDate]"></outputColumn>
+                        <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[HashKey]" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[HashKey]"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                    <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
+                    <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                    <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [SystemInformationID], [Database Version], [VersionDate], [ModifiedDate], CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT('|', [Database Version], '|', [VersionDate], '|', [ModifiedDate])), 2) AS HashKey FROM [dbo].[BuildVersion] ORDER BY [SystemInformationID]</property>
+                    <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
+                    <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                    <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                    <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                    <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.MergeJoin" contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1" name="Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join" version="1">
+                  <inputs>
+                    <input hasSideEffects="true" name="Source_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedDataType="ui1" cachedName="SystemInformationID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[SystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[SystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="25" cachedName="Database Version" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[Database Version]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[Database Version]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="VersionDate" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[VersionDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[VersionDate]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="ModifiedDate" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[ModifiedDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[ModifiedDate]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="HashKey" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output].Columns[HashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[HashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                    <input hasSideEffects="true" name="Destination_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedDataType="ui1" cachedName="SystemInformationID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[SystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[SystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="25" cachedName="Database Version" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[Database Version]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[Database Version]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="VersionDate" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[VersionDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[VersionDate]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="ModifiedDate" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[ModifiedDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[ModifiedDate]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="HashKey" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output].Columns[HashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[HashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="ui1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]" name="SourceSystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]" sortKeyPosition="1">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[SystemInformationID]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="wstr" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceDatabase Version]" name="SourceDatabase Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceDatabase Version]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[Database Version]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceVersionDate]" name="SourceVersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceVersionDate]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[VersionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceModifiedDate]" name="SourceModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceModifiedDate]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[ModifiedDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]" name="SourceHashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[HashKey]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="ui1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]" name="DestinationSystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[SystemInformationID]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="wstr" length="25" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationDatabase Version]" name="DestinationDatabase Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationDatabase Version]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[Database Version]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationVersionDate]" name="DestinationVersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationVersionDate]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[VersionDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationModifiedDate]" name="DestinationModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationModifiedDate]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[ModifiedDate]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationHashKey]" name="DestinationHashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationHashKey]">
+                          <properties>
+                            <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[HashKey]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="Specifies the type of join to perform." name="JoinType" typeConverter="JoinType">0</property>
+                    <property dataType="System.Int32" description="Specifies the number of columns in the ordering key." name="NumKeyColumns">1</property>
+                    <property dataType="System.Boolean" description="Indicates whether the null values are treated as equal values." name="TreatNullsAsEqual">true</property>
+                    <property dataType="System.Int32" description="Indicates the requested maximum buffers per input before blocking." name="MaxBuffersPerInput">5</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count">
+                  <inputs>
+                    <input hasSideEffects="true" name="Full Outer Join_Output_Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::SelectRowCount</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.ConditionalSplit" contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type" usesDispositions="true">
+                  <inputs>
+                    <input name="Select Row Count_Output_Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedDataType="ui1" cachedName="SourceSystemInformationID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[SourceSystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="ui1" cachedName="DestinationSystemInformationID" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[DestinationSystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[SourceHashKey]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="DestinationHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[DestinationHashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="New" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[New]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <properties>
+                        <property containsID="true" dataType="System.String" name="Expression">!ISNULL(#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]}) &amp;&amp; ISNULL(#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]})</property>
+                        <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">!ISNULL(SourceSystemInformationID) &amp;&amp; ISNULL(DestinationSystemInformationID)</property>
+                        <property dataType="System.Int32" name="EvaluationOrder">0</property>
+                      </properties>
+                    </output>
+                    <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="Deleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Deleted]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <properties>
+                        <property containsID="true" dataType="System.String" name="Expression">ISNULL(#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]}) &amp;&amp; !ISNULL(#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]})</property>
+                        <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">ISNULL(SourceSystemInformationID) &amp;&amp; !ISNULL(DestinationSystemInformationID)</property>
+                        <property dataType="System.Int32" name="EvaluationOrder">1</property>
+                      </properties>
+                    </output>
+                    <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="Updated" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Updated]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <properties>
+                        <property containsID="true" dataType="System.String" name="Expression">#{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]} == #{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]} &amp;&amp; #{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]} != #{Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationHashKey]}</property>
+                        <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">SourceSystemInformationID == DestinationSystemInformationID &amp;&amp; SourceHashKey != DestinationHashKey</property>
+                        <property dataType="System.Int32" name="EvaluationOrder">2</property>
+                      </properties>
+                    </output>
+                    <output exclusionGroup="1" name="Default" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Default]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <properties>
+                        <property dataType="System.Boolean" name="IsDefaultOut">true</property>
+                      </properties>
+                    </output>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                </component>
+                <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Ignore Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Ignore Row Count">
+                  <inputs>
+                    <input hasSideEffects="true" name="Existing Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Ignore Row Count.Inputs[Existing Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Ignore Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Ignore Row Count.Inputs[Existing Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::IgnoreRowCount</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Delete Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count">
+                  <inputs>
+                    <input hasSideEffects="true" name="Deleted Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count.Inputs[Deleted Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count.Inputs[Deleted Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::DeleteRowCount</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete" usesDispositions="true">
+                  <inputs>
+                    <input name="Delete Row Count_Output_Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"D"</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"D"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">1</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">1</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[PackageExecutionID]" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[PackageExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ServerExecutionID]" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ServerExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::ServerExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[BatchID]" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[BatchID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[$Package::BatchID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[$Package::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                    </output>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                </component>
+                <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_BuildVersion_DEL" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL" usesDispositions="true" version="4">
+                  <connections>
+                    <connection connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Connections[OleDbConnection]"></connection>
+                  </connections>
+                  <inputs>
+                    <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL]">
+                      <externalMetadataColumns isUsed="True">
+                        <externalMetadataColumn dataType="ui1" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[SystemInformationID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="25" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[Database Version]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[VersionDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ModifiedDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="40" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[HashKey]"></externalMetadataColumn>
+                        <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp2" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[UpdateDate]" scale="7"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[PackageExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ServerExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[BatchID]"></externalMetadataColumn>
+                      </externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[ChangeType]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp2" cachedName="UpdateDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[UpdateDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[UpdateDate]"></inputColumn>
+                        <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[IsDeleted]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="PackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[PackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[PackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[PackageExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="ServerExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ServerExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[ServerExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[ServerExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="BatchID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[BatchID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output].Columns[BatchID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[BatchID]"></inputColumn>
+                        <inputColumn cachedDataType="ui1" cachedName="DestinationSystemInformationID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[SystemInformationID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationSystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[DestinationSystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="25" cachedName="DestinationDatabase Version" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[Database Version]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationDatabase Version]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[DestinationDatabase Version]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="DestinationVersionDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[VersionDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationVersionDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[DestinationVersionDate]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="DestinationModifiedDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[ModifiedDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationModifiedDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[DestinationModifiedDate]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="DestinationHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].ExternalColumns[HashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[DestinationHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL].Columns[DestinationHashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                    <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_BuildVersion_DEL</property>
+                    <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                    <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                    <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                    <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                    <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                    <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                    <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Update Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count">
+                  <inputs>
+                    <input hasSideEffects="true" name="Updated Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count.Inputs[Updated Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count.Inputs[Updated Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::UpdateRowCount</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update" usesDispositions="true">
+                  <inputs>
+                    <input name="Update Row Count_Output_Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"U"</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"U"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">0</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[PackageExecutionID]" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[PackageExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ServerExecutionID]" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ServerExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::ServerExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[BatchID]" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[BatchID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[$Package::BatchID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[$Package::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                    </output>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                </component>
+                <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_BuildVersion_UPD" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD" usesDispositions="true" version="4">
+                  <connections>
+                    <connection connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Connections[OleDbConnection]"></connection>
+                  </connections>
+                  <inputs>
+                    <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD]">
+                      <externalMetadataColumns isUsed="True">
+                        <externalMetadataColumn dataType="ui1" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[SystemInformationID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="25" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[Database Version]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[VersionDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ModifiedDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="40" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[HashKey]"></externalMetadataColumn>
+                        <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp2" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[UpdateDate]" scale="7"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[PackageExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ServerExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[BatchID]"></externalMetadataColumn>
+                      </externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[ChangeType]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp2" cachedName="UpdateDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[UpdateDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[UpdateDate]"></inputColumn>
+                        <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[IsDeleted]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="PackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[PackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[PackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[PackageExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="ServerExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ServerExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[ServerExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[ServerExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="BatchID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[BatchID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output].Columns[BatchID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[BatchID]"></inputColumn>
+                        <inputColumn cachedDataType="ui1" cachedName="SourceSystemInformationID" cachedSortKeyPosition="1" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[SystemInformationID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[SourceSystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="25" cachedName="SourceDatabase Version" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[Database Version]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceDatabase Version]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[SourceDatabase Version]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="SourceVersionDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[VersionDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceVersionDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[SourceVersionDate]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="SourceModifiedDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[ModifiedDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceModifiedDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[SourceModifiedDate]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].ExternalColumns[HashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD].Columns[SourceHashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                    <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_BuildVersion_UPD</property>
+                    <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                    <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                    <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                    <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                    <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                    <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                    <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Insert Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count">
+                  <inputs>
+                    <input hasSideEffects="true" name="New Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count.Inputs[New Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count.Inputs[New Rows]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::InsertRowCount</property>
+                  </properties>
+                </component>
+                <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert" usesDispositions="true">
+                  <inputs>
+                    <input name="Insert Row Count_Output_Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"I"</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"I"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" name="InsertDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">0</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">0</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[PackageExecutionID]" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[PackageExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ServerExecutionID]" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ServerExecutionID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::ServerExecutionID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::ServerExecutionID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[BatchID]" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[BatchID]" truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property dataType="System.String" description="Derived Column Expression" name="Expression">@[$Package::BatchID]</property>
+                            <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[$Package::BatchID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                    </output>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                </component>
+                <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_BuildVersion_INS" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS" usesDispositions="true" version="4">
+                  <connections>
+                    <connection connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Connections[OleDbConnection]"></connection>
+                  </connections>
+                  <inputs>
+                    <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS]">
+                      <externalMetadataColumns isUsed="True">
+                        <externalMetadataColumn dataType="ui1" name="SystemInformationID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[SystemInformationID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="25" name="Database Version" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[Database Version]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="VersionDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[VersionDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp" name="ModifiedDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ModifiedDate]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="wstr" length="40" name="HashKey" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[HashKey]"></externalMetadataColumn>
+                        <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="dbTimeStamp2" name="InsertDate" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[InsertDate]" scale="7"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="PackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[PackageExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="ServerExecutionID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ServerExecutionID]"></externalMetadataColumn>
+                        <externalMetadataColumn dataType="i4" name="BatchID" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[BatchID]"></externalMetadataColumn>
+                      </externalMetadataColumns>
+                      <inputColumns>
+                        <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[ChangeType]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp2" cachedName="InsertDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[InsertDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[InsertDate]"></inputColumn>
+                        <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[IsDeleted]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="PackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[PackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[PackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[PackageExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="ServerExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ServerExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[ServerExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[ServerExecutionID]"></inputColumn>
+                        <inputColumn cachedDataType="i4" cachedName="BatchID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[BatchID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output].Columns[BatchID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[BatchID]"></inputColumn>
+                        <inputColumn cachedDataType="ui1" cachedName="SourceSystemInformationID" cachedSortKeyPosition="1" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[SystemInformationID]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceSystemInformationID]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[SourceSystemInformationID]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="25" cachedName="SourceDatabase Version" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[Database Version]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceDatabase Version]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[SourceDatabase Version]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="SourceVersionDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[VersionDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceVersionDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[SourceVersionDate]"></inputColumn>
+                        <inputColumn cachedDataType="dbTimeStamp" cachedName="SourceModifiedDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[ModifiedDate]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceModifiedDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[SourceModifiedDate]"></inputColumn>
+                        <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].ExternalColumns[HashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output].Columns[SourceHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS].Columns[SourceHashKey]"></inputColumn>
+                      </inputColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS]">
+                      <externalMetadataColumns></externalMetadataColumns>
+                      <outputColumns>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                        <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                      </outputColumns>
+                    </output>
+                  </outputs>
+                  <properties>
+                    <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                    <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_BuildVersion_INS</property>
+                    <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                    <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                    <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                    <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                    <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                    <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                    <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                </component>
+              </components>
+              <paths>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Source_Output_Full Outer Join]" name="Source_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Source_Output_Full Outer Join]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Source.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Inputs[Destination_Output_Full Outer Join]" name="Destination_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Destination_Output_Full Outer Join]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]" name="Full Outer Join_Output_Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Full Outer Join_Output_Select Row Count]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Full Outer Join.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" name="Select Row Count_Output_Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Select Row Count_Output_Split on Change Type]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Select Row Count.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count.Inputs[New Rows]" name="New Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[New Rows]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[New]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]" name="Insert Row Count_Output_Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Insert Row Count_Output_Add ETL Columns - Insert]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Insert Row Count.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS]" name="Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_BuildVersion_INS]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Insert.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count.Inputs[Updated Rows]" name="Updated Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Updated Rows]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Updated]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]" name="Update Row Count_Output_Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Update Row Count_Output_Add ETL Columns - Update]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Update Row Count.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD]" name="Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_BuildVersion_UPD]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Update.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count.Inputs[Deleted Rows]" name="Deleted Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Deleted Rows]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Deleted]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]" name="Delete Row Count_Output_Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Delete Row Count_Output_Add ETL Columns - Delete]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Delete Row Count.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Destination AWLTSRC dbo_BuildVersion_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL]" name="Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_BuildVersion_DEL]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Add ETL Columns - Delete.Outputs[Output]"></path>
+                <path endId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Ignore Row Count.Inputs[Existing Rows]" name="Existing Rows" refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Existing Rows]" startId="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion\Split on Change Type.Outputs[Default]"></path>
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{443F9B2F-DDC9-4969-A4A5-49460BFDB9F4}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="PostLoad" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion\PostLoad" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="EXECUTE AWLTSRC.dbo_BuildVersion_PostLoad" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{39CAB95C-4725-4721-83EC-EE95972D0F75}" DTS:From="Package\Hash Extract AWLTSRC dbo_BuildVersion\PreLoad" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_PreLoad_To_Extract AWLTSRC dbo_BuildVersion" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion.PrecedenceConstraints[Constraint_PreLoad_To_Extract AWLTSRC dbo_BuildVersion]" DTS:To="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion"></DTS:PrecedenceConstraint>
+        <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{82C34617-D2B7-4B15-BDE0-D4DBE1D4E964}" DTS:From="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Extract AWLTSRC dbo_BuildVersion_To_PostLoad" DTS:refId="Package\Hash Extract AWLTSRC dbo_BuildVersion.PrecedenceConstraints[Constraint_Extract AWLTSRC dbo_BuildVersion_To_PostLoad]" DTS:To="Package\Hash Extract AWLTSRC dbo_BuildVersion\PostLoad"></DTS:PrecedenceConstraint>
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{39C76CD1-13AE-434D-8220-7445592199D7}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{74BABBF6-865E-4770-9003-5398DBC0F7A3}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Hash Extract AWLTSRC dbo_BuildVersion" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Hash Extract AWLTSRC dbo_BuildVersion]" DTS:To="Package\Hash Extract AWLTSRC dbo_BuildVersion"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{0AECFE62-6CDC-46A6-96CA-99A610D02F74}" DTS:From="Package\Hash Extract AWLTSRC dbo_BuildVersion" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Hash Extract AWLTSRC dbo_BuildVersion_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Hash Extract AWLTSRC dbo_BuildVersion_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{3BBC7ACF-0294-4D35-A9DE-362FDA0D97AF}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{97644DA8-7135-47C0-91D0-E93F478E213C}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{7B42B09B-33C5-445A-ABC0-1437CBF5794F}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@BatchID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{BF527221-0F4F-4E23-861D-E937F90FA281}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{D0E3201C-AC1B-4DB0-AC5F-301C43442376}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:Variables>
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{0FF37D08-8EB2-4175-96C0-5603259ACE00}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+          <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Existing Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Deleted Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[Updated Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_BuildVersion\Extract AWLTSRC dbo_BuildVersion.Paths[New Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

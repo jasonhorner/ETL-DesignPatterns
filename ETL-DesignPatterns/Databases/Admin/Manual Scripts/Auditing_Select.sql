@@ -1,7 +1,20 @@
 USE Admin;
 GO
 
-SELECT TOP (1000) *
+SELECT TOP (1000)
+	PackageExecutionID
+   ,PackageName
+   ,ExecutionStatus
+   ,SelectRowCount
+   ,InsertRowCount
+   ,UpdateRowCount
+   ,DeleteRowCount
+   ,IgnoreRowCount
+   ,ErrorRowCount
+   ,PackageStartTime
+   ,PackageStopTime
+   ,PackageDurationSeconds
+   ,PackageDurationMinutes
 FROM Auditing.PackageExecution WITH (NOLOCK)
 ORDER BY PackageExecutionID DESC;
 

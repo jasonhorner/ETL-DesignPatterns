@@ -29,13 +29,24 @@ AS
 BEGIN
     SET NOCOUNT ON;
     
+    /* Soft Delete */
+    UPDATE core
+    SET <#=table.GetColumnAssignmentList(c => c.IsUsedInPrimaryKey == false, "core", "del")#>
+    FROM <#=table.GetTag("CoreTableName")#> AS core
+    INNER JOIN <#=table.Schema#>.<#=table.Name#> AS del 
+    ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "del")#>
+    ;
+    
+    /* Hard Delete */
+    /*
     DELETE FROM core
     FROM <#=table.GetTag("CoreTableName")#> AS core
     WHERE EXISTS (
         SELECT * 
         FROM <#=table.Schema#>.<#=table.Name#> AS del 
-        WHERE <#=String.Join(" AND ", table.PreferredKey.Columns.Select(c => "core." + c.Column.Name + " = del." + c.Column.Name))#>
+        WHERE <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "del")#>
     );
+    */
     
     RETURN 0;
 END;
@@ -50,10 +61,10 @@ BEGIN
     SET NOCOUNT ON;
     
     UPDATE core
-    SET <#=String.Join(", ", table.Columns.Where(c => c.IsUsedInPrimaryKey == false).Select(c => "core." + c.QualifiedName + " = upd." + c.QualifiedName))#>
+    SET <#=table.GetColumnAssignmentList(c => c.IsUsedInPrimaryKey == false, "core", "upd")#>
     FROM <#=table.GetTag("CoreTableName")#> AS core
     INNER JOIN <#=table.Schema#>.<#=table.Name#> AS upd 
-        ON <#=String.Join(" AND ", table.PreferredKey.Columns.Select(c => "core." + c.Column.QualifiedName + " = upd." + c.Column.QualifiedName))#>
+    ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "upd")#>
     ;
     
     RETURN 0;

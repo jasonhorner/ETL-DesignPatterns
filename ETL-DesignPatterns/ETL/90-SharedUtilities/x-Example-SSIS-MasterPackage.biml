@@ -1,0 +1,41 @@
+<#@ template tier="30" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+	<Packages>
+	    
+		<Package Name="Example Master Package with Auditing Framework" ConstraintMode="Linear">
+		    
+    	    <Parameters>
+    	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
+    	    </Parameters>
+    		
+    		<Variables>
+    	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
+    		</Variables>
+            
+			<Tasks>
+			    
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
+			    
+				<Container Name="Load">
+				    <Tasks>
+        				<# foreach (var package in RootNode.Packages) { #>
+        					<ExecutePackage Name="Execute <#=package.Name#>">
+        						<ExternalProjectPackage Package="<#=package.PackageFileName#>" />
+		                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParametersBindings.biml")#>
+        					</ExecutePackage>
+        				<# } #>
+				    </Tasks>
+				</Container>
+				
+		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
+			        
+			</Tasks>
+			
+	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+		        
+		</Package>
+		    
+	</Packages>
+	    
+</Biml>

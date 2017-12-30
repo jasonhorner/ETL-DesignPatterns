@@ -1,52 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:Executable DTS:CreationDate="12/30/2017 16:13:39" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{76B3BBB6-0655-4ADE-A0C1-68FD510D7918}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Example Package with Auditing Framework" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{AB34183F-340F-40ED-A2D7-F17DD7FF6F78}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+<DTS:Executable DTS:CreationDate="12/30/2017 20:37:10" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{702F70AF-4FD6-432E-979C-9FF1F0E1D8D6}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Example Package with Auditing Framework" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{B8DE08F2-D256-40A6-BC19-D508067943D7}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{4D12E6B1-9645-4F9E-89C2-D8C49234415A}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
-      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{FF61E47A-B5C1-4E17-98BE-B97A02E0AA53}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{79729BF8-4F1A-4422-9B30-82EB3445B894}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
-      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue"></DTS:Property>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{80F4481D-811A-4EAC-8A92-09A6107D075E}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{C2C8562B-2728-4C0C-B1DE-0821337545D6}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{3B4DF565-E1DE-4758-94F4-652831D951A6}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{24944155-A50E-4943-9B78-1EFA5F67B17A}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{BA9A197A-8F2A-4C28-9CE2-1E4044C5EAAD}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{B1E296A8-625D-4376-9BE1-705995AB9C7B}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{EC5DBDC9-CB46-4F96-A03A-C7392E1CCC94}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{530508D2-F139-4932-938B-CE8A2FFA443F}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F9F0E396-F9A4-4416-BEA5-B23A9D1B4423}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{14D43DA0-1932-44EB-9FFB-202235CEFD99}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{0D6B3F60-2899-427D-918F-F8CB52C7DEBD}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{79D1DAA0-BC16-48BF-A2CB-454FC5FE99B4}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6E65C27D-394F-4C35-983A-D40E966661D1}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{55B4BEA6-3EB9-4595-B8D3-BE47B3D161D1}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{4FCD6725-875A-4F42-AB5D-31AB555A6EB4}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{10496E6F-1767-4B7B-BB63-0FE1343490C3}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{6DF65635-6FFA-4B95-839F-CF1B599952B0}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{024C4014-5833-4744-B95A-DE25462B96BC}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@ServerExecutionID = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="20" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="7" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @ServerExecutionID = ?&#xA;        ,@BatchID = ?&#xA;        ,@PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="7" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
           <SQLTask:ResultBinding SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ResultName="PackageExecutionID"></SQLTask:ResultBinding>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{B243285C-F50E-420C-94D0-6D98B2F8242D}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Dataflow" DTS:refId="Package\Dataflow" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{D34CBB85-7732-4B95-B982-A3CF5C9C3779}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Dataflow" DTS:refId="Package\Dataflow" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
           <components>
@@ -57,64 +61,16 @@
               <outputs>
                 <output name="Output" refId="Package\Dataflow\Source.Outputs[Output]">
                   <externalMetadataColumns isUsed="True">
-                    <externalMetadataColumn dataType="i4" name="PackageExecutionID" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageExecutionID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="guid" name="PackageID" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="wstr" length="255" name="PackageName" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageName]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="guid" name="ParentPackageID" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ParentPackageID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="wstr" length="255" name="ParentPackageName" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ParentPackageName]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i8" name="ServerExecutionID" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ServerExecutionID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="PackageStartTime" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageStartTime]" scale="7"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="PackageStopTime" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageStopTime]" scale="7"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="PackageDurationSeconds" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageDurationSeconds]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="PackageDurationMinutes" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageDurationMinutes]"></externalMetadataColumn>
-                    <externalMetadataColumn codePage="1252" dataType="str" length="10" name="ExecutionStatus" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ExecutionStatus]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="SelectRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[SelectRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="InsertRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[InsertRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="UpdateRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[UpdateRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="DeleteRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[DeleteRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="IgnoreRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[IgnoreRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="ErrorRowCount" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ErrorRowCount]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="i4" name="ColumnName" refId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ColumnName]"></externalMetadataColumn>
                   </externalMetadataColumns>
                   <outputColumns>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageExecutionID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageExecutionID]" name="PackageExecutionID" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageExecutionID]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="guid" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageID]" name="PackageID" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageID]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageName]" length="255" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageName]" name="PackageName" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageName]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="guid" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ParentPackageID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageID]" name="ParentPackageID" refId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageID]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ParentPackageName]" length="255" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageName]" name="ParentPackageName" refId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageName]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i8" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ServerExecutionID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ServerExecutionID]" name="ServerExecutionID" refId="Package\Dataflow\Source.Outputs[Output].Columns[ServerExecutionID]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageStartTime]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStartTime]" name="PackageStartTime" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStartTime]" scale="7" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageStopTime]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStopTime]" name="PackageStopTime" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStopTime]" scale="7" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageDurationSeconds]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageDurationSeconds]" name="PackageDurationSeconds" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageDurationSeconds]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[PackageDurationMinutes]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageDurationMinutes]" name="PackageDurationMinutes" refId="Package\Dataflow\Source.Outputs[Output].Columns[PackageDurationMinutes]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ExecutionStatus]" length="10" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ExecutionStatus]" name="ExecutionStatus" refId="Package\Dataflow\Source.Outputs[Output].Columns[ExecutionStatus]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[SelectRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[SelectRowCount]" name="SelectRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[SelectRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[InsertRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[InsertRowCount]" name="InsertRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[InsertRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[UpdateRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[UpdateRowCount]" name="UpdateRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[UpdateRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[DeleteRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[DeleteRowCount]" name="DeleteRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[DeleteRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[IgnoreRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[IgnoreRowCount]" name="IgnoreRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[IgnoreRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
-                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ErrorRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ErrorRowCount]" name="ErrorRowCount" refId="Package\Dataflow\Source.Outputs[Output].Columns[ErrorRowCount]" truncationRowDisposition="FailComponent"></outputColumn>
+                    <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Dataflow\Source.Outputs[Output].ExternalColumns[ColumnName]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ColumnName]" name="ColumnName" refId="Package\Dataflow\Source.Outputs[Output].Columns[ColumnName]" truncationRowDisposition="FailComponent"></outputColumn>
                   </outputColumns>
                 </output>
                 <output isErrorOut="true" name="Error" refId="Package\Dataflow\Source.Outputs[Error]">
                   <externalMetadataColumns></externalMetadataColumns>
                   <outputColumns>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageExecutionID]" name="PackageExecutionID" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageExecutionID]"></outputColumn>
-                    <outputColumn dataType="guid" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageID]" name="PackageID" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageID]"></outputColumn>
-                    <outputColumn dataType="wstr" length="255" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageName]" name="PackageName" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageName]"></outputColumn>
-                    <outputColumn dataType="guid" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ParentPackageID]" name="ParentPackageID" refId="Package\Dataflow\Source.Outputs[Error].Columns[ParentPackageID]"></outputColumn>
-                    <outputColumn dataType="wstr" length="255" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ParentPackageName]" name="ParentPackageName" refId="Package\Dataflow\Source.Outputs[Error].Columns[ParentPackageName]"></outputColumn>
-                    <outputColumn dataType="i8" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ServerExecutionID]" name="ServerExecutionID" refId="Package\Dataflow\Source.Outputs[Error].Columns[ServerExecutionID]"></outputColumn>
-                    <outputColumn dataType="dbTimeStamp2" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageStartTime]" name="PackageStartTime" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageStartTime]" scale="7"></outputColumn>
-                    <outputColumn dataType="dbTimeStamp2" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageStopTime]" name="PackageStopTime" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageStopTime]" scale="7"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageDurationSeconds]" name="PackageDurationSeconds" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageDurationSeconds]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[PackageDurationMinutes]" name="PackageDurationMinutes" refId="Package\Dataflow\Source.Outputs[Error].Columns[PackageDurationMinutes]"></outputColumn>
-                    <outputColumn codePage="1252" dataType="str" length="10" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ExecutionStatus]" name="ExecutionStatus" refId="Package\Dataflow\Source.Outputs[Error].Columns[ExecutionStatus]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[SelectRowCount]" name="SelectRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[SelectRowCount]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[InsertRowCount]" name="InsertRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[InsertRowCount]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[UpdateRowCount]" name="UpdateRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[UpdateRowCount]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[DeleteRowCount]" name="DeleteRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[DeleteRowCount]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[IgnoreRowCount]" name="IgnoreRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[IgnoreRowCount]"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorRowCount]" name="ErrorRowCount" refId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorRowCount]"></outputColumn>
+                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ColumnName]" name="ColumnName" refId="Package\Dataflow\Source.Outputs[Error].Columns[ColumnName]"></outputColumn>
                     <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
                     <outputColumn dataType="i4" lineageId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Dataflow\Source.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
                   </outputColumns>
@@ -122,13 +78,13 @@
               </outputs>
               <properties>
                 <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
-                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">Auditing.PackageExecution</property>
+                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
                 <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
-                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 1 AS ColumnName;</property>
                 <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
                 <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
                 <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
-                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">0</property>
+                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
                 <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
               </properties>
             </component>
@@ -222,72 +178,6 @@
                 <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::ErrorRowCount</property>
               </properties>
             </component>
-            <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination" refId="Package\Dataflow\Destination" usesDispositions="true" version="4">
-              <connections>
-                <connection connectionManagerID="{EA7141C7-F790-464E-B785-BB2DE3B70EB2}:external" connectionManagerRefId="Project.ConnectionManagers[Auditing]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Dataflow\Destination.Connections[OleDbConnection]"></connection>
-              </connections>
-              <inputs>
-                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Error Row Count_Output_Destination" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination]">
-                  <externalMetadataColumns isUsed="True">
-                    <externalMetadataColumn dataType="i4" name="PackageExecutionID" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageExecutionID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="guid" name="PackageID" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="wstr" length="255" name="PackageName" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageName]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="guid" name="ParentPackageID" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ParentPackageID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="wstr" length="255" name="ParentPackageName" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ParentPackageName]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i8" name="ServerExecutionID" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ServerExecutionID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="PackageStartTime" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageStartTime]" scale="7"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="PackageStopTime" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageStopTime]" scale="7"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="PackageDurationSeconds" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageDurationSeconds]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="PackageDurationMinutes" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageDurationMinutes]"></externalMetadataColumn>
-                    <externalMetadataColumn codePage="1252" dataType="str" length="10" name="ExecutionStatus" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ExecutionStatus]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="SelectRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[SelectRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="InsertRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[InsertRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="UpdateRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[UpdateRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="DeleteRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[DeleteRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="IgnoreRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[IgnoreRowCount]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="ErrorRowCount" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ErrorRowCount]"></externalMetadataColumn>
-                  </externalMetadataColumns>
-                  <inputColumns>
-                    <inputColumn cachedDataType="guid" cachedName="PackageID" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageID]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[PackageID]"></inputColumn>
-                    <inputColumn cachedDataType="wstr" cachedLength="255" cachedName="PackageName" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageName]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageName]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[PackageName]"></inputColumn>
-                    <inputColumn cachedDataType="guid" cachedName="ParentPackageID" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ParentPackageID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageID]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[ParentPackageID]"></inputColumn>
-                    <inputColumn cachedDataType="wstr" cachedLength="255" cachedName="ParentPackageName" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ParentPackageName]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ParentPackageName]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[ParentPackageName]"></inputColumn>
-                    <inputColumn cachedDataType="i8" cachedName="ServerExecutionID" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ServerExecutionID]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ServerExecutionID]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[ServerExecutionID]"></inputColumn>
-                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="PackageStartTime" cachedScale="7" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageStartTime]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStartTime]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[PackageStartTime]"></inputColumn>
-                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="PackageStopTime" cachedScale="7" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[PackageStopTime]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[PackageStopTime]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[PackageStopTime]"></inputColumn>
-                    <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="10" cachedName="ExecutionStatus" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ExecutionStatus]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ExecutionStatus]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[ExecutionStatus]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="SelectRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[SelectRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[SelectRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[SelectRowCount]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="InsertRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[InsertRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[InsertRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[InsertRowCount]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="UpdateRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[UpdateRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[UpdateRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[UpdateRowCount]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="DeleteRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[DeleteRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[DeleteRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[DeleteRowCount]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="IgnoreRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[IgnoreRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[IgnoreRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[IgnoreRowCount]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="ErrorRowCount" externalMetadataColumnId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].ExternalColumns[ErrorRowCount]" lineageId="Package\Dataflow\Source.Outputs[Output].Columns[ErrorRowCount]" name="" refId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination].Columns[ErrorRowCount]"></inputColumn>
-                  </inputColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Dataflow\Destination.Outputs[Error]" synchronousInputId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination]">
-                  <externalMetadataColumns></externalMetadataColumns>
-                  <outputColumns>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Destination.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Dataflow\Destination.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
-                    <outputColumn dataType="i4" lineageId="Package\Dataflow\Destination.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Dataflow\Destination.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
-                  </outputColumns>
-                </output>
-              </outputs>
-              <properties>
-                <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
-                <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">Auditing.PackageExecution</property>
-                <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
-                <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
-                <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
-                <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
-                <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
-                <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
-                <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-            </component>
           </components>
           <paths>
             <path endId="Package\Dataflow\Select Row Count.Inputs[Source_Output_Select Row Count]" name="Source_Output_Select Row Count" refId="Package\Dataflow.Paths[Source_Output_Select Row Count]" startId="Package\Dataflow\Source.Outputs[Output]"></path>
@@ -296,14 +186,13 @@
             <path endId="Package\Dataflow\Delete Row Count.Inputs[Update Row Count_Output_Delete Row Count]" name="Update Row Count_Output_Delete Row Count" refId="Package\Dataflow.Paths[Update Row Count_Output_Delete Row Count]" startId="Package\Dataflow\Update Row Count.Outputs[Output]"></path>
             <path endId="Package\Dataflow\Ignore Row Count.Inputs[Delete Row Count_Output_Ignore Row Count]" name="Delete Row Count_Output_Ignore Row Count" refId="Package\Dataflow.Paths[Delete Row Count_Output_Ignore Row Count]" startId="Package\Dataflow\Delete Row Count.Outputs[Output]"></path>
             <path endId="Package\Dataflow\Error Row Count.Inputs[Ignore Row Count_Output_Error Row Count]" name="Ignore Row Count_Output_Error Row Count" refId="Package\Dataflow.Paths[Ignore Row Count_Output_Error Row Count]" startId="Package\Dataflow\Ignore Row Count.Outputs[Output]"></path>
-            <path endId="Package\Dataflow\Destination.Inputs[Error Row Count_Output_Destination]" name="Error Row Count_Output_Destination" refId="Package\Dataflow.Paths[Error Row Count_Output_Destination]" startId="Package\Dataflow\Error Row Count.Outputs[Output]"></path>
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{351FA63E-1C2B-457C-8331-02E796D7D0BD}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{7F4BCCEE-8F17-4ED7-BAB0-C7DC834291D2}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
           <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
           <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -316,27 +205,28 @@
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{06CBAED2-5F90-4B5E-A2AA-16B3F21CF4E8}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Dataflow" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Dataflow]" DTS:To="Package\Dataflow"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{25C8ED5E-BFA8-4E79-B45F-87671E894125}" DTS:From="Package\Dataflow" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Dataflow_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Dataflow_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{51C687D3-AD72-4A54-9B4B-B277CB5BFAA0}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Dataflow" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Dataflow]" DTS:To="Package\Dataflow"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{302C8141-DE7B-423E-88F5-7B06D10433B3}" DTS:From="Package\Dataflow" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Dataflow_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Dataflow_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
-    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{E0AB656D-FB5A-4CE6-BAFA-F3D7A3871174}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{713CC0B8-AB5D-4A1E-A208-660B46399865}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
       <DTS:Executables>
-        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{C670C786-27B5-4193-8749-79C0D52D2CB4}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{46A7E60B-6FEC-4344-AB72-E7AC8FF38640}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
           <DTS:Executables>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{CD0A942B-C594-441D-B5D6-DAA3E03227D8}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{55F4BE59-A37C-49DD-8FF4-CE50045ECC6B}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
-                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@BatchID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
                   <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="20" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
                   <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
                   <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{73BA3494-F109-40F5-A4A5-D12D4987697C}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{30A89E62-5178-466D-B4E0-578EC9130B61}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -345,12 +235,12 @@
             </DTS:Executable>
           </DTS:Executables>
           <DTS:PrecedenceConstraints>
-            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{EAF80E45-EDC4-4858-B6E6-3E30CECE3D3A}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{40B36C7E-AB94-4469-A243-841454E86EBE}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
           </DTS:PrecedenceConstraints>
         </DTS:Executable>
       </DTS:Executables>
       <DTS:Variables>
-        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{8C7D1219-F3A7-409D-98E5-ED3071E5ACA0}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{E35D8F82-0CAA-4EFF-9481-0A31DA63C046}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
           <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
         </DTS:Variable>
       </DTS:Variables>
