@@ -10,10 +10,11 @@
     [PackageDurationSeconds] AS               (datediff(second,[PackageStartTime],[PackageStopTime])),
     [PackageDurationMinutes] AS               (datediff(minute,[PackageStartTime],[PackageStopTime])),
     [ExecutionStatus]        VARCHAR (10)     NOT NULL,
-    [SourceRowCount]         INT              NULL,
-    [NewRowCount]            INT              NULL,
-    [ChangedRowCount]        INT              NULL,
-    [ExistingRowCount]       INT              NULL,
-    [DeletedRowCount]        INT              NULL,
-    [FlatFileErrorsRowCount] INT              NULL
+    [SelectRowCount]         INT              NULL,
+    [InsertRowCount]         INT              NULL,
+    [UpdateRowCount]         INT              NULL,
+    [DeleteRowCount]         INT              NULL,
+    [IgnoreRowCount]         INT              NULL,
+    [ErrorRowCount]          INT              NULL
 );
+

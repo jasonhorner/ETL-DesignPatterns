@@ -15,27 +15,27 @@ GO
 /* --------------------------------------------------
 -- Cleanup
 -------------------------------------------------- */
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageError') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageError') AND type IN (N'P'))
 	DROP PROCEDURE Auditing.LogPackageError;
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionError') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionError') AND type IN (N'P'))
 	DROP PROCEDURE Auditing.LogPackageExecutionError;
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionStart') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionStart') AND type IN (N'P'))
 	DROP PROCEDURE Auditing.LogPackageExecutionStart;
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionStop') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.LogPackageExecutionStop') AND type IN (N'P'))
 	DROP PROCEDURE Auditing.LogPackageExecutionStop;
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.PackageError') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.PackageError') AND type IN (N'U'))
 	DROP TABLE Auditing.PackageError;
 GO
 
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.PackageExecution') AND type IN (N'V'))
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.PackageExecution') AND type IN (N'U'))
 	DROP TABLE Auditing.PackageExecution;
 GO
 
@@ -73,12 +73,12 @@ BEGIN
 	   ,PackageDurationSeconds AS (DATEDIFF(SECOND, PackageStartTime, PackageStopTime))
 	   ,PackageDurationMinutes AS (DATEDIFF(MINUTE, PackageStartTime, PackageStopTime))
 	   ,ExecutionStatus VARCHAR(10) NOT NULL
-	   ,SourceRowCount INT NULL
-	   ,NewRowCount INT NULL
-	   ,ChangedRowCount INT NULL
-	   ,ExistingRowCount INT NULL
-	   ,DeletedRowCount INT NULL
-	   ,FlatFileErrorsRowCount INT NULL
+	   ,SelectRowCount INT NULL
+	   ,InsertRowCount INT NULL
+	   ,UpdateRowCount INT NULL
+	   ,DeleteRowCount INT NULL
+	   ,IgnoreRowCount INT NULL
+	   ,ErrorRowCount INT NULL
 	) ON [PRIMARY];
 END
 GO
@@ -166,12 +166,12 @@ GO
 
 CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionStop (
     @PackageExecutionID INT
-   ,@SourceRowCount INT = NULL
-   ,@NewRowCount INT = NULL
-   ,@ChangedRowCount INT = NULL
-   ,@ExistingRowCount INT = NULL
-   ,@DeletedRowCount INT = NULL
-   ,@FlatFileErrorsRowCount INT = NULL
+   ,@SelectRowCount INT = NULL
+   ,@InsertRowCount INT = NULL
+   ,@UpdateRowCount INT = NULL
+   ,@DeleteRowCount INT = NULL
+   ,@IgnoreRowCount INT = NULL
+   ,@ErrorRowCount INT = NULL
 )
 AS
 BEGIN
@@ -180,12 +180,12 @@ BEGIN
     SET
         PackageStopTime = SYSDATETIME()
        ,ExecutionStatus = 'Completed'
-       ,SourceRowCount = @SourceRowCount
-       ,NewRowCount = @NewRowCount
-       ,ChangedRowCount = @ChangedRowCount
-       ,ExistingRowCount = @ExistingRowCount
-       ,DeletedRowCount = @DeletedRowCount
-       ,FlatFileErrorsRowCount = @FlatFileErrorsRowCount
+       ,SelectRowCount = @SelectRowCount
+       ,InsertRowCount = @InsertRowCount
+       ,UpdateRowCount = @UpdateRowCount
+       ,DeleteRowCount = @DeleteRowCount
+       ,IgnoreRowCount = @IgnoreRowCount
+       ,ErrorRowCount = @ErrorRowCount
     WHERE PackageExecutionID = @PackageExecutionID
     AND PackageStopTime IS NULL;
 END;

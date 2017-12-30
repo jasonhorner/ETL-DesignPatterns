@@ -1,4 +1,8 @@
-﻿CREATE PROCEDURE Auditing.LogPackageError (
+﻿
+/* --------------------------------------------------
+-- Create Procedures
+-------------------------------------------------- */
+CREATE   PROCEDURE Auditing.LogPackageError (
     @PackageExecutionID INT
    ,@PackageID UNIQUEIDENTIFIER
    ,@PackageName NVARCHAR(255)

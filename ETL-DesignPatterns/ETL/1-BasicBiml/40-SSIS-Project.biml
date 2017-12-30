@@ -3,7 +3,7 @@
     
     <Projects>
         
-        <PackageProject Name="<#=RootNode.ObjectTag["ProjectName"]#>" ProtectionLevel="<#=RootNode.ObjectTag["ProjectProtectionLevel"]#>">
+        <PackageProject Name="Project" ProtectionLevel="DontSaveSensitive">
             
             <Connections>
                 <# foreach (var connection in RootNode.Connections) { #>
@@ -19,7 +19,7 @@
             
             <Packages>
                 <# foreach (var package in RootNode.Packages) { #>
-                    <Package PackageName="<#=package.ScopedName#>" IsEntryPoint="<#=(package.Name.Contains("Master") ? "true" : "false")#>" />
+                    <Package PackageName="<#=package.ScopedName#>" />
                 <# } #>
             </Packages>
                 

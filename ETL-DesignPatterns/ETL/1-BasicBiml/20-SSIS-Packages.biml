@@ -30,7 +30,7 @@
 								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
 							</OleDbSource>
 							
-				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "New")#>
+				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Insert")#>
 							
 							<OleDbDestination Name="Destination <#=table.Connection.Name#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
 								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />

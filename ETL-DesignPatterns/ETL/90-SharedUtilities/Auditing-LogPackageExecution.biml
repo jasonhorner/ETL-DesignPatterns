@@ -41,21 +41,21 @@
 <ExecuteSQL Name="Log Package Execution Stop" ConnectionName="<#=ConnectionName#>">
     <DirectInput>EXECUTE Auditing.LogPackageExecutionStop
         @PackageExecutionID = ?
-        ,@SourceRowCount = ?
-        ,@NewRowCount = ?
-        ,@ChangedRowCount = ?
-        ,@ExistingRowCount = ?
-        ,@DeletedRowCount = ?
-        ,@FlatFileErrorsRowCount = ?;
+        ,@SelectRowCount = ?
+        ,@InsertRowCount = ?
+        ,@UpdateRowCount = ?
+        ,@IgnoreRowCount = ?
+        ,@DeleteRowCount = ?
+        ,@ErrorRowCount = ?;
     </DirectInput>
     <Parameters>
         <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
-        <Parameter Name="1" VariableName="User.SourceRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="2" VariableName="User.NewRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="3" VariableName="User.ChangedRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="4" VariableName="User.ExistingRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="5" VariableName="User.DeletedRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="6" VariableName="User.FlatFileErrorsRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="1" VariableName="User.SelectRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="2" VariableName="User.InsertRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="3" VariableName="User.UpdateRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="4" VariableName="User.DeleteRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="5" VariableName="User.IgnoreRowCount" DataType="Int32" Length="-1" />
+        <Parameter Name="6" VariableName="User.ErrorRowCount" DataType="Int32" Length="-1" />
     </Parameters>
 </ExecuteSQL>
 <# } else if (LoggingType == "Error") { #>

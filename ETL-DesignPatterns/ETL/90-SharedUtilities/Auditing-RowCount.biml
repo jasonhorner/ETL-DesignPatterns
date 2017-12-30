@@ -1,22 +1,34 @@
 <#@ property name="RowCountType" type="String" required="True" #>
-<#@ property name="InputPath" type="String" #>
+<#@ property name="OutputPath" type="String" #>
+<#@ property name="Path" type="String" #>
 <#
-    List<String> ValidCountTypes = new List<String>{"Source","New","Changed","Existing","Deleted","FlatFileErrors"};
+    List<String> ValidCountTypes = new List<String>{"Select","Insert","Update","Delete","Ignore","Error"};
     if (!ValidCountTypes.Contains(RowCountType)) {
         return "";
     }
     
     String OutputPathName;
     try {
-        OutputPathName = InputPath;
+        OutputPathName = OutputPath;
     } catch (Exception e) {
         OutputPathName = null;
     }
+    
+    String PathName;
+    try {
+        PathName = Path;
+    } catch (Exception e) {
+        PathName = null;
+    }
 #>
 <# if (OutputPathName == null) { #>
-    <RowCount Name="Count <#=RowCountType#> Rows" VariableName="User.<#=RowCountType#>RowCount" />
-<# } else { #>
-    <RowCount Name="Count <#=RowCountType#> Rows" VariableName="User.<#=RowCountType#>RowCount">
+    <RowCount Name="<#=RowCountType#> Row Count" VariableName="User.<#=RowCountType#>RowCount" />
+<# } else if (PathName == null) { #>
+    <RowCount Name="<#=RowCountType#> Row Count" VariableName="User.<#=RowCountType#>RowCount">
         <InputPath OutputPathName="<#=OutputPathName#>" />
+    </RowCount>
+<# } else { #>
+    <RowCount Name="<#=RowCountType#> Row Count" VariableName="User.<#=RowCountType#>RowCount">
+        <InputPath OutputPathName="<#=OutputPathName#>" PathAnnotation="PathName" SsisName="<#=PathName#>" />
     </RowCount>
 <# } #>

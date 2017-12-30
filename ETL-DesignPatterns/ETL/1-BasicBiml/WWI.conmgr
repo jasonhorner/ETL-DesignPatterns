@@ -1,3 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="WWI" DTS:DTSID="{94B6D3A7-6BF9-4D46-8AB6-B0E33687E0C3}" DTS:refId="WWI" DTS:CreationName="OLEDB">
-    <DTS:ObjectData><DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=.;initial catalog=WideWorldImporters;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager></DTS:ObjectData>    <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerWWIConnectionString]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=.;initial catalog=WideWorldImporters;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
+  </DTS:ObjectData>
+  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerWWIConnectionString]</DTS:PropertyExpression>
 </DTS:ConnectionManager>

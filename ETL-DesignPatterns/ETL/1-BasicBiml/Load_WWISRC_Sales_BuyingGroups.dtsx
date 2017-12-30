@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:Executable DTS:CreationDate="12/29/2017 17:20:35" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{56C516C4-34A3-422A-A394-20225EB2AE38}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Load_WWISRC_Sales_BuyingGroups" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{D3D4DF3E-02D3-42D3-ACC1-69CFFA6E080E}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+<DTS:Executable DTS:CreationDate="12/30/2017 16:15:26" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{381C1857-02F4-427C-A96E-3B1055AEF7F1}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Load_WWISRC_Sales_BuyingGroups" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{F34A6C49-371C-4A6E-9550-A186AD56BC14}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{B16EA568-C576-4A76-B37A-1F2762C81981}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{7C5F93DA-5D3B-489B-B707-A774C21F49CD}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">00000000-0000-0000-0000-000000000000</DTS:Property>
     </DTS:PackageParameter>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{1E33A8B1-5B49-40DB-9EFE-80BB2F71465F}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{48369B86-B37B-46CC-9182-922E364118CA}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue"></DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{C4FEBA29-DD5B-4659-9FCB-B40C73465174}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{47256A0B-7539-4A51-AF1C-6D3A3DFE0BB2}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{3394778A-4FAC-43F2-B719-E05CA1603A8C}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SourceRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{D74412AF-8D47-4560-A1A5-8C72C6B3073C}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{945A81C5-65A4-43A3-8AFB-714FA9E40E5D}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="NewRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{21A9545C-750B-4AD9-B58B-87E4B4058A6C}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{296555E0-8AF4-4B23-AD38-4A6486F2416A}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ChangedRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{FD44D26B-610A-4601-B9B8-AD11AAEDBD4D}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{BCBF105D-4247-4ADD-8967-2382B1C1D991}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ExistingRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{0F0F22C8-5EEF-43C9-A8F3-897D7D003044}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{AF70DF67-1C70-4607-864E-CA36DCB8DCB2}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeletedRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{BD1E8989-41D3-4BDC-8184-60DF8E57D8B6}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{D2D43B2F-33EA-4B9D-B00D-86C8B882B613}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="FlatFileErrorsRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{1AD71D58-2BD4-47CE-9181-F443BB65A5D5}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{59F485B0-0519-4D84-9F07-87F3C8B3D7AC}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{C0C1E567-117F-4D30-8477-ECF6F99061F0}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@ServerExecutionID = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="72" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -46,12 +46,12 @@
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{AB0D6572-117F-4BC2-A007-2AAC402EDA2C}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate WWISRC Sales_BuyingGroups" DTS:refId="Package\Truncate WWISRC Sales_BuyingGroups" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{EFF1B8AD-039E-4744-953F-F67CB3723FFD}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate WWISRC Sales_BuyingGroups" DTS:refId="Package\Truncate WWISRC Sales_BuyingGroups" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE WWISRC.Sales_BuyingGroups" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{04EDC051-774B-4865-9C76-707142F68AB5}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Load WWISRC Sales_BuyingGroups" DTS:refId="Package\Load WWISRC Sales_BuyingGroups" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{082632D2-1477-4CA2-AE70-0CEF5F63B7C5}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Load WWISRC Sales_BuyingGroups" DTS:refId="Package\Load WWISRC Sales_BuyingGroups" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
         <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
           <components>
@@ -101,19 +101,19 @@
                 <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
               </properties>
             </component>
-            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Count New Rows" refId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows">
+            <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Insert Row Count" refId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count">
               <inputs>
-                <input hasSideEffects="true" name="Source WWI Sales BuyingGroups_Output_Count New Rows" refId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows.Inputs[Source WWI Sales BuyingGroups_Output_Count New Rows]">
+                <input hasSideEffects="true" name="Source WWI Sales BuyingGroups_Output_Insert Row Count" refId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count.Inputs[Source WWI Sales BuyingGroups_Output_Insert Row Count]">
                   <externalMetadataColumns></externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
-                <output name="Output" refId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows.Outputs[Output]" synchronousInputId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows.Inputs[Source WWI Sales BuyingGroups_Output_Count New Rows]">
+                <output name="Output" refId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count.Outputs[Output]" synchronousInputId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count.Inputs[Source WWI Sales BuyingGroups_Output_Insert Row Count]">
                   <externalMetadataColumns></externalMetadataColumns>
                 </output>
               </outputs>
               <properties>
-                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::NewRowCount</property>
+                <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::InsertRowCount</property>
               </properties>
             </component>
             <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination Staging WWISRC Sales_BuyingGroups" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups" usesDispositions="true" version="4">
@@ -121,25 +121,25 @@
                 <connection connectionManagerID="{30792500-DD3C-4FCB-8965-7E5E25FFC58C}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Connections[OleDbConnection]"></connection>
               </connections>
               <inputs>
-                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups]">
+                <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups]">
                   <externalMetadataColumns isUsed="True">
-                    <externalMetadataColumn dataType="i4" name="BuyingGroupID" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupID]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="wstr" length="50" name="BuyingGroupName" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupName]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="i4" name="LastEditedBy" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[LastEditedBy]"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidFrom" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidFrom]" scale="7"></externalMetadataColumn>
-                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidTo" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidTo]" scale="7"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="i4" name="BuyingGroupID" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupID]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="wstr" length="50" name="BuyingGroupName" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupName]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="i4" name="LastEditedBy" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[LastEditedBy]"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidFrom" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidFrom]" scale="7"></externalMetadataColumn>
+                    <externalMetadataColumn dataType="dbTimeStamp2" name="ValidTo" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidTo]" scale="7"></externalMetadataColumn>
                   </externalMetadataColumns>
                   <inputColumns>
-                    <inputColumn cachedDataType="i4" cachedName="BuyingGroupID" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupID]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[BuyingGroupID]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[BuyingGroupID]"></inputColumn>
-                    <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="BuyingGroupName" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupName]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[BuyingGroupName]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[BuyingGroupName]"></inputColumn>
-                    <inputColumn cachedDataType="i4" cachedName="LastEditedBy" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[LastEditedBy]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[LastEditedBy]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[LastEditedBy]"></inputColumn>
-                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidFrom" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidFrom]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[ValidFrom]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[ValidFrom]"></inputColumn>
-                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidTo" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidTo]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[ValidTo]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[ValidTo]"></inputColumn>
+                    <inputColumn cachedDataType="i4" cachedName="BuyingGroupID" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupID]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[BuyingGroupID]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[BuyingGroupID]"></inputColumn>
+                    <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="BuyingGroupName" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[BuyingGroupName]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[BuyingGroupName]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[BuyingGroupName]"></inputColumn>
+                    <inputColumn cachedDataType="i4" cachedName="LastEditedBy" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[LastEditedBy]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[LastEditedBy]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[LastEditedBy]"></inputColumn>
+                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidFrom" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidFrom]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[ValidFrom]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[ValidFrom]"></inputColumn>
+                    <inputColumn cachedDataType="dbTimeStamp2" cachedName="ValidTo" cachedScale="7" externalMetadataColumnId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].ExternalColumns[ValidTo]" lineageId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output].Columns[ValidTo]" name="" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups].Columns[ValidTo]"></inputColumn>
                   </inputColumns>
                 </input>
               </inputs>
               <outputs>
-                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Outputs[Error]" synchronousInputId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups]">
+                <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Outputs[Error]" synchronousInputId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups]">
                   <externalMetadataColumns></externalMetadataColumns>
                   <outputColumns>
                     <outputColumn dataType="i4" lineageId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
@@ -163,37 +163,37 @@
             </component>
           </components>
           <paths>
-            <path endId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows.Inputs[Source WWI Sales BuyingGroups_Output_Count New Rows]" name="Source WWI Sales BuyingGroups_Output_Count New Rows" refId="Package\Load WWISRC Sales_BuyingGroups.Paths[Source WWI Sales BuyingGroups_Output_Count New Rows]" startId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output]"></path>
-            <path endId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups]" name="Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups" refId="Package\Load WWISRC Sales_BuyingGroups.Paths[Count New Rows_Output_Destination Staging WWISRC Sales_BuyingGroups]" startId="Package\Load WWISRC Sales_BuyingGroups\Count New Rows.Outputs[Output]"></path>
+            <path endId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count.Inputs[Source WWI Sales BuyingGroups_Output_Insert Row Count]" name="Source WWI Sales BuyingGroups_Output_Insert Row Count" refId="Package\Load WWISRC Sales_BuyingGroups.Paths[Source WWI Sales BuyingGroups_Output_Insert Row Count]" startId="Package\Load WWISRC Sales_BuyingGroups\Source WWI Sales BuyingGroups.Outputs[Output]"></path>
+            <path endId="Package\Load WWISRC Sales_BuyingGroups\Destination Staging WWISRC Sales_BuyingGroups.Inputs[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups]" name="Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups" refId="Package\Load WWISRC Sales_BuyingGroups.Paths[Insert Row Count_Output_Destination Staging WWISRC Sales_BuyingGroups]" startId="Package\Load WWISRC Sales_BuyingGroups\Insert Row Count.Outputs[Output]"></path>
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{61E8A327-3137-47F6-8356-BF330CE58778}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{B7025843-B04F-47C7-83C0-F3B465811DEF}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SourceRowCount = ?&#xA;        ,@NewRowCount = ?&#xA;        ,@ChangedRowCount = ?&#xA;        ,@ExistingRowCount = ?&#xA;        ,@DeletedRowCount = ?&#xA;        ,@FlatFileErrorsRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SourceRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::NewRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ChangedRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ExistingRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::DeletedRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::FlatFileErrorsRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{FA8F520B-28B5-4F57-B1B2-276C688FFC38}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Truncate WWISRC Sales_BuyingGroups" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Truncate WWISRC Sales_BuyingGroups]" DTS:To="Package\Truncate WWISRC Sales_BuyingGroups"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{3CC788FB-079A-4188-A16E-F82C264E0CDF}" DTS:From="Package\Truncate WWISRC Sales_BuyingGroups" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Truncate WWISRC Sales_BuyingGroups_To_Load WWISRC Sales_BuyingGroups" DTS:refId="Package.PrecedenceConstraints[Constraint_Truncate WWISRC Sales_BuyingGroups_To_Load WWISRC Sales_BuyingGroups]" DTS:To="Package\Load WWISRC Sales_BuyingGroups"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{3A9086D2-6D5D-4843-AC3D-68A6A1CC964E}" DTS:From="Package\Load WWISRC Sales_BuyingGroups" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load WWISRC Sales_BuyingGroups_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load WWISRC Sales_BuyingGroups_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{2D351FDD-E55D-4F72-8760-E19BD3E5701D}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Truncate WWISRC Sales_BuyingGroups" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Truncate WWISRC Sales_BuyingGroups]" DTS:To="Package\Truncate WWISRC Sales_BuyingGroups"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{7532BC17-5919-422F-83AE-CFC7FB4FEEBE}" DTS:From="Package\Truncate WWISRC Sales_BuyingGroups" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Truncate WWISRC Sales_BuyingGroups_To_Load WWISRC Sales_BuyingGroups" DTS:refId="Package.PrecedenceConstraints[Constraint_Truncate WWISRC Sales_BuyingGroups_To_Load WWISRC Sales_BuyingGroups]" DTS:To="Package\Load WWISRC Sales_BuyingGroups"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{45F82D48-02EF-4B93-9B3E-D28C71C9EDAE}" DTS:From="Package\Load WWISRC Sales_BuyingGroups" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load WWISRC Sales_BuyingGroups_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load WWISRC Sales_BuyingGroups_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
-    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{05331702-549C-47DF-B794-737CA5A4B84F}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{2FDC43D3-AA98-4C53-ABFA-6F3BF693EAFA}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
       <DTS:Executables>
-        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{2905BBF8-A704-4FA9-B3D6-4029A8364E94}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{9E6CECE7-72A1-40A6-8442-4E75ED1229D7}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
           <DTS:Executables>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A0FE7517-6711-4733-98D7-DDA75ACD27E4}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{45AE348E-AE83-4F29-AA81-89EB1EDDC6FD}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
@@ -205,7 +205,7 @@
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{082987E5-4B3F-4289-A240-B363C9BC92EB}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{CC962CF9-1223-415B-B578-2B1B8496936A}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
@@ -214,12 +214,12 @@
             </DTS:Executable>
           </DTS:Executables>
           <DTS:PrecedenceConstraints>
-            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{7C639ECE-EEDD-4AA6-A25E-34014C4992FA}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{9A1C66B0-8963-43BD-817C-27A8FE8E33B6}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
           </DTS:PrecedenceConstraints>
         </DTS:Executable>
       </DTS:Executables>
       <DTS:Variables>
-        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{2C64C1BC-37F0-4C4B-9F3E-EE4EC26AB2C8}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{53114170-D86D-47C6-847B-8AF173988E80}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
           <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
         </DTS:Variable>
       </DTS:Variables>

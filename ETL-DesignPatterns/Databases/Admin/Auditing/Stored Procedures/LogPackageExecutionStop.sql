@@ -1,11 +1,12 @@
-﻿CREATE PROCEDURE Auditing.LogPackageExecutionStop (
+﻿
+CREATE   PROCEDURE Auditing.LogPackageExecutionStop (
     @PackageExecutionID INT
-   ,@SourceRowCount INT = NULL
-   ,@NewRowCount INT = NULL
-   ,@ChangedRowCount INT = NULL
-   ,@ExistingRowCount INT = NULL
-   ,@DeletedRowCount INT = NULL
-   ,@FlatFileErrorsRowCount INT = NULL
+   ,@SelectRowCount INT = NULL
+   ,@InsertRowCount INT = NULL
+   ,@UpdateRowCount INT = NULL
+   ,@DeleteRowCount INT = NULL
+   ,@IgnoreRowCount INT = NULL
+   ,@ErrorRowCount INT = NULL
 )
 AS
 BEGIN
@@ -14,12 +15,12 @@ BEGIN
     SET
         PackageStopTime = SYSDATETIME()
        ,ExecutionStatus = 'Completed'
-       ,SourceRowCount = @SourceRowCount
-       ,NewRowCount = @NewRowCount
-       ,ChangedRowCount = @ChangedRowCount
-       ,ExistingRowCount = @ExistingRowCount
-       ,DeletedRowCount = @DeletedRowCount
-       ,FlatFileErrorsRowCount = @FlatFileErrorsRowCount
+       ,SelectRowCount = @SelectRowCount
+       ,InsertRowCount = @InsertRowCount
+       ,UpdateRowCount = @UpdateRowCount
+       ,DeleteRowCount = @DeleteRowCount
+       ,IgnoreRowCount = @IgnoreRowCount
+       ,ErrorRowCount = @ErrorRowCount
     WHERE PackageExecutionID = @PackageExecutionID
     AND PackageStopTime IS NULL;
 END;
