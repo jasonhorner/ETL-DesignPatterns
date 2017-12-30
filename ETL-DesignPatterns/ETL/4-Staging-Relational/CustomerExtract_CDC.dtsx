@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CDC"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="51"
-  DTS:VersionGUID="{2C068DC3-EEA9-41C0-8AA5-652F88EC9537}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{1C87CE7E-D122-4DA5-92B7-2AB9B086D4B7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -53,12 +53,12 @@
       DTS:CreationName=""
       DTS:DTSID="{112370A7-185C-4B67-9147-0DB849898A86}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="@[User::TableName]"
+      DTS:Expression="@[User::SourceDatabaseName]+ &quot;.&quot;+ @[User::SourceTableName]&#xA;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="CDCStateName">
       <DTS:VariableValue
-        DTS:DataType="8">dbo.Person</DTS:VariableValue>
+        DTS:DataType="8">AWDWSRC.dbo.DimCustomer</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -123,7 +123,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.51</DTS:VariableValue>
+        DTS:DataType="8">1.0.56</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -151,6 +151,15 @@
       DTS:ObjectName="SelectSQL">
       <DTS:VariableValue
         DTS:DataType="8">SELECT * FROM dbo.DimCustomer</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{812F14D4-AA98-4B73-B129-964E46BA3F56}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">AWDWSRC</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -213,7 +222,7 @@
           StateConnection="Staging ADONET"
           StateVariable="User::CDCState"
           AutomaticStatePersistence="True"
-          StateName="dbo.Person"
+          StateName="AWDWSRC.dbo.DimCustomer"
           StateTable="[ETL].[CDCState]"
           CommandTimeout="30"
           ChangeDetectionRetryInterval="10"
@@ -253,7 +262,7 @@
               StateConnection="Staging ADONET"
               StateVariable="User::CDCState"
               AutomaticStatePersistence="True"
-              StateName="dbo.Person"
+              StateName="AWDWSRC.dbo.DimCustomer"
               StateTable="[ETL].[CDCState]"
               CommandTimeout="30"
               ChangeDetectionRetryInterval="10"
@@ -275,6 +284,81 @@
               version="1">
               <components>
                 <component
+                  refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Add CDC Operation"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Output].Columns[CDCOperation]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="1"
+                          lineageId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Output].Columns[CDCOperation]"
+                          name="CDCOperation"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,1,1252)"I"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,1,1252)"I"</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -290,7 +374,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWDWSRC].[Customer]</property>
+                      name="OpenRowset">[AWDWSRC].[dbo_DimCustomer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -347,12 +431,45 @@
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
+                          cachedDataType="i4"
+                          cachedName="CustomerKey"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[CustomerKey]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[GeographyKey]"
+                          cachedDataType="i4"
+                          cachedName="GeographyKey"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[GeographyKey]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[CustomerAlternateKey]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="CustomerAlternateKey"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[CustomerAlternateKey]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[Title]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="Title"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[Title]" />
+                        <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="FirstName"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[MiddleName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="MiddleName"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[MiddleName]" />
                         <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                           cachedDataType="wstr"
@@ -361,34 +478,299 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                         <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
+                          cachedDataType="bool"
+                          cachedName="NameStyle"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[NameStyle]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[BirthDate]"
+                          cachedDataType="dbDate"
+                          cachedName="BirthDate"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[BirthDate]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="MaritalStatus"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[MaritalStatus]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[Suffix]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Suffix"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[Suffix]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="EmailAddress"
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[YearlyIncome]"
+                          cachedDataType="cy"
+                          cachedName="YearlyIncome"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[YearlyIncome]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[TotalChildren]"
+                          cachedDataType="ui1"
+                          cachedName="TotalChildren"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[TotalChildren]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[NumberChildrenAtHome]"
+                          cachedDataType="ui1"
+                          cachedName="NumberChildrenAtHome"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[NumberChildrenAtHome]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[EnglishEducation]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="EnglishEducation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[EnglishEducation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[SpanishEducation]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="SpanishEducation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[SpanishEducation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[FrenchEducation]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="FrenchEducation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[FrenchEducation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[EnglishOccupation]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="EnglishOccupation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[EnglishOccupation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[SpanishOccupation]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="SpanishOccupation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[SpanishOccupation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[FrenchOccupation]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="FrenchOccupation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[FrenchOccupation]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[HouseOwnerFlag]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="HouseOwnerFlag"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[HouseOwnerFlag]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[NumberCarsOwned]"
+                          cachedDataType="ui1"
+                          cachedName="NumberCarsOwned"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[NumberCarsOwned]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="AddressLine1"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
+                          cachedDataType="wstr"
+                          cachedLength="120"
+                          cachedName="AddressLine2"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine2]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[DateFirstPurchase]"
+                          cachedDataType="dbDate"
+                          cachedName="DateFirstPurchase"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[DateFirstPurchase]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[CommuteDistance]"
+                          cachedDataType="wstr"
+                          cachedLength="15"
+                          cachedName="CommuteDistance"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output].Columns[CommuteDistance]" />
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="CDCOperation"
+                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          lineageId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Output].Columns[CDCOperation]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
                           dataType="i4"
-                          name="CustomerId" />
+                          name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
+                          dataType="i4"
+                          name="GeographyKey" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
+                          dataType="wstr"
+                          length="15"
+                          name="CustomerAlternateKey" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="8"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
-                          name="Firstname" />
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          dataType="wstr"
+                          length="50"
+                          name="MiddleName" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
                         <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
+                          dataType="bool"
+                          name="NameStyle" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          dataType="dbDate"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          dataType="wstr"
+                          length="1"
+                          name="MaritalStatus" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          dataType="wstr"
+                          length="10"
+                          name="Suffix" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
+                          dataType="cy"
+                          name="YearlyIncome" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
+                          dataType="ui1"
+                          name="TotalChildren" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
+                          dataType="ui1"
+                          name="NumberChildrenAtHome" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="EnglishEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="SpanishEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="FrenchEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="EnglishOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="SpanishOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="FrenchOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          length="1"
+                          name="HouseOwnerFlag" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          dataType="ui1"
+                          name="NumberCarsOwned" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine1" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine2" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="20"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
+                          dataType="dbDate"
+                          name="DateFirstPurchase" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          dataType="wstr"
+                          length="15"
+                          name="CommuteDistance" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
                           codePage="1252"
@@ -1125,13 +1507,18 @@
               </components>
               <paths>
                 <path
+                  refId="Package\CDC Processing\CDC Initial Load.Paths[Derived Column Output]"
+                  endId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Outputs[Derived Column Output]" />
+                <path
                   refId="Package\CDC Processing\CDC Initial Load.Paths[OLE DB Source Output]"
                   endId="Package\CDC Processing\CDC Initial Load\Select Row Count.Inputs[Row Count Input 1]"
                   name="OLE DB Source Output"
                   startId="Package\CDC Processing\CDC Initial Load\AWDW Customer Source.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\CDC Processing\CDC Initial Load.Paths[Row Count Output 1]"
-                  endId="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\CDC Processing\CDC Initial Load\Add CDC Operation.Inputs[Derived Column Input]"
                   name="Row Count Output 1"
                   startId="Package\CDC Processing\CDC Initial Load\Select Row Count.Outputs[Row Count Output 1]" />
               </paths>
@@ -2159,7 +2546,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWDWSRC].[Customer]</property>
+                      name="OpenRowset">[AWDWSRC].[dbo_DimCustomer_STG]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2257,14 +2644,131 @@
                           length="1"
                           name="CDCOperation" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
                           dataType="i4"
-                          name="CustomerId" />
+                          name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographyKey]"
+                          dataType="i4"
+                          name="GeographyKey" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerAlternateKey]"
+                          dataType="wstr"
+                          length="15"
+                          name="CustomerAlternateKey" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
+                          dataType="wstr"
+                          length="8"
+                          name="Title" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
-                          name="Firstname" />
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                          dataType="wstr"
+                          length="50"
+                          name="MiddleName" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
+                          dataType="bool"
+                          name="NameStyle" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BirthDate]"
+                          dataType="dbDate"
+                          name="BirthDate" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                          dataType="wstr"
+                          length="1"
+                          name="MaritalStatus" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
+                          dataType="wstr"
+                          length="10"
+                          name="Suffix" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="1"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearlyIncome]"
+                          dataType="cy"
+                          name="YearlyIncome" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalChildren]"
+                          dataType="ui1"
+                          name="TotalChildren" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberChildrenAtHome]"
+                          dataType="ui1"
+                          name="NumberChildrenAtHome" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="EnglishEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="SpanishEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchEducation]"
+                          dataType="wstr"
+                          length="40"
+                          name="FrenchEducation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EnglishOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="EnglishOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SpanishOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="SpanishOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FrenchOccupation]"
+                          dataType="wstr"
+                          length="100"
+                          name="FrenchOccupation" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HouseOwnerFlag]"
+                          dataType="wstr"
+                          length="1"
+                          name="HouseOwnerFlag" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumberCarsOwned]"
+                          dataType="ui1"
+                          name="NumberCarsOwned" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine1" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                          dataType="wstr"
+                          length="120"
+                          name="AddressLine2" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="20"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateFirstPurchase]"
+                          dataType="dbDate"
+                          name="DateFirstPurchase" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CommuteDistance]"
+                          dataType="wstr"
+                          length="15"
+                          name="CommuteDistance" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -4291,7 +4795,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="422,306"
+          PanelSize="422,307"
           Size="422,350"
           Id="Package\CDC Processing"
           TopLeft="5.50000000000003,107.5" />
@@ -4378,13 +4882,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="162,42"
-          Id="Package\CDC Processing\CDC Initial Load\Select Row Count"
-          TopLeft="248.5,258" />
-        <NodeLayout
           Size="196,42"
           Id="Package\CDC Processing\CDC Initial Load\AWDW Customer Source"
           TopLeft="247,130" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\CDC Processing\CDC Initial Load\Select Row Count"
+          TopLeft="248.5,258" />
         <EdgeLayout
           Id="Package\CDC Processing\CDC Initial Load.Paths[OLE DB Source Output]"
           TopLeft="344.75,172">
@@ -4422,33 +4926,71 @@
         <NodeLayout
           Size="216,42"
           Id="Package\CDC Processing\CDC Initial Load\AWDW Customer Destination"
-          TopLeft="261,388" />
+          TopLeft="284,416" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\CDC Processing\CDC Initial Load\Add CDC Operation"
+          TopLeft="325,326" />
         <EdgeLayout
           Id="Package\CDC Processing\CDC Initial Load.Paths[Row Count Output 1]"
           TopLeft="329.5,300">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="39.5,88"
+              EndConnector="80.5,26"
               Start="0,0"
-              End="39.5,80.5">
+              End="80.5,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40" />
+                    End="0,9" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,40"
-                    Point2="0,44"
-                    Point3="4,44" />
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="4,13" />
                   <mssgle:LineSegment
-                    End="35.5,44" />
+                    End="76.5,13" />
                   <mssgle:CubicBezierSegment
-                    Point1="35.5,44"
-                    Point2="39.5,44"
-                    Point3="39.5,48" />
+                    Point1="76.5,13"
+                    Point2="80.5,13"
+                    Point3="80.5,17" />
                   <mssgle:LineSegment
-                    End="39.5,80.5" />
+                    End="80.5,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Initial Load.Paths[Derived Column Output]"
+          TopLeft="410,368">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18,48"
+              Start="0,0"
+              End="-18,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-14,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14,24"
+                    Point2="-18,24"
+                    Point3="-18,28" />
+                  <mssgle:LineSegment
+                    End="-18,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4487,17 +5029,13 @@
           Id="Package\CDC Processing\CDC Process\Decode CDC operation"
           TopLeft="227,420.5" />
         <NodeLayout
-          Size="167,42"
-          Id="Package\CDC Processing\CDC Process\Update Row Count"
-          TopLeft="227.75,209.5" />
+          Size="136,42"
+          Id="Package\CDC Processing\CDC Process\CDC Splitter"
+          TopLeft="243.5,107.5" />
         <NodeLayout
           Size="162,42"
           Id="Package\CDC Processing\CDC Process\Insert Row Count"
           TopLeft="5.50000000000006,209.5" />
-        <NodeLayout
-          Size="136,42"
-          Id="Package\CDC Processing\CDC Process\CDC Splitter"
-          TopLeft="243.5,107.5" />
         <NodeLayout
           Size="164,42"
           Id="Package\CDC Processing\CDC Process\Delete Row Count"
@@ -4510,6 +5048,10 @@
           Size="134,42"
           Id="Package\CDC Processing\CDC Process\CDC Source"
           TopLeft="244,5.49999999999989" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\CDC Processing\CDC Process\Update Row Count"
+          TopLeft="227.75,209.5" />
         <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[UpdateOutput]"
           TopLeft="311.25,149.5">
@@ -4724,13 +5266,13 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[Derived Column Output]"
-          TopLeft="319.75,462.5">
+          TopLeft="320,462.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11.5,26"
+              EndConnector="-12,26"
               Start="0,0"
-              End="-11.5,18.5">
+              End="-12,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4741,13 +5283,13 @@
                     Point2="0,13"
                     Point3="-4,13" />
                   <mssgle:LineSegment
-                    End="-7.5,13" />
+                    End="-8,13" />
                   <mssgle:CubicBezierSegment
-                    Point1="-7.5,13"
-                    Point2="-11.5,13"
-                    Point3="-11.5,17" />
+                    Point1="-8,13"
+                    Point2="-12,13"
+                    Point3="-12,17" />
                   <mssgle:LineSegment
-                    End="-11.5,18.5" />
+                    End="-12,18.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
