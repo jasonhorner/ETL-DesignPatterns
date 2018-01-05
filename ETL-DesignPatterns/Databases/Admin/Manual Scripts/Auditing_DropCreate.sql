@@ -50,7 +50,8 @@ BEGIN
 		PackageErrorID INT IDENTITY(1, 1) NOT NULL
 	   ,PackageExecutionID INT NOT NULL
 	   ,ServerExecutionID INT NOT NULL
-	   ,BatchID INT NULL
+	   ,BatchID INT NOT NULL
+	   ,JobID INT NOT NULL
 	   ,PackageID NVARCHAR(255) NOT NULL
 	   ,PackageName NVARCHAR(255) NOT NULL
 	   ,PackageErrorTime DATETIME2(7) NOT NULL
@@ -65,7 +66,8 @@ BEGIN
 	CREATE TABLE Auditing.PackageExecution (
 		PackageExecutionID INT IDENTITY(1, 1) NOT NULL
 	   ,ServerExecutionID INT NOT NULL
-	   ,BatchID INT NULL
+	   ,BatchID INT NOT NULL
+	   ,JobID INT NOT NULL
 	   ,PackageID NVARCHAR(255) NOT NULL
 	   ,PackageName NVARCHAR(255) NOT NULL
 	   ,ParentPackageID NVARCHAR(255) NULL
@@ -92,6 +94,7 @@ CREATE OR ALTER PROCEDURE Auditing.LogPackageError (
     @PackageExecutionID INT
    ,@ServerExecutionID INT
    ,@BatchID INT
+   ,@JobID INT
    ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
    ,@ErrorCode INT
@@ -104,6 +107,7 @@ BEGIN
         PackageExecutionID
        ,ServerExecutionID
 	   ,BatchID
+	   ,JobID
        ,PackageID
        ,PackageName
        ,PackageErrorTime
@@ -114,6 +118,7 @@ BEGIN
         @PackageExecutionID
        ,@ServerExecutionID
 	   ,@BatchID
+	   ,@JobID
        ,@PackageID
        ,@PackageName
        ,SYSDATETIME()
@@ -138,6 +143,7 @@ GO
 CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionStart (
     @ServerExecutionID INT
    ,@BatchID INT
+   ,@JobID INT
    ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
    ,@ParentPackageID NVARCHAR(255)
@@ -151,6 +157,7 @@ BEGIN
     INSERT INTO Auditing.PackageExecution (
        ServerExecutionID
        ,BatchID
+	   ,JobID
 	   ,PackageID
        ,PackageName
        ,ParentPackageID
@@ -161,6 +168,7 @@ BEGIN
     SELECT
         @ServerExecutionID
        ,@BatchID
+	   ,@JobID
 	   ,@PackageID
        ,@PackageName
        ,@ParentPackageID
