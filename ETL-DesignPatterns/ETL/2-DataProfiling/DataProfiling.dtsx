@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="01/05/2018 22:23:40" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{9F86D734-8EDD-41C6-9499-32FFDE096DF2}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="DataProfiling" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{14BEC5C7-ABC4-4383-AF4D-8F87171F70DE}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" DTS:DTSID="{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}" DTS:ObjectName="WWI" DTS:refId="Package.ConnectionManagers[WWI]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;"></DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager DTS:CreationName="FILE" DTS:DTSID="{12ED974A-9A7F-40FD-B794-98666667976E}" DTS:ObjectName="Results.xml" DTS:refId="Package.ConnectionManagers[Results.xml]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="C:\Users\cathr\Documents\GitHub\jasonhorner\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling\Results.xml" DTS:FileUsageType="1"></DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.DataProfilingTask" DTS:DTSID="{96AD5F86-B646-4D8C-8B4E-C31F62230CC7}" DTS:ExecutableType="Microsoft.DataProfilingTask" DTS:LocaleID="-1" DTS:ObjectName="Data Profiling" DTS:refId="Package\Data Profiling" DTS:TaskContact="Data Profiling Task; Microsoft Corporation; SQL Server 2014; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <DataProfilingTaskData Destination="Results.xml" OverwriteDestination="True">
+          <ProfileInput><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<DataProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources />
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <Column IsWildCard="true" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagDataSourceId></TagDataSourceId>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FuncReq">
+        <DataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</DataSourceID>
+        <Table Schema="Warehouse" Table="StockItems" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+      <InclusionProfileRequest ID="InclusionReq">
+        <SubsetDataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</SubsetDataSourceID>
+        <SubsetTable Schema="Warehouse" Table="StockItems" />
+        <SubsetColumns>
+          <Column IsWildCard="true" />
+        </SubsetColumns>
+        <SupersetDataSourceID>{A4E92B63-8658-42EA-BE0A-71763DC1F0A4}</SupersetDataSourceID>
+        <SupersetTable Schema="Warehouse" Table="StockGroups" />
+        <SupersetColumns>
+          <Column IsWildCard="true" />
+        </SupersetColumns>
+        <InclusionThresholdSetting>Specified</InclusionThresholdSetting>
+        <InclusionStrengthThreshold>0.95</InclusionStrengthThreshold>
+        <SupersetColumnsKeyThresholdSetting>Specified</SupersetColumnsKeyThresholdSetting>
+        <SupersetColumnsKeyThreshold>0.95</SupersetColumnsKeyThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </InclusionProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles />
+  </DataProfileOutput>
+</DataProfile>]]></ProfileInput>
+        </DataProfilingTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+</DTS:Executable>

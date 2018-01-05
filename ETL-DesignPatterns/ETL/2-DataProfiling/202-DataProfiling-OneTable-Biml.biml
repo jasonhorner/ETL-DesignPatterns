@@ -6,7 +6,7 @@
     var SchemaName = "Warehouse"; // Warehouse / Application
     var TableName = "StockItems"; // StockItems / Cities
     
-    var OutputFolder = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling";
+    var OutputFolder = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\2-DataProfiling");
     var OutputFileName = "Results_" + SchemaName + "_" + TableName + ".xml";
     
 #>

@@ -2,7 +2,7 @@
     
     <Connections>
         <AdoNetConnection Name="WWI" Provider="System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;" />
-        <FileConnection Name="Results.xml" FileUsageType="CreateFile" FilePath="C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling\Results.xml" />
+        <FileConnection Name="Results.xml" FileUsageType="CreateFile" FilePath="<#=Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\2-DataProfiling\Results.xml")#>" />
     </Connections>
     
     <Packages>
