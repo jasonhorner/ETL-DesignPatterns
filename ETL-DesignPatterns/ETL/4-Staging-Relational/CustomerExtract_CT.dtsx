@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{568F2C38-37A7-432E-A453-7CACD727C3C0}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{6569318E-D43B-4E99-AB7E-6DE364E745A1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -41,6 +41,15 @@
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="DeleteRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6786A7B0-6513-4D40-ABD5-86D73F313A50}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorRowCount">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
@@ -119,7 +128,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Destination Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -157,7 +166,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Source Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1425,35 +1434,43 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           Id="Package\Change Tracking Processing\Get Source Latest Version"
           TopLeft="288,5.5" />
         <NodeLayout
-          Size="130,42"
+          Size="167,42"
+          Id="Package\Change Tracking Processing\Process Changes"
+          TopLeft="136.333333333333,162.75" />
+        <NodeLayout
+          Size="167,42"
           Id="Package\Change Tracking Processing\Process CT"
-          TopLeft="323,107.5" />
+          TopLeft="136.333333333333,89.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Change Tracking Processing\Update CT Version"
+          TopLeft="136.333333333333,236" />
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint]"
-          TopLeft="388.25,47.5">
+          TopLeft="388,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="20.4166666666666,60"
+              EndConnector="-141.666666666667,42"
               Start="0,0"
-              End="20.4166666666666,52.5">
+              End="-141.666666666667,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5639666919001" />
+                    End="0,20.9608540925267" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.5639666919001"
-                    Point2="0,35.5639666919001"
-                    Point3="4,35.5639666919001" />
+                    Point1="0,20.9608540925267"
+                    Point2="0,24.9608540925267"
+                    Point3="-4,24.9608540925267" />
                   <mssgle:LineSegment
-                    End="16.4166666666666,35.5639666919001" />
+                    End="-137.666666666667,24.9608540925267" />
                   <mssgle:CubicBezierSegment
-                    Point1="16.4166666666666,35.5639666919001"
-                    Point2="20.4166666666666,35.5639666919001"
-                    Point3="20.4166666666666,39.5639666919001" />
+                    Point1="-137.666666666667,24.9608540925267"
+                    Point2="-141.666666666667,24.9608540925267"
+                    Point3="-141.666666666667,28.9608540925267" />
                   <mssgle:LineSegment
-                    End="20.4166666666666,52.5" />
+                    End="-141.666666666667,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1468,26 +1485,26 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="255.166666666667,60"
+              EndConnector="80.8333333333333,42"
               Start="0,0"
-              End="255.166666666667,52.5">
+              End="80.8333333333333,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5623100303951" />
+                    End="0,20.9608540925267" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.5623100303951"
-                    Point2="0,35.5623100303951"
-                    Point3="4,35.5623100303951" />
+                    Point1="0,20.9608540925267"
+                    Point2="0,24.9608540925267"
+                    Point3="4,24.9608540925267" />
                   <mssgle:LineSegment
-                    End="251.166666666667,35.5623100303951" />
+                    End="76.8333333333333,24.9608540925267" />
                   <mssgle:CubicBezierSegment
-                    Point1="251.166666666667,35.5623100303951"
-                    Point2="255.166666666667,35.5623100303951"
-                    Point3="255.166666666667,39.5623100303951" />
+                    Point1="76.8333333333333,24.9608540925267"
+                    Point2="80.8333333333333,24.9608540925267"
+                    Point3="80.8333333333333,28.9608540925267" />
                   <mssgle:LineSegment
-                    End="255.166666666667,52.5" />
+                    End="80.8333333333333,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1496,28 +1513,20 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Change Tracking Processing\Update CT Version"
-          TopLeft="80,191" />
-        <NodeLayout
-          Size="158,42"
-          Id="Package\Change Tracking Processing\Process Changes"
-          TopLeft="314,204" />
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 2]"
-          TopLeft="391.75,149.5">
+          TopLeft="219.833333333333,131.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54.5"
+              EndConnector="0,31.25"
               Start="0,0"
-              End="0,47">
+              End="0,23.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,47" />
+                    End="0,23.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1528,30 +1537,18 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 3]"
-          TopLeft="314,225">
+          TopLeft="219.833333333333,204.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-67,-13"
+              EndConnector="0,31.25"
               Start="0,0"
-              End="-59.5,-13">
+              End="0,23.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-29.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-29.5,0"
-                    Point2="-33.5,0"
-                    Point3="-33.5,-4" />
-                  <mssgle:LineSegment
-                    End="-33.5,-9" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-33.5,-9"
-                    Point2="-33.5,-13"
-                    Point3="-37.5,-13" />
-                  <mssgle:LineSegment
-                    End="-59.5,-13" />
+                    End="0,23.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1563,8 +1560,8 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="494,301"
-          Size="494,344"
+          PanelSize="494,336"
+          Size="494,379"
           Id="Package\Change Tracking Processing"
           TopLeft="5.50000000000003,107.5" />
         <NodeLayout
@@ -1577,30 +1574,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           TopLeft="64,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="252.5,451.5">
+          TopLeft="252.5,486.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11.5,70.666666666667"
+              EndConnector="11.5,35.666666666667"
               Start="0,0"
-              End="11.5,63.166666666667">
+              End="11.5,28.166666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.3333333333335" />
+                    End="0,13.8333333333335" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.3333333333335"
-                    Point2="0,35.3333333333335"
-                    Point3="4,35.3333333333335" />
+                    Point1="0,13.8333333333335"
+                    Point2="0,17.8333333333335"
+                    Point3="4,17.8333333333335" />
                   <mssgle:LineSegment
-                    End="7.49999999999997,35.3333333333335" />
+                    End="7.49999999999997,17.8333333333335" />
                   <mssgle:CubicBezierSegment
-                    Point1="7.49999999999997,35.3333333333335"
-                    Point2="11.5,35.3333333333335"
-                    Point3="11.5,39.3333333333335" />
+                    Point1="7.49999999999997,17.8333333333335"
+                    Point2="11.5,17.8333333333335"
+                    Point3="11.5,21.8333333333335" />
                   <mssgle:LineSegment
-                    End="11.5,63.166666666667" />
+                    End="11.5,28.166666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
