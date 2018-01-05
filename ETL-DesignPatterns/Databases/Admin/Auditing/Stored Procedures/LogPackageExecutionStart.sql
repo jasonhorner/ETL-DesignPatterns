@@ -1,9 +1,12 @@
-﻿CREATE PROCEDURE Auditing.LogPackageExecutionStart (
-    @PackageID UNIQUEIDENTIFIER
+﻿
+CREATE   PROCEDURE Auditing.LogPackageExecutionStart (
+    @ServerExecutionID INT
+   ,@BatchID INT
+   ,@JobID INT
+   ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
-   ,@ParentPackageID UNIQUEIDENTIFIER = NULL
-   ,@ParentPackageName NVARCHAR(255) = NULL
-   ,@ServerExecutionID BIGINT
+   ,@ParentPackageID NVARCHAR(255)
+   ,@ParentPackageName NVARCHAR(255)
    ,@PackageStartTime DATETIME2
 )
 AS
@@ -11,20 +14,24 @@ BEGIN
     SET NOCOUNT ON;
     DECLARE @PackageExecutionID INT;
     INSERT INTO Auditing.PackageExecution (
-        PackageID
+       ServerExecutionID
+       ,BatchID
+	   ,JobID
+	   ,PackageID
        ,PackageName
        ,ParentPackageID
        ,ParentPackageName
-       ,ServerExecutionID
        ,PackageStartTime
        ,ExecutionStatus
     )
     SELECT
-        @PackageID
+        @ServerExecutionID
+       ,@BatchID
+	   ,@JobID
+	   ,@PackageID
        ,@PackageName
        ,@ParentPackageID
        ,@ParentPackageName
-       ,@ServerExecutionID
        ,@PackageStartTime
        ,'Running';
     SELECT @PackageExecutionID = SCOPE_IDENTITY();

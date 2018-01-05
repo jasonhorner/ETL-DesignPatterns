@@ -20,6 +20,7 @@
     <DirectInput>EXECUTE Auditing.LogPackageExecutionStart
         @ServerExecutionID = ?
         ,@BatchID = ?
+        ,@JobID = ?
         ,@PackageID = ?
         ,@PackageName = ?
         ,@ParentPackageID = ?
@@ -29,11 +30,12 @@
     <Parameters>
         <Parameter Name="0" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
         <Parameter Name="1" VariableName="BatchID" DataType="Int32" Length="-1"/>
-        <Parameter Name="2" VariableName="System.PackageID" DataType="String" Length="-1"/>
-        <Parameter Name="3" VariableName="System.PackageName" DataType="String" Length="-1"/>
-        <Parameter Name="4" VariableName="ParentPackageID" DataType="String" Length="-1"/>
-        <Parameter Name="5" VariableName="ParentPackageName" DataType="String" Length="-1"/>
-        <Parameter Name="6" VariableName="System.StartTime" DataType="Date" Length="-1"/>
+        <Parameter Name="2" VariableName="JobID" DataType="Int32" Length="-1"/>
+        <Parameter Name="3" VariableName="System.PackageID" DataType="String" Length="-1"/>
+        <Parameter Name="4" VariableName="System.PackageName" DataType="String" Length="-1"/>
+        <Parameter Name="5" VariableName="ParentPackageID" DataType="String" Length="-1"/>
+        <Parameter Name="6" VariableName="ParentPackageName" DataType="String" Length="-1"/>
+        <Parameter Name="7" VariableName="System.StartTime" DataType="Date" Length="-1"/>
     </Parameters>
     <Results>
         <Result Name="PackageExecutionID" VariableName="User.PackageExecutionID" />
@@ -71,6 +73,7 @@
                             @PackageExecutionID = ?
                             ,@ServerExecutionID = ?
                             ,@BatchID = ?
+                            ,@JobID = ?
                             ,@PackageID = ?
                             ,@PackageName = ?
                             ,@ErrorCode = ?
@@ -80,10 +83,11 @@
                             <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" />
                             <Parameter Name="1" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
                             <Parameter Name="2" VariableName="BatchID" DataType="Int32" Length="-1"/>
-                            <Parameter Name="3" VariableName="System.PackageID" DataType="String" Length="-1"/>
-                            <Parameter Name="4" VariableName="System.PackageName" DataType="String" Length="-1"/>
-                            <Parameter Name="5" VariableName="System.ErrorCode" DataType="Int32" />
-                            <Parameter Name="6" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
+                            <Parameter Name="3" VariableName="JobID" DataType="Int32" Length="-1"/>
+                            <Parameter Name="4" VariableName="System.PackageID" DataType="String" Length="-1"/>
+                            <Parameter Name="5" VariableName="System.PackageName" DataType="String" Length="-1"/>
+                            <Parameter Name="6" VariableName="System.ErrorCode" DataType="Int32" />
+                            <Parameter Name="7" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
                         </Parameters>
                     </ExecuteSQL>
                     <ExecuteSQL Name="Log Package Execution Error" ConnectionName="<#=ConnectionName#>">

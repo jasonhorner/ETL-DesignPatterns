@@ -5,7 +5,7 @@
     
     var SourceMetadata = SchemaManager.CreateConnectionNode("Source", @"Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;").GetDatabaseSchema(ImportOptions.ExcludeViews);
     
-    var OutputFolder = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\2-DataProfiling\";
+    var OutputFolder = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\2-DataProfiling\");
     
 #>
     

@@ -3,12 +3,12 @@
     
     <#
         /* Variables used in multiple Biml files */
-        RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\1-BasicBiml\Project.params";
+        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\1-BasicBiml\Project.params");
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
         /* Metadata from Excel */
         int ProjectID = 1;
-        var MetadataConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;";
+        var MetadataConnectionString = Environment.ExpandEnvironmentVariables(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=%ETLDesignPatterns%\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;");
         DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Project$] WHERE ProjectID = {0}", ProjectID)).Rows[0];
         DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["SourceConnectionName"])).Rows[0];
         DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
