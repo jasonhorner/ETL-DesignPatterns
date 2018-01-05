@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{6569318E-D43B-4E99-AB7E-6DE364E745A1}">
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{8C70DBEE-EF78-41C7-A4ED-78946867DA72}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -128,7 +128,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Destination Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -166,7 +166,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Source Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1286,6 +1286,86 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\Change Tracking Processing\Truncate Staging Tables"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{f4f9a8fd-ac72-4817-be43-adfeca04104b}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Staging Tables">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Change Tracking Processing\Truncate Staging Tables\Truncate DEL Table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{f47305e7-f155-4efb-a957-1534f4518b6f}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate DEL Table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="4">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_DEL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Change Tracking Processing\Truncate Staging Tables\Truncate INS Table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{783d7cb9-be37-4243-8ea1-6cba72208094}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate INS Table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="5">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_INS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Change Tracking Processing\Truncate Staging Tables\Truncate STG Table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{280f332c-7eab-4fd6-948c-543584ee0186}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate STG Table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_STG" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Change Tracking Processing\Truncate Staging Tables\Truncate UPD Table"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{d2e52445-0933-434b-8471-cef4310b9271}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Truncate UPD Table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_UPD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Change Tracking Processing\Update CT Version"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -1356,63 +1436,17 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 3"
           DTS:To="Package\Change Tracking Processing\Update CT Version" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{4F5395D4-15D4-4B55-9374-15D20BB3DC55}"
+          DTS:From="Package\Change Tracking Processing\Truncate Staging Tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Change Tracking Processing\Process CT" />
       </DTS:PrecedenceConstraints>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\PostLoad"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{768BD59D-CD20-44E0-A0F4-E51174496155}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="PostLoad"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-          SQLTask:IsStoredProc="True"
-          SQLTask:SqlStatementSource="AWLTSRC.CustomerPostLoad_CT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\PreLoad"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{19482494-3B24-4254-969C-14536A32B0A0}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="PreLoad"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-          SQLTask:IsStoredProc="True"
-          SQLTask:SqlStatementSource="AWLTSRC.CustomerPreLoad_CT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{EDCECCFA-396C-4FF8-8FBB-C4D95D1340EE}"
-      DTS:From="Package\Change Tracking Processing"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\PostLoad" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{A471EB67-3A47-4522-B74D-1F3B4AFA657C}"
-      DTS:From="Package\PreLoad"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Change Tracking Processing" />
-  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1428,49 +1462,37 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <NodeLayout
           Size="222,42"
           Id="Package\Change Tracking Processing\Get Destination Latest Version"
-          TopLeft="1.5,5.5" />
+          TopLeft="5.5,6" />
         <NodeLayout
-          Size="200,42"
+          Size="222,42"
           Id="Package\Change Tracking Processing\Get Source Latest Version"
-          TopLeft="288,5.5" />
+          TopLeft="288.5,5.99999999999989" />
         <NodeLayout
-          Size="167,42"
+          Size="222,42"
           Id="Package\Change Tracking Processing\Process Changes"
-          TopLeft="136.333333333333,162.75" />
+          TopLeft="288.5,210.5" />
         <NodeLayout
-          Size="167,42"
+          Size="222,42"
           Id="Package\Change Tracking Processing\Process CT"
-          TopLeft="136.333333333333,89.5" />
+          TopLeft="288.5,108.5" />
         <NodeLayout
-          Size="167,42"
+          Size="222,42"
           Id="Package\Change Tracking Processing\Update CT Version"
-          TopLeft="136.333333333333,236" />
+          TopLeft="288.5,312.5" />
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint]"
-          TopLeft="388,47.5">
+          TopLeft="399.5,47.9999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-141.666666666667,42"
+              EndConnector="0,60.5"
               Start="0,0"
-              End="-141.666666666667,34.5">
+              End="0,53">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.9608540925267" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.9608540925267"
-                    Point2="0,24.9608540925267"
-                    Point3="-4,24.9608540925267" />
-                  <mssgle:LineSegment
-                    End="-137.666666666667,24.9608540925267" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-137.666666666667,24.9608540925267"
-                    Point2="-141.666666666667,24.9608540925267"
-                    Point3="-141.666666666667,28.9608540925267" />
-                  <mssgle:LineSegment
-                    End="-141.666666666667,34.5" />
+                    End="0,53" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1481,30 +1503,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 1]"
-          TopLeft="112.5,47.5">
+          TopLeft="116.5,48">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="80.8333333333333,42"
+              EndConnector="229.5,60.4999999999999"
               Start="0,0"
-              End="80.8333333333333,34.5">
+              End="229.5,52.9999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.9608540925267" />
+                    End="0,35.8545994065281" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.9608540925267"
-                    Point2="0,24.9608540925267"
-                    Point3="4,24.9608540925267" />
+                    Point1="0,35.8545994065281"
+                    Point2="0,39.8545994065281"
+                    Point3="4,39.8545994065281" />
                   <mssgle:LineSegment
-                    End="76.8333333333333,24.9608540925267" />
+                    End="225.5,39.8545994065281" />
                   <mssgle:CubicBezierSegment
-                    Point1="76.8333333333333,24.9608540925267"
-                    Point2="80.8333333333333,24.9608540925267"
-                    Point3="80.8333333333333,28.9608540925267" />
+                    Point1="225.5,39.8545994065281"
+                    Point2="229.5,39.8545994065281"
+                    Point3="229.5,43.8545994065281" />
                   <mssgle:LineSegment
-                    End="80.8333333333333,34.5" />
+                    End="229.5,52.9999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1515,18 +1537,18 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 2]"
-          TopLeft="219.833333333333,131.5">
+          TopLeft="399.5,150.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.25"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,23.75">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.75" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1537,18 +1559,75 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 3]"
-          TopLeft="219.833333333333,204.75">
+          TopLeft="399.5,252.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31.25"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,23.75">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.75" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate DEL Table"
+          TopLeft="10,43" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate INS Table"
+          TopLeft="10,145" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate STG Table"
+          TopLeft="10,349" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate UPD Table"
+          TopLeft="10,247" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="False"
+          PanelSize="237,446"
+          Size="216,43"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables"
+          TopLeft="571.5,5.49999999999989" />
+        <EdgeLayout
+          Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 4]"
+          TopLeft="679.5,48.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-226.5,60"
+              Start="0,0"
+              End="-226.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5252225519288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5252225519288"
+                    Point2="0,39.5252225519288"
+                    Point3="-4,39.5252225519288" />
+                  <mssgle:LineSegment
+                    End="-222.5,39.5252225519288" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-222.5,39.5252225519288"
+                    Point2="-226.5,39.5252225519288"
+                    Point3="-226.5,43.5252225519288" />
+                  <mssgle:LineSegment
+                    End="-226.5,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1560,86 +1639,10 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="494,336"
-          Size="494,379"
+          PanelSize="814,549"
+          Size="814,592"
           Id="Package\Change Tracking Processing"
-          TopLeft="5.50000000000003,107.5" />
-        <NodeLayout
-          Size="122,42"
-          Id="Package\PostLoad"
-          TopLeft="203,522.166666666667" />
-        <NodeLayout
-          Size="117,42"
-          Id="Package\PreLoad"
-          TopLeft="64,5.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="252.5,486.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="11.5,35.666666666667"
-              Start="0,0"
-              End="11.5,28.166666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.8333333333335" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.8333333333335"
-                    Point2="0,17.8333333333335"
-                    Point3="4,17.8333333333335" />
-                  <mssgle:LineSegment
-                    End="7.49999999999997,17.8333333333335" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7.49999999999997,17.8333333333335"
-                    Point2="11.5,17.8333333333335"
-                    Point3="11.5,21.8333333333335" />
-                  <mssgle:LineSegment
-                    End="11.5,28.166666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="122.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="130,60"
-              Start="0,0"
-              End="130,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="126,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="126,30"
-                    Point2="130,30"
-                    Point3="130,34" />
-                  <mssgle:LineSegment
-                    End="130,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="5.5,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
