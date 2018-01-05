@@ -14,5 +14,12 @@
     [PasswordSalt] VARCHAR (10)     NOT NULL,
     [rowguid]      UNIQUEIDENTIFIER NOT NULL,
     [ModifiedDate] DATETIME         NOT NULL
+, [ChangeHashKey] nchar(40) 
+, [ChangeType] char(1) NOT NULL 
+, [IsDeleted] bit NOT NULL 
+, [InsertDate] datetime2(7) NOT NULL 
+, [UpdateDate] datetime2(7) 
+, [InsertPackageExecutionID] int NOT NULL 
+, [UpdatePackageExecutionID] int NOT NULL
 );
 
