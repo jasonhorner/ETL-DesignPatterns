@@ -4,9 +4,11 @@
 -------------------------------------------------- */
 CREATE   PROCEDURE Auditing.LogPackageError (
     @PackageExecutionID INT
-   ,@PackageID UNIQUEIDENTIFIER
+   ,@ServerExecutionID INT
+   ,@BatchID INT
+   ,@JobID INT
+   ,@PackageID NVARCHAR(255)
    ,@PackageName NVARCHAR(255)
-   ,@ServerExecutionID BIGINT
    ,@ErrorCode INT
    ,@ErrorDescription NVARCHAR(MAX)
 )
@@ -15,18 +17,22 @@ BEGIN
     SET NOCOUNT ON;
     INSERT INTO Auditing.PackageError (
         PackageExecutionID
+       ,ServerExecutionID
+	   ,BatchID
+	   ,JobID
        ,PackageID
        ,PackageName
-       ,ServerExecutionID
        ,PackageErrorTime
        ,ErrorCode
        ,ErrorDescription
     )
     SELECT
         @PackageExecutionID
+       ,@ServerExecutionID
+	   ,@BatchID
+	   ,@JobID
        ,@PackageID
        ,@PackageName
-       ,@ServerExecutionID
        ,SYSDATETIME()
        ,@ErrorCode
        ,@ErrorDescription;
