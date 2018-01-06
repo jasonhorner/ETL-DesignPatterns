@@ -3,7 +3,7 @@
     
 	<Packages>
 	    
-		<Package Name="Master_<#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>" ConstraintMode="Linear">
+		<Package Name="Master_<#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>_Hash" ConstraintMode="Linear">
 		    
     	    <Parameters>
     	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>

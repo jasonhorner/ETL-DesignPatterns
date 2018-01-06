@@ -3,12 +3,12 @@
     
     <#
         /* Variables used in multiple Biml files */
-        RootNode.ObjectTag["ProjectParametersPath"] = @"C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\ETL\4-Staging-Relational\Project.params";
+        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\1-BasicBiml\Project.params");
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
         /* Excel Metadata */
         int ProjectID = 3;
-        var MetadataConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\cathr\Documents\GitHub\ETL-DesignPatterns\ETL-DesignPatterns\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;";
+        var MetadataConnectionString = Environment.ExpandEnvironmentVariables(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=%ETLDesignPatterns%\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;");
         DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Project$] WHERE ProjectID = {0}", ProjectID)).Rows[0];
         DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["SourceConnectionName"])).Rows[0];
         DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
@@ -56,19 +56,14 @@
 	    
      <Tables>
         
-        <# foreach (var table in GetDatabaseSchemaWithoutTemporalTables(SourceConnection, new List<string>{"dbo"}, new List<string>{""}).TableNodes) { #>
+        <# foreach (var table in GetDatabaseSchemaWithoutTemporalTables(SourceConnection, new List<string>{"SalesLT"}, new List<string>{""}).TableNodes) { #>
             
             <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Insert","_INS"},{"Update","_UPD"},{"Delete","_DEL"}}; #>
             <# foreach (var supportTable in SupportTables) { #>
                 <Table Name="<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
                     <Columns>
                         <#=table.Columns.GetBiml()#>
-                        <Column Name="HashKey" DataType="StringFixedLength" Length="40" IsNullable="true">
-                            <Annotations>
-                                <Annotation Tag="IsETLColumn">True</Annotation>
-                                <Annotation Tag="IsHashKeyColumn">True</Annotation>
-                            </Annotations>
-                        </Column>
+                        
     				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-TableColumns.biml", supportTable.Key)#>
                     </Columns>
                     <Keys>

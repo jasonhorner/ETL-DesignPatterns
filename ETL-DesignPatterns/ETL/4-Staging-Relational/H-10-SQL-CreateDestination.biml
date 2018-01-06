@@ -91,44 +91,6 @@ END;
 GO
 <# } #>
 
-/* PRELOAD */
-<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Core")) { #>
-CREATE OR ALTER PROCEDURE <#=table.Schema#>.<#=table.GetTag("SourceSchemaName")#>_<#=table.GetTag("SourceTableName")#>_PreLoad
-    @InitStagingTable BIT = 0
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    IF @InitStagingTable = 1
-    BEGIN
-        TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#>;
-    END;
-    
-    <# foreach (var supportTable in RootNode.Tables.Where(t => t.GetTag("CoreTableName") == table.GetTag("CoreTableName")).Where(t => t.GetTag("SupportTableType") != "Core")) { #>
-    TRUNCATE TABLE <#=supportTable.Schema#>.<#=supportTable.Name#>;
-    <# } #>
-    
-    RETURN 0;
-END;
-GO
-<# } #>
-
-/* POSTLOAD */
-<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Core")) { #>
-CREATE OR ALTER PROCEDURE <#=table.Schema#>.<#=table.GetTag("SourceSchemaName")#>_<#=table.GetTag("SourceTableName")#>_PostLoad
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    <# foreach (var supportTable in RootNode.Tables.Where(t => t.GetTag("CoreTableName") == table.GetTag("CoreTableName")).Where(t => t.GetTag("SupportTableType") != "Core")) { #>
-    EXECUTE <#=table.Schema#>.<#=supportTable.GetTag("SourceSchemaName")#>_<#=supportTable.GetTag("SourceTableName")#>_<#=supportTable.GetTag("SupportTableType")#>;
-    <# } #>
-    
-    RETURN 0;
-END;
-GO
-<# } #>
-
 </Annotation>
 <# } #>
 </Annotations>

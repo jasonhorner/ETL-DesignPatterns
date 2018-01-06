@@ -12,27 +12,21 @@
         TableTypeName = null;
     }
 #>
+
 <# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="ChangeHashKey" DataType="StringFixedLength" Length="40" IsNullable="true">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="IsHashKeyColumn">True</Annotation>
+    </Annotations>
+</Column>
 <Column Name="ChangeType" DataType="AnsiStringFixedLength" Length="1" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
     </Annotations>
 </Column>
 <# } #>
-<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
-<Column Name="InsertDate" DataType="DateTime2" IsNullable="false">
-    <Annotations>
-        <Annotation Tag="IsETLColumn">True</Annotation>
-    </Annotations>
-</Column>
-<# } #>
-<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
-<Column Name="UpdateDate" DataType="DateTime2" IsNullable="true">
-    <Annotations>
-        <Annotation Tag="IsETLColumn">True</Annotation>
-    </Annotations>
-</Column>
-<# } #>
+
 <# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
 <Column Name="IsDeleted" DataType="Boolean" IsNullable="false">
     <Annotations>
@@ -40,18 +34,35 @@
     </Annotations>
 </Column>
 <# } #>
-<Column Name="PackageExecutionID" DataType="Int32" IsNullable="false">
+
+<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
+<Column Name="InsertDate" DataType="DateTime2" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
     </Annotations>
 </Column>
-<Column Name="ServerExecutionID" DataType="Int32" IsNullable="false">
+<# } #>
+
+<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="UpdateDate" DataType="DateTime2" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
     </Annotations>
 </Column>
-<Column Name="BatchID" DataType="Int32" IsNullable="false">
+<# } #>
+
+<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
+<Column Name="InsertPackageExecutionID" DataType="Int32" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
     </Annotations>
 </Column>
+<# } #>
+
+<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="UpdatePackageExecutionID" DataType="Int32" IsNullable="true">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+    </Annotations>
+</Column>
+<# } #>
