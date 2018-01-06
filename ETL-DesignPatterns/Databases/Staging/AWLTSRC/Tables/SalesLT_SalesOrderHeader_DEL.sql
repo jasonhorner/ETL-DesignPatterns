@@ -1,4 +1,4 @@
-﻿CREATE TABLE [AWLTSRC].[SalesLT_SalesOrderHeader] (
+﻿CREATE TABLE [AWLTSRC].[SalesLT_SalesOrderHeader_DEL] (
     [SalesOrderID]             INT              NOT NULL,
     [RevisionNumber]           TINYINT          NOT NULL,
     [OrderDate]                DATETIME         NOT NULL,
@@ -24,12 +24,8 @@
     [ChangeHashKey]            NCHAR (40)       NULL,
     [ChangeType]               CHAR (1)         NOT NULL,
     [IsDeleted]                BIT              NOT NULL,
-    [InsertDate]               DATETIME2 (7)    NOT NULL,
     [UpdateDate]               DATETIME2 (7)    NULL,
-    [InsertPackageExecutionID] INT              NOT NULL,
     [UpdatePackageExecutionID] INT              NULL,
-    CONSTRAINT [PK_SalesLT_SalesOrderHeader] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC)
+    CONSTRAINT [PK_SalesLT_SalesOrderHeader_DEL] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC)
 );
-
-
 

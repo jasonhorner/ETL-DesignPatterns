@@ -1,4 +1,4 @@
-﻿CREATE TABLE [AWLTSRC].[SalesLT_Product] (
+﻿CREATE TABLE [AWLTSRC].[SalesLT_Product_INS] (
     [ProductID]                INT              NOT NULL,
     [Name]                     NVARCHAR (50)    NOT NULL,
     [ProductNumber]            NVARCHAR (25)    NOT NULL,
@@ -20,11 +20,7 @@
     [ChangeType]               CHAR (1)         NOT NULL,
     [IsDeleted]                BIT              NOT NULL,
     [InsertDate]               DATETIME2 (7)    NOT NULL,
-    [UpdateDate]               DATETIME2 (7)    NULL,
     [InsertPackageExecutionID] INT              NOT NULL,
-    [UpdatePackageExecutionID] INT              NULL,
-    CONSTRAINT [PK_SalesLT_Product] PRIMARY KEY CLUSTERED ([ProductID] ASC)
+    CONSTRAINT [PK_SalesLT_Product_INS] PRIMARY KEY CLUSTERED ([ProductID] ASC)
 );
-
-
 

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [AWLTSRC].[SalesLT_Customer] (
+﻿CREATE TABLE [AWLTSRC].[SalesLT_Customer_INS] (
     [CustomerID]               INT              NOT NULL,
     [NameStyle]                BIT              NOT NULL,
     [Title]                    NVARCHAR (8)     NULL,
@@ -18,11 +18,7 @@
     [ChangeType]               CHAR (1)         NOT NULL,
     [IsDeleted]                BIT              NOT NULL,
     [InsertDate]               DATETIME2 (7)    NOT NULL,
-    [UpdateDate]               DATETIME2 (7)    NULL,
     [InsertPackageExecutionID] INT              NOT NULL,
-    [UpdatePackageExecutionID] INT              NULL,
-    CONSTRAINT [PK_SalesLT_Customer] PRIMARY KEY CLUSTERED ([CustomerID] ASC)
+    CONSTRAINT [PK_SalesLT_Customer_INS] PRIMARY KEY CLUSTERED ([CustomerID] ASC)
 );
-
-
 

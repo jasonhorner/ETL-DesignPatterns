@@ -1,4 +1,4 @@
-﻿CREATE TABLE [AWLTSRC].[SalesLT_SalesOrderDetail] (
+﻿CREATE TABLE [AWLTSRC].[SalesLT_SalesOrderDetail_DEL] (
     [SalesOrderID]             INT              NOT NULL,
     [SalesOrderDetailID]       INT              NOT NULL,
     [OrderQty]                 SMALLINT         NOT NULL,
@@ -11,12 +11,8 @@
     [ChangeHashKey]            NCHAR (40)       NULL,
     [ChangeType]               CHAR (1)         NOT NULL,
     [IsDeleted]                BIT              NOT NULL,
-    [InsertDate]               DATETIME2 (7)    NOT NULL,
     [UpdateDate]               DATETIME2 (7)    NULL,
-    [InsertPackageExecutionID] INT              NOT NULL,
     [UpdatePackageExecutionID] INT              NULL,
-    CONSTRAINT [PK_SalesLT_SalesOrderDetail] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC, [SalesOrderDetailID] ASC)
+    CONSTRAINT [PK_SalesLT_SalesOrderDetail_DEL] PRIMARY KEY CLUSTERED ([SalesOrderID] ASC, [SalesOrderDetailID] ASC)
 );
-
-
 

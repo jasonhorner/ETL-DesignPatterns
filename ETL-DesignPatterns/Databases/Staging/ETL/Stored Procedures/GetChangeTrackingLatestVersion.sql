@@ -5,14 +5,12 @@
 
 AS
 BEGIN
-    
-	SET NOCOUNT ON
 
 	SELECT
-	@versionId = [Version] 
+	@VersionId = [Version] 
 	FROM [ETL].[ChangeTrackingLatestVersion]
 	WHERE TableName = @tableName
-    AND  @databaseName = @DatabaseName;
+    AND  @DatabaseName = @DatabaseName;
 
 	RETURN 0;
 
