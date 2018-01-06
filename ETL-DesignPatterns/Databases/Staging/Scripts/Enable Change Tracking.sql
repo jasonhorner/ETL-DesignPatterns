@@ -39,3 +39,12 @@ SELECT s.name as Schema_name, t.name AS Table_name, tr.*
 FROM sys.change_tracking_tables tr
 INNER JOIN sys.tables t on t.object_id = tr.object_id
 INNER JOIN sys.schemas s on s.schema_id = t.schema_id
+
+-- Disbale change tracking at the table level
+ALTER TABLE [$(SchemaName)].[$(TableName)]  
+DISABLE CHANGE_TRACKING;  
+
+-- DISABLE Change tracking at the DB level
+ALTER DATABASE [$(DatabaseName)] 
+SET CHANGE_TRACKING = OFF  
+
