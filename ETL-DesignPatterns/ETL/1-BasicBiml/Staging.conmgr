@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Staging" DTS:DTSID="{30792500-DD3C-4FCB-8965-7E5E25FFC58C}" DTS:refId="Staging" DTS:CreationName="OLEDB">
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Staging" DTS:DTSID="{79AC07EA-D595-4D3E-895E-917A70C129F1}" DTS:refId="Staging" DTS:CreationName="OLEDB">
   <DTS:ObjectData>
-    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=.;initial catalog=Staging;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=localhost;initial catalog=Staging;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
   </DTS:ObjectData>
-  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerStagingConnectionString]</DTS:PropertyExpression>
+  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerStagingOleDbConnectionString]</DTS:PropertyExpression>
 </DTS:ConnectionManager>

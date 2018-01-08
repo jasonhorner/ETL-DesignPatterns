@@ -3,7 +3,7 @@
     
 	<Packages>
 	    
-		<Package Name="Master_<#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>" ConstraintMode="Linear">
+		<Package Name="Master_<#=RootNode.Schemas.FirstOrDefault().Name#>" ConstraintMode="Linear">
 		    
             <Parameters>
 		        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
@@ -17,7 +17,7 @@
 			   
 			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
 			    
-				<Container Name="Load <#=RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Destination").FirstOrDefault().GetTag("Schema")#>">
+				<Container Name="Load <#=RootNode.Schemas.FirstOrDefault().Name#>">
 				    <Tasks>
         				<# foreach (var package in RootNode.Packages) { #>
         					<ExecutePackage Name="Execute <#=package.Name#>">

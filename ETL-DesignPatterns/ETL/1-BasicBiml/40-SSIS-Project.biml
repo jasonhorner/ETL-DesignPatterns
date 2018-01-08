@@ -6,13 +6,13 @@
         <PackageProject Name="Project" ProtectionLevel="DontSaveSensitive">
             
             <Connections>
-                <# foreach (var connection in RootNode.Connections) { #>
+                <# foreach (var connection in RootNode.Connections.Where(c => c.CreateInProject == true)) { #>
                     <Connection ConnectionName="<#=connection.Name#>" />
                 <# } #>
             </Connections>
             
             <Parameters>
-                <# foreach (var connection in RootNode.Connections) { #>
+                <# foreach (var connection in RootNode.Connections.Where(c => c.GetTag("ProjectParameterName") != "")) { #>
                     <Parameter Name="<#=connection.GetTag("ProjectParameterName")#>" DataType="String" IsSensitive="false" IsRequired="true"><#=connection.RenderedConnectionString#></Parameter>
                 <# } #>
             </Parameters>

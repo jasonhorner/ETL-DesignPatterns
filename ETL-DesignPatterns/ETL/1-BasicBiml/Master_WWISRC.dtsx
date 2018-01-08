@@ -1,62 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DTS:Executable DTS:CreationDate="01/05/2018 22:14:42" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{BA952515-619A-4C99-92AA-6B44240B7A17}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Master_WWISRC" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{CBBEC34E-3F15-4CAE-B2BC-B2BE13169494}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+<DTS:Executable DTS:CreationDate="01/08/2018 14:00:00" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{5AEEEDD1-3114-4FB6-B107-DCC20D57CDAD}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Master_WWISRC" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{DB17B33F-A3C1-4FB0-9EDB-D9B6FF24D358}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
   <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{8624E19C-E6B0-4FC2-A5A1-9958DC646C25}" DTS:ObjectName="JobID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{3DAA576B-8771-4B7B-807E-DBB99CB38CF6}" DTS:ObjectName="JobID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{35009BB0-8DEA-41F8-B5F1-187987984721}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{9893E999-45E2-409F-A9CC-07BAB2ADF9DC}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{3154E76C-ED3F-4474-A14E-C6C5B961EA46}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{E993DD6F-4153-4CC9-B75A-93F683FFAC2C}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
     </DTS:PackageParameter>
-    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{7F08EA65-AF2D-46FE-A3F9-94F79D25276C}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{56E105C8-5E17-4F20-9731-BA5FB006095E}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
       <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="11" DTS:Description="" DTS:DTSID="{735A809B-52CA-4FA9-A149-0DB11800B4A8}" DTS:ObjectName="IsInitialLoad" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="11" DTS:Name="ParameterValue">False</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{64101F00-081A-437F-9657-E6400F7C4D00}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{7A7877C6-7860-413D-96E8-46DFAA89AA40}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{059A131E-CF2A-4435-80BE-28E59D9267B0}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{F64D52DB-DD54-479D-8EF9-72A315167C93}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{56549F27-C24D-4478-9593-7347F411F964}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{623BADFC-160A-44D9-814D-527540DABCB7}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{D3B05B33-5F69-430D-BBD9-940B923AEF02}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{AF611463-2942-4C81-89EC-42E96AF56947}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{FF2E257E-B225-43EF-ADCD-993CA099600A}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{FFCE040C-7344-46D4-838F-4915CC2F20FF}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{7304F32A-1691-4726-ACA4-B813072B6A67}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{79832964-18F5-451D-B6FF-E48C15940289}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
-    <DTS:Variable DTS:CreationName="" DTS:DTSID="{078B3119-F54E-4779-B753-E9806BA9AEA0}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{B69ECD6D-58B2-4D31-A828-FDD5E3DF7DB6}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
       <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{34F4F74A-05D9-4E27-85F5-FF5F3FB21D5D}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{80ACE2FB-29C0-4F7F-AF33-6EB96FE07273}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:ResultType="ResultSetType_SingleRow" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @ServerExecutionID = ?&#xA;        ,@BatchID = ?&#xA;        ,@JobID = ?&#xA;        ,@PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@PackageStartTime = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="7" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="7" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ResultBinding SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ResultName="PackageExecutionID"></SQLTask:ResultBinding>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="5" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageStartTime" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Output" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{1604182E-EEFA-4002-8B8C-77B3CC1DF047}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Load WWISRC" DTS:refId="Package\Load WWISRC">
+    <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{C0EEF539-16A8-420D-8019-D4673ABEB28D}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Load WWISRC" DTS:refId="Package\Load WWISRC">
       <DTS:Executables>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{B83365AC-6070-4D71-90EE-6586F0441098}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_Cities" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_Cities" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{B3199C7D-4843-4725-AB27-B8E2B2E2BE5F}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_Cities" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_Cities" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_Cities.dtsx</PackageName>
@@ -76,11 +79,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{6A2E4206-06B0-4A30-86A1-FFBE3CB5C363}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_Countries" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_Countries" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{268B8CCD-3446-474A-9B18-BD47ED0C8902}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_Countries" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_Countries" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_Countries.dtsx</PackageName>
@@ -100,11 +107,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{94BF7393-5F20-413F-9B79-B17F41317546}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_DeliveryMethods" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_DeliveryMethods" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{44D920F7-EF5E-4215-AC51-21A85F98436F}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_DeliveryMethods" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_DeliveryMethods" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_DeliveryMethods.dtsx</PackageName>
@@ -124,11 +135,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{AF1EF72B-C360-40A6-AAFC-9D6577FBB2C0}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_PaymentMethods" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_PaymentMethods" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{ACD0BBBB-0D64-4579-A088-0CC73953A39D}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_PaymentMethods" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_PaymentMethods" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_PaymentMethods.dtsx</PackageName>
@@ -148,11 +163,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{16A83937-5898-4343-B211-0A62D0FF055F}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_People" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_People" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{15A0CD88-A608-4D05-AD2D-515061251F1E}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_People" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_People" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_People.dtsx</PackageName>
@@ -172,11 +191,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{8A6E676D-609C-4FA6-94D3-68639E941C6A}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_StateProvinces" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_StateProvinces" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{DC077D1A-342C-4F4D-A3E6-32A5909F98F0}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_StateProvinces" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_StateProvinces" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_StateProvinces.dtsx</PackageName>
@@ -196,11 +219,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{7B94B086-E53F-4CCB-95EA-C3F9685951E4}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_SystemParameters" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_SystemParameters" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{F63792B8-1135-4946-9DCA-3F5B20685932}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_SystemParameters" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_SystemParameters" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_SystemParameters.dtsx</PackageName>
@@ -220,11 +247,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{74AA6295-2EE3-41B6-8EF7-B7B49E24D0C7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_TransactionTypes" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_TransactionTypes" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{0D110B1B-EFE1-4383-9347-333F2ABC70C9}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Application_TransactionTypes" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Application_TransactionTypes" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Application_TransactionTypes.dtsx</PackageName>
@@ -244,11 +275,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{448BA40B-769F-4C49-B195-44EBE6869D0D}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_PurchaseOrderLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_PurchaseOrderLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{ED02DB3E-B5CB-4FED-B0CC-416C5A46611E}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_PurchaseOrderLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_PurchaseOrderLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Purchasing_PurchaseOrderLines.dtsx</PackageName>
@@ -268,11 +303,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{A07455A8-78CC-40D9-A564-4EE551527148}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_PurchaseOrders" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_PurchaseOrders" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{FCE8632E-53BB-4F80-A174-6931F8F36003}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_PurchaseOrders" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_PurchaseOrders" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Purchasing_PurchaseOrders.dtsx</PackageName>
@@ -292,11 +331,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{CF2678BB-BB4A-44C0-80D9-46AE02C55C10}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_SupplierCategories" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_SupplierCategories" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{673EA692-0B83-4C3D-A74A-509236ADBC28}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_SupplierCategories" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_SupplierCategories" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Purchasing_SupplierCategories.dtsx</PackageName>
@@ -316,11 +359,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{6F662EAA-D2A2-42E0-B28A-812C6EDD50D2}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_Suppliers" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_Suppliers" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{CAB4CF38-135F-436D-90F3-ACDF96943002}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_Suppliers" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_Suppliers" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Purchasing_Suppliers.dtsx</PackageName>
@@ -340,11 +387,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{108E16EC-FDD4-4375-A446-FBC0D1D526F0}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_SupplierTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_SupplierTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{F444F64D-B4ED-41D5-B7FE-DF9659CC5859}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Purchasing_SupplierTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Purchasing_SupplierTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Purchasing_SupplierTransactions.dtsx</PackageName>
@@ -364,11 +415,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{D57C00FF-3F99-4648-9B88-B7617F4D8913}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_BuyingGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_BuyingGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{DB668836-4710-4601-A639-0BA22A2A3B40}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_BuyingGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_BuyingGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_BuyingGroups.dtsx</PackageName>
@@ -388,11 +443,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{5ED5D00A-5F6E-4A40-A108-F5381288FF15}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_CustomerCategories" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_CustomerCategories" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{03022842-558D-42FD-8FFF-D51904C616C3}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_CustomerCategories" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_CustomerCategories" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_CustomerCategories.dtsx</PackageName>
@@ -412,11 +471,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{93F7DEF8-2154-4ADD-AD46-C974BB5AFC9F}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Customers" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Customers" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{7347ABE3-41C5-4C18-BEA3-D3572365A47E}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Customers" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Customers" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_Customers.dtsx</PackageName>
@@ -436,11 +499,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2E83302C-8658-4F39-8262-646821358CCC}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_CustomerTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_CustomerTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2A6BA00F-BF34-41DD-9DA8-326F00E69C74}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_CustomerTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_CustomerTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_CustomerTransactions.dtsx</PackageName>
@@ -460,11 +527,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{8B5BF090-7F9E-4575-A134-BD05138F95C9}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_InvoiceLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_InvoiceLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{C5366B27-D6D0-49FB-8396-2D9CAA6013E8}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_InvoiceLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_InvoiceLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_InvoiceLines.dtsx</PackageName>
@@ -484,11 +555,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{E0A8AF47-A56F-42F3-A85C-DC619F56A6C7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Invoices" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Invoices" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{8F8ABB0F-25A6-4008-ADD1-D5FCC765ED49}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Invoices" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Invoices" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_Invoices.dtsx</PackageName>
@@ -508,11 +583,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{7398AC92-C582-47EB-A72C-110CA2BF3415}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_OrderLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_OrderLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2AB9C7BC-8DB3-406D-B644-4854D3F6F400}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_OrderLines" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_OrderLines" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_OrderLines.dtsx</PackageName>
@@ -532,11 +611,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2A8C5720-8A66-4A3C-A966-5024FF4B5D60}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Orders" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Orders" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{EE20FC25-0036-41C4-BA5A-5EFBFC118070}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_Orders" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_Orders" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_Orders.dtsx</PackageName>
@@ -556,11 +639,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{B74F1F46-49C0-47F8-BAF3-AB0A05654D9A}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_SpecialDeals" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_SpecialDeals" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{4D1EC667-C4AD-491B-BC58-E187C75A46D4}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Sales_SpecialDeals" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Sales_SpecialDeals" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Sales_SpecialDeals.dtsx</PackageName>
@@ -580,11 +667,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{B049691E-1857-4674-BEA9-53E3F0464AE7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_ColdRoomTemperatures" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_ColdRoomTemperatures" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{1D122E18-1180-4FE4-9F10-9E5396E0176E}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_ColdRoomTemperatures" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_ColdRoomTemperatures" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_ColdRoomTemperatures.dtsx</PackageName>
@@ -604,11 +695,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{43F0346B-244D-483A-975E-4FA0E1638C18}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_Colors" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_Colors" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{D91CF6CE-1431-4ADF-BA54-F15CC44D574D}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_Colors" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_Colors" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_Colors.dtsx</PackageName>
@@ -628,11 +723,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{C2ADDD65-9BE0-4FC6-8EA2-E0DCF5CECB02}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_PackageTypes" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_PackageTypes" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{547914D2-1173-44EC-9F3E-21453FF1C21F}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_PackageTypes" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_PackageTypes" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_PackageTypes.dtsx</PackageName>
@@ -652,11 +751,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{736E8B9F-0FD1-42BA-8D17-6BEE2CDCA884}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{63E0A721-6504-4642-885B-13E6E83659CD}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_StockGroups.dtsx</PackageName>
@@ -676,11 +779,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{AA413F7F-05B3-4EA6-ACD5-F7E646FFCAF7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemHoldings" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemHoldings" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{18248D96-297F-437F-9716-90C5FB460BD0}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemHoldings" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemHoldings" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_StockItemHoldings.dtsx</PackageName>
@@ -700,11 +807,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{95FD1ECE-8C7C-4305-96ED-1936AE9F4BEB}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItems" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItems" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{BF891707-2777-48DA-8B47-A0F8FF53710D}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItems" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItems" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_StockItems.dtsx</PackageName>
@@ -724,11 +835,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{9A9B8947-4199-44C7-B41A-63B65644D1A4}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemStockGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemStockGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{19A53888-2402-4B8A-8BB1-F58797A1F125}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemStockGroups" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemStockGroups" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_StockItemStockGroups.dtsx</PackageName>
@@ -748,11 +863,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{F7672E99-8968-4061-8450-C50DF0243D80}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{BECB73D7-23FB-4E64-A0BB-819DE0771409}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_StockItemTransactions" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_StockItemTransactions" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_StockItemTransactions.dtsx</PackageName>
@@ -772,11 +891,15 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
-        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{423E7F58-9FE3-4879-B226-F6E043AE2C9E}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_VehicleTemperatures" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_VehicleTemperatures" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{FAAE79C9-331B-4DFE-A156-5A1C67D5C6B1}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute Load_WWISRC_Warehouse_VehicleTemperatures" DTS:refId="Package\Load WWISRC\Execute Load_WWISRC_Warehouse_VehicleTemperatures" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:ObjectData>
             <ExecutePackageTask>
               <PackageName>Load_WWISRC_Warehouse_VehicleTemperatures.dtsx</PackageName>
@@ -796,64 +919,68 @@
                 <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
                 <ParameterName>ParentPackageName</ParameterName>
               </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
               <UseProjectReference>True</UseProjectReference>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
-    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{5426D114-66E2-4ABA-89E2-320AB92D4B31}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{01A3C05C-D86D-4B5F-8EF1-0AB0E2C42C7B}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:ObjectData>
-        <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-          <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStop" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="SelectRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="InsertRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="UpdateRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="DeleteRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="IgnoreRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{A0225F59-9167-4FB6-A910-89EB3B2F5B0B}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Load WWISRC" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Load WWISRC]" DTS:To="Package\Load WWISRC"></DTS:PrecedenceConstraint>
-    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{E717D59D-0343-46AC-8BEF-70054E101BB1}" DTS:From="Package\Load WWISRC" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load WWISRC_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load WWISRC_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{68B7670E-AE8F-486D-A382-005033EE3CC1}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Load WWISRC" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Load WWISRC]" DTS:To="Package\Load WWISRC"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{85D17125-248D-41D9-BD64-BF84A01A1468}" DTS:From="Package\Load WWISRC" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load WWISRC_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load WWISRC_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
-    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{F2CF4EC9-E9C3-4549-B053-86D3FA6636A5}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{BC63B4D7-D724-4EC3-B0E2-F94E7964AC62}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
       <DTS:Executables>
-        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{482BE7E9-3B5E-4C68-B3E7-D66ED5602FA0}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{556709A4-4393-4F38-9C43-E9779C92A57E}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
           <DTS:Executables>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{20154D35-2AF5-44D3-BDBF-CBA4E0BD5785}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{2B3933B4-B145-48C5-BEF6-DCC3AC42903F}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
-                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@BatchID = ?&#xA;                            ,@JobID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="1" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="2" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="3" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="4" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="5" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="6" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
-                  <SQLTask:ParameterBinding SQLTask:DataType="130" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="7" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorCode" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorDescription" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
-            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{9D3C3F33-DF8F-42B2-A656-3305B200574A}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{6D33CC6C-975F-4404-8E83-15B2265CEC07}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:ObjectData>
-                <SQLTask:SqlTaskData SQLTask:Connection="Auditing" SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-                  <SQLTask:ParameterBinding SQLTask:DataType="3" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="0" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
                 </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
           <DTS:PrecedenceConstraints>
-            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{E3416B05-83F8-4E40-945F-1662571E3765}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{B2B2059A-93C2-4189-9C54-991BEC4D3903}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
           </DTS:PrecedenceConstraints>
         </DTS:Executable>
       </DTS:Executables>
       <DTS:Variables>
-        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{E6974135-0A14-48E4-A6CB-EB0E8E618055}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{C5782204-1B61-4D28-BF00-D95F02E6A746}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
           <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
         </DTS:Variable>
       </DTS:Variables>

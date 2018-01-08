@@ -1,49 +1,25 @@
 <#@ template tier="0" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
 <Biml xmlns="http://schemas.varigence.com/biml.xsd">
     
     <#
-        /* Variables used in multiple Biml files */
+        /* Store variables used in multiple Biml files in RootNode */
         RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\1-BasicBiml\Project.params");
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
         /* Metadata from Database */
-        int ProjectID = 3;
+        int ProjectID = 4;
         var MetadataConnectionString = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
         DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vProject WHERE ProjectID = {0};", ProjectID)).Rows[0];
         DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", Project["SourceConnectionName"])).Rows[0];
         DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
-        
-        /* Variables used in this Biml file */
-        var AuditingConnectionString = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
-        var SourceConnection = SchemaManager.CreateConnectionNode(Source["ConnectionName"].ToString(), Source["ConnectionString"].ToString());
     #>
     
     <Connections>
-    
-    	<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml", AuditingConnectionString)#>
-	    
-        <OleDbConnection Name="<#=Source["ConnectionName"]#>" CreateInProject="<#=Source["SSISCreateInProject"]#>" ConnectionString="<#=Source["ConnectionString"]#>">
-			<Annotations>
-			    <Annotation Tag="ConnectionType">Source</Annotation>
-			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=Source["ConnectionName"]#>ConnectionString</Annotation>
-			</Annotations>
-		    <Expressions>
-		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=Source["ConnectionName"]#>ConnectionString]</Expression>
-		    </Expressions>
-		</OleDbConnection>
-		
-        <OleDbConnection Name="<#=Destination["ConnectionName"]#>" CreateInProject="<#=Destination["SSISCreateInProject"]#>" ConnectionString="<#=Destination["ConnectionString"]#>">
-			<Annotations>
-			    <Annotation Tag="ConnectionType">Destination</Annotation>
-				<Annotation Tag="Database"><#=Destination["DatabaseName"]#></Annotation>
-				<Annotation Tag="Schema"><#=Project["DestinationSchemaName"]#></Annotation>
-			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=Destination["ConnectionName"]#>ConnectionString</Annotation>
-			</Annotations>
-		    <Expressions>
-		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=Destination["ConnectionName"]#>ConnectionString]</Expression>
-		    </Expressions>
-		</OleDbConnection>
-	        
+    	<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml")#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Source["ConnectionName"], "Source", Source["ServerName"], Source["DatabaseName"], true)#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Destination["ConnectionName"], "Destination", Destination["ServerName"], Destination["DatabaseName"], true)#>
 	</Connections>
 	    
 	<Databases>
@@ -55,14 +31,17 @@
 	</Schemas>
 	    
     <Tables>
+        <# var SourceConnection = SchemaManager.CreateConnectionNode(Source["ConnectionName"].ToString(), Source["ConnectionString"].ToString()); #>
         <# var TablesToInclude = ExternalDataAccess.GetDataTable(SourceConnection, "SELECT name AS TableName FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["TableName"].ToString()).ToList(); #>
-        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity, true, 0).TableNodes) { #>
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
             <Table Name="<#=table.Schema#>_<#=table.Name#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
                 <Columns>
                     <#=table.Columns.GetBiml()#>
                 </Columns>
                 <Annotations>
-                    <Annotation Tag="SourceConnection"><#=SourceConnection#></Annotation>
+                    <Annotation Tag="SourceConnectionName"><#=Source["ConnectionName"]#></Annotation>
+                    <Annotation Tag="SourceServerName"><#=Source["ServerName"]#></Annotation>
+                    <Annotation Tag="SourceDatabaseName"><#=Source["DatabaseName"]#></Annotation>
                     <Annotation Tag="SourceSchemaName"><#=table.Schema#></Annotation>
                     <Annotation Tag="SourceTableName"><#=table.Name#></Annotation>
                     <Annotation Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
@@ -72,6 +51,3 @@
     </Tables>
     
 </Biml>
-
-<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
-<#@ import namespace="System.Data" #>

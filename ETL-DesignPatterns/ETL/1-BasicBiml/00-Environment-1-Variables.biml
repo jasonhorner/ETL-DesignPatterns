@@ -1,50 +1,27 @@
 <#@ template tier="0" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
 <Biml xmlns="http://schemas.varigence.com/biml.xsd">
     
     <#
-        /* Variables used in multiple Biml files */
+        /* Store variables used in multiple Biml files in RootNode */
         RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\1-BasicBiml\Project.params");
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
         /* Metadatada from Variables */
         var SourceConnectionName = "WWI";
-        var SourceConnectionString = "Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var SourceServerName = "localhost";
+        var SourceDatabaseName = "WideWorldImporters";
         var DestinationConnectionName = "Staging";
-        var DestinationConnectionString = "Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        var DestinationServerName = "localhost";
         var DestinationDatabaseName = "Staging";
         var DestinationSchemaName = "WWISRC";
-        
-        /* Variables used in this Biml file */
-        var AuditingConnection = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
-        var SourceConnection = SchemaManager.CreateConnectionNode(SourceConnectionName, SourceConnectionString);
     #>
     
 	<Connections>
-	    
-		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml", AuditingConnection)#>
-		
-		<OleDbConnection Name="<#=SourceConnectionName#>" CreateInProject="true" ConnectionString="<#=SourceConnectionString#>">
-		    <Annotations>
-		        <Annotation Tag="ConnectionType">Source</Annotation>
-			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=SourceConnectionName#>ConnectionString</Annotation>
-		    </Annotations>
-		    <Expressions>
-		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=SourceConnectionName#>ConnectionString]</Expression>
-		    </Expressions>
-		</OleDbConnection>
-		
-		<OleDbConnection Name="<#=DestinationConnectionName#>" CreateInProject="true" ConnectionString="<#=DestinationConnectionString#>">
-			<Annotations>
-			    <Annotation Tag="ConnectionType">Destination</Annotation>
-				<Annotation Tag="Database"><#=DestinationDatabaseName#></Annotation>
-				<Annotation Tag="Schema"><#=DestinationSchemaName#></Annotation>
-			    <Annotation Tag="ProjectParameterName">ConnectionManager<#=DestinationConnectionName#>ConnectionString</Annotation>
-			</Annotations>
-		    <Expressions>
-		        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=DestinationConnectionName#>ConnectionString]</Expression>
-		    </Expressions>
-		</OleDbConnection>
-		    
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml")#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", SourceConnectionName, "Source", SourceServerName, SourceDatabaseName, true)#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", DestinationConnectionName, "Destination", DestinationServerName, DestinationDatabaseName, true)#>
 	</Connections>
 	    
 	<Databases>
@@ -56,14 +33,17 @@
 	</Schemas>
 	    
     <Tables>
+        <# var SourceConnection = SchemaManager.CreateConnectionNode(SourceConnectionName, String.Format("Data Source={0};Initial Catalog={1};Provider=SQLNCLI11.1;Integrated Security=SSPI;", SourceServerName, SourceDatabaseName)); #>
         <# var TablesToInclude = ExternalDataAccess.GetDataTable(SourceConnection, "SELECT name AS TableName FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["TableName"].ToString()).ToList();#>
-        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity, true, 0).TableNodes) { #>
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
             <Table Name="<#=table.Schema#>_<#=table.Name#>" SchemaName="<#=DestinationDatabaseName#>.<#=DestinationSchemaName#>">
                 <Columns>
                     <#=table.Columns.GetBiml()#>
                 </Columns>
                 <Annotations>
-                    <Annotation Tag="SourceConnection"><#=SourceConnection#></Annotation>
+                    <Annotation Tag="SourceConnectionName"><#=SourceConnectionName#></Annotation>
+                    <Annotation Tag="SourceServerName"><#=SourceServerName#></Annotation>
+                    <Annotation Tag="SourceDatabaseName"><#=SourceDatabaseName#></Annotation>
                     <Annotation Tag="SourceSchemaName"><#=table.Schema#></Annotation>
                     <Annotation Tag="SourceTableName"><#=table.Name#></Annotation>
                     <Annotation Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
@@ -73,6 +53,3 @@
     </Tables>
 	
 </Biml>
-
-<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
-<#@ import namespace="System.Data" #>

@@ -22,14 +22,14 @@
 				    <Container Name="Truncate and Load <#=table.Schema#> <#=table.Name#>" ConstraintMode="Linear">
 				        <Tasks>
 				            
-        					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+        					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection#>">
         						<DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#></DirectInput>
         					</ExecuteSQL>
         					
         					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
         						<Transformations>
         
-                                    <OleDbSource Name="Source <#=table.GetTag("SourceConnection")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnection")#>">
+                                    <OleDbSource Name="Source <#=table.GetTag("SourceConnectionName")#> <#=table.GetTag("SourceSchemaName")#> <#=table.GetTag("SourceTableName")#>" ConnectionName="<#=table.GetTag("SourceConnectionName")#>">
         								<DirectInput>SELECT <#=table.GetColumnList()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;</DirectInput>
         							</OleDbSource>
         							
@@ -37,7 +37,7 @@
         				            
         				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Insert")#>
         							
-        							<OleDbDestination Name="Destination <#=table.Connection.Name#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+        							<OleDbDestination Name="Destination <#=table.Connection#> <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection#>">
         								<ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
         							</OleDbDestination>
         						    

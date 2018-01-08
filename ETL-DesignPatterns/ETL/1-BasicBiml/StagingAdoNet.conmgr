@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="StagingAdoNet" DTS:DTSID="{3D129F28-C7F9-4517-B198-9DD2CA93B48E}" DTS:refId="StagingAdoNet" DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="Server=localhost;Database=Staging;Integrated Security=true;"></DTS:ConnectionManager>
+  </DTS:ObjectData>
+  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerStagingAdoNetConnectionString]</DTS:PropertyExpression>
+</DTS:ConnectionManager>
