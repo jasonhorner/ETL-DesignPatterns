@@ -67,6 +67,9 @@
     <Folder Include="Meta\" />
     <Folder Include="Meta\Tables\" />
     <Folder Include="Meta\Views\" />
+    <Folder Include="ETL\" />
+    <Folder Include="ETL\Tables\" />
+    <Folder Include="ETL\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Auditing\Tables\PackageError.sql" />
@@ -88,6 +91,11 @@
     <Build Include="Meta\Views\vConnection.sql" />
     <Build Include="Security\Meta.sql" />
     <Build Include="Auditing\Tables\FileMonitorHistory.sql" />
+    <Build Include="ETL\Tables\CDCState.sql" />
+    <Build Include="ETL\Tables\ChangeTrackingLatestVersion.sql" />
+    <Build Include="ETL\Stored Procedures\GetChangeTrackingLatestVersion.sql" />
+    <Build Include="ETL\Stored Procedures\SetChangeTrackingLatestVersion.sql" />
+    <Build Include="Security\ETL.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Admin-LOCAL.publish.xml" />

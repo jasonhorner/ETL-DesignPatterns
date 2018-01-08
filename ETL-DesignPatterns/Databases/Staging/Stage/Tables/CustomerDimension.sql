@@ -1,4 +1,5 @@
 ﻿CREATE TABLE [Stage].[CustomerDimension] (
+    [CustomerSk]            INT           NOT NULL,
     [CustomerId]            INT           NULL,
     [FirstName]             VARCHAR (50)  NULL,
     [LastName]              VARCHAR (100) NULL,

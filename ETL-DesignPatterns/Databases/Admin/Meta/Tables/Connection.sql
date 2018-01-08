@@ -4,6 +4,7 @@
     [ConnectionDescription]    VARCHAR (1000)                                     NULL,
     [ConnectionManagerTypeID]  SMALLINT                                           NOT NULL,
     [ConnectionString]         VARCHAR (200)                                      NOT NULL,
+    [ServerName]               VARCHAR (50)                                       NULL,
     [DatabaseName]             VARCHAR (50)                                       NULL,
     [SSISCreateInProject]      BIT                                                NULL,
     [SSISParameterize]         BIT                                                NULL,
@@ -17,4 +18,6 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[Meta].[Connection_History], DATA_CONSISTENCY_CHECK=ON));
+
+
 

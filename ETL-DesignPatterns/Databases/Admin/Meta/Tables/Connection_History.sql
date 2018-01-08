@@ -4,6 +4,7 @@
     [ConnectionDescription]    VARCHAR (1000) NULL,
     [ConnectionManagerTypeID]  SMALLINT       NOT NULL,
     [ConnectionString]         VARCHAR (200)  NOT NULL,
+    [ServerName]               VARCHAR (50)   NULL,
     [DatabaseName]             VARCHAR (50)   NULL,
     [SSISCreateInProject]      BIT            NULL,
     [SSISParameterize]         BIT            NULL,
@@ -12,6 +13,8 @@
     [ValidFrom]                DATETIME2 (7)  NOT NULL,
     [ValidTo]                  DATETIME2 (7)  NOT NULL
 );
+
+
 
 
 GO

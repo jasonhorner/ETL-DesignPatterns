@@ -8,6 +8,7 @@ AS
        c.ConnectionName
        ,cmt.ConnectionManagerType
        ,c.ConnectionString
+       ,c.ServerName
        ,c.DatabaseName
        ,IIF(c.SSISCreateInProject = 1, 'true', 'false') AS SSISCreateInProject
        ,IIF(c.SSISParameterize = 1, 'true', 'false') AS SSISParameterize

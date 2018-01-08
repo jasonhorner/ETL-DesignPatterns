@@ -10,7 +10,7 @@
     [PackageStartTime]       DATETIME2 (7)  NOT NULL,
     [PackageStopTime]        DATETIME2 (7)  NULL,
     [PackageDurationSeconds] AS             (datediff(second,[PackageStartTime],[PackageStopTime])),
-    [PackageDurationMinutes] AS             (datediff(minute,[PackageStartTime],[PackageStopTime])),
+    [PackageDurationMinutes] AS             (datediff(second,[PackageStartTime],[PackageStopTime])/(60)),
     [ExecutionStatus]        VARCHAR (10)   NOT NULL,
     [SelectRowCount]         INT            NULL,
     [InsertRowCount]         INT            NULL,
@@ -19,6 +19,8 @@
     [IgnoreRowCount]         INT            NULL,
     [ErrorRowCount]          INT            NULL
 );
+
+
 
 
 

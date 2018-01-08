@@ -87,31 +87,8 @@
     <Folder Include="AWSRC\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="ETL\Tables\FlatFileErrors.sql" />
-    <Build Include="Security\ETL.sql" />
-    <Build Include="ETL\Tables\CDCState.sql" />
-    <Build Include="ETL\Tables\ChangeTrackingLatestVersion.sql" />
-    <Build Include="AWLTSRC\Tables\Customer_UPD.sql" />
-    <Build Include="AWLTSRC\Tables\Customer_DEL.sql" />
-    <Build Include="AWLTSRC\Tables\Customer_INS.sql" />
-    <Build Include="ETL\Stored Procedures\GetChangeTrackingLatestVersion.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerMerge.sql" />
     <Build Include="Security\AWLTSRC.sql" />
     <Build Include="Security\AWDWSRC.sql" />
-    <Build Include="AWLTSRC\Tables\Customer_STG.sql" />
-    <Build Include="AWLTSRC\Tables\Customer.sql" />
-    <Build Include="AWDWSRC\Tables\dbo_DimCustomer.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerUpdate.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerDelete.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerInsert.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_HASH.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_HASH.sql" />
-    <Build Include="AWDWSRC\Tables\dbo_DimCustomer_STG.sql" />
-    <Build Include="AWDWSRC\Stored Procedures\CustomerPreLoad_CDC.sql" />
-    <Build Include="AWDWSRC\Stored Procedures\CustomerPostLoad_CDC.sql" />
-    <Build Include="AWDWSRC\Stored Procedures\CustomerMerge.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerPostLoad_CT.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\CustomerPreLoad_CT.sql" />
     <Build Include="Security\WWISRC.sql" />
     <Build Include="WWISRC\Tables\Application_Cities.sql" />
     <Build Include="WWISRC\Tables\Application_Countries.sql" />
@@ -147,19 +124,7 @@
     <Build Include="Stage\Tables\ProductDimension.sql" />
     <Build Include="Stage\Tables\CustomerDimension.sql" />
     <Build Include="Security\Stage.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_SalesOrderHeader.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_SalesOrderDetail.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_ProductModelProductDescription.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_ProductModel.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_ProductDescription.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_ProductCategory.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Product.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_CustomerAddress.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Customer.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Address.sql" />
-    <Build Include="AWLTSRC\Tables\dbo_ErrorLog.sql" />
     <Build Include="AWLTSRC\Tables\dbo_Customer.sql" />
-    <Build Include="AWLTSRC\Tables\dbo_BuildVersion.sql" />
     <Build Include="AWSRC\Tables\Person_PersonPhone.sql" />
     <Build Include="AWSRC\Tables\Person_Person_Temporal.sql" />
     <Build Include="AWSRC\Tables\Person_Person_json.sql" />
@@ -255,12 +220,14 @@
     <Build Include="Stage\Tables\ErrorScreenFact.sql" />
     <Build Include="Stage\Tables\ErrorScreenDimension.sql" />
     <Build Include="Stage\Tables\ErrorScreenBatchDimension.sql" />
-    <Build Include="ETL\Stored Procedures\SetChangeTrackingLatestVersion.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Customer_STG.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Customer_UPD.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Customer_INS.sql" />
-    <Build Include="AWLTSRC\Tables\SalesLT_Customer_DEL.sql" />
-    <Build Include="AWLTSRC\Stored Procedures\SalesLT_Customer_Delete.sql" />
+    <Build Include="AWLTSRC\Tables\dbo_Customer_UPD.sql" />
+    <Build Include="AWLTSRC\Tables\dbo_Customer_STG.sql" />
+    <Build Include="AWLTSRC\Tables\dbo_Customer_INS.sql" />
+    <Build Include="AWLTSRC\Tables\dbo_Customer_DEL.sql" />
+    <Build Include="AWLTSRC\Stored Procedures\dbo_Customer_Update.sql" />
+    <Build Include="AWLTSRC\Stored Procedures\dbo_Customer_Merge.sql" />
+    <Build Include="AWLTSRC\Stored Procedures\dbo_Customer_Insert.sql" />
+    <Build Include="AWLTSRC\Stored Procedures\dbo_Customer_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\Staging-LOCAL.publish.xml" />

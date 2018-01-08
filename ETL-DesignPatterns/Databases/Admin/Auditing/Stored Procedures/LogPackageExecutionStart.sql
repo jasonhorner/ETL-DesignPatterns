@@ -8,11 +8,11 @@ CREATE   PROCEDURE Auditing.LogPackageExecutionStart (
    ,@ParentPackageID NVARCHAR(255)
    ,@ParentPackageName NVARCHAR(255)
    ,@PackageStartTime DATETIME2
+   ,@PackageExecutionID INT OUTPUT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
-    DECLARE @PackageExecutionID INT;
     INSERT INTO Auditing.PackageExecution (
        ServerExecutionID
        ,BatchID
@@ -33,7 +33,7 @@ BEGIN
        ,@ParentPackageID
        ,@ParentPackageName
        ,@PackageStartTime
-       ,'Running';
+       ,'Running'
+	;
     SELECT @PackageExecutionID = SCOPE_IDENTITY();
-    SELECT @PackageExecutionID AS PackageExecutionID;
 END;
