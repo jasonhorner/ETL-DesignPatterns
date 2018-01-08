@@ -22,6 +22,7 @@ INSERT INTO Meta.Connection (
     ConnectionName
    ,ConnectionManagerTypeID
    ,ConnectionString
+   ,ServerName
    ,DatabaseName
    ,SSISCreateInProject
    ,SSISParameterize
@@ -29,13 +30,15 @@ INSERT INTO Meta.Connection (
    ,SSISParameterIsSensitive
 )
 VALUES
-    ('DW', 4, 'Data Source=.;Initial Catalog=DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'DW', 1, 1, 1, 0)
-   ,('Staging', 4, 'Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'Staging', 1, 1, 1, 0)
-   ,('AW', 4, 'Data Source=.;Initial Catalog=AdventureWorks;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'AdventureWorks', 1, 1, 1, 0)
-   ,('AWDW', 4, 'Data Source=.;Initial Catalog=AdventureWorksDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'AdventureWorksDW', 1, 1, 1, 0)
-   ,('AWLT', 4, 'Data Source=.;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'AdventureWorksLT', 1, 1, 1, 0)
-   ,('WWI', 4, 'Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'WideWorldImporters', 1, 1, 1, 0)
-   ,('WWIDW', 4, 'Data Source=.;Initial Catalog=WideWorldImportersDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'WideWorldImportersDW', 1, 1, 1, 0)
+    ('Admin', 4, 'Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'Admin', 1, 1, 1, 0)
+   ,('Auditing', 4, 'Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'Admin', 1, 1, 1, 0)
+   ,('DW', 4, 'Data Source=.;Initial Catalog=DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'DW', 1, 1, 1, 0)
+   ,('Staging', 4, 'Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'Staging', 1, 1, 1, 0)
+   ,('AW', 4, 'Data Source=.;Initial Catalog=AdventureWorks;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'AdventureWorks', 1, 1, 1, 0)
+   ,('AWDW', 4, 'Data Source=.;Initial Catalog=AdventureWorksDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'AdventureWorksDW', 1, 1, 1, 0)
+   ,('AWLT', 4, 'Data Source=.;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'AdventureWorksLT', 1, 1, 1, 0)
+   ,('WWI', 4, 'Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'WideWorldImporters', 1, 1, 1, 0)
+   ,('WWIDW', 4, 'Data Source=.;Initial Catalog=WideWorldImportersDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;', 'localhost', 'WideWorldImportersDW', 1, 1, 1, 0)
 ;
 GO
 
@@ -64,10 +67,10 @@ INSERT INTO Meta.Project (
    ,DestinationSchemaName
 )
 VALUES
-     ('AdventureWorks Staging'      , 1, 3, 2, 'AWSRC')
-    ,('AdventureWorksDW Staging'    , 1, 4, 2, 'AWDWSRC')
-    ,('AdventureWorksLT Staging'    , 1, 5, 2, 'AWLTSRC')
-    ,('WideWorldImporters Staging'  , 1, 6, 2, 'WWISRC')
-    ,('WideWorldImportersDW Staging', 1, 7, 2, 'WWIDWSRC')
+     ('AdventureWorks Staging'      , 1, 5, 4, 'AWSRC')
+    ,('AdventureWorksDW Staging'    , 1, 6, 4, 'AWDWSRC')
+    ,('AdventureWorksLT Staging'    , 1, 7, 4, 'AWLTSRC')
+    ,('WideWorldImporters Staging'  , 1, 8, 4, 'WWISRC')
+    ,('WideWorldImportersDW Staging', 1, 9, 4, 'WWIDWSRC')
 ;
 GO

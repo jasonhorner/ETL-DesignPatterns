@@ -93,6 +93,7 @@ BEGIN
        ,ConnectionDescription VARCHAR(1000) NULL
        ,ConnectionManagerTypeID SMALLINT NOT NULL
        ,ConnectionString VARCHAR(200) NOT NULL /* (FlatFile ? FilePath : ConnectionString) */
+       ,ServerName VARCHAR(50) NULL
        ,DatabaseName VARCHAR(50) NULL
        ,SSISCreateInProject BIT NULL /* (0 = ConnectionManager in SSIS Package / 1 = ConnectionManager in SSIS Project) */
        ,SSISParameterize BIT NULL
@@ -163,6 +164,7 @@ AS
        c.ConnectionName
        ,cmt.ConnectionManagerType
        ,c.ConnectionString
+       ,c.ServerName
        ,c.DatabaseName
        ,IIF(c.SSISCreateInProject = 1, 'true', 'false') AS SSISCreateInProject
        ,IIF(c.SSISParameterize = 1, 'true', 'false') AS SSISParameterize
