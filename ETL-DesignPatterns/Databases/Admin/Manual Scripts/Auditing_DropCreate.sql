@@ -75,7 +75,7 @@ BEGIN
 	   ,PackageStartTime DATETIME2(7) NOT NULL
 	   ,PackageStopTime DATETIME2(7) NULL
 	   ,PackageDurationSeconds AS (DATEDIFF(SECOND, PackageStartTime, PackageStopTime))
-	   ,PackageDurationMinutes AS (DATEDIFF(MINUTE, PackageStartTime, PackageStopTime))
+	   ,PackageDurationMinutes AS (DATEDIFF(SECOND, PackageStartTime, PackageStopTime))/60
 	   ,ExecutionStatus VARCHAR(10) NOT NULL
 	   ,SelectRowCount INT NULL
 	   ,InsertRowCount INT NULL
@@ -127,7 +127,7 @@ BEGIN
 END;
 GO
 
-CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionError (@PackageExecutionID INT)
+CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionError(@PackageExecutionID INT)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -149,11 +149,11 @@ CREATE OR ALTER PROCEDURE Auditing.LogPackageExecutionStart (
    ,@ParentPackageID NVARCHAR(255)
    ,@ParentPackageName NVARCHAR(255)
    ,@PackageStartTime DATETIME2
+   ,@PackageExecutionID INT OUTPUT
 )
 AS
 BEGIN
     SET NOCOUNT ON;
-    DECLARE @PackageExecutionID INT;
     INSERT INTO Auditing.PackageExecution (
        ServerExecutionID
        ,BatchID
@@ -174,9 +174,9 @@ BEGIN
        ,@ParentPackageID
        ,@ParentPackageName
        ,@PackageStartTime
-       ,'Running';
+       ,'Running'
+	;
     SELECT @PackageExecutionID = SCOPE_IDENTITY();
-    SELECT @PackageExecutionID AS PackageExecutionID;
 END;
 GO
 

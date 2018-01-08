@@ -1,0 +1,37 @@
+<#@ property name="ConnectionName" type="String" #>
+<#@ property name="ConnectionType" type="String" #>
+<#@ property name="ServerName" type="String" #>
+<#@ property name="DatabaseName" type="String" #>
+<#@ property name="CreateInProject" type="Boolean" #>
+<OleDbConnection Name="<#=ConnectionName#>" ConnectionString="Data Source=<#=ServerName#>;Initial Catalog=<#=DatabaseName#>;Provider=SQLNCLI11.1;Integrated Security=SSPI;" CreateInProject="<#=CreateInProject#>">
+    <Annotations>
+        <Annotation Tag="CoreConnectionName"><#=ConnectionName#></Annotation>
+        <Annotation Tag="ConnectionType"><#=ConnectionType#></Annotation>
+        <Annotation Tag="ServerName"><#=ServerName#></Annotation>
+        <Annotation Tag="DatabaseName"><#=DatabaseName#></Annotation>
+        <# if (CreateInProject) { #>
+            <Annotation Tag="ProjectParameterName">ConnectionManager<#=ConnectionName#>OleDbConnectionString</Annotation>
+        <# } #>
+    </Annotations>
+    <# if (CreateInProject) { #>
+        <Expressions>
+            <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=ConnectionName#>OleDbConnectionString]</Expression>
+        </Expressions>
+    <# } #>
+</OleDbConnection>
+<AdoNetConnection Name="<#=ConnectionName#>AdoNet" Provider="System.Data.SqlClient" ConnectionString="Server=<#=ServerName#>;Database=<#=DatabaseName#>;Integrated Security=true;" CreateInProject="<#=CreateInProject#>">
+    <Annotations>
+        <Annotation Tag="CoreConnectionName"><#=ConnectionName#></Annotation>
+        <Annotation Tag="ConnectionType"><#=ConnectionType#></Annotation>
+        <Annotation Tag="ServerName"><#=ServerName#></Annotation>
+        <Annotation Tag="DatabaseName"><#=DatabaseName#></Annotation>
+        <# if (CreateInProject) { #>
+            <Annotation Tag="ProjectParameterName">ConnectionManager<#=ConnectionName#>AdoNetConnectionString</Annotation>
+        <# } #>
+    </Annotations>
+    <# if (CreateInProject) { #>
+        <Expressions>
+            <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=ConnectionName#>AdoNetConnectionString]</Expression>
+        </Expressions>
+    <# } #>
+</AdoNetConnection>

@@ -1,10 +1,18 @@
-<#@ property name="ConnectionString" type="String" required="True" #>
-<OleDbConnection Name="Auditing" CreateInProject="true" ConnectionString="<#=ConnectionString#>">
+<OleDbConnection Name="Auditing" ConnectionString="Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;" CreateInProject="true">
 	<Annotations>
 	    <Annotation Tag="ConnectionType">Auditing</Annotation>
-	    <Annotation Tag="ProjectParameterName">ConnectionManagerAuditingConnectionString</Annotation>
+	    <Annotation Tag="ProjectParameterName">ConnectionManagerAuditingOleDbConnectionString</Annotation>
 	</Annotations>
     <Expressions>
-        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerAuditingConnectionString]</Expression>
+        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerAuditingOleDbConnectionString]</Expression>
     </Expressions>
 </OleDbConnection>
+<AdoNetConnection Name="AuditingAdoNet" Provider="System.Data.SqlClient" ConnectionString="Server=.;Database=Admin;Integrated Security=true;" CreateInProject="true">
+	<Annotations>
+	    <Annotation Tag="ConnectionType">Auditing</Annotation>
+	    <Annotation Tag="ProjectParameterName">ConnectionManagerAuditingAdoNetConnectionString</Annotation>
+	</Annotations>
+    <Expressions>
+        <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManagerAuditingAdoNetConnectionString]</Expression>
+    </Expressions>
+</AdoNetConnection>

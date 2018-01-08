@@ -4,7 +4,7 @@
     String TableTypeName;
     try {
         TableTypeName = TableType;
-        List<String> ValidTableTypes = new List<String>{"Core","Insert","Update","Delete"};
+        List<String> ValidTableTypes = new List<String>{"Core","Staging","Insert","Update","Delete"};
         if (!ValidTableTypes.Contains(TableTypeName)) {
             return "";
         }
@@ -13,7 +13,7 @@
     }
 #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
 <Column Name="ChangeHashKey" DataType="StringFixedLength" Length="40" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
@@ -27,7 +27,7 @@
 </Column>
 <# } #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
 <Column Name="IsDeleted" DataType="Boolean" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
@@ -35,7 +35,7 @@
 </Column>
 <# } #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert") { #>
 <Column Name="InsertDate" DataType="DateTime2" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
@@ -43,7 +43,7 @@
 </Column>
 <# } #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
 <Column Name="UpdateDate" DataType="DateTime2" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
@@ -51,7 +51,7 @@
 </Column>
 <# } #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Insert") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert") { #>
 <Column Name="InsertPackageExecutionID" DataType="Int32" IsNullable="false">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
@@ -59,7 +59,7 @@
 </Column>
 <# } #>
 
-<# if (TableTypeName == "Core" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
 <Column Name="UpdatePackageExecutionID" DataType="Int32" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>

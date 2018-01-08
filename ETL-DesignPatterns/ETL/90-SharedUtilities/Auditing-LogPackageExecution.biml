@@ -1,106 +1,161 @@
-<#@ property name="LoggingType" type="String" required="True" #>
-<#@ property name="Connection" type="AstConnectionBaseNode" required="False" #>
+<#@ property name="LoggingType" type="String" #>
+<#@ property name="UseOleDb" type="Boolean" required="False" #>
 <#
-    String ConnectionName;
+    Boolean OleDb;
     try {
-        ConnectionName = Connection.Name;
+        OleDb = UseOleDb;
     } catch (Exception e) {
-        AstConnectionBaseNode AuditingConnection = RootNode.Connections.Where(c => c.GetTag("ConnectionType") == "Auditing").FirstOrDefault();
-        if (AuditingConnection != null) {
-            ConnectionName = AuditingConnection.Name;
-        } else {
-            ConnectionName = "";
-            ValidationReporter.Report(Severity.Error, "No Auditing connection has been specified.");
-        }
+        OleDb = false;
     }
     
 #>
-<# if (LoggingType == "Start") { #>
-<ExecuteSQL Name="Log Package Execution Start" ConnectionName="<#=ConnectionName#>" ResultSet="SingleRow" >
-    <DirectInput>EXECUTE Auditing.LogPackageExecutionStart
-        @ServerExecutionID = ?
-        ,@BatchID = ?
-        ,@JobID = ?
-        ,@PackageID = ?
-        ,@PackageName = ?
-        ,@ParentPackageID = ?
-        ,@ParentPackageName = ?
-        ,@PackageStartTime = ?;
-    </DirectInput>
-    <Parameters>
-        <Parameter Name="0" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
-        <Parameter Name="1" VariableName="BatchID" DataType="Int32" Length="-1"/>
-        <Parameter Name="2" VariableName="JobID" DataType="Int32" Length="-1"/>
-        <Parameter Name="3" VariableName="System.PackageID" DataType="String" Length="-1"/>
-        <Parameter Name="4" VariableName="System.PackageName" DataType="String" Length="-1"/>
-        <Parameter Name="5" VariableName="ParentPackageID" DataType="String" Length="-1"/>
-        <Parameter Name="6" VariableName="ParentPackageName" DataType="String" Length="-1"/>
-        <Parameter Name="7" VariableName="System.StartTime" DataType="Date" Length="-1"/>
-    </Parameters>
-    <Results>
-        <Result Name="PackageExecutionID" VariableName="User.PackageExecutionID" />
-    </Results>
-</ExecuteSQL>
-<# } else if (LoggingType == "Stop") { #>
-<ExecuteSQL Name="Log Package Execution Stop" ConnectionName="<#=ConnectionName#>">
-    <DirectInput>EXECUTE Auditing.LogPackageExecutionStop
-        @PackageExecutionID = ?
-        ,@SelectRowCount = ?
-        ,@InsertRowCount = ?
-        ,@UpdateRowCount = ?
-        ,@DeleteRowCount = ?
-        ,@IgnoreRowCount = ?
-        ,@ErrorRowCount = ?;
-    </DirectInput>
-    <Parameters>
-        <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
-        <Parameter Name="1" VariableName="User.SelectRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="2" VariableName="User.InsertRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="3" VariableName="User.UpdateRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="4" VariableName="User.DeleteRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="5" VariableName="User.IgnoreRowCount" DataType="Int32" Length="-1" />
-        <Parameter Name="6" VariableName="User.ErrorRowCount" DataType="Int32" Length="-1" />
-    </Parameters>
-</ExecuteSQL>
-<# } else if (LoggingType == "Error") { #>
-<Events>
-    <Event Name="OnError" EventType="OnError">
-        <Tasks>
-            <Container Name="Log Errors" ConstraintMode="Linear">
+<# if (OleDb) { #>
+    <# if (LoggingType == "Start") { #>
+        <ExecuteSQL Name="Log Package Execution Start" ConnectionName="Auditing">
+            <DirectInput>EXECUTE Auditing.LogPackageExecutionStart
+                @ServerExecutionID = ?
+                ,@BatchID = ?
+                ,@JobID = ?
+                ,@PackageID = ?
+                ,@PackageName = ?
+                ,@ParentPackageID = ?
+                ,@ParentPackageName = ?
+                ,@PackageStartTime = ?
+                ,@PackageExecutionID = ? OUTPUT;
+            </DirectInput>
+            <Parameters>
+                <Parameter Name="0" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1" />
+                <Parameter Name="1" VariableName="BatchID" DataType="Int32" Length="-1" />
+                <Parameter Name="2" VariableName="JobID" DataType="Int32" Length="-1" />
+                <Parameter Name="3" VariableName="System.PackageID" DataType="String" Length="-1" />
+                <Parameter Name="4" VariableName="System.PackageName" DataType="String" Length="-1" />
+                <Parameter Name="5" VariableName="ParentPackageID" DataType="String" Length="-1" />
+                <Parameter Name="6" VariableName="ParentPackageName" DataType="String" Length="-1" />
+                <Parameter Name="7" VariableName="System.StartTime" DataType="Date" Length="-1" />
+                <Parameter Name="8" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" Direction="Output" />
+            </Parameters>
+        </ExecuteSQL>
+    <# } else if (LoggingType == "Stop") { #>
+        <ExecuteSQL Name="Log Package Execution Stop" ConnectionName="Auditing">
+            <DirectInput>EXECUTE Auditing.LogPackageExecutionStop
+                @PackageExecutionID = ?
+                ,@SelectRowCount = ?
+                ,@InsertRowCount = ?
+                ,@UpdateRowCount = ?
+                ,@DeleteRowCount = ?
+                ,@IgnoreRowCount = ?
+                ,@ErrorRowCount = ?;
+            </DirectInput>
+            <Parameters>
+                <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+                <Parameter Name="1" VariableName="User.SelectRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="2" VariableName="User.InsertRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="3" VariableName="User.UpdateRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="4" VariableName="User.DeleteRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="5" VariableName="User.IgnoreRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="6" VariableName="User.ErrorRowCount" DataType="Int32" Length="-1" />
+            </Parameters>
+        </ExecuteSQL>
+    <# } else if (LoggingType == "Error") { #>
+        <Events>
+            <Event Name="OnError" EventType="OnError">
                 <Tasks>
-                    <ExecuteSQL Name="Log Package Error" ConnectionName="<#=ConnectionName#>">
-                        <DirectInput>EXECUTE Auditing.LogPackageError
-                            @PackageExecutionID = ?
-                            ,@ServerExecutionID = ?
-                            ,@BatchID = ?
-                            ,@JobID = ?
-                            ,@PackageID = ?
-                            ,@PackageName = ?
-                            ,@ErrorCode = ?
-                            ,@ErrorDescription = ?;
-                        </DirectInput>
-                        <Parameters>
-                            <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" />
-                            <Parameter Name="1" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
-                            <Parameter Name="2" VariableName="BatchID" DataType="Int32" Length="-1"/>
-                            <Parameter Name="3" VariableName="JobID" DataType="Int32" Length="-1"/>
-                            <Parameter Name="4" VariableName="System.PackageID" DataType="String" Length="-1"/>
-                            <Parameter Name="5" VariableName="System.PackageName" DataType="String" Length="-1"/>
-                            <Parameter Name="6" VariableName="System.ErrorCode" DataType="Int32" />
-                            <Parameter Name="7" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
-                        </Parameters>
-                    </ExecuteSQL>
-                    <ExecuteSQL Name="Log Package Execution Error" ConnectionName="<#=ConnectionName#>">
-                        <DirectInput>EXECUTE Auditing.LogPackageExecutionError
-                            @PackageExecutionID = ?;
-                        </DirectInput>
-                        <Parameters>
-                            <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
-                        </Parameters>
-                    </ExecuteSQL>
+                    <Container Name="Log Errors" ConstraintMode="Linear">
+                        <Tasks>
+                            <ExecuteSQL Name="Log Package Error" ConnectionName="Auditing">
+                                <DirectInput>EXECUTE Auditing.LogPackageError
+                                    @PackageExecutionID = ?
+                                    ,@ServerExecutionID = ?
+                                    ,@BatchID = ?
+                                    ,@JobID = ?
+                                    ,@PackageID = ?
+                                    ,@PackageName = ?
+                                    ,@ErrorCode = ?
+                                    ,@ErrorDescription = ?;
+                                </DirectInput>
+                                <Parameters>
+                                    <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" />
+                                    <Parameter Name="1" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="2" VariableName="BatchID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="3" VariableName="JobID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="4" VariableName="System.PackageID" DataType="String" Length="-1"/>
+                                    <Parameter Name="5" VariableName="System.PackageName" DataType="String" Length="-1"/>
+                                    <Parameter Name="6" VariableName="System.ErrorCode" DataType="Int32" />
+                                    <Parameter Name="7" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
+                                </Parameters>
+                            </ExecuteSQL>
+                            <ExecuteSQL Name="Log Package Execution Error" ConnectionName="Auditing">
+                                <DirectInput>EXECUTE Auditing.LogPackageExecutionError
+                                    @PackageExecutionID = ?;
+                                </DirectInput>
+                                <Parameters>
+                                    <Parameter Name="0" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+                                </Parameters>
+                            </ExecuteSQL>
+                        </Tasks>
+                    </Container>
                 </Tasks>
-            </Container>
-        </Tasks>
-    </Event>
-</Events>
+            </Event>
+        </Events>
+    <# } #>
+<# } else { #>
+    <# if (LoggingType == "Start") { #>
+        <ExecuteSQL Name="Log Package Execution Start" ConnectionName="AuditingAdoNet" IsStoredProcedure="true">
+            <DirectInput>Auditing.LogPackageExecutionStart</DirectInput>
+            <Parameters>
+                <Parameter Name="ServerExecutionID" VariableName="System.ServerExecutionID" DataType="Int32" />
+                <Parameter Name="BatchID" VariableName="BatchID" DataType="Int32" Length="-1" />
+                <Parameter Name="JobID" VariableName="JobID" DataType="Int32" Length="-1" />
+                <Parameter Name="PackageID" VariableName="System.PackageID" DataType="String" Length="-1" />
+                <Parameter Name="PackageName" VariableName="System.PackageName" DataType="String" Length="-1" />
+                <Parameter Name="ParentPackageID" VariableName="ParentPackageID" DataType="String" Length="-1" />
+                <Parameter Name="ParentPackageName" VariableName="ParentPackageName" DataType="String" Length="-1" />
+                <Parameter Name="PackageStartTime" VariableName="System.StartTime" DataType="Date" Length="-1" />
+                <Parameter Name="PackageExecutionID" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" Direction="Output" />
+            </Parameters>
+        </ExecuteSQL>
+    <# } else if (LoggingType == "Stop") { #>
+        <ExecuteSQL Name="Log Package Execution Stop" ConnectionName="AuditingAdoNet" IsStoredProcedure="true">
+            <DirectInput>Auditing.LogPackageExecutionStop</DirectInput>
+            <Parameters>
+                <Parameter Name="PackageExecutionID" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+                <Parameter Name="SelectRowCount" VariableName="User.SelectRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="InsertRowCount" VariableName="User.InsertRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="UpdateRowCount" VariableName="User.UpdateRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="DeleteRowCount" VariableName="User.DeleteRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="IgnoreRowCount" VariableName="User.IgnoreRowCount" DataType="Int32" Length="-1" />
+                <Parameter Name="ErrorRowCount" VariableName="User.ErrorRowCount" DataType="Int32" Length="-1" />
+            </Parameters>
+        </ExecuteSQL>
+    <# } else if (LoggingType == "Error") { #>
+        <Events>
+            <Event Name="OnError" EventType="OnError">
+                <Tasks>
+                    <Container Name="Log Errors" ConstraintMode="Linear">
+                        <Tasks>
+                            <ExecuteSQL Name="Log Package Error" ConnectionName="AuditingAdoNet" IsStoredProcedure="true">
+                                <DirectInput>Auditing.LogPackageError</DirectInput>
+                                <Parameters>
+                                    <Parameter Name="PackageExecutionID" VariableName="User.PackageExecutionID" DataType="Int32" />
+                                    <Parameter Name="ServerExecutionID" VariableName="System.ServerExecutionID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="BatchID" VariableName="BatchID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="JobID" VariableName="JobID" DataType="Int32" Length="-1"/>
+                                    <Parameter Name="PackageID" VariableName="System.PackageID" DataType="String" Length="-1"/>
+                                    <Parameter Name="PackageName" VariableName="System.PackageName" DataType="String" Length="-1"/>
+                                    <Parameter Name="ErrorCode" VariableName="System.ErrorCode" DataType="Int32" />
+                                    <Parameter Name="ErrorDescription" VariableName="System.ErrorDescription" DataType="String" Length="-1" />
+                                </Parameters>
+                            </ExecuteSQL>
+                            <ExecuteSQL Name="Log Package Execution Error" ConnectionName="AuditingAdoNet" IsStoredProcedure="true">
+                                <DirectInput>Auditing.LogPackageExecutionError</DirectInput>
+                                <Parameters>
+                                    <Parameter Name="PackageExecutionID" VariableName="User.PackageExecutionID" DataType="Int32" Length="-1" />
+                                </Parameters>
+                            </ExecuteSQL>
+                        </Tasks>
+                    </Container>
+                </Tasks>
+            </Event>
+        </Events>
+    <# } #>
 <# } #>
