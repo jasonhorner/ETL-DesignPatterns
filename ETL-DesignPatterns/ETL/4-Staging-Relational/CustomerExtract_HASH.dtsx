@@ -7,13 +7,13 @@
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
   DTS:DTSID="{81B04AD9-EB5F-4C79-89D0-20ABEE56ACB7}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3006.16"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1033"
   DTS:ObjectName="CustomerExtract_HASH"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="62"
-  DTS:VersionGUID="{A4E8E568-13E1-4CFC-8F5F-90220F7680E0}">
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{BF304744-ADF3-4674-9E16-05E458AFDF23}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -141,7 +141,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.62</DTS:VariableValue>
+        DTS:DataType="8">1.0.63</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -212,7 +212,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+          SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
           SQLTask:SqlStatementSource="[AWLTSRC].[CustomerPreLoad_HASH]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -229,8 +229,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-          SQLTask:IsStoredProc="True"
+          SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
           SQLTask:SqlStatementSource="[AWLTSRC].[CustomerPreLoad_HASH]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="@initStagingTable"
@@ -421,7 +420,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[AWLTSRC].[Customer_INS]</property>
+                  name="OpenRowset">[AWLTSRC].[dbo_Customer_INS]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -464,8 +463,8 @@
               <connections>
                 <connection
                   refId="Package\Process Changes\AWLT Customer Insert Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -477,19 +476,6 @@
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Firstname"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
                     <inputColumn
                       refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                       cachedDataType="wstr"
@@ -504,33 +490,9 @@
                       cachedName="EmailAddress"
                       externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CDCOperation]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="CDCOperation"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
-                      lineageId="Package\Process Changes\Add Insert Column.Outputs[Derived Column Output].Columns[CDCOperation]" />
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="CurrentHashKey"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      dataType="i4"
-                      name="CustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      dataType="wstr"
-                      length="50"
-                      name="Firstname" />
                     <externalMetadataColumn
                       refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       dataType="wstr"
@@ -542,16 +504,38 @@
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                       codePage="1252"
                       dataType="str"
                       length="1"
-                      name="CDCOperation" />
+                      name="ChangeType" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      dataType="wstr"
-                      length="40"
-                      name="HashKey" />
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp2"
+                      name="InsertDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertPackageExecutionID]"
+                      dataType="i4"
+                      name="InsertPackageExecutionID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -786,7 +770,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[AWLTSRC].[Customer_UPD]</property>
+                  name="OpenRowset">[AWLTSRC].[dbo_Customer_UPD]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -829,8 +813,8 @@
               <connections>
                 <connection
                   refId="Package\Process Changes\AWLT Customer Update Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -842,19 +826,6 @@
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[Firstname]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Firstname"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Firstname]" />
                     <inputColumn
                       refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                       cachedDataType="wstr"
@@ -869,25 +840,9 @@
                       cachedName="EmailAddress"
                       externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
-                    <inputColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].Columns[CurrentHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="CurrentHashKey"
-                      externalMetadataColumnId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      dataType="i4"
-                      name="CustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                      dataType="wstr"
-                      length="50"
-                      name="Firstname" />
                     <externalMetadataColumn
                       refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                       dataType="wstr"
@@ -899,16 +854,38 @@
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="ChangeHashKey" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                       codePage="1252"
                       dataType="str"
                       length="1"
-                      name="CDCOperation" />
+                      name="ChangeType" />
                     <externalMetadataColumn
-                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                      dataType="wstr"
-                      length="40"
-                      name="HashKey" />
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      dataType="dbTimeStamp2"
+                      name="UpdateDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Process Changes\AWLT Customer Update Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdatePackageExecutionID]"
+                      dataType="i4"
+                      name="UpdatePackageExecutionID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -962,16 +939,16 @@
                       cachedName="CurrentHashKey"
                       lineageId="Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]" />
                     <inputColumn
-                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingHashkey]"
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingHashKey]"
                       cachedDataType="wstr"
                       cachedLength="40"
-                      cachedName="ExistingHashkey"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]" />
+                      cachedName="ExistingHashKey"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashKey]" />
                     <inputColumn
-                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingCustomerId]"
+                      refId="Package\Process Changes\Check for changes.Inputs[Conditional Split Input].Columns[ExistingCustomerID]"
                       cachedDataType="i4"
-                      cachedName="ExistingCustomerId"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]" />
+                      cachedName="ExistingCustomerID"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerID]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -991,7 +968,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]} &amp;&amp; #{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]}</property>
+                      name="Expression">#{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerId]} == #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerID]} &amp;&amp; #{Package\Process Changes\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CurrentHashKey]} != #{Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashKey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1114,14 +1091,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CustomerId, Hashkey FROM [AWLTSRC].[Customer]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [AWLTSRC].[dbo_Customer]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT CustomerId, Hashkey FROM [AWLTSRC].[Customer]) [refTable]
-where [refTable].[CustomerId] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [AWLTSRC].[dbo_Customer]) [refTable]
+where [refTable].[CustomerID] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -1152,7 +1129,7 @@ where [refTable].[CustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Hashkey" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EmailAddress" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ChangeHashKey" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ChangeType" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="IsDeleted" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InsertDate" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="UpdateDate" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="InsertPackageExecutionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UpdatePackageExecutionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1170,8 +1147,8 @@ where [refTable].[CustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Process Changes\HashKeyLookup.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1189,7 +1166,7 @@ where [refTable].[CustomerId] = ?</property>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">CustomerId</property>
+                          name="JoinToReferenceColumn">CustomerID</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -1209,32 +1186,32 @@ where [refTable].[CustomerId] = ?</property>
                   synchronousInputId="Package\Process Changes\HashKeyLookup.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]"
-                      dataType="wstr"
+                      refId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerID]"
+                      dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      length="40"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashkey]"
-                      name="ExistingHashkey"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerID]"
+                      name="ExistingCustomerID"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">Hashkey</property>
+                          name="CopyFromReferenceColumn">CustomerID</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]"
-                      dataType="i4"
+                      refId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashKey]"
+                      dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingCustomerId]"
-                      name="ExistingCustomerId"
+                      length="40"
+                      lineageId="Package\Process Changes\HashKeyLookup.Outputs[Lookup Match Output].Columns[ExistingHashKey]"
+                      name="ExistingHashKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">CustomerId</property>
+                          name="CopyFromReferenceColumn">ChangeHashKey</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1447,15 +1424,15 @@ where [refTable].[CustomerId] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="180,42"
+          Size="180,42.2857142857143"
           Id="Package\PostLoad"
           TopLeft="5.50000000000003,209.5" />
         <NodeLayout
-          Size="180,42"
+          Size="180,42.2857142857143"
           Id="Package\Preload"
           TopLeft="5.50000000000001,5.5" />
         <NodeLayout
-          Size="180,42"
+          Size="180,42.2857142857143"
           Id="Package\Process Changes"
           TopLeft="5.50000000000003,107.5" />
         <EdgeLayout
@@ -1511,82 +1488,82 @@ where [refTable].[CustomerId] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="165.5,42"
-          Id="Package\Process Changes\Check for changes"
-          TopLeft="491.25,209.5" />
-        <NodeLayout
-          Size="248,42"
-          Id="Package\Process Changes\AWLT Customer Update Destination"
-          TopLeft="5.5,515.5" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Process Changes\Update Row Count"
-          TopLeft="31.25,311.5" />
-        <NodeLayout
-          Size="147,42"
-          Id="Package\Process Changes\Add Operation"
-          TopLeft="41.25,413.5" />
-        <NodeLayout
-          Size="161.5,42"
-          Id="Package\Process Changes\Insert Row Count"
-          TopLeft="707,209.5" />
-        <NodeLayout
-          Size="163.5,42"
-          Id="Package\Process Changes\Delete Row Count"
-          TopLeft="259,311.5" />
-        <NodeLayout
-          Size="154,42"
+          Size="154.285714285715,42.2857142857143"
           Id="Package\Process Changes\HashKeyLookup"
           TopLeft="710.75,107.5" />
         <NodeLayout
-          Size="170.5,42"
-          Id="Package\Process Changes\Ignored Row Count"
-          TopLeft="483.5,311.5" />
-        <NodeLayout
-          Size="190,42"
+          Size="189.714285714286,42.2857142857143"
           Id="Package\Process Changes\AWLT Customer Source"
           TopLeft="692.75,5.5" />
         <NodeLayout
-          Size="167,42"
-          Id="Package\Process Changes\Add Insert Column"
-          TopLeft="714.25,311.5" />
+          Size="166.857142857143,42.2857142857143"
+          Id="Package\Process Changes\Update Row Count"
+          TopLeft="31.25,311.5" />
         <NodeLayout
-          Size="242,42"
+          Size="248,42.2857142857143"
+          Id="Package\Process Changes\AWLT Customer Update Destination"
+          TopLeft="5.5,515.5" />
+        <NodeLayout
+          Size="146.857142857143,42.2857142857143"
+          Id="Package\Process Changes\Add Operation"
+          TopLeft="41.25,413.5" />
+        <NodeLayout
+          Size="161.714285714286,42.2857142857143"
+          Id="Package\Process Changes\Insert Row Count"
+          TopLeft="707,209.5" />
+        <NodeLayout
+          Size="163.428571428572,42.2857142857143"
+          Id="Package\Process Changes\Delete Row Count"
+          TopLeft="259,311.5" />
+        <NodeLayout
+          Size="165.714285714286,42.2857142857143"
+          Id="Package\Process Changes\Check for changes"
+          TopLeft="491.25,209.5" />
+        <NodeLayout
+          Size="170.285714285715,42.2857142857143"
+          Id="Package\Process Changes\Ignored Row Count"
+          TopLeft="483.5,311.5" />
+        <NodeLayout
+          Size="242.285714285715,42.2857142857143"
           Id="Package\Process Changes\AWLT Customer Insert Destination"
           TopLeft="707.75,413.5" />
+        <NodeLayout
+          Size="166.857142857143,42.2857142857143"
+          Id="Package\Process Changes\Add Insert Column"
+          TopLeft="714.25,311.5" />
         <EdgeLayout
-          Id="Package\Process Changes.Paths[DeletedRows]"
-          TopLeft="574,251.5">
+          Id="Package\Process Changes.Paths[Changed Rows]"
+          TopLeft="763.416666666667,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-233.25,60"
+              EndConnector="-189.416666666667,60"
               Start="0,0"
-              End="-233.25,52.5">
+              End="-189.416666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
+                    End="0,20.3701799485861" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    Point1="0,20.3701799485861"
+                    Point2="0,24.3701799485861"
+                    Point3="-4,24.3701799485861" />
                   <mssgle:LineSegment
-                    End="-229.25,30" />
+                    End="-185.416666666667,24.3701799485861" />
                   <mssgle:CubicBezierSegment
-                    Point1="-229.25,30"
-                    Point2="-233.25,30"
-                    Point3="-233.25,34" />
+                    Point1="-185.416666666667,24.3701799485861"
+                    Point2="-189.416666666667,24.3701799485861"
+                    Point3="-189.416666666667,28.3701799485861" />
                   <mssgle:LineSegment
-                    End="-233.25,52.5" />
+                    End="-189.416666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-145.782578125,35,58.31515625,9.7490234375"
+              BoundingBox="-128.148430989584,29.3701799485861,66.8801953125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1741,42 +1718,6 @@ where [refTable].[CustomerId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Process Changes.Paths[Changed Rows]"
-          TopLeft="763.416666666667,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-189.416666666667,60"
-              Start="0,0"
-              End="-189.416666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3701799485861"
-                    Point2="0,24.3701799485861"
-                    Point3="-4,24.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-185.416666666667,24.3701799485861" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-185.416666666667,24.3701799485861"
-                    Point2="-189.416666666667,24.3701799485861"
-                    Point3="-189.416666666667,28.3701799485861" />
-                  <mssgle:LineSegment
-                    End="-189.416666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-128.148430989583,29.3701799485861,66.8801953125,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Process Changes.Paths[IgnoredRows]"
           TopLeft="613.375,251.5">
           <EdgeLayout.Curve>
@@ -1880,47 +1821,70 @@ where [refTable].[CustomerId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process Changes.Paths[DeletedRows]"
+          TopLeft="574,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-233.25,60"
+              Start="0,0"
+              End="-233.25,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-229.25,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-229.25,30"
+                    Point2="-233.25,30"
+                    Point3="-233.25,34" />
+                  <mssgle:LineSegment
+                    End="-233.25,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-145.782578125,35,58.31515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelinePath
-    design-time-name="Package\Process Changes.Paths[New Rows]">
-    <PathAnnotation>PathName</PathAnnotation>
-  </PipelinePath>
-  <PipelinePath
     design-time-name="Package\Process Changes.Paths[Changed Rows]">
     <PathAnnotation>PathName</PathAnnotation>
   </PipelinePath>
-  <PipelineComponentMetadata
-    design-time-name="Package\Process Changes\AWLT Customer Update Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
+  <PipelinePath
+    design-time-name="Package\Process Changes.Paths[New Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
   <PipelineComponentMetadata
     design-time-name="Package\Process Changes\HashKeyLookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string"></Value>
+          type="q3:string">[AWLTSRC].[dbo_Customer]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1932,6 +1896,19 @@ where [refTable].[CustomerId] = ?</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Process Changes\AWLT Customer Update Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

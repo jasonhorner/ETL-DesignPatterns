@@ -7,13 +7,13 @@
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
   DTS:DTSID="{B29BDBD7-677C-41D8-83CE-86500C6DC159}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3006.16"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1033"
   DTS:ObjectName="CustomerExtract_CT"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{8C70DBEE-EF78-41C7-A4ED-78946867DA72}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{E39F2672-BCD1-4797-BF8A-2E1EBC73456C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -128,14 +128,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Destination Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-              SQLTask:IsStoredProc="True"
-              SQLTask:SqlStatementSource="etl.GetChangeTrackingLatestVersion"
-              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:Connection="{8DF76C59-94B5-4B09-A59A-553090FC2E95}"
+              SQLTask:SqlStatementSource="etl.GetChangeTrackingLatestVersion" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="VersionId"
                 SQLTask:DtsVariableName="User::CTBeginVersion"
@@ -143,13 +141,13 @@
                 SQLTask:DataType="11"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="TableName"
                 SQLTask:DtsVariableName="User::SourceTableName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="11"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="DatabaseName"
                 SQLTask:DtsVariableName="User::SourceDatabaseName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="11"
@@ -166,7 +164,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Get Source Latest Version"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -192,8 +190,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-              SQLTask:IsStoredProc="True"
+              SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
               SQLTask:SqlStatementSource="[AWLTSRC].[CustomerMerge]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -227,7 +224,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWLTSRC].[Customer]</property>
+                      name="OpenRowset">[AWLTSRC].[dbo_Customer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -270,8 +267,8 @@
                   <connections>
                     <connection
                       refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Connections[OleDbConnection]"
-                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -283,19 +280,6 @@
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
-                        <inputColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                          cachedDataType="i4"
-                          cachedName="CustomerId"
-                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                        <inputColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="FirstName"
-                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                          lineageId="Package\Change Tracking Processing\Process CT\AWLT Customer SRC.Outputs[OLE DB Source Output].Columns[FirstName]" />
                         <inputColumn
                           refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
                           cachedDataType="wstr"
@@ -314,15 +298,6 @@
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                          dataType="i4"
-                          name="CustomerId" />
-                        <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                          dataType="wstr"
-                          length="50"
-                          name="Firstname" />
-                        <externalMetadataColumn
                           refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
@@ -333,16 +308,47 @@
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          dataType="i4"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                          dataType="wstr"
+                          length="40"
+                          name="ChangeHashKey" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                           codePage="1252"
                           dataType="str"
                           length="1"
-                          name="CDCOperation" />
+                          name="ChangeType" />
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                          dataType="wstr"
-                          length="40"
-                          name="HashKey" />
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                          dataType="dbTimeStamp2"
+                          name="InsertDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                          dataType="dbTimeStamp2"
+                          name="UpdateDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[InsertPackageExecutionID]"
+                          dataType="i4"
+                          name="InsertPackageExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer DEST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatePackageExecutionID]"
+                          dataType="i4"
+                          name="UpdatePackageExecutionID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -586,7 +592,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWLTSRC].[Customer_STG]</property>
+                      name="OpenRowset">[AWLTSRC].[dbo_Customer_STG]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -629,8 +635,8 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                   <connections>
                     <connection
                       refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Connections[OleDbConnection]"
-                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -642,19 +648,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
-                        <inputColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                          cachedDataType="i4"
-                          cachedName="CustomerId"
-                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[CustomerId]" />
-                        <inputColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[FirstName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="FirstName"
-                          externalMetadataColumnId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                          lineageId="Package\Change Tracking Processing\Process CT\Combine Changes.Outputs[Union All Output 1].Columns[FirstName]" />
                         <inputColumn
                           refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].Columns[LastName]"
                           cachedDataType="wstr"
@@ -673,15 +666,6 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                          dataType="i4"
-                          name="CustomerId" />
-                        <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
-                          dataType="wstr"
-                          length="50"
-                          name="Firstname" />
-                        <externalMetadataColumn
                           refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
@@ -692,16 +676,47 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CDCOperation]"
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          dataType="i4"
+                          name="CustomerID" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          dataType="wstr"
+                          length="50"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                          dataType="wstr"
+                          length="40"
+                          name="ChangeHashKey" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                           codePage="1252"
                           dataType="str"
                           length="1"
-                          name="CDCOperation" />
+                          name="ChangeType" />
                         <externalMetadataColumn
-                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[HashKey]"
-                          dataType="wstr"
-                          length="40"
-                          name="HashKey" />
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                          dataType="dbTimeStamp2"
+                          name="InsertDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                          dataType="dbTimeStamp2"
+                          name="UpdateDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[InsertPackageExecutionID]"
+                          dataType="i4"
+                          name="InsertPackageExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST.Inputs[OLE DB Destination Input].ExternalColumns[UpdatePackageExecutionID]"
+                          dataType="i4"
+                          name="UpdatePackageExecutionID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1304,11 +1319,11 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate DEL Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="4">
+              DTS:ThreadHint="1">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_DEL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -1321,11 +1336,11 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate INS Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="5">
+              DTS:ThreadHint="2">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_INS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -1342,7 +1357,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_STG" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -1355,11 +1370,11 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate UPD Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="2">
+              DTS:ThreadHint="4">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_UPD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -1378,8 +1393,7 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-              SQLTask:IsStoredProc="True"
+              SQLTask:Connection="{8DF76C59-94B5-4B09-A59A-553090FC2E95}"
               SQLTask:SqlStatementSource="ETL.SetChangeTrackingLatestVersion" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="databaseName"
@@ -1460,39 +1474,74 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="222,42"
+          Size="221.714285714286,42.2857142857143"
           Id="Package\Change Tracking Processing\Get Destination Latest Version"
-          TopLeft="5.5,6" />
+          TopLeft="5.50000000000003,57.2142857142858" />
         <NodeLayout
-          Size="222,42"
+          Size="201.142857142858,42.2857142857143"
           Id="Package\Change Tracking Processing\Get Source Latest Version"
-          TopLeft="288.5,5.99999999999989" />
+          TopLeft="287.5,57.2142857142858" />
         <NodeLayout
-          Size="222,42"
+          Size="221.714285714286,42.2857142857143"
           Id="Package\Change Tracking Processing\Process Changes"
-          TopLeft="288.5,210.5" />
+          TopLeft="287.5,313.5" />
         <NodeLayout
-          Size="222,42"
+          Size="221.714285714286,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT"
-          TopLeft="288.5,108.5" />
+          TopLeft="287.5,211.214285714286" />
         <NodeLayout
-          Size="222,42"
+          Size="172,42.2857142857143"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate DEL Table"
+          TopLeft="5.5,5.49999999999997" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate INS Table"
+          TopLeft="238.5,5.49999999999997" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate STG Table"
+          TopLeft="471.5,5.49999999999985" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate UPD Table"
+          TopLeft="704.5,5.49999999999985" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="882.285714285715,102.857142857143"
+          Size="882.285714285715,145.714285714286"
+          Id="Package\Change Tracking Processing\Truncate Staging Tables"
+          TopLeft="570.214285714286,5.49999999999991" />
+        <NodeLayout
+          Size="221.714285714286,42.2857142857143"
           Id="Package\Change Tracking Processing\Update CT Version"
-          TopLeft="288.5,312.5" />
+          TopLeft="287.5,415.785714285714" />
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint]"
-          TopLeft="399.5,47.9999999999999">
+          TopLeft="388.071428571429,99.5000000000001">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.5"
+              EndConnector="10.2857142857143,111.714285714286"
               Start="0,0"
-              End="0,53">
+              End="10.2857142857143,104.214285714286">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53" />
+                    End="0,51.857142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.857142857143"
+                    Point2="0,55.857142857143"
+                    Point3="4,55.857142857143" />
+                  <mssgle:LineSegment
+                    End="6.28571428571433,55.857142857143" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.28571428571433,55.857142857143"
+                    Point2="10.2857142857143,55.857142857143"
+                    Point3="10.2857142857143,59.857142857143" />
+                  <mssgle:LineSegment
+                    End="10.2857142857143,104.214285714286" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1503,30 +1552,30 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 1]"
-          TopLeft="116.5,48">
+          TopLeft="116.357142857143,99.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="229.5,60.4999999999999"
+              EndConnector="228.571428571429,111.714285714286"
               Start="0,0"
-              End="229.5,52.9999999999999">
+              End="228.571428571429,104.214285714286">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.8545994065281" />
+                    End="0,69.5910744603444" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.8545994065281"
-                    Point2="0,39.8545994065281"
-                    Point3="4,39.8545994065281" />
+                    Point1="0,69.5910744603444"
+                    Point2="0,73.5910744603444"
+                    Point3="4,73.5910744603444" />
                   <mssgle:LineSegment
-                    End="225.5,39.8545994065281" />
+                    End="224.571428571429,73.5910744603444" />
                   <mssgle:CubicBezierSegment
-                    Point1="225.5,39.8545994065281"
-                    Point2="229.5,39.8545994065281"
-                    Point3="229.5,43.8545994065281" />
+                    Point1="224.571428571429,73.5910744603444"
+                    Point2="228.571428571429,73.5910744603444"
+                    Point3="228.571428571429,77.5910744603444" />
                   <mssgle:LineSegment
-                    End="229.5,52.9999999999999" />
+                    End="228.571428571429,104.214285714286" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1537,18 +1586,18 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 2]"
-          TopLeft="399.5,150.5">
+          TopLeft="398.357142857143,253.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1559,18 +1608,18 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 3]"
-          TopLeft="399.5,252.5">
+          TopLeft="398.357142857143,355.785714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1579,55 +1628,32 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate DEL Table"
-          TopLeft="10,43" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate INS Table"
-          TopLeft="10,145" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate STG Table"
-          TopLeft="10,349" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\Change Tracking Processing\Truncate Staging Tables\Truncate UPD Table"
-          TopLeft="10,247" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="False"
-          PanelSize="237,446"
-          Size="216,43"
-          Id="Package\Change Tracking Processing\Truncate Staging Tables"
-          TopLeft="571.5,5.49999999999989" />
         <EdgeLayout
           Id="Package\Change Tracking Processing.PrecedenceConstraints[Constraint 4]"
-          TopLeft="679.5,48.4999999999999">
+          TopLeft="1011.35714285714,151.214285714286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-226.5,60"
+              EndConnector="-559.571428571429,60.0000000000001"
               Start="0,0"
-              End="-226.5,52.5">
+              End="-559.571428571429,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5252225519288" />
+                    End="0,35.5246179966045" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.5252225519288"
-                    Point2="0,39.5252225519288"
-                    Point3="-4,39.5252225519288" />
+                    Point1="0,35.5246179966045"
+                    Point2="0,39.5246179966045"
+                    Point3="-4,39.5246179966045" />
                   <mssgle:LineSegment
-                    End="-222.5,39.5252225519288" />
+                    End="-555.571428571429,39.5246179966045" />
                   <mssgle:CubicBezierSegment
-                    Point1="-222.5,39.5252225519288"
-                    Point2="-226.5,39.5252225519288"
-                    Point3="-226.5,43.5252225519288" />
+                    Point1="-555.571428571429,39.5246179966045"
+                    Point2="-559.571428571429,39.5246179966045"
+                    Point3="-559.571428571429,43.5246179966045" />
                   <mssgle:LineSegment
-                    End="-226.5,52.5" />
+                    End="-559.571428571429,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1639,10 +1665,10 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="814,549"
-          Size="814,592"
+          PanelSize="1458.28571428572,513.142857142858"
+          Size="1458.28571428572,556"
           Id="Package\Change Tracking Processing"
-          TopLeft="5.5,5.5" />
+          TopLeft="5.5,5.50000000000011" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1652,43 +1678,43 @@ WHERE (SELECT MAX(v) FROM (VALUES(ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATIO
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="167,42"
+          Size="166.857142857143,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Update Row Count"
           TopLeft="238.75,311.5" />
         <NodeLayout
-          Size="164,42"
+          Size="164,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Delete Row Count"
           TopLeft="466.5,311.5" />
         <NodeLayout
-          Size="177,42"
+          Size="177.142857142858,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer SRC"
           TopLeft="233.75,5.5" />
         <NodeLayout
-          Size="170,42"
+          Size="170.285714285715,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Ignored Row Count"
           TopLeft="672.5,293.5" />
         <NodeLayout
-          Size="158,42"
+          Size="157.714285714286,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Process Changes"
           TopLeft="243.25,209.5" />
         <NodeLayout
-          Size="208,42"
+          Size="208,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer_STG DEST"
           TopLeft="213.25,515.5" />
         <NodeLayout
-          Size="162,42"
+          Size="162.285714285715,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Insert Row Count"
           TopLeft="16.5,311.5" />
         <NodeLayout
-          Size="184,42"
+          Size="184,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\AWLT Customer DEST"
           TopLeft="5.50000000000006,413.5" />
         <NodeLayout
-          Size="164,42"
+          Size="164,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Combine Changes"
           TopLeft="249.5,413.5" />
         <NodeLayout
-          Size="162,42"
+          Size="162.285714285715,42.2857142857143"
           Id="Package\Change Tracking Processing\Process CT\Select Row Count"
           TopLeft="241.25,107.5" />
         <EdgeLayout

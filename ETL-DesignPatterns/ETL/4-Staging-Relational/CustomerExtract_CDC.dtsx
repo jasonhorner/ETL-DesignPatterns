@@ -7,13 +7,13 @@
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
   DTS:DTSID="{AF4AEB62-9EDE-44E5-B9AF-BFCD32E48AFE}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3006.16"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1033"
   DTS:ObjectName="CustomerExtract_CDC"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="72"
-  DTS:VersionGUID="{583D7DA2-882C-4847-A5B0-3FCDC3B38D17}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{72111990-9917-4706-BDC8-E474175E44BA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -132,7 +132,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.72</DTS:VariableValue>
+        DTS:DataType="8">1.0.75</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -216,10 +216,10 @@
         DTS:Name="TaskOperation">@[User::CDCEndTaskOperation]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <CDCControlTask
-          Connection="AWLT Source ADONET"
+          Connection="AWLTAdoNet"
           TaskOperation="MarkProcessedRange"
           OperationParameter=""
-          StateConnection="Staging ADONET"
+          StateConnection="AdminAdoNet"
           StateVariable="User::CDCState"
           AutomaticStatePersistence="True"
           StateName="AWDWSRC.dbo.DimCustomer"
@@ -256,10 +256,10 @@
             DTS:Name="TaskOperation">@[User::CDCBeginTaskOperation]</DTS:PropertyExpression>
           <DTS:ObjectData>
             <CDCControlTask
-              Connection="AWLT Source ADONET"
+              Connection="AWLTAdoNet"
               TaskOperation="GetProcessingRange"
               OperationParameter=""
-              StateConnection="Staging ADONET"
+              StateConnection="AdminAdoNet"
               StateVariable="User::CDCState"
               AutomaticStatePersistence="True"
               StateName="AWDWSRC.dbo.DimCustomer"
@@ -374,7 +374,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWLTSRC].[SalesLT_Customer]</property>
+                      name="OpenRowset">[AWLTSRC].[dbo_Customer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -417,8 +417,8 @@
                   <connections>
                     <connection
                       refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Connections[OleDbConnection]"
-                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -431,26 +431,12 @@
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Title]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="FirstName"
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[MiddleName]" />
                         <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
                           cachedDataType="wstr"
@@ -459,19 +445,6 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[NameStyle]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Suffix]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[EmailAddress]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -479,136 +452,66 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="20"
-                          cachedName="Phone"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Phone]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
                           cachedDataType="i4"
                           cachedName="CustomerID"
                           externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerID]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CompanyName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPerson]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[SalesPerson]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[PasswordHash]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="128"
-                          cachedName="PasswordHash"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordHash]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordHash]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[PasswordSalt]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="10"
-                          cachedName="PasswordSalt"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordSalt]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordSalt]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[rowguid]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          name="Title" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          name="MiddleName" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                          dataType="bool"
-                          name="NameStyle" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          name="Suffix" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          name="Phone" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
                           dataType="wstr"
-                          length="128"
-                          name="CompanyName" />
+                          length="40"
+                          name="ChangeHashKey" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          name="SalesPerson" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordHash]"
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                           codePage="1252"
                           dataType="str"
-                          length="128"
-                          name="PasswordHash" />
+                          length="1"
+                          name="ChangeType" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordSalt]"
-                          codePage="1252"
-                          dataType="str"
-                          length="10"
-                          name="PasswordSalt" />
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
-                          dataType="guid"
-                          name="rowguid" />
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                          dataType="dbTimeStamp2"
+                          name="InsertDate"
+                          scale="7" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          name="ModifiedDate" />
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                          dataType="dbTimeStamp2"
+                          name="UpdateDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertPackageExecutionID]"
+                          dataType="i4"
+                          name="InsertPackageExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdatePackageExecutionID]"
+                          dataType="i4"
+                          name="UpdatePackageExecutionID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -653,7 +556,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[SalesLT].[Customer]</property>
+                      name="OpenRowset">[dbo].[Customer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -699,16 +602,6 @@
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Title]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
-                          length="8"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Title]"
-                          name="Title"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
@@ -717,16 +610,6 @@
                           length="50"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                           name="FirstName"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[MiddleName]"
-                          name="MiddleName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[LastName]"
@@ -739,25 +622,6 @@
                           name="LastName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
-                          dataType="bool"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[NameStyle]"
-                          name="NameStyle"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Suffix]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Suffix]"
-                          name="Suffix"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
@@ -768,16 +632,6 @@
                           name="EmailAddress"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Phone]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
-                          length="20"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[Phone]"
-                          name="Phone"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
@@ -786,142 +640,28 @@
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           name="CustomerID"
                           truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CompanyName]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[CompanyName]"
-                          name="CompanyName"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[SalesPerson]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SalesPerson]"
-                          length="256"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[SalesPerson]"
-                          name="SalesPerson"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordHash]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PasswordHash]"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordHash]"
-                          name="PasswordHash"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordSalt]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PasswordSalt]"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[PasswordSalt]"
-                          name="PasswordSalt"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[rowguid]"
-                          dataType="guid"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[rowguid]"
-                          name="rowguid"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
-                          name="ModifiedDate"
-                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          name="Title" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          name="MiddleName" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[NameStyle]"
-                          dataType="bool"
-                          name="NameStyle" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          name="Suffix" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          name="Phone" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          name="CompanyName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          name="SalesPerson" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PasswordHash]"
-                          codePage="1252"
-                          dataType="str"
-                          length="128"
-                          name="PasswordHash" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PasswordSalt]"
-                          codePage="1252"
-                          dataType="str"
-                          length="10"
-                          name="PasswordSalt" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
-                          dataType="guid"
-                          name="rowguid" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          name="ModifiedDate" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -935,23 +675,11 @@
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
                           name="CustomerID" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Title]"
-                          name="Title" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                           name="FirstName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
-                          name="MiddleName" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
                           dataType="wstr"
@@ -959,64 +687,11 @@
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
                           name="LastName" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
-                          dataType="bool"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[NameStyle]"
-                          name="NameStyle" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Suffix]"
-                          name="Suffix" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
-                          name="CompanyName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[SalesPerson]"
-                          name="SalesPerson" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
                           name="EmailAddress" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
-                          name="Phone" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[PasswordHash]"
-                          codePage="1252"
-                          dataType="str"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[PasswordHash]"
-                          name="PasswordHash" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[PasswordSalt]"
-                          codePage="1252"
-                          dataType="str"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[PasswordSalt]"
-                          name="PasswordSalt" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[rowguid]"
-                          dataType="guid"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[rowguid]"
-                          name="rowguid" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          lineageId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
-                          name="ModifiedDate" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1123,7 +798,7 @@
                       dataType="System.String"
                       description="The name of the CDC capture instance. By default the capture instance name is in the form of &quot;&lt;owner&gt;_&lt;table&gt;&quot;. The actual table that stores the changes is the CDC table named &quot;cdc&quot;.&quot;&lt;capture-instance&gt;_CT&quot;"
                       expressionType="Notify"
-                      name="CaptureInstance">[SalesLT].[Customer] ETL CDC Tracking</property>
+                      name="CaptureInstance">dbo_Customer_ETL_CDC</property>
                     <property
                       dataType="System.Int32"
                       description="The number of seconds before a command times out.  A value of 0 indicates an infinite time out."
@@ -1141,8 +816,8 @@
                   <connections>
                     <connection
                       refId="Package\CDC Processing\CDC Process\CDC Source.Connections[Connection]"
-                      connectionManagerID="{F25EB8B6-EE98-48FD-B18D-FAD9C38271DB}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[AWLT Source ADONET]"
+                      connectionManagerID="{9B99235B-1824-4F71-937E-A879CADF50A1}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AWLTAdoNet]"
                       name="Connection" />
                   </connections>
                   <outputs>
@@ -1194,23 +869,6 @@
                           name="CustomerID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]"
-                          dataType="bool"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]"
-                          name="NameStyle"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Title]"
-                          length="8"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]"
-                          name="Title"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[FirstName]"
                           dataType="wstr"
                           errorRowDisposition="FailComponent"
@@ -1218,15 +876,6 @@
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[FirstName]"
                           name="FirstName"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[MiddleName]"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]"
-                          name="MiddleName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[LastName]"
@@ -1238,33 +887,6 @@
                           name="LastName"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Suffix]"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]"
-                          name="Suffix"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[CompanyName]"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]"
-                          name="CompanyName"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[SalesPerson]"
-                          length="256"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]"
-                          name="SalesPerson"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]"
                           dataType="wstr"
                           errorRowDisposition="FailComponent"
@@ -1272,49 +894,6 @@
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]"
                           name="EmailAddress"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Phone]"
-                          length="25"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]"
-                          name="Phone"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[PasswordHash]"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]"
-                          name="PasswordHash"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]"
-                          dataType="wstr"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[PasswordSalt]"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]"
-                          name="PasswordSalt"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]"
-                          dataType="guid"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[rowguid]"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]"
-                          name="rowguid"
-                          truncationRowDisposition="FailComponent" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[ModifiedDate]"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]"
-                          name="ModifiedDate"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$command_id]"
@@ -1359,72 +938,20 @@
                           dataType="i4"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[NameStyle]"
-                          dataType="bool"
-                          name="NameStyle" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          name="Title" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          name="MiddleName" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[LastName]"
                           dataType="wstr"
                           length="50"
                           name="LastName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          name="Suffix" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          name="CompanyName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          name="SalesPerson" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           name="EmailAddress" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          name="Phone" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[PasswordHash]"
-                          dataType="wstr"
-                          length="128"
-                          name="PasswordHash" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[PasswordSalt]"
-                          dataType="wstr"
-                          length="10"
-                          name="PasswordSalt" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[rowguid]"
-                          dataType="guid"
-                          name="rowguid" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          name="ModifiedDate" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].ExternalColumns[__$command_id]"
                           dataType="i4"
@@ -1481,28 +1008,11 @@
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[CustomerID]"
                           name="CustomerID" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[NameStyle]"
-                          dataType="bool"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[NameStyle]"
-                          name="NameStyle" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Title]"
-                          name="Title" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[FirstName]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[FirstName]"
                           name="FirstName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[MiddleName]"
-                          name="MiddleName" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[LastName]"
                           dataType="wstr"
@@ -1510,57 +1020,11 @@
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[LastName]"
                           name="LastName" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Suffix]"
-                          name="Suffix" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[CompanyName]"
-                          name="CompanyName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[SalesPerson]"
-                          name="SalesPerson" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[EmailAddress]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[EmailAddress]"
                           name="EmailAddress" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[Phone]"
-                          name="Phone" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[PasswordHash]"
-                          dataType="wstr"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[PasswordHash]"
-                          name="PasswordHash" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[PasswordSalt]"
-                          dataType="wstr"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[PasswordSalt]"
-                          name="PasswordSalt" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[rowguid]"
-                          dataType="guid"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[rowguid]"
-                          name="rowguid" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[ModifiedDate]"
-                          name="ModifiedDate" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Source.Outputs[ErrorOutput].Columns[__$command_id]"
                           dataType="i4"
@@ -1603,6 +1067,12 @@
                           cachedName="__$start_lsn"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$start_lsn]" />
                         <inputColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[__$seqval]"
+                          cachedDataType="bytes"
+                          cachedLength="10"
+                          cachedName="__$seqval"
+                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$seqval]" />
+                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[__$operation]"
                           cachedDataType="i4"
                           cachedName="__$operation"
@@ -1614,11 +1084,10 @@
                           cachedName="__$update_mask"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$update_mask]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]" />
+                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[CustomerID]"
+                          cachedDataType="i4"
+                          cachedName="CustomerID"
+                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CustomerID]" />
                         <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[FirstName]"
                           cachedDataType="wstr"
@@ -1626,28 +1095,11 @@
                           cachedName="FirstName"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[FirstName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[LastName]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="LastName"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[LastName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]" />
                         <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[EmailAddress]"
                           cachedDataType="wstr"
@@ -1655,66 +1107,15 @@
                           cachedName="EmailAddress"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="25"
-                          cachedName="Phone"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[__$command_id]"
                           cachedDataType="i4"
                           cachedName="__$command_id"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$command_id]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[__$seqval]"
-                          cachedDataType="bytes"
-                          cachedLength="10"
-                          cachedName="__$seqval"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$seqval]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[__$reprocessing]"
                           cachedDataType="bool"
                           cachedName="__$reprocessing"
                           lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[__$reprocessing]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[CustomerID]"
-                          cachedDataType="i4"
-                          cachedName="CustomerID"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CustomerID]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[PasswordHash]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="PasswordHash"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[PasswordSalt]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="PasswordSalt"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Splitter.Inputs[Input].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -1809,7 +1210,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[AWLTSRC].[SalesLT_Customer_STG]</property>
+                      name="OpenRowset">[AWLTSRC].[dbo_Customer_STG]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1852,8 +1253,8 @@
                   <connections>
                     <connection
                       refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                      connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Staging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -1888,13 +1289,6 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                           lineageId="Package\CDC Processing\CDC Process\Decode CDC operation.Outputs[Derived Column Output].Columns[ChangeType]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -1902,64 +1296,11 @@
                           externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[FirstName]" />
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="25"
-                          cachedName="Phone"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]" />
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
                           cachedDataType="i4"
                           cachedName="CustomerID"
                           externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CustomerID]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPerson]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]" />
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          externalMetadataColumnId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1974,74 +1315,47 @@
                           length="50"
                           name="EmailAddress" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          name="Title" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
                           dataType="wstr"
                           length="50"
                           name="FirstName" />
                         <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          name="MiddleName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NameStyle]"
-                          dataType="bool"
-                          name="NameStyle" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          name="Suffix" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          name="Phone" />
-                        <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          name="CompanyName" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          name="SalesPerson" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordHash]"
-                          codePage="1252"
-                          dataType="str"
-                          length="128"
-                          name="PasswordHash" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PasswordSalt]"
-                          codePage="1252"
-                          dataType="str"
-                          length="10"
-                          name="PasswordSalt" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
-                          dataType="guid"
-                          name="rowguid" />
-                        <externalMetadataColumn
-                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          name="ModifiedDate" />
                         <externalMetadataColumn
                           refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeType]"
                           codePage="1252"
                           dataType="str"
                           length="1"
                           name="ChangeType" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                          dataType="wstr"
+                          length="40"
+                          name="ChangeHashKey" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                          dataType="dbTimeStamp2"
+                          name="InsertDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                          dataType="dbTimeStamp2"
+                          name="UpdateDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertPackageExecutionID]"
+                          dataType="i4"
+                          name="InsertPackageExecutionID" />
+                        <externalMetadataColumn
+                          refId="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdatePackageExecutionID]"
+                          dataType="i4"
+                          name="UpdatePackageExecutionID" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -2151,33 +1465,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2192,20 +1479,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[LastName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2217,130 +1490,6 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[LastName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[EmailAddress]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="EmailAddress"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="25"
-                          cachedName="Phone"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[PasswordHash]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="PasswordHash"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordHash]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[PasswordSalt]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="PasswordSalt"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordSalt]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -2367,6 +1516,20 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[__$reprocessing]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 1].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -2446,33 +1609,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2487,20 +1623,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[LastName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2512,130 +1634,6 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[LastName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[EmailAddress]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="EmailAddress"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="25"
-                          cachedName="Phone"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[PasswordHash]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="PasswordHash"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordHash]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[PasswordSalt]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="PasswordSalt"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordSalt]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -2662,6 +1660,20 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[__$reprocessing]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 2].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -2741,33 +1753,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[NameStyle]"
-                          cachedDataType="bool"
-                          cachedName="NameStyle"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[NameStyle]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[Title]"
-                          cachedDataType="wstr"
-                          cachedLength="8"
-                          cachedName="Title"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Title]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[FirstName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2782,20 +1767,6 @@
                           </properties>
                         </inputColumn>
                         <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[MiddleName]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="MiddleName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[MiddleName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[LastName]"
                           cachedDataType="wstr"
                           cachedLength="50"
@@ -2807,130 +1778,6 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[LastName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[Suffix]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="Suffix"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Suffix]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[CompanyName]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="CompanyName"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[CompanyName]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[SalesPerson]"
-                          cachedDataType="wstr"
-                          cachedLength="256"
-                          cachedName="SalesPerson"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[SalesPerson]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[EmailAddress]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
-                          cachedName="EmailAddress"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[Phone]"
-                          cachedDataType="wstr"
-                          cachedLength="25"
-                          cachedName="Phone"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[Phone]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[PasswordHash]"
-                          cachedDataType="wstr"
-                          cachedLength="128"
-                          cachedName="PasswordHash"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordHash]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordHash]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[PasswordSalt]"
-                          cachedDataType="wstr"
-                          cachedLength="10"
-                          cachedName="PasswordSalt"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[PasswordSalt]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordSalt]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[rowguid]"
-                          cachedDataType="guid"
-                          cachedName="rowguid"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[rowguid]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]}</property>
-                          </properties>
-                        </inputColumn>
-                        <inputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[ModifiedDate]"
-                          cachedDataType="dbTimeStamp"
-                          cachedName="ModifiedDate"
-                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[ModifiedDate]">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.Int32"
-                              description="Output column lineage ID"
-                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]}</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -2957,6 +1804,20 @@
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[__$reprocessing]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\CDC Processing\CDC Process\Combine Rows.Inputs[Union All Input 3].Columns[EmailAddress]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="EmailAddress"
+                          lineageId="Package\CDC Processing\CDC Process\CDC Source.Outputs[Output].Columns[EmailAddress]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -3004,86 +1865,17 @@
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CustomerID]"
                           name="CustomerID" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]"
-                          dataType="bool"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[NameStyle]"
-                          name="NameStyle" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]"
-                          dataType="wstr"
-                          length="8"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Title]"
-                          name="Title" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[FirstName]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[FirstName]"
                           name="FirstName" />
                         <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]"
-                          dataType="wstr"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[MiddleName]"
-                          name="MiddleName" />
-                        <outputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[LastName]"
                           dataType="wstr"
                           length="50"
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[LastName]"
                           name="LastName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]"
-                          dataType="wstr"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Suffix]"
-                          name="Suffix" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]"
-                          dataType="wstr"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[CompanyName]"
-                          name="CompanyName" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]"
-                          dataType="wstr"
-                          length="256"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[SalesPerson]"
-                          name="SalesPerson" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]"
-                          dataType="wstr"
-                          length="50"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]"
-                          name="EmailAddress" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]"
-                          dataType="wstr"
-                          length="25"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[Phone]"
-                          name="Phone" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordHash]"
-                          dataType="wstr"
-                          length="128"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordHash]"
-                          name="PasswordHash" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordSalt]"
-                          dataType="wstr"
-                          length="10"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[PasswordSalt]"
-                          name="PasswordSalt" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]"
-                          dataType="guid"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]"
-                          name="rowguid" />
-                        <outputColumn
-                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]"
-                          dataType="dbTimeStamp"
-                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]"
-                          name="ModifiedDate" />
                         <outputColumn
                           refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[__$command_id]"
                           dataType="i4"
@@ -3094,6 +1886,12 @@
                           dataType="bool"
                           lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[__$reprocessing]"
                           name="__$reprocessing" />
+                        <outputColumn
+                          refId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\CDC Processing\CDC Process\Combine Rows.Outputs[Union All Output 1].Columns[EmailAddress]"
+                          name="EmailAddress" />
                       </outputColumns>
                       <externalMetadataColumns />
                     </output>
@@ -3366,8 +2164,7 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
-              SQLTask:IsStoredProc="True"
+              SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
               SQLTask:SqlStatementSource="EXECUTE AWLTSRC.SalesLT_CustomerMerge" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -3390,11 +2187,11 @@
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate DEL Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="2">
+              DTS:ThreadHint="3">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_DEL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -3407,11 +2204,11 @@
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate INS Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="3">
+              DTS:ThreadHint="0">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_INS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -3428,7 +2225,7 @@
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_STG" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -3441,11 +2238,11 @@
               DTS:LocaleID="-1"
               DTS:ObjectName="Truncate UPD Table"
               DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-              DTS:ThreadHint="0">
+              DTS:ThreadHint="2">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{9D384C4D-7BF4-4CC5-9C74-B2E0F433A040}"
+                  SQLTask:Connection="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}"
                   SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.SalesLT_Customer_UPD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
@@ -3515,30 +2312,57 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="120,42"
+          Size="120,42.2857142857143"
           Id="Package\CDC End"
-          TopLeft="197.5,517.5" />
+          TopLeft="392.071428571429,622.071428571429" />
         <NodeLayout
-          Size="216,42"
+          Size="216,42.2857142857143"
           Id="Package\CDC Processing\CDC Begin"
-          TopLeft="282.5,108.5" />
+          TopLeft="338.642857142857,211.785714285714" />
         <NodeLayout
-          Size="216,42"
+          Size="216,42.2857142857143"
           Id="Package\CDC Processing\CDC Initial Load"
-          TopLeft="282.5,210.5" />
+          TopLeft="338.642857142857,314.071428571429" />
         <NodeLayout
-          Size="216,42"
+          Size="216,42.2857142857143"
           Id="Package\CDC Processing\CDC Process"
-          TopLeft="5.50000000000006,210.5" />
+          TopLeft="61.6428571428572,314.071428571429" />
+        <NodeLayout
+          Size="216,42.2857142857143"
+          Id="Package\CDC Processing\Process Changes"
+          TopLeft="61.6428571428572,416.357142857143" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\CDC Processing\Truncate Staging Tables\Truncate DEL Table"
+          TopLeft="5.5,5.49999999999997" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\CDC Processing\Truncate Staging Tables\Truncate INS Table"
+          TopLeft="238.5,5.49999999999997" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\CDC Processing\Truncate Staging Tables\Truncate STG Table"
+          TopLeft="471.5,5.49999999999985" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\CDC Processing\Truncate Staging Tables\Truncate UPD Table"
+          TopLeft="704.5,5.49999999999985" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="882.285714285715,102.857142857143"
+          Size="882.285714285715,146.285714285715"
+          Id="Package\CDC Processing\Truncate Staging Tables"
+          TopLeft="5.5,5.50000000000009" />
         <EdgeLayout
           Id="Package\CDC Processing.PrecedenceConstraints[Constraint]"
-          TopLeft="355.833333333333,150.5">
+          TopLeft="411.97619047619,254.071428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-242.333333333333,60"
+              EndConnector="-242.333333333333,59.9999999999999"
               Start="0,0"
-              End="-242.333333333333,52.5">
+              End="-242.333333333333,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -3555,7 +2379,7 @@
                     Point2="-242.333333333333,24.2647058823529"
                     Point3="-242.333333333333,28.2647058823529" />
                   <mssgle:LineSegment
-                    End="-242.333333333333,52.5" />
+                    End="-242.333333333333,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3567,14 +2391,36 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CDC Processing.PrecedenceConstraints[Constraint 2]"
-          TopLeft="425.166666666667,150.5">
+          Id="Package\CDC Processing.PrecedenceConstraints[Constraint 1]"
+          TopLeft="169.642857142857,356.357142857143">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-34.6666666666666,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="-34.6666666666666,52.5">
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing.PrecedenceConstraints[Constraint 2]"
+          TopLeft="481.309523809524,254.071428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.6666666666666,59.9999999999999"
+              Start="0,0"
+              End="-34.6666666666666,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -3591,7 +2437,7 @@
                     Point2="-34.6666666666666,24.2647058823529"
                     Point3="-34.6666666666666,28.2647058823529" />
                   <mssgle:LineSegment
-                    End="-34.6666666666666,52.5" />
+                    End="-34.6666666666666,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3602,69 +2448,20 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="216,42"
-          Id="Package\CDC Processing\Process Changes"
-          TopLeft="5.50000000000006,312.5" />
-        <EdgeLayout
-          Id="Package\CDC Processing.PrecedenceConstraints[Constraint 1]"
-          TopLeft="113.5,252.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="172,42"
-          Id="Package\CDC Processing\Truncate Staging Tables\Truncate DEL Table"
-          TopLeft="10,43" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\CDC Processing\Truncate Staging Tables\Truncate INS Table"
-          TopLeft="10,145" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\CDC Processing\Truncate Staging Tables\Truncate STG Table"
-          TopLeft="10,349" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\CDC Processing\Truncate Staging Tables\Truncate UPD Table"
-          TopLeft="10,247" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="False"
-          PanelSize="237,446"
-          Size="216,43"
-          Id="Package\CDC Processing\Truncate Staging Tables"
-          TopLeft="282.5,5.5" />
         <EdgeLayout
           Id="Package\CDC Processing.PrecedenceConstraints[Constraint 3]"
-          TopLeft="390.5,48.5">
+          TopLeft="446.642857142857,151.785714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,60.0000000000001"
               Start="0,0"
-              End="0,52.5">
+              End="0,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3676,36 +2473,24 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="524,550"
-          Size="524,592"
+          PanelSize="893.142857142858,513.714285714286"
+          Size="893.142857142858,556.571428571429"
           Id="Package\CDC Processing"
-          TopLeft="5.5,5.5" />
+          TopLeft="5.50000000000011,5.50000000000006" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="267.5,597.5">
+          TopLeft="452.071428571429,562.071428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-9.99999999999994,-80"
+              EndConnector="0,60"
               Start="0,0"
-              End="-9.99999999999994,-72.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-36" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-36"
-                    Point2="0,-40"
-                    Point3="-4,-40" />
-                  <mssgle:LineSegment
-                    End="-5.99999999999994,-40" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-5.99999999999994,-40"
-                    Point2="-9.99999999999994,-40"
-                    Point3="-9.99999999999994,-44" />
-                  <mssgle:LineSegment
-                    End="-9.99999999999994,-72.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3723,21 +2508,43 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="211,42"
-          Id="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination"
-          TopLeft="5.50000000000003,311.5" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\CDC Processing\CDC Initial Load\Add ChangeType"
-          TopLeft="28.5,209.5" />
-        <NodeLayout
-          Size="162,42"
+          Size="162.285714285715,42.2857142857143"
           Id="Package\CDC Processing\CDC Initial Load\Select Row Count"
           TopLeft="32.5,107.5" />
         <NodeLayout
-          Size="190,42"
+          Size="189.714285714286,42.2857142857143"
           Id="Package\CDC Processing\CDC Initial Load\AWLT Customer Source"
           TopLeft="16,5.5" />
+        <NodeLayout
+          Size="210.857142857143,42.2857142857143"
+          Id="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="158.857142857143,42.2857142857143"
+          Id="Package\CDC Processing\CDC Initial Load\Add ChangeType"
+          TopLeft="28.5,209.5" />
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Initial Load.Paths[Row Count Output 1]"
+          TopLeft="110.75,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\CDC Processing\CDC Initial Load.Paths[OLE DB Source Output]"
           TopLeft="112.25,47.5">
@@ -3782,33 +2589,11 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Initial Load.Paths[Row Count Output 1]"
-          TopLeft="110.75,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination">
+    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3821,7 +2606,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Source">
+    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3839,164 +2624,74 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="162,42"
-          Id="Package\CDC Processing\CDC Process\Insert Row Count"
-          TopLeft="233,209.5" />
-        <NodeLayout
-          Size="224,42"
-          Id="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination"
-          TopLeft="202,515.5" />
-        <NodeLayout
-          Size="186,42"
-          Id="Package\CDC Processing\CDC Process\Decode CDC operation"
-          TopLeft="221,413.5" />
-        <NodeLayout
-          Size="157,42"
-          Id="Package\CDC Processing\CDC Process\Error Row Count"
-          TopLeft="455.5,209.5" />
-        <NodeLayout
-          Size="164,42"
+          Size="164,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\Delete Row Count"
           TopLeft="673,209.5" />
         <NodeLayout
-          Size="134,42"
-          Id="Package\CDC Processing\CDC Process\CDC Source"
-          TopLeft="467,5.5" />
+          Size="148,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Combine Rows"
+          TopLeft="240,311.5" />
         <NodeLayout
-          Size="167,42"
+          Size="166.857142857143,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\Update Row Count"
           TopLeft="5.5,209.5" />
         <NodeLayout
-          Size="136,42"
+          Size="136,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\CDC Splitter"
           TopLeft="466,107.5" />
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[UpdateOutput]"
-          TopLeft="495.6,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-406.6,60.0000000000001"
-              Start="0,0"
-              End="-406.6,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,14.1967213114755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.1967213114755"
-                    Point2="0,18.1967213114755"
-                    Point3="-4,18.1967213114755" />
-                  <mssgle:LineSegment
-                    End="-402.6,18.1967213114755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-402.6,18.1967213114755"
-                    Point2="-406.6,18.1967213114755"
-                    Point3="-406.6,22.1967213114755" />
-                  <mssgle:LineSegment
-                    End="-406.6,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-234.93033203125,23.1967213114755,63.2606640625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[Output]"
-          TopLeft="534,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[InsertOutput]"
-          TopLeft="521.2,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-207.2,60"
-              Start="0,0"
-              End="-207.2,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.8831168831169" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.8831168831169"
-                    Point2="0,26.8831168831169"
-                    Point3="-4,26.8831168831169" />
-                  <mssgle:LineSegment
-                    End="-203.2,26.8831168831169" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-203.2,26.8831168831169"
-                    Point2="-207.2,26.8831168831169"
-                    Point3="-207.2,30.8831168831169" />
-                  <mssgle:LineSegment
-                    End="-207.2,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-132.57798828125,31.8831168831169,57.9559765625,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="157.142857142858,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Error Row Count"
+          TopLeft="455.5,209.5" />
+        <NodeLayout
+          Size="162.285714285715,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Insert Row Count"
+          TopLeft="233,209.5" />
+        <NodeLayout
+          Size="186.285714285715,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Decode CDC operation"
+          TopLeft="221,413.5" />
+        <NodeLayout
+          Size="224,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination"
+          TopLeft="202,515.5" />
+        <NodeLayout
+          Size="133.714285714286,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\CDC Source"
+          TopLeft="467,5.5" />
         <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[ErrorOutput]"
-          TopLeft="546.8,149.5">
+          TopLeft="546.8,149.785714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.8,60"
+              EndConnector="-12.7285714285714,59.7142857142857"
               Start="0,0"
-              End="-12.8,52.5">
+              End="-12.7285714285714,52.2142857142857">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.8831168831169" />
+                    End="0,22.7551020408163" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.8831168831169"
-                    Point2="0,26.8831168831169"
-                    Point3="-4,26.8831168831169" />
+                    Point1="0,22.7551020408163"
+                    Point2="0,26.7551020408163"
+                    Point3="-4,26.7551020408163" />
                   <mssgle:LineSegment
-                    End="-8.79999999999995,26.8831168831169" />
+                    End="-8.7285714285714,26.7551020408163" />
                   <mssgle:CubicBezierSegment
-                    Point1="-8.79999999999995,26.8831168831169"
-                    Point2="-12.8,26.8831168831169"
-                    Point3="-12.8,30.8831168831169" />
+                    Point1="-8.7285714285714,26.7551020408163"
+                    Point2="-12.7285714285714,26.7551020408163"
+                    Point3="-12.7285714285714,30.7551020408163" />
                   <mssgle:LineSegment
-                    End="-12.8,52.5" />
+                    End="-12.7285714285714,52.2142857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-33.17138671875,31.8831168831169,53.5427734375,11.43359375"
+              BoundingBox="-33.1356724330357,31.7551020408163,53.5427734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4024,47 +2719,79 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[DeleteOutput]"
-          TopLeft="572.4,149.5">
+          TopLeft="572.4,149.785714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="182.6,60"
+              EndConnector="182.6,59.7142857142857"
               Start="0,0"
-              End="182.6,52.5">
+              End="182.6,52.2142857142857">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.1967213114754" />
+                    End="0,14.1100702576113" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.1967213114754"
-                    Point2="0,18.1967213114754"
-                    Point3="4,18.1967213114754" />
+                    Point1="0,14.1100702576113"
+                    Point2="0,18.1100702576113"
+                    Point3="4,18.1100702576113" />
                   <mssgle:LineSegment
-                    End="178.6,18.1967213114754" />
+                    End="178.6,18.1100702576113" />
                   <mssgle:CubicBezierSegment
-                    Point1="178.6,18.1967213114754"
-                    Point2="182.6,18.1967213114754"
-                    Point3="182.6,22.1967213114754" />
+                    Point1="178.6,18.1100702576113"
+                    Point2="182.6,18.1100702576113"
+                    Point3="182.6,22.1100702576113" />
                   <mssgle:LineSegment
-                    End="182.6,52.5" />
+                    End="182.6,52.2142857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="61.35361328125,23.1967213114754,59.8927734375,11.609375"
+              BoundingBox="61.35361328125,23.1100702576113,59.8927734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="148,42"
-          Id="Package\CDC Processing\CDC Process\Combine Rows"
-          TopLeft="240,311.5" />
         <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[Row Count Output 1]"
-          TopLeft="314,251.5">
+          Id="Package\CDC Processing\CDC Process.Paths[UpdateOutput]"
+          TopLeft="495.6,149.785714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-406.671428571429,59.7142857142857"
+              Start="0,0"
+              End="-406.671428571429,52.2142857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1100702576113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1100702576113"
+                    Point2="0,18.1100702576113"
+                    Point3="-4,18.1100702576113" />
+                  <mssgle:LineSegment
+                    End="-402.671428571429,18.1100702576113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-402.671428571429,18.1100702576113"
+                    Point2="-406.671428571429,18.1100702576113"
+                    Point3="-406.671428571429,22.1100702576113" />
+                  <mssgle:LineSegment
+                    End="-406.671428571429,52.2142857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-234.966046316964,23.1100702576113,63.2606640625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Process.Paths[Union All Output 1]"
+          TopLeft="314,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4076,40 +2803,6 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[Row Count Output 11]"
-          TopLeft="755,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-406,60"
-              Start="0,0"
-              End="-406,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.2920353982301" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.2920353982301"
-                    Point2="0,39.2920353982301"
-                    Point3="-4,39.2920353982301" />
-                  <mssgle:LineSegment
-                    End="-402,39.2920353982301" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-402,39.2920353982301"
-                    Point2="-406,39.2920353982301"
-                    Point3="-406,43.2920353982301" />
-                  <mssgle:LineSegment
-                    End="-406,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4153,8 +2846,42 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[Union All Output 1]"
-          TopLeft="314,353.5">
+          Id="Package\CDC Processing\CDC Process.Paths[Row Count Output 11]"
+          TopLeft="755,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-406,60"
+              Start="0,0"
+              End="-406,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.2920353982301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.2920353982301"
+                    Point2="0,39.2920353982301"
+                    Point3="-4,39.2920353982301" />
+                  <mssgle:LineSegment
+                    End="-402,39.2920353982301" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-402,39.2920353982301"
+                    Point2="-406,39.2920353982301"
+                    Point3="-406,43.2920353982301" />
+                  <mssgle:LineSegment
+                    End="-406,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Process.Paths[Row Count Output 1]"
+          TopLeft="314,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4166,6 +2893,64 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Process.Paths[InsertOutput]"
+          TopLeft="521.2,149.785714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-207.057142857143,59.7142857142857"
+              Start="0,0"
+              End="-207.057142857143,52.2142857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.7551020408163" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.7551020408163"
+                    Point2="0,26.7551020408163"
+                    Point3="-4,26.7551020408163" />
+                  <mssgle:LineSegment
+                    End="-203.057142857143,26.7551020408163" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-203.057142857143,26.7551020408163"
+                    Point2="-207.057142857143,26.7551020408163"
+                    Point3="-207.057142857143,30.7551020408163" />
+                  <mssgle:LineSegment
+                    End="-207.057142857143,52.2142857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-132.506559709821,31.7551020408163,57.9559765625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\CDC Processing\CDC Process.Paths[Output]"
+          TopLeft="533.928571428571,47.7857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.7142857142857"
+              Start="0,0"
+              End="0,52.2142857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.2142857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

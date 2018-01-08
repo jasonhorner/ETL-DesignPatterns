@@ -37,7 +37,7 @@
         <# var SourceConnection = SchemaManager.CreateConnectionNode(Source["ConnectionName"].ToString(), Source["ConnectionString"].ToString()); #>
         <# foreach (var table in SourceConnection.GetDatabaseSchema(new List<string>{"dbo"}, new List<string>{"Customer"}, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
             
-            <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Delete","_DEL"},{"Update","_UPD"},{"Insert","_INS"}}; #>
+            <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Staging","_STG"}}; #>
             <# foreach (var supportTable in SupportTables) { #>
                 <Table Name="<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
                     <Columns>

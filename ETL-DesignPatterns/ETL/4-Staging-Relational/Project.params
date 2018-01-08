@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <SSIS:Parameters xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
-<SSIS:Parameter SSIS:Name="ConnectionManagerAuditingConnectionString">
+<SSIS:Parameter SSIS:Name="ConnectionManagerAuditingOleDbConnectionString">
 <SSIS:Properties>
-<SSIS:Property SSIS:Name="ID">{f24fbe24-4baa-4934-bcf0-105a60449831}</SSIS:Property>
+<SSIS:Property SSIS:Name="ID">{18a3ec21-6c2c-4b85-b03c-25ff808768b8}</SSIS:Property>
 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
 <SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
@@ -12,11 +12,11 @@
 <SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
 </SSIS:Properties>
 </SSIS:Parameter>
-<SSIS:Parameter SSIS:Name="ConnectionManagerAWLTConnectionString">
+<SSIS:Parameter SSIS:Name="ConnectionManagerAuditingAdoNetConnectionString">
 <SSIS:Properties>
-<SSIS:Property SSIS:Name="ID">{6d344929-3d36-4bd5-8f03-5de9b225b2ae}</SSIS:Property>
+<SSIS:Property SSIS:Name="ID">{7e5af381-8cf7-4436-9d56-b6d30843354b}</SSIS:Property>
 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-<SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Server=.;Database=Admin;Integrated Security=true;</SSIS:Property>
 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
 <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
@@ -24,11 +24,71 @@
 <SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
 </SSIS:Properties>
 </SSIS:Parameter>
-<SSIS:Parameter SSIS:Name="ConnectionManagerStagingConnectionString">
+<SSIS:Parameter SSIS:Name="ConnectionManagerAdminOleDbConnectionString">
 <SSIS:Properties>
-<SSIS:Property SSIS:Name="ID">{e607f11d-b35f-4e97-875d-a42a649e4ffd}</SSIS:Property>
+<SSIS:Property SSIS:Name="ID">{358c4c16-278a-43d0-ba5e-7cc6fc2b5990}</SSIS:Property>
 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-<SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
+<SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+<SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Description"></SSIS:Property>
+<SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
+</SSIS:Properties>
+</SSIS:Parameter>
+<SSIS:Parameter SSIS:Name="ConnectionManagerAdminAdoNetConnectionString">
+<SSIS:Properties>
+<SSIS:Property SSIS:Name="ID">{96b9c4bc-b929-40b5-8d93-0f5f9519d96a}</SSIS:Property>
+<SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Server=localhost;Database=Admin;Integrated Security=true;</SSIS:Property>
+<SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+<SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Description"></SSIS:Property>
+<SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
+</SSIS:Properties>
+</SSIS:Parameter>
+<SSIS:Parameter SSIS:Name="ConnectionManagerAWLTOleDbConnectionString">
+<SSIS:Properties>
+<SSIS:Property SSIS:Name="ID">{7815ed25-3f86-4545-9469-ccde0933dc8e}</SSIS:Property>
+<SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=AdventureWorksLT;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
+<SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+<SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Description"></SSIS:Property>
+<SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
+</SSIS:Properties>
+</SSIS:Parameter>
+<SSIS:Parameter SSIS:Name="ConnectionManagerAWLTAdoNetConnectionString">
+<SSIS:Properties>
+<SSIS:Property SSIS:Name="ID">{8076c42a-dbee-480a-9003-f6fb59fbb202}</SSIS:Property>
+<SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Server=localhost;Database=AdventureWorksLT;Integrated Security=true;</SSIS:Property>
+<SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+<SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Description"></SSIS:Property>
+<SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
+</SSIS:Properties>
+</SSIS:Parameter>
+<SSIS:Parameter SSIS:Name="ConnectionManagerStagingOleDbConnectionString">
+<SSIS:Properties>
+<SSIS:Property SSIS:Name="ID">{6bc1b054-2d29-45d0-a165-b38213dc20d3}</SSIS:Property>
+<SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Data Source=localhost;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;</SSIS:Property>
+<SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Required">1</SSIS:Property>
+<SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+<SSIS:Property SSIS:Name="Description"></SSIS:Property>
+<SSIS:Property SSIS:Name="CreationName"></SSIS:Property>
+</SSIS:Properties>
+</SSIS:Parameter>
+<SSIS:Parameter SSIS:Name="ConnectionManagerStagingAdoNetConnectionString">
+<SSIS:Properties>
+<SSIS:Property SSIS:Name="ID">{833ad113-9631-496b-8b82-f884258fe50d}</SSIS:Property>
+<SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+<SSIS:Property SSIS:Name="Value">Server=localhost;Database=Staging;Integrated Security=true;</SSIS:Property>
 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
 <SSIS:Property SSIS:Name="Required">1</SSIS:Property>
 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>

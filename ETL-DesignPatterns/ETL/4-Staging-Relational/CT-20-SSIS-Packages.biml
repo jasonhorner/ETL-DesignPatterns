@@ -1,0 +1,256 @@
+<#@ template tier="20" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	
+	<Packages>
+		
+		<# foreach (var table in RootNode.Tables.Where(t => t.GetTag("SupportTableType") == "Core")) { #>
+			
+			<Package Name="CT_Extract_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
+			    
+			    <Parameters>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
+			    </Parameters>
+				
+				<Variables>
+			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageVariables.biml")#>
+		            <Variable Name="ChangeTrackingStartVersion" DataType="Int32">0</Variable>
+		            <Variable Name="ChangeTrackingEndVersion" DataType="Int32">0</Variable>
+		            <Variable Name="SourceDatabaseName" DataType="String"><#=table.GetTag("SourceDatabaseName")#></Variable>
+		            <Variable Name="SourceTableName" DataType="String"><#=table.GetTag("SourceSchemaName")#>.<#=table.GetTag("SourceTableName")#></Variable>
+				</Variables>
+				
+				<Tasks>
+				    
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Start")#>
+				            
+				    <Container Name="CT Extract <#=table.Schema#> <#=table.Name#>">
+				        <Tasks>
+    	                    
+                            <ExecuteSQL Name="Get Change Tracking Start Version" ConnectionName="<#=RootNode.AdoNetConnections.Where(c => c.GetTag("ConnectionType") == "Admin").FirstOrDefault()#>" IsStoredProcedure="true">
+                                <DirectInput>ETL.GetChangeTrackingLatestVersion</DirectInput>
+                                <Parameters>
+                                    <Parameter Name="DatabaseName" VariableName="User.SourceDatabaseName" DataType="String" Length="-1" />
+                                    <Parameter Name="TableName" VariableName="User.SourceTableName" DataType="String" Length="-1" />
+                                    <Parameter Name="VersionID" VariableName="User.ChangeTrackingStartVersion" DataType="Int32" Length="-1" Direction="Output" />
+                                </Parameters>
+                            </ExecuteSQL>
+				        
+    	                    <ExecuteSQL Name="Get Change Tracking End Version" ConnectionName="<#=table.GetTag("SourceConnectionName")#>" ResultSet="SingleRow">
+                                <DirectInput>SELECT CHANGE_TRACKING_CURRENT_VERSION() AS ChangeTrackingEndVersion;</DirectInput>
+                                <Results>
+                                    <Result Name="ChangeTrackingEndVersion" VariableName="User.ChangeTrackingEndVersion" />
+                                </Results>
+                            </ExecuteSQL>
+				            
+        		            <Container Name="Initial or Incremental Load">
+                                <PrecedenceConstraints>
+                                    <Inputs>
+                                        <Input OutputPathName="Get Change Tracking Start Version.Output" />
+                                        <Input OutputPathName="Get Change Tracking End Version.Output" />
+                                    </Inputs>
+                                </PrecedenceConstraints>
+                                
+                                <Tasks>
+				            
+                		            <Container Name="Initial Load" ConstraintMode="Linear">
+                		                <SsisAnnotations>
+                		                    <SsisAnnotation>Container gets enabled if parameter IsInitialLoad is True, and disabled if parameter IsInitialLoad is False.</SsisAnnotation>
+                		                </SsisAnnotations>
+                	                    <Expressions>
+                	                        <Expression PropertyName="Disable">@[$Package::IsInitialLoad] == True ? False : True</Expression>
+                	                    </Expressions>
+                	                    
+                		                <Tasks>
+                		                    
+                				            <ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                				                <DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#>;</DirectInput>
+                				            </ExecuteSQL>
+                			                
+                			                <Dataflow Name="Initial Load <#=table.Schema#> <#=table.Name#>">
+                        						<Transformations>
+                        
+                                                    <OleDbSource Name="Source" ConnectionName="<#=table.GetTag("SourceConnectionName")#>">
+                        								<DirectInput>
+                        								    SELECT 
+                        								        <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, 
+                        								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> 
+                        								    FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;
+                								        </DirectInput>
+                        							</OleDbSource>
+                        							
+                        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Select")#>
+                        							
+                                                    <DerivedColumns Name="Add ETL Columns - Insert">
+                                                        <Columns>
+                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Insert")#>
+                                                        </Columns>
+                                                    </DerivedColumns>
+                        
+                        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Insert")#>
+                                                    
+                                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
+                                                    </OleDbDestination>
+                        						    
+                        						</Transformations>
+                        					</Dataflow>
+                        					    
+                		                </Tasks>
+                		            </Container>
+        				            
+        				            <Container Name="Incremental Load" ConstraintMode="Linear">
+                		                <SsisAnnotations>
+                		                    <SsisAnnotation>Container gets enabled if parameter IsInitialLoad is False, and disabled if parameter IsInitialLoad is True.</SsisAnnotation>
+                		                </SsisAnnotations>
+                	                    <Expressions>
+                	                        <Expression PropertyName="Disable">@[$Package::IsInitialLoad] == True ? True : False</Expression>
+                	                    </Expressions>	
+                	                    
+        				                <Tasks>
+        				                    
+                		                    <# foreach (var supportTable in RootNode.Tables.Where(t => t.GetTag("CoreTableName") == table.Schema+"."+table.Name).Where(t => t.GetTag("SupportTableType") != "Core" )) { #>
+                            					<ExecuteSQL Name="Truncate <#=supportTable.Schema#> <#=supportTable.Name#>" ConnectionName="<#=supportTable.Connection.Name#>">
+                            						<DirectInput>TRUNCATE TABLE <#=supportTable.Schema#>.<#=supportTable.Name#>;</DirectInput>
+                            					</ExecuteSQL>
+                        					<# } #>
+                        					
+                        					<Dataflow Name="Incremental Load <#=table.Schema#> <#=table.Name#>">
+                                                
+                        						<Transformations>
+                        
+                                                    <OleDbSource Name="Source" ConnectionName="<#=table.GetTag("SourceConnectionName")#>">
+                        								<DirectInput>
+                    								        SELECT 
+                        								        <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true, "ct")#>, 
+                        								        <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, "core")#>, 
+                        								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>, 
+                        								        ct.SYS_CHANGE_OPERATION AS ChangeOperation
+                    								        FROM CHANGETABLE(CHANGES <#=table.GetTag("SourceSchemaName")#>.<#=table.GetTag("SourceTableName")#>, ?) AS ct
+                    								        LEFT JOIN <#=table.GetTag("SourceSchemaQualifiedName")#> AS core
+                    								            ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "ct", "core")#>
+                    								        WHERE (SELECT MAX(VALUE.v) FROM (VALUES (ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATION_VERSION)) AS VALUE (v)) &lt;= ?;
+                								        </DirectInput>
+                                                        <Parameters>
+                                                            <Parameter Name="0:ChangeTrackingStartVersion" VariableName="User.ChangeTrackingStartVersion" />
+                                                            <Parameter Name="1:ChangeTrackingEndVersion" VariableName="User.ChangeTrackingEndVersion" />
+                                                        </Parameters>
+                        							</OleDbSource>
+                        							
+                        				            <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", "Select")#>
+                        
+                                                    <ConditionalSplit Name="Split on Change Type">
+                                                        <OutputPaths>
+                                                            <OutputPath Name="New">
+                                                                <Expression>ChangeOperation == "I"</Expression>
+                                                            </OutputPath>
+                                                            <OutputPath Name="Updated">
+                                                                <Expression>ChangeOperation == "U"</Expression>
+                                                            </OutputPath>
+                                                            <OutputPath Name="Deleted">
+                                                                <Expression>ChangeOperation == "D"</Expression>
+                                                            </OutputPath>
+                                                        </OutputPaths>
+                                                    </ConditionalSplit>
+                                                    
+                        							<!-- Start New Rows -->
+                        							<# dynamic outRCInsert; #>
+                        				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCInsert, "Insert", "Split on Change Type.New", "New Rows")#>
+                        							
+                                                    <DerivedColumns Name="Add ETL Columns - Insert">
+                                                        <InputPath OutputPathName="<#=outRCInsert.RowCountPathName.ToString()#>.Output" />
+                                                        <Columns>
+                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Insert")#>
+                                                        </Columns>
+                                                    </DerivedColumns>
+                                                    
+                                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                                                        <InputPath OutputPathName="Add ETL Columns - Insert.Output" />
+                                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>" />
+                                                    </OleDbDestination>
+                        						    <!-- End New Rows -->
+                                                        
+                                                    <!-- Start Updated Rows -->
+                    							    <# dynamic outRCUpdate; #>
+                    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCUpdate, "Update", "Split on Change Type.Updated", "Updated Rows")#>
+                                                    
+                                                    <DerivedColumns Name="Add ETL Columns - Update">
+                                                        <InputPath OutputPathName="<#=outRCUpdate.RowCountPathName.ToString()#>.Output" />
+                                                        <Columns>
+                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Update")#>
+                                                        </Columns>
+                                                    </DerivedColumns>
+                                                    <!-- End Updated Rows -->
+                                                        
+                                                    <!-- Start Deleted Rows -->
+                    							    <# dynamic outRCDelete; #>
+                    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCDelete, "Delete", "Split on Change Type.Deleted", "Deleted Rows")#>
+                                                    
+                                                    <DerivedColumns Name="Add ETL Columns - Delete">
+                                                        <InputPath OutputPathName="<#=outRCDelete.RowCountPathName.ToString()#>.Output" />
+                                                        <Columns>
+                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Delete")#>
+                                                        </Columns>
+                                                    </DerivedColumns>
+                                                    <!-- End Deleted Rows -->
+                                                    
+                                                    <!-- Start Ignored Rows -->
+                    							    <# dynamic outRCIgnore; #>
+                    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCIgnore, "Ignore", "Split on Change Type.Default", "Existing Rows")#>
+                                                    <!-- End Ignored Rows -->
+                                                        
+                                                    <!-- Start Union All Updated and Deleted -->
+                                                    <UnionAll Name="Union All Updated and Deleted">
+                                                        <InputPaths>
+                                                            <InputPath OutputPathName="Add ETL Columns - Update.Output" />
+                                                            <InputPath OutputPathName="Add ETL Columns - Delete.Output" />
+                                                        </InputPaths>
+                                                    </UnionAll>
+                                                    
+                                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_STG" ConnectionName="<#=table.Connection.Name#>">
+                                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_STG" />
+                                                    </OleDbDestination>
+                                                    <!-- End Union All Updated and Deleted -->
+                        						    
+                        						</Transformations>
+                        					</Dataflow>
+                        					
+                        					<ExecuteSQL Name="Merge <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+                        						<DirectInput>EXECUTE <#=table.Schema#>.<#=table.Name#>_Merge;</DirectInput>
+                        					</ExecuteSQL>
+                        					    
+        				                </Tasks>
+        				            </Container>
+                					    
+				                </Tasks>
+				            </Container>
+				                
+		                    <ExecuteSQL Name="Set Latest Change Tracking Version" ConnectionName="<#=RootNode.AdoNetConnections.Where(c => c.GetTag("ConnectionType") == "Admin").FirstOrDefault()#>" IsStoredProcedure="true">
+        					    <PrecedenceConstraints>
+        					        <Inputs>
+        					            <Input OutputPathName="Initial or Incremental Load.Output" />
+        					        </Inputs>
+        					    </PrecedenceConstraints>
+                                <DirectInput>ETL.SetChangeTrackingLatestVersion</DirectInput>
+                                <Parameters>
+                                    <Parameter Name="DatabaseName" VariableName="User.SourceDatabaseName" DataType="String" Length="-1" />
+                                    <Parameter Name="TableName" VariableName="User.SourceTableName" DataType="String" Length="-1" />
+                                    <Parameter Name="VersionID" VariableName="User.ChangeTrackingEndVersion" DataType="Int32" Length="-1" />
+                                </Parameters>
+                            </ExecuteSQL>
+					
+				        </Tasks>
+				    </Container>
+					
+				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Stop")#>
+				        
+				</Tasks>
+				
+			    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-LogPackageExecution.biml", "Error")#>
+				
+			</Package>
+			
+		<# } #>
+			
+	</Packages>
+	
+</Biml>

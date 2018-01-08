@@ -7,6 +7,8 @@
 /* Set Destination Database */
 USE [<#=database.Name#>];
 
+
+
 /* Create Destination Schemas */
 <# foreach (var schema in RootNode.Schemas.Where(s => s.Database == database)) { #>
 DECLARE @query nvarchar(4000);
@@ -16,11 +18,15 @@ EXEC(@query);
 GO
 <# } #>
 
+
+
 /* Create Destination Tables */
 <# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database)) { #>
 <#=table.GetDropAndCreateDdl()#>
 <# } #>
-    
+
+
+
 /* Create Destination Procedures */
 /* DELETE */
 <# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Delete")) { #>

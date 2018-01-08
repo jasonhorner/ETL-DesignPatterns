@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="01/08/2018 15:05:32" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{080A7CC0-D9AF-4D48-BA70-A345036C2B86}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="Hash_Extract_AWLTSRC_dbo_Customer" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{7FC653CD-40D8-4A15-99FC-18E7CB8D71DE}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{279AA17E-983F-4EC1-8017-A70B0043C35B}" DTS:ObjectName="JobID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{AEE150AA-F7FE-43AF-8A8F-18C70EA92691}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{3A911EF5-0F10-4305-8B57-5C192678E4F3}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{30C2030F-5A06-4107-8FCF-A497CD43B55D}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="11" DTS:Description="" DTS:DTSID="{E34B4F3E-254E-4E6A-B3B4-3102281DE8B3}" DTS:ObjectName="IsInitialLoad" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="11" DTS:Name="ParameterValue">False</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{B5B7873F-9DFF-43E8-AEBE-8C6A6F1853DA}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6A1E775A-3123-4334-95E8-CE29D0764F29}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{CA9F5264-AD38-4384-983E-C47E5FB1C821}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{1B71F6B8-52AA-4E2C-B043-11120A9ACFEA}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6F408AFD-B7D5-436B-B893-7CE72AC28F6C}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{5F948DFD-122E-48B0-9321-81C0B8F8C072}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{052DBB21-F0F2-43D7-A527-D3BA6A59F0D8}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{F490DE32-2A25-4E8C-90BE-6145AF8F4EC3}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="5" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageStartTime" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Output" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{49F48792-A0A3-407D-B090-E279E7B6F3B4}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Hash Extract AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{E72CA89C-1B44-40BD-B38E-B948475E1C25}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Initial Load" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Initial Load">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{DE9FA267-0B97-465C-9021-4C44EE3E6FC9}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Initial Load\Truncate AWLTSRC dbo_Customer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.dbo_Customer;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PropertyExpression DTS:Name="Disable">@[$Package::IsInitialLoad] == True ? False : True</DTS:PropertyExpression>
+        </DTS:Executable>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{FE478162-E140-4300-8274-B20D306F4333}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Truncate Support Tables" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{288D7883-7055-465E-98C5-703BF80D7358}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate AWLTSRC dbo_Customer_DEL" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables\Truncate AWLTSRC dbo_Customer_DEL" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.dbo_Customer_DEL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{ECF8EBB0-3A99-45AD-86C8-D79C6BE3F804}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate AWLTSRC dbo_Customer_UPD" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables\Truncate AWLTSRC dbo_Customer_UPD" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.dbo_Customer_UPD;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{7338EED9-AD1F-4F91-AAD1-B2E4EDF85315}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Truncate AWLTSRC dbo_Customer_INS" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables\Truncate AWLTSRC dbo_Customer_INS" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="TRUNCATE TABLE AWLTSRC.dbo_Customer_INS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{8E550A6B-C852-46A8-9DEC-0C13C5CCE9CA}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Load Tables" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.Pipeline" DTS:DTSID="{062C34F3-79B6-4338-82A0-D186039A6C21}" DTS:ExecutableType="Microsoft.Pipeline" DTS:LocaleID="-1" DTS:ObjectName="Load AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer" DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <pipeline BLOBTempStoragePath="" bufferTempStoragePath="" name="pipelineXml" version="1">
+                  <components>
+                    <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="Destination" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination" usesDispositions="true" version="7">
+                      <connections>
+                        <connection connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Connections[OleDbConnection]"></connection>
+                      </connections>
+                      <outputs>
+                        <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output]">
+                          <externalMetadataColumns isUsed="True">
+                            <externalMetadataColumn dataType="i4" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[CustomerID]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[FirstName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[LastName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[EmailAddress]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="40" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[ChangeHashKey]"></externalMetadataColumn>
+                          </externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[CustomerID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[CustomerID]" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[CustomerID]" sortKeyPosition="1" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[FirstName]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[FirstName]" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[FirstName]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[LastName]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[LastName]" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[LastName]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[EmailAddress]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[EmailAddress]" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[EmailAddress]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].ExternalColumns[ChangeHashKey]" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[ChangeHashKey]" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[ChangeHashKey]" truncationRowDisposition="FailComponent"></outputColumn>
+                          </outputColumns>
+                        </output>
+                        <output isErrorOut="true" isSorted="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[CustomerID]" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[CustomerID]" sortKeyPosition="1"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[FirstName]" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[FirstName]"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[LastName]" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[LastName]"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[EmailAddress]" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[EmailAddress]"></outputColumn>
+                            <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ChangeHashKey]" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ChangeHashKey]"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                        <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
+                        <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                        <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">
+                								    SELECT 
+                								        [CustomerID], [FirstName], [LastName], [EmailAddress], 
+                								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT('|', CONVERT(NVARCHAR(MAX), [FirstName]), '|', CONVERT(NVARCHAR(MAX), [LastName]), '|', CONVERT(NVARCHAR(MAX), [EmailAddress]))), 2) AS ChangeHashKey 
+                								    FROM AWLTSRC.dbo_Customer 
+                								    WHERE IsDeleted = 0 
+                								    ORDER BY [CustomerID];
+        								        </property>
+                        <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
+                        <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                        <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                        <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                        <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.OLEDBSource" contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7" name="Source" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source" usesDispositions="true" version="7">
+                      <connections>
+                        <connection connectionManagerID="{0B40818C-B67F-440A-9F86-9BED50F8B132}:external" connectionManagerRefId="Project.ConnectionManagers[AWLT]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Connections[OleDbConnection]"></connection>
+                      </connections>
+                      <outputs>
+                        <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output]">
+                          <externalMetadataColumns isUsed="True">
+                            <externalMetadataColumn dataType="i4" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[CustomerID]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[FirstName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[LastName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[EmailAddress]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="40" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[ChangeHashKey]"></externalMetadataColumn>
+                          </externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[CustomerID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[CustomerID]" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[CustomerID]" sortKeyPosition="1" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[FirstName]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[FirstName]" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[FirstName]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[LastName]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[LastName]" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[LastName]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[EmailAddress]" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[EmailAddress]" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[EmailAddress]" truncationRowDisposition="FailComponent"></outputColumn>
+                            <outputColumn dataType="wstr" errorOrTruncationOperation="Conversion" errorRowDisposition="FailComponent" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].ExternalColumns[ChangeHashKey]" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[ChangeHashKey]" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[ChangeHashKey]" truncationRowDisposition="FailComponent"></outputColumn>
+                          </outputColumns>
+                        </output>
+                        <output isErrorOut="true" isSorted="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[CustomerID]" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[CustomerID]" sortKeyPosition="1"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[FirstName]" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[FirstName]"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[LastName]" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[LastName]"></outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[EmailAddress]" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[EmailAddress]"></outputColumn>
+                            <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ChangeHashKey]" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ChangeHashKey]"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                        <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset"></property>
+                        <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                        <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">
+                								    SELECT 
+                								        [CustomerID], [FirstName], [LastName], [EmailAddress], 
+                								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT('|', CONVERT(NVARCHAR(MAX), [FirstName]), '|', CONVERT(NVARCHAR(MAX), [LastName]), '|', CONVERT(NVARCHAR(MAX), [EmailAddress]))), 2) AS ChangeHashKey 
+                								    FROM [dbo].[Customer] 
+                								    ORDER BY [CustomerID];
+        								        </property>
+                        <property dataType="System.String" description="The variable that contains the SQL command to be executed." name="SqlCommandVariable"></property>
+                        <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                        <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                        <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode" typeConverter="AccessMode">2</property>
+                        <property dataType="System.String" description="The mappings between the parameters in the SQL command and variables." name="ParameterMapping"></property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.MergeJoin" contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1" name="Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join" version="1">
+                      <inputs>
+                        <input hasSideEffects="true" name="Source_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedDataType="i4" cachedName="CustomerID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[CustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[CustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="FirstName" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[FirstName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[FirstName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="LastName" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[LastName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[LastName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="EmailAddress" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[EmailAddress]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[EmailAddress]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="ChangeHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output].Columns[ChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[ChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                        <input hasSideEffects="true" name="Destination_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedDataType="i4" cachedName="CustomerID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[CustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[CustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="FirstName" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[FirstName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[FirstName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="LastName" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[LastName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[LastName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="EmailAddress" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[EmailAddress]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[EmailAddress]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="ChangeHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output].Columns[ChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[ChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output isSorted="true" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]" name="SourceCustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]" sortKeyPosition="1">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[CustomerID]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceFirstName]" name="SourceFirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceFirstName]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[FirstName]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceLastName]" name="SourceLastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceLastName]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[LastName]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceEmailAddress]" name="SourceEmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceEmailAddress]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[EmailAddress]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]" name="SourceChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join].Columns[ChangeHashKey]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]" name="DestinationCustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[CustomerID]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationFirstName]" name="DestinationFirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationFirstName]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[FirstName]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationLastName]" name="DestinationLastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationLastName]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[LastName]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="50" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationEmailAddress]" name="DestinationEmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationEmailAddress]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[EmailAddress]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="wstr" length="40" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationChangeHashKey]" name="DestinationChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationChangeHashKey]">
+                              <properties>
+                                <property containsID="true" dataType="System.Int32" description="The input column associated with this output column" name="InputColumnID">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join].Columns[ChangeHashKey]}</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="Specifies the type of join to perform." name="JoinType" typeConverter="JoinType">0</property>
+                        <property dataType="System.Int32" description="Specifies the number of columns in the ordering key." name="NumKeyColumns">1</property>
+                        <property dataType="System.Boolean" description="Indicates whether the null values are treated as equal values." name="TreatNullsAsEqual">true</property>
+                        <property dataType="System.Int32" description="Indicates the requested maximum buffers per input before blocking." name="MaxBuffersPerInput">5</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count">
+                      <inputs>
+                        <input hasSideEffects="true" name="Full Outer Join_Output_Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::SelectRowCount</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.ConditionalSplit" contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type" usesDispositions="true">
+                      <inputs>
+                        <input name="Select Row Count_Output_Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedDataType="i4" cachedName="SourceCustomerID" cachedSortKeyPosition="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[SourceCustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="DestinationCustomerID" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[DestinationCustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceChangeHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[SourceChangeHashKey]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="DestinationChangeHashKey" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type].Columns[DestinationChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="New" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[New]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <properties>
+                            <property containsID="true" dataType="System.String" name="Expression">!ISNULL(#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]}) &amp;&amp; ISNULL(#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]})</property>
+                            <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">!ISNULL(SourceCustomerID) &amp;&amp; ISNULL(DestinationCustomerID)</property>
+                            <property dataType="System.Int32" name="EvaluationOrder">0</property>
+                          </properties>
+                        </output>
+                        <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="Deleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Deleted]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <properties>
+                            <property containsID="true" dataType="System.String" name="Expression">ISNULL(#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]}) &amp;&amp; !ISNULL(#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]})</property>
+                            <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">ISNULL(SourceCustomerID) &amp;&amp; !ISNULL(DestinationCustomerID)</property>
+                            <property dataType="System.Int32" name="EvaluationOrder">1</property>
+                          </properties>
+                        </output>
+                        <output errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" exclusionGroup="1" name="Updated" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Updated]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" truncationRowDisposition="FailComponent">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <properties>
+                            <property containsID="true" dataType="System.String" name="Expression">#{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]} == #{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]} &amp;&amp; #{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]} != #{Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationChangeHashKey]}</property>
+                            <property containsID="true" dataType="System.String" expressionType="Notify" name="FriendlyExpression">SourceCustomerID == DestinationCustomerID &amp;&amp; SourceChangeHashKey != DestinationChangeHashKey</property>
+                            <property dataType="System.Int32" name="EvaluationOrder">2</property>
+                          </properties>
+                        </output>
+                        <output exclusionGroup="1" name="Default" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Default]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <properties>
+                            <property dataType="System.Boolean" name="IsDefaultOut">true</property>
+                          </properties>
+                        </output>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                    </component>
+                    <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Ignore Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Ignore Row Count">
+                      <inputs>
+                        <input hasSideEffects="true" name="Existing Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Ignore Row Count.Inputs[Existing Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Ignore Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Ignore Row Count.Inputs[Existing Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::IgnoreRowCount</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Delete Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count">
+                      <inputs>
+                        <input hasSideEffects="true" name="Deleted Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count.Inputs[Deleted Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count.Inputs[Deleted Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::DeleteRowCount</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete" usesDispositions="true">
+                      <inputs>
+                        <input name="Delete Row Count_Output_Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"D"</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"D"</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">1</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">1</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdatePackageExecutionID]" name="UpdatePackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdatePackageExecutionID]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                        </output>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                    </component>
+                    <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_Customer_DEL" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL" usesDispositions="true" version="4">
+                      <connections>
+                        <connection connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Connections[OleDbConnection]"></connection>
+                      </connections>
+                      <inputs>
+                        <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL]">
+                          <externalMetadataColumns isUsed="True">
+                            <externalMetadataColumn dataType="i4" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[CustomerID]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[FirstName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[LastName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[EmailAddress]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="40" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[ChangeHashKey]"></externalMetadataColumn>
+                            <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="dbTimeStamp2" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[UpdateDate]" scale="7"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="i4" name="UpdatePackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[UpdatePackageExecutionID]"></externalMetadataColumn>
+                          </externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[ChangeType]"></inputColumn>
+                            <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[IsDeleted]"></inputColumn>
+                            <inputColumn cachedDataType="dbTimeStamp2" cachedName="UpdateDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[UpdateDate]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdateDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[UpdateDate]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="UpdatePackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[UpdatePackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output].Columns[UpdatePackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[UpdatePackageExecutionID]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="DestinationCustomerID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[CustomerID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationCustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[DestinationCustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="DestinationFirstName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[FirstName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationFirstName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[DestinationFirstName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="DestinationLastName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[LastName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationLastName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[DestinationLastName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="DestinationEmailAddress" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[EmailAddress]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationEmailAddress]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[DestinationEmailAddress]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="DestinationChangeHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].ExternalColumns[ChangeHashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[DestinationChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL].Columns[DestinationChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                        <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_Customer_DEL</property>
+                        <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                        <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                        <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                        <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                        <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                        <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Update Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count">
+                      <inputs>
+                        <input hasSideEffects="true" name="Updated Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count.Inputs[Updated Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count.Inputs[Updated Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::UpdateRowCount</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update" usesDispositions="true">
+                      <inputs>
+                        <input name="Update Row Count_Output_Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"U"</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"U"</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">0</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">0</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdatePackageExecutionID]" name="UpdatePackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdatePackageExecutionID]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                        </output>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                    </component>
+                    <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_Customer_UPD" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD" usesDispositions="true" version="4">
+                      <connections>
+                        <connection connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Connections[OleDbConnection]"></connection>
+                      </connections>
+                      <inputs>
+                        <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD]">
+                          <externalMetadataColumns isUsed="True">
+                            <externalMetadataColumn dataType="i4" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[CustomerID]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[FirstName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[LastName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[EmailAddress]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="40" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[ChangeHashKey]"></externalMetadataColumn>
+                            <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="dbTimeStamp2" name="UpdateDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[UpdateDate]" scale="7"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="i4" name="UpdatePackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[UpdatePackageExecutionID]"></externalMetadataColumn>
+                          </externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[ChangeType]"></inputColumn>
+                            <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[IsDeleted]"></inputColumn>
+                            <inputColumn cachedDataType="dbTimeStamp2" cachedName="UpdateDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[UpdateDate]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdateDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[UpdateDate]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="UpdatePackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[UpdatePackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output].Columns[UpdatePackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[UpdatePackageExecutionID]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="SourceCustomerID" cachedSortKeyPosition="1" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[CustomerID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[SourceCustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceFirstName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[FirstName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceFirstName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[SourceFirstName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceLastName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[LastName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceLastName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[SourceLastName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceEmailAddress" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[EmailAddress]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceEmailAddress]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[SourceEmailAddress]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceChangeHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].ExternalColumns[ChangeHashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD].Columns[SourceChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                        <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_Customer_UPD</property>
+                        <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                        <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                        <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                        <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                        <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                        <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.RowCount" contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Insert Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count">
+                      <inputs>
+                        <input hasSideEffects="true" name="New Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count.Inputs[New Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count.Inputs[New Rows]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.String" description="Specifies the variable to hold the row count." name="VariableName">User::InsertRowCount</property>
+                      </properties>
+                    </component>
+                    <component componentClassID="Microsoft.DerivedColumn" contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0" name="Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert" usesDispositions="true">
+                      <inputs>
+                        <input name="Insert Row Count_Output_Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" name="Output" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn codePage="1252" dataType="str" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" length="1" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">(DT_STR,1,1252)"I"</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">(DT_STR,1,1252)"I"</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="bool" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">0</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">0</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="dbTimeStamp2" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" name="InsertDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[System::StartTime]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[System::StartTime]</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn dataType="i4" errorOrTruncationOperation="Computation" errorRowDisposition="FailComponent" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertPackageExecutionID]" name="InsertPackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertPackageExecutionID]" truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property dataType="System.String" description="Derived Column Expression" name="Expression">@[User::PackageExecutionID]</property>
+                                <property dataType="System.String" description="Derived Column Friendly Expression" expressionType="Notify" name="FriendlyExpression">@[User::PackageExecutionID]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                        </output>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                    </component>
+                    <component componentClassID="Microsoft.OLEDBDestination" contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4" name="Destination AWLTSRC dbo_Customer_INS" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS" usesDispositions="true" version="4">
+                      <connections>
+                        <connection connectionManagerID="{C8D38A4E-8FCA-4D0C-87AB-7EDB64910550}:external" connectionManagerRefId="Project.ConnectionManagers[Staging]" description="The OLE DB runtime connection used to access the database." name="OleDbConnection" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Connections[OleDbConnection]"></connection>
+                      </connections>
+                      <inputs>
+                        <input errorOrTruncationOperation="Insert" errorRowDisposition="FailComponent" hasSideEffects="true" name="Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS]">
+                          <externalMetadataColumns isUsed="True">
+                            <externalMetadataColumn dataType="i4" name="CustomerID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[CustomerID]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="FirstName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[FirstName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="LastName" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[LastName]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="50" name="EmailAddress" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[EmailAddress]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="wstr" length="40" name="ChangeHashKey" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[ChangeHashKey]"></externalMetadataColumn>
+                            <externalMetadataColumn codePage="1252" dataType="str" length="1" name="ChangeType" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[ChangeType]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="bool" name="IsDeleted" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[IsDeleted]"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="dbTimeStamp2" name="InsertDate" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[InsertDate]" scale="7"></externalMetadataColumn>
+                            <externalMetadataColumn dataType="i4" name="InsertPackageExecutionID" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[InsertPackageExecutionID]"></externalMetadataColumn>
+                          </externalMetadataColumns>
+                          <inputColumns>
+                            <inputColumn cachedCodepage="1252" cachedDataType="str" cachedLength="1" cachedName="ChangeType" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[ChangeType]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[ChangeType]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[ChangeType]"></inputColumn>
+                            <inputColumn cachedDataType="bool" cachedName="IsDeleted" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[IsDeleted]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[IsDeleted]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[IsDeleted]"></inputColumn>
+                            <inputColumn cachedDataType="dbTimeStamp2" cachedName="InsertDate" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[InsertDate]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertDate]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[InsertDate]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="InsertPackageExecutionID" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[InsertPackageExecutionID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output].Columns[InsertPackageExecutionID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[InsertPackageExecutionID]"></inputColumn>
+                            <inputColumn cachedDataType="i4" cachedName="SourceCustomerID" cachedSortKeyPosition="1" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[CustomerID]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceCustomerID]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[SourceCustomerID]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceFirstName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[FirstName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceFirstName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[SourceFirstName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceLastName" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[LastName]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceLastName]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[SourceLastName]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="50" cachedName="SourceEmailAddress" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[EmailAddress]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceEmailAddress]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[SourceEmailAddress]"></inputColumn>
+                            <inputColumn cachedDataType="wstr" cachedLength="40" cachedName="SourceChangeHashKey" externalMetadataColumnId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].ExternalColumns[ChangeHashKey]" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output].Columns[SourceChangeHashKey]" name="" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS].Columns[SourceChangeHashKey]"></inputColumn>
+                          </inputColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output exclusionGroup="1" isErrorOut="true" name="Error" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Outputs[Error]" synchronousInputId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS]">
+                          <externalMetadataColumns></externalMetadataColumns>
+                          <outputColumns>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Outputs[Error].Columns[ErrorCode]" name="ErrorCode" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Outputs[Error].Columns[ErrorCode]" specialFlags="1"></outputColumn>
+                            <outputColumn dataType="i4" lineageId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Outputs[Error].Columns[ErrorColumn]" name="ErrorColumn" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Outputs[Error].Columns[ErrorColumn]" specialFlags="2"></outputColumn>
+                          </outputColumns>
+                        </output>
+                      </outputs>
+                      <properties>
+                        <property dataType="System.Int32" description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out." name="CommandTimeout">0</property>
+                        <property dataType="System.String" description="Specifies the name of the database object used to open a rowset." name="OpenRowset">AWLTSRC.dbo_Customer_INS</property>
+                        <property dataType="System.String" description="Specifies the variable that contains the name of the database object used to open a rowset." name="OpenRowsetVariable"></property>
+                        <property dataType="System.String" description="The SQL command to be executed." name="SqlCommand" UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                        <property dataType="System.Int32" description="Specifies the column code page to use when code page information is unavailable from the data source." name="DefaultCodePage">1252</property>
+                        <property dataType="System.Boolean" description="Forces the use of the DefaultCodePage property value when describing character data." name="AlwaysUseDefaultCodePage">false</property>
+                        <property dataType="System.Int32" description="Specifies the mode used to access the database." name="AccessMode">3</property>
+                        <property dataType="System.Boolean" description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on." name="FastLoadKeepIdentity">false</property>
+                        <property dataType="System.Boolean" description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on." name="FastLoadKeepNulls">false</property>
+                        <property dataType="System.String" description="Specifies options to be used with fast load.  Applies only if fast load is turned on." name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property dataType="System.Int32" description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on." name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                    </component>
+                  </components>
+                  <paths>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Source_Output_Full Outer Join]" name="Source_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Source_Output_Full Outer Join]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Source.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Inputs[Destination_Output_Full Outer Join]" name="Destination_Output_Full Outer Join" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Destination_Output_Full Outer Join]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count.Inputs[Full Outer Join_Output_Select Row Count]" name="Full Outer Join_Output_Select Row Count" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Full Outer Join_Output_Select Row Count]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Full Outer Join.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Inputs[Select Row Count_Output_Split on Change Type]" name="Select Row Count_Output_Split on Change Type" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Select Row Count_Output_Split on Change Type]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Select Row Count.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count.Inputs[New Rows]" name="New Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[New Rows]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[New]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Inputs[Insert Row Count_Output_Add ETL Columns - Insert]" name="Insert Row Count_Output_Add ETL Columns - Insert" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Insert Row Count_Output_Add ETL Columns - Insert]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Insert Row Count.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_INS.Inputs[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS]" name="Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Add ETL Columns - Insert_Output_Destination AWLTSRC dbo_Customer_INS]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Insert.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count.Inputs[Updated Rows]" name="Updated Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Updated Rows]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Updated]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Inputs[Update Row Count_Output_Add ETL Columns - Update]" name="Update Row Count_Output_Add ETL Columns - Update" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Update Row Count_Output_Add ETL Columns - Update]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Update Row Count.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_UPD.Inputs[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD]" name="Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Add ETL Columns - Update_Output_Destination AWLTSRC dbo_Customer_UPD]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Update.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count.Inputs[Deleted Rows]" name="Deleted Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Deleted Rows]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Deleted]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Inputs[Delete Row Count_Output_Add ETL Columns - Delete]" name="Delete Row Count_Output_Add ETL Columns - Delete" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Delete Row Count_Output_Add ETL Columns - Delete]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Delete Row Count.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Destination AWLTSRC dbo_Customer_DEL.Inputs[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL]" name="Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Add ETL Columns - Delete_Output_Destination AWLTSRC dbo_Customer_DEL]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Add ETL Columns - Delete.Outputs[Output]"></path>
+                    <path endId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Ignore Row Count.Inputs[Existing Rows]" name="Existing Rows" refId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Existing Rows]" startId="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer\Split on Change Type.Outputs[Default]"></path>
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{FAB21026-BFF9-4E75-9AED-AC55B732B002}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Process Changes" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{74D04A0B-59E1-466C-B078-81BF700ED958}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Delete AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Delete AWLTSRC dbo_Customer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="EXECUTE AWLTSRC.dbo_Customer_Delete;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{3BB2ECF2-1D65-4BDA-AB11-AEB971CEF808}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Update AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Update AWLTSRC dbo_Customer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="EXECUTE AWLTSRC.dbo_Customer_Update;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{92D7EA1A-8339-432F-B92B-3412FA090250}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Insert AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Insert AWLTSRC dbo_Customer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="Staging" SQLTask:SqlStatementSource="EXECUTE AWLTSRC.dbo_Customer_Insert;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"></SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{EE191B52-D90C-4A30-8816-046F0F0ECC99}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Delete AWLTSRC dbo_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Delete AWLTSRC dbo_Customer_To_Update AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes.PrecedenceConstraints[Constraint_Delete AWLTSRC dbo_Customer_To_Update AWLTSRC dbo_Customer]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Update AWLTSRC dbo_Customer"></DTS:PrecedenceConstraint>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{0875113C-6820-454D-A555-A6D819C50CED}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Update AWLTSRC dbo_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Update AWLTSRC dbo_Customer_To_Insert AWLTSRC dbo_Customer" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes.PrecedenceConstraints[Constraint_Update AWLTSRC dbo_Customer_To_Insert AWLTSRC dbo_Customer]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes\Insert AWLTSRC dbo_Customer"></DTS:PrecedenceConstraint>
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{35707E30-8D9A-458F-8D32-4402CA62587B}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer\Initial Load" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Initial Load_To_Truncate Support Tables" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer.PrecedenceConstraints[Constraint_Initial Load_To_Truncate Support Tables]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables"></DTS:PrecedenceConstraint>
+        <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{247CBA3E-DD6A-4059-88B8-92F11DFCDE19}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer\Truncate Support Tables" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Truncate Support Tables_To_Load Tables" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer.PrecedenceConstraints[Constraint_Truncate Support Tables_To_Load Tables]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables"></DTS:PrecedenceConstraint>
+        <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{B68D216D-3A15-4374-8B3E-494DA700C170}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load Tables_To_Process Changes" DTS:refId="Package\Hash Extract AWLTSRC dbo_Customer.PrecedenceConstraints[Constraint_Load Tables_To_Process Changes]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer\Process Changes"></DTS:PrecedenceConstraint>
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{4BBB0A42-50F7-42C2-8085-E275554D7529}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStop" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="SelectRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="InsertRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="UpdateRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="DeleteRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="IgnoreRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{57461AB4-2576-4DA2-ABBB-940982F2A2D5}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Hash Extract AWLTSRC dbo_Customer" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Hash Extract AWLTSRC dbo_Customer]" DTS:To="Package\Hash Extract AWLTSRC dbo_Customer"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{7F0EC71D-32D3-4DD3-B066-14DA121FF550}" DTS:From="Package\Hash Extract AWLTSRC dbo_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Hash Extract AWLTSRC dbo_Customer_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Hash Extract AWLTSRC dbo_Customer_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{29976C78-87AB-46AD-843E-3D21B65BA027}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{707EE72E-2064-4326-A4F5-563F18011CB9}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A5561D34-C9A7-4083-9FA4-B6406B1BD380}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorCode" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorDescription" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{E3C53B78-C8D4-4B91-8719-F6B08988C58D}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{D1DF6D64-795C-4F02-A92D-B70154403B7D}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:Variables>
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{C61B5413-D9E4-4002-A8D7-D771E2F250A2}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+          <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <AnnotationLayout
+          Text="Container gets enabled if parameter IsInitialLoad is True, and disabled if parameter IsInitialLoad is False."
+          ParentId="Package\Hash Extract AWLTSRC dbo_Customer\Initial Load"
+          FontInfo="{assembly:Null}"
+          Size="100,50"
+          Id="0cec1985-a63b-4392-8ef5-f47dc809ae1b"
+          TopLeft="0,0" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Existing Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Deleted Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[Updated Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\Hash Extract AWLTSRC dbo_Customer\Load Tables\Load AWLTSRC dbo_Customer.Paths[New Rows]">
+    <PathAnnotation>PathName</PathAnnotation>
+  </PipelinePath>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

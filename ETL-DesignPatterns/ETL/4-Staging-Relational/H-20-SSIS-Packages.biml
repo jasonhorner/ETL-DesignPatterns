@@ -5,7 +5,7 @@
 		
 		<# foreach (var table in RootNode.Tables.Where(t => t.GetTag("SupportTableType") == "Core")) { #>
 			
-			<Package Name="Extract_<#=table.Schema#>_<#=table.Name#>_HASH" ConstraintMode="Linear">
+			<Package Name="Hash_Extract_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
 			    
 			    <Parameters>
 			        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-PackageParameters.biml")#>
@@ -22,167 +22,191 @@
 				    <Container Name="Hash Extract <#=table.Schema#> <#=table.Name#>" ConstraintMode="Linear">
 				        <Tasks>
 				            
-				            <ExecuteSQL Name="Initialize and Truncate Table" ConnectionName="<#=table.Connection#>">
-				                <DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#></DirectInput>
+				            <Container Name="Initial Load" ConstraintMode="Linear">
+				                <SsisAnnotations>
+				                    <SsisAnnotation>Container gets enabled if parameter IsInitialLoad is True, and disabled if parameter IsInitialLoad is False.</SsisAnnotation>
+				                </SsisAnnotations>
 			                    <Expressions>
-			                        <Expression PropertyName="Disable">@[$Package::DisableInitialLoad]</Expression>
+			                        <Expression PropertyName="Disable">@[$Package::IsInitialLoad] == True ? False : True</Expression>
 			                    </Expressions>
-				            </ExecuteSQL>
+				                <Tasks>
+        				            <ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="<#=table.Connection.Name#>">
+        				                <DirectInput>TRUNCATE TABLE <#=table.Schema#>.<#=table.Name#>;</DirectInput>
+        				            </ExecuteSQL>
+				                </Tasks>
+				            </Container>
 				            
 				            <Container Name="Truncate Support Tables">
 				                <Tasks>
         		                    <# foreach (var supportTable in RootNode.Tables.Where(t => t.GetTag("CoreTableName") == table.Schema+"."+table.Name).Where(t => t.GetTag("SupportTableType") != "Core" )) { #>
-                    					<ExecuteSQL Name="Truncate Table <#=supportTable.Schema#> <#=supportTable.Name#>" ConnectionName="<#=supportTable.Connection.Name#>">
-                    						<DirectInput>TRUNCATE TABLE <#=supportTable.Schema#>.<#=supportTable.Name#></DirectInput>
+                    					<ExecuteSQL Name="Truncate <#=supportTable.Schema#> <#=supportTable.Name#>" ConnectionName="<#=supportTable.Connection.Name#>">
+                    						<DirectInput>TRUNCATE TABLE <#=supportTable.Schema#>.<#=supportTable.Name#>;</DirectInput>
                     					</ExecuteSQL>
                 					<# } #>
 				                </Tasks>
 				            </Container>
-        					
-        					<Dataflow Name="Extract <#=table.Schema#> <#=table.Name#>">
-        						<Transformations>
-        
-                                    <OleDbSource Name="Source" ConnectionName="<#=table.GetTag("SourceConnection")#>">
-        								<DirectInput>SELECT <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> FROM <#=table.GetTag("SourceSchemaQualifiedName")#> ORDER BY <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true)#></DirectInput>
-                                        <Columns>
-                                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true).Select((Name, SortKeyPosition) => new {Name, SortKeyPosition})) { #>
-                                                <Column SourceColumn="<#=column.Name#>" SortKeyPosition="<#=column.SortKeyPosition+1#>" />
-                                            <# } #>
-                                        </Columns>
-        							</OleDbSource>
-        							    
-    							    <OleDbSource Name="Destination" ConnectionName="<#=table.Connection.Name#>">
-        								<DirectInput>SELECT <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> FROM <#=table.Schema#>.<#=table.Name#> WHERE IsDeleted = 0 ORDER BY <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true)#></DirectInput>
-                                        <Columns>
-                                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true).Select((Name, SortKeyPosition) => new {Name, SortKeyPosition})) { #>
-                                                <Column SourceColumn="<#=column.Name#>" SortKeyPosition="<#=column.SortKeyPosition+1#>" />
-                                            <# } #>
-                                        </Columns>
-        							</OleDbSource>
-        							
-        							<MergeJoin Name="Full Outer Join" JoinType="FullOuterJoin">
-        							    <LeftInputPath OutputPathName="Source.Output">
-        							        <Columns>
-                                                <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
-            							            <Column SourceColumn="<#=column.Name#>" TargetColumn="Source<#=column.Name#>" />
-                                                <# } #>
-                                                <Column SourceColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
-        							        </Columns>
-        							    </LeftInputPath>
-        							    <RightInputPath OutputPathName="Destination.Output">
-        							        <Columns>
-                                                <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
-            							            <Column SourceColumn="<#=column.Name#>" TargetColumn="Destination<#=column.Name#>" />
-                                                <# } #>
-                                                <Column SourceColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
-        							        </Columns>
-        							    </RightInputPath>
-        							    <JoinKeys>
-                                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true)) { #>
-        							            <JoinKey LeftColumn="Source<#=column.Name#>" RightColumn="Destination<#=column.Name#>" />
-                                            <# } #>
-        							    </JoinKeys>
-        							</MergeJoin>
-        							
-        							<# dynamic outRCSelect; #>
-        				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCSelect, "Select", "Full Outer Join.Output")#>
-        
-                                    <ConditionalSplit Name="Split on Change Type">
-                                        <OutputPaths>
-                                            <OutputPath Name="New">
-                                                <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "!ISNULL(Source" + c.Column.Name + ")"))#> &amp;&amp; <#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "ISNULL(Destination" + c.Column.Name + ")"))#></Expression>
-                                            </OutputPath>
-                                            <OutputPath Name="Deleted">
-                                                <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "ISNULL(Source" + c.Column.Name + ")"))#> &amp;&amp; <#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "!ISNULL(Destination" + c.Column.Name + ")"))#></Expression>
-                                            </OutputPath>
-                                            <OutputPath Name="Updated">
-                                                <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "Source"+c.Column.Name + " == Destination" + c.Column.Name))#> &amp;&amp; Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> != Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#></Expression>
-                                            </OutputPath>
-                                        </OutputPaths>
-                                    </ConditionalSplit>
-        							
-        							<!-- Start New Rows -->
-        							<# dynamic outRCInsert; #>
-        				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCInsert, "Insert", "Split on Change Type.New", "New Rows")#>
-        							
-                                    <DerivedColumns Name="Add ETL Columns - Insert">
-                                        <InputPath OutputPathName="<#=outRCInsert.RowCountPathName.ToString()#>.Output" />
-                                        <Columns>
-    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Insert")#>
-                                        </Columns>
-                                    </DerivedColumns>
-                                    
-                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_INS" ConnectionName="<#=table.Connection.Name#>">
-                                        <InputPath OutputPathName="Add ETL Columns - Insert.Output" />
-                                        <Columns>
-                                            <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
-        							            <Column SourceColumn="Source<#=column.Name#>" TargetColumn="<#=column.Name#>" />
-                                            <# } #>
-                                            <Column SourceColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
-                                        </Columns>
-                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_INS" />
-                                    </OleDbDestination>
-        						    <!-- End New Rows -->
-                                        
-                                    <!-- Start Updated Rows -->
-    							    <# dynamic outRCUpdate; #>
-    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCUpdate, "Update", "Split on Change Type.Updated", "Updated Rows")#>
-                                    
-                                    <DerivedColumns Name="Add ETL Columns - Update">
-                                        <InputPath OutputPathName="<#=outRCUpdate.RowCountPathName.ToString()#>.Output" />
-                                        <Columns>
-    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Update")#>
-                                        </Columns>
-                                    </DerivedColumns>
-                                    
-                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_UPD" ConnectionName="<#=table.Connection.Name#>">
-                                        <InputPath OutputPathName="Add ETL Columns - Update.Output" />
-                                        <Columns>
-                                            <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
-        							            <Column SourceColumn="Source<#=column.Name#>" TargetColumn="<#=column.Name#>" />
-                                            <# } #>
-                                            <Column SourceColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
-                                        </Columns>
-                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_UPD" />
-                                    </OleDbDestination>
-                                    <!-- End Updated Rows -->
-                                        
-                                    <!-- Start Deleted Rows -->
-    							    <# dynamic outRCDelete; #>
-    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCDelete, "Delete", "Split on Change Type.Deleted", "Deleted Rows")#>
-                                    
-                                    <DerivedColumns Name="Add ETL Columns - Delete">
-                                        <InputPath OutputPathName="<#=outRCDelete.RowCountPathName.ToString()#>.Output" />
-                                        <Columns>
-    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Delete")#>
-                                        </Columns>
-                                    </DerivedColumns>
-                                    
-                                    <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_DEL" ConnectionName="<#=table.Connection.Name#>">
-                                        <InputPath OutputPathName="Add ETL Columns - Delete.Output" />
-                                        <Columns>
-                                            <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
-        							            <Column SourceColumn="Destination<#=column.Name#>" TargetColumn="<#=column.Name#>" />
-                                            <# } #>
-                                            <Column SourceColumn="Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
-                                        </Columns>
-                                        <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_DEL" />
-                                    </OleDbDestination>
-                                    <!-- End Deleted Rows -->
-                                    
-                                    <!-- Start Ignored Rows -->
-    							    <# dynamic outRCIgnore; #>
-    				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCIgnore, "Ignore", "Split on Change Type.Default", "Existing Rows")#>
-                                    <!-- End Ignored Rows -->
-        						    
-        						</Transformations>
-        					</Dataflow>
+				            
+				            <Container Name="Load Tables" ConstraintMode="Linear">
+				                <Tasks>
+                					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
+                						<Transformations>
+                
+                                            <OleDbSource Name="Source" ConnectionName="<#=table.GetTag("SourceConnectionName")#>">
+                								<DirectInput>
+                								    SELECT 
+                								        <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, 
+                								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> 
+                								    FROM <#=table.GetTag("SourceSchemaQualifiedName")#> 
+                								    ORDER BY <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true)#>;
+        								        </DirectInput>
+                                                <Columns>
+                                                    <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true).Select((Name, SortKeyPosition) => new {Name, SortKeyPosition})) { #>
+                                                        <Column SourceColumn="<#=column.Name#>" SortKeyPosition="<#=column.SortKeyPosition+1#>" />
+                                                    <# } #>
+                                                </Columns>
+                							</OleDbSource>
+                							    
+            							    <OleDbSource Name="Destination" ConnectionName="<#=table.Connection.Name#>">
+                								<DirectInput>
+                								    SELECT 
+                								        <#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, 
+                								        CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> 
+                								    FROM <#=table.Schema#>.<#=table.Name#> 
+                								    WHERE IsDeleted = 0 
+                								    ORDER BY <#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true)#>;
+        								        </DirectInput>
+                                                <Columns>
+                                                    <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true).Select((Name, SortKeyPosition) => new {Name, SortKeyPosition})) { #>
+                                                        <Column SourceColumn="<#=column.Name#>" SortKeyPosition="<#=column.SortKeyPosition+1#>" />
+                                                    <# } #>
+                                                </Columns>
+                							</OleDbSource>
+                							
+                							<MergeJoin Name="Full Outer Join" JoinType="FullOuterJoin">
+                							    <LeftInputPath OutputPathName="Source.Output">
+                							        <Columns>
+                                                        <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
+                    							            <Column SourceColumn="<#=column.Name#>" TargetColumn="Source<#=column.Name#>" />
+                                                        <# } #>
+                                                        <Column SourceColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                							        </Columns>
+                							    </LeftInputPath>
+                							    <RightInputPath OutputPathName="Destination.Output">
+                							        <Columns>
+                                                        <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
+                    							            <Column SourceColumn="<#=column.Name#>" TargetColumn="Destination<#=column.Name#>" />
+                                                        <# } #>
+                                                        <Column SourceColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                							        </Columns>
+                							    </RightInputPath>
+                							    <JoinKeys>
+                                                    <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true)) { #>
+                							            <JoinKey LeftColumn="Source<#=column.Name#>" RightColumn="Destination<#=column.Name#>" />
+                                                    <# } #>
+                							    </JoinKeys>
+                							</MergeJoin>
+                							
+                							<# dynamic outRCSelect; #>
+                				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCSelect, "Select", "Full Outer Join.Output")#>
+                
+                                            <ConditionalSplit Name="Split on Change Type">
+                                                <OutputPaths>
+                                                    <OutputPath Name="New">
+                                                        <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "!ISNULL(Source" + c.Column.Name + ")"))#> &amp;&amp; <#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "ISNULL(Destination" + c.Column.Name + ")"))#></Expression>
+                                                    </OutputPath>
+                                                    <OutputPath Name="Deleted">
+                                                        <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "ISNULL(Source" + c.Column.Name + ")"))#> &amp;&amp; <#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "!ISNULL(Destination" + c.Column.Name + ")"))#></Expression>
+                                                    </OutputPath>
+                                                    <OutputPath Name="Updated">
+                                                        <Expression><#=String.Join(" &amp;&amp; ", table.PreferredKey.Columns.Select(c => "Source"+c.Column.Name + " == Destination" + c.Column.Name))#> &amp;&amp; Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> != Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#></Expression>
+                                                    </OutputPath>
+                                                </OutputPaths>
+                                            </ConditionalSplit>
+                							
+                							<!-- Start New Rows -->
+                							<# dynamic outRCInsert; #>
+                				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCInsert, "Insert", "Split on Change Type.New", "New Rows")#>
+                							
+                                            <DerivedColumns Name="Add ETL Columns - Insert">
+                                                <InputPath OutputPathName="<#=outRCInsert.RowCountPathName.ToString()#>.Output" />
+                                                <Columns>
+            				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Insert")#>
+                                                </Columns>
+                                            </DerivedColumns>
+                                            
+                                            <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_INS" ConnectionName="<#=table.Connection.Name#>">
+                                                <InputPath OutputPathName="Add ETL Columns - Insert.Output" />
+                                                <Columns>
+                                                    <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
+                							            <Column SourceColumn="Source<#=column.Name#>" TargetColumn="<#=column.Name#>" />
+                                                    <# } #>
+                                                    <Column SourceColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                                                </Columns>
+                                                <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_INS" />
+                                            </OleDbDestination>
+                						    <!-- End New Rows -->
+                                                
+                                            <!-- Start Updated Rows -->
+            							    <# dynamic outRCUpdate; #>
+            				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCUpdate, "Update", "Split on Change Type.Updated", "Updated Rows")#>
+                                            
+                                            <DerivedColumns Name="Add ETL Columns - Update">
+                                                <InputPath OutputPathName="<#=outRCUpdate.RowCountPathName.ToString()#>.Output" />
+                                                <Columns>
+            				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Update")#>
+                                                </Columns>
+                                            </DerivedColumns>
+                                            
+                                            <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_UPD" ConnectionName="<#=table.Connection.Name#>">
+                                                <InputPath OutputPathName="Add ETL Columns - Update.Output" />
+                                                <Columns>
+                                                    <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
+                							            <Column SourceColumn="Source<#=column.Name#>" TargetColumn="<#=column.Name#>" />
+                                                    <# } #>
+                                                    <Column SourceColumn="Source<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                                                </Columns>
+                                                <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_UPD" />
+                                            </OleDbDestination>
+                                            <!-- End Updated Rows -->
+                                                
+                                            <!-- Start Deleted Rows -->
+            							    <# dynamic outRCDelete; #>
+            				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCDelete, "Delete", "Split on Change Type.Deleted", "Deleted Rows")#>
+                                            
+                                            <DerivedColumns Name="Add ETL Columns - Delete">
+                                                <InputPath OutputPathName="<#=outRCDelete.RowCountPathName.ToString()#>.Output" />
+                                                <Columns>
+            				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Delete")#>
+                                                </Columns>
+                                            </DerivedColumns>
+                                            
+                                            <OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>_DEL" ConnectionName="<#=table.Connection.Name#>">
+                                                <InputPath OutputPathName="Add ETL Columns - Delete.Output" />
+                                                <Columns>
+                                                    <# foreach (var column in table.Columns.Where(c => c.GetTag("IsETLColumn") != "True")) { #>
+                							            <Column SourceColumn="Destination<#=column.Name#>" TargetColumn="<#=column.Name#>" />
+                                                    <# } #>
+                                                    <Column SourceColumn="Destination<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" TargetColumn="<#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>" />
+                                                </Columns>
+                                                <ExternalTableOutput Table="<#=table.Schema#>.<#=table.Name#>_DEL" />
+                                            </OleDbDestination>
+                                            <!-- End Deleted Rows -->
+                                            
+                                            <!-- Start Ignored Rows -->
+            							    <# dynamic outRCIgnore; #>
+            				                <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCIgnore, "Ignore", "Split on Change Type.Default", "Existing Rows")#>
+                                            <!-- End Ignored Rows -->
+                						    
+                						</Transformations>
+                					</Dataflow>
+				                </Tasks>
+				            </Container>
 				            
 		                    <Container Name="Process Changes" ConstraintMode="Linear">
 				                <Tasks>
         		                    <# foreach (var supportTable in RootNode.Tables.Where(t => t.GetTag("CoreTableName") == table.Schema+"."+table.Name).Where(t => t.GetTag("SupportTableType") != "Core" )) { #>
-                    					<ExecuteSQL Name="<#=supportTable.GetTag("SupportTableType")#> <#=table.Name#>" ConnectionName="<#=supportTable.Connection.Name#>">
-                    						<DirectInput>EXECUTE <#=supportTable.Schema#>.<#=table.Name#>_<#=supportTable.GetTag("SupportTableType")#></DirectInput>
+                    					<ExecuteSQL Name="<#=supportTable.GetTag("SupportTableType")#> <#=supportTable.Schema#> <#=table.Name#>" ConnectionName="<#=supportTable.Connection.Name#>">
+                    						<DirectInput>EXECUTE <#=supportTable.Schema#>.<#=table.Name#>_<#=supportTable.GetTag("SupportTableType")#>;</DirectInput>
                     					</ExecuteSQL>
                 					<# } #>
 				                </Tasks>

@@ -1,0 +1,34 @@
+<#@ property name="TableType" type="String" required="False" #>
+<#
+    String TableTypeName;
+    try {
+        TableTypeName = TableType;
+        List<String> ValidTableTypes = new List<String>{"Core","Staging","Insert","Update","Delete"};
+        if (!ValidTableTypes.Contains(TableTypeName)) {
+            return "";
+        }
+    } catch (Exception e) {
+        TableTypeName = null;
+    }
+#>
+
+<# if (TableTypeName == "Insert") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"I"</Column>
+<Column Name="IsDeleted" DataType="Boolean">0</Column>
+<Column Name="InsertDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="InsertPackageExecutionID" DataType="Int32">@[User::PackageExecutionID]</Column>
+<# } #>
+
+<# if (TableTypeName == "Update") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"U"</Column>
+<Column Name="IsDeleted" DataType="Boolean">0</Column>
+<Column Name="UpdateDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="UpdatePackageExecutionID" DataType="Int32">@[User::PackageExecutionID]</Column>
+<# } #>
+
+<# if (TableTypeName == "Delete") { #>
+<Column Name="ChangeType" DataType="AnsiString" Length="1" CodePage="1252">(DT_STR,1,1252)"D"</Column>
+<Column Name="IsDeleted" DataType="Boolean">1</Column>
+<Column Name="UpdateDate" DataType="DateTime2">@[System::StartTime]</Column>
+<Column Name="UpdatePackageExecutionID" DataType="Int32">@[User::PackageExecutionID]</Column>
+<# } #>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="01/08/2018 15:05:17" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="PEGASUS" DTS:CreatorName="cathr" DTS:DTSID="{86D9E8F0-DD2C-4F72-B964-F785679F8AAC}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1044" DTS:ObjectName="CDC_Master_AWLTSRC" DTS:ProtectionLevel="0" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{17CD6D42-4D39-46F7-A84E-6A20B9146F24}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{C6BC839C-7F5C-4CF4-B5F2-A0A31FB59247}" DTS:ObjectName="JobID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="3" DTS:Description="" DTS:DTSID="{4A580025-C543-4F0A-98D3-9F25AF98898E}" DTS:ObjectName="BatchID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="3" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{05B785E1-39C2-456F-9F9F-18746092FEC8}" DTS:ObjectName="ParentPackageID" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="8" DTS:Description="" DTS:DTSID="{B230004E-C6D6-4128-9669-B5AB1EA61453}" DTS:ObjectName="ParentPackageName" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="8" DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter DTS:CreationName="" DTS:DataType="11" DTS:Description="" DTS:DTSID="{416EE722-AB5C-4B4C-9AFB-0E60CD82185F}" DTS:ObjectName="IsInitialLoad" DTS:Required="0" DTS:Sensitive="0">
+      <DTS:Property DTS:DataType="11" DTS:Name="ParameterValue">False</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{3ED8F4B0-3845-4D0F-9FAD-93F53251EBFE}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="PackageExecutionID">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{6B670CBB-2AA0-480B-81AB-DDDF9DD9E533}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="SelectRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{C05642FC-6D6C-4DBF-B62D-0B105D19E643}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="InsertRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{229FEBB5-B768-4DF1-B42D-348780328D88}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="UpdateRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{A75BBD49-ADC8-4BD3-A2B2-FEAFEC256485}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="DeleteRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{96A2F6DA-808A-4339-995E-FD547B18E62A}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="IgnoreRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable DTS:CreationName="" DTS:DTSID="{C5C1CB01-3FE1-4067-8A3E-75FA63D5E1BA}" DTS:IncludeInDebugDump="6789" DTS:Namespace="User" DTS:ObjectName="ErrorRowCount">
+      <DTS:VariableValue DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{13AEC433-58FC-4626-A528-BE344A6D7E99}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Start" DTS:refId="Package\Log Package Execution Start" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStart" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="$Package::ParentPackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ParentPackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="5" SQLTask:DtsVariableName="System::StartTime" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageStartTime" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Output" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{F1587CEE-A9A8-4028-A196-D33B3B6CF0FD}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Load AWLTSRC" DTS:refId="Package\Load AWLTSRC">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2CE4DABE-D9D8-4FAD-8EA2-26FF6628FB0A}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="Execute CDC_Extract_AWLTSRC_dbo_Customer" DTS:refId="Package\Load AWLTSRC\Execute CDC_Extract_AWLTSRC_dbo_Customer" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <PackageName>CDC_Extract_AWLTSRC_dbo_Customer.dtsx</PackageName>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::JobID</BindedVariableOrParameterName>
+                <ParameterName>JobID</ParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::BatchID</BindedVariableOrParameterName>
+                <ParameterName>BatchID</ParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>System::PackageID</BindedVariableOrParameterName>
+                <ParameterName>ParentPackageID</ParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
+                <ParameterName>ParentPackageName</ParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <BindedVariableOrParameterName>$Package::IsInitialLoad</BindedVariableOrParameterName>
+                <ParameterName>IsInitialLoad</ParameterName>
+              </ParameterAssignment>
+              <UseProjectReference>True</UseProjectReference>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{8A41390C-B1A0-4B4C-ABE1-57048F6D0F52}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Stop" DTS:refId="Package\Log Package Execution Stop" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionStop" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::SelectRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="SelectRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::InsertRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="InsertRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::UpdateRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="UpdateRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::DeleteRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="DeleteRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::IgnoreRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="IgnoreRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+          <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::ErrorRowCount" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorRowCount" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{85505FE1-0608-4D70-9544-F559200DEA42}" DTS:From="Package\Log Package Execution Start" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Execution Start_To_Load AWLTSRC" DTS:refId="Package.PrecedenceConstraints[Constraint_Log Package Execution Start_To_Load AWLTSRC]" DTS:To="Package\Load AWLTSRC"></DTS:PrecedenceConstraint>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{80E0B679-855E-4ADE-BF82-3794A7550C1A}" DTS:From="Package\Load AWLTSRC" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Load AWLTSRC_To_Log Package Execution Stop" DTS:refId="Package.PrecedenceConstraints[Constraint_Load AWLTSRC_To_Log Package Execution Stop]" DTS:To="Package\Log Package Execution Stop"></DTS:PrecedenceConstraint>
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler DTS:CreationName="OnError" DTS:DTSID="{632F9EDB-3450-4A9A-98EB-06FEA4180676}" DTS:EventID="0" DTS:EventName="OnError" DTS:LocaleID="-1" DTS:refId="Package.EventHandlers[OnError]">
+      <DTS:Executables>
+        <DTS:Executable DTS:CreationName="STOCK:SEQUENCE" DTS:DTSID="{8CBD7B63-90CE-4E28-8353-ED1CC4B0C27B}" DTS:ExecutableType="STOCK:SEQUENCE" DTS:LocaleID="-1" DTS:ObjectName="Log Errors" DTS:refId="Package.EventHandlers[OnError]\Log Errors">
+          <DTS:Executables>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{92B68627-A355-4B59-B0C6-1F8BAA9A476A}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ServerExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ServerExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::BatchID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="BatchID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="$Package::JobID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="JobID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageName" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="System::ErrorCode" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorCode" SQLTask:ParameterSize="0"></SQLTask:ParameterBinding>
+                  <SQLTask:ParameterBinding SQLTask:DataType="16" SQLTask:DtsVariableName="System::ErrorDescription" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="ErrorDescription" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{FC46A010-9138-4AF6-AAAC-9FC6E06BF0BF}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData SQLTask:Connection="AuditingAdoNet" SQLTask:IsStoredProc="True" SQLTask:SqlStatementSource="Auditing.LogPackageExecutionError" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding SQLTask:DataType="11" SQLTask:DtsVariableName="User::PackageExecutionID" SQLTask:ParameterDirection="Input" SQLTask:ParameterName="PackageExecutionID" SQLTask:ParameterSize="-1"></SQLTask:ParameterBinding>
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{DCD19975-3DDA-4619-B291-A2AAA826D3DC}" DTS:From="Package.EventHandlers[OnError]\Log Errors\Log Package Error" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Log Package Error_To_Log Package Execution Error" DTS:refId="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]" DTS:To="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"></DTS:PrecedenceConstraint>
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:Variables>
+        <DTS:Variable DTS:CreationName="" DTS:Description="The propagate property of the event&#xD;&#xA;The propagate property of the event" DTS:DTSID="{6F140177-AF2E-42C3-8430-8D34B9490375}" DTS:IncludeInDebugDump="6789" DTS:Namespace="System" DTS:ObjectName="Propagate">
+          <DTS:VariableValue DTS:DataType="11">True</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+</DTS:Executable>
