@@ -1,5 +1,4 @@
 ﻿CREATE TABLE [Stage].[CustomerDimension] (
-    [CustomerSk]            INT           NOT NULL,
     [CustomerId]            INT           NULL,
     [FirstName]             VARCHAR (50)  NULL,
     [LastName]              VARCHAR (100) NULL,
@@ -13,6 +12,8 @@
     [State]                 VARCHAR (100) NULL,
     [PostalCode]            VARCHAR (25)  NULL,
     [CurrentDemographicsSk] INT           NOT NULL,
+	[Type1ChangeHashKey]    NCHAR (40)    NULL,
+	[Type2ChangeHashKey]    NCHAR (40)    NULL,
     [BeginEffectiveDate]    DATE          NULL,
     [EndEffectiveDate]      DATE          NULL,
     [IsCurrent]             BIT           NULL,
