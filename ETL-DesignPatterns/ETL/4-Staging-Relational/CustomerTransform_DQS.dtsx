@@ -12,16 +12,16 @@
   DTS:ObjectName="CustomerTransform_DQS"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{5AEABD6B-FE48-45A6-BE9B-B2ECE5C80EB1}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{A552BE78-4C44-4AB2-95C3-7E7FFA5DEA4A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DQS Cleansing Connection Manager.localhost]"
+      DTS:refId="Package.ConnectionManagers[DQS]"
       DTS:CreationName="DQS"
       DTS:DTSID="{166A476A-8557-48D4-85FD-C763F021F3BC}"
-      DTS:ObjectName="DQS Cleansing Connection Manager.localhost">
+      DTS:ObjectName="DQS">
       <DTS:ObjectData>
         <InnerObject>
           <ServerName
@@ -46,10 +46,37 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{005F3A9F-858C-4AE9-9051-08C17F9FDF2A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CorrectedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{707A13C8-A022-48FB-9A5E-54844278DDCF}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6052B52E-9441-458D-87A6-A07A86D6D200}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InvalidCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1367579C-49F2-4054-B669-91075B374881}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UnknowCount">
       <DTS:VariableValue
         DTS:DataType="3">0</DTS:VariableValue>
     </DTS:Variable>
@@ -69,6 +96,240 @@
           version="1">
           <components>
             <component
+              refId="Package\Data Flow Task\Combine Rows"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Combine Rows"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[City]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1].Columns[StateProvince_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince_Source"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[StateProvince]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1].Columns[PostalCode_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode_Source"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[PostalCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1].Columns[Record Status]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Record Status"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[Record Status]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[City]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2].Columns[StateProvince_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince_Source"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[StateProvince]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2].Columns[PostalCode_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode_Source"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[PostalCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2].Columns[Record Status]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Record Status"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[Record Status]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressID]"
+                      name="AddressID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Source]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Source]"
+                      name="AddressLine1_Source" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Output]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Output]"
+                      name="AddressLine1_Output" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Status]"
+                      name="AddressLine1_Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Confidence]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Confidence]"
+                      name="AddressLine1_Confidence" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Reason]"
+                      name="AddressLine1_Reason" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine2]"
+                      name="AddressLine2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[City]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[StateProvince]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[StateProvince]"
+                      name="StateProvince" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[CountryRegion]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[CountryRegion]"
+                      name="CountryRegion" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]"
+                      name="rowguid" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[Record Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[Record Status]"
+                      name="Record Status" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -85,10 +346,122 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Default Output]"
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[New]"
+                  description="Output 4 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="New"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\211:invalid} == "New"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">AddressLine1_Status == "New"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Correct Rows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Correct Rows"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Correct"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">AddressLine1_Status == "Correct"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Corrected Rows]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Corrected Rows"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Corrected"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">AddressLine1_Status == "Corrected"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">2</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Invalid Rows]"
+                  description="Output 3 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Invalid Rows"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Invalid"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">AddressLine1_Status == "Invalid"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">3</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Unknown]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
-                  name="Conditional Split Default Output"
+                  name="Unknown"
                   synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
                   <properties>
                     <property
@@ -123,6 +496,222 @@
               </outputs>
             </component>
             <component
+              refId="Package\Data Flow Task\Correct Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Correct Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::CorrectCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Correct Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Correct Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Data Flow Task\Correct Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Corrected Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Corrected Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::CorrectCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Corrected Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Corrected Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Data Flow Task\Corrected Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Customer Birthdate Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Customer Birthdate Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CustomerId, Birthdate FROM Stage.CustomerBirthDate</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT CustomerId, Birthdate FROM Stage.CustomerBirthDate) [refTable]
+where [refTable].[CustomerId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Birthdate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Customer Birthdate Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input].Columns[CustomerId]"
+                      cachedDataType="i4"
+                      cachedName="CustomerId"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CustomerId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Match Output].Columns[Birthdate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Match Output].Columns[Birthdate]"
+                      name="Birthdate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Birthdate</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Flow Task\Customer Stage OLE DB Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -147,7 +736,22 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+ c.CustomerId
+,c.FirstName
+,c.LastName
+,c.EmailAddress
+,c.Phone
+,ca.AddressType
+,a.AddressLine1
+,a.City
+,a.StateProvince
+,a.PostalCode
+FROM [SalesLT].[Customer] c
+INNER JOIN [SalesLT].[CustomerAddress] ca ON (c.CustomerID = ca.CustomerID)
+INNER JOIN [SalesLT].[Address] a ON (ca.AddressID = a.AddressID)
+WHERE ca.AddressType = 'Main Office' 
+ORDER BY c.CustomerID, ca.AddressType</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -164,7 +768,7 @@
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">2</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -184,15 +788,6 @@
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressID]"
-                      name="AddressID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -201,16 +796,6 @@
                       length="60"
                       lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
                       name="AddressLine1"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
-                      length="60"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]"
-                      name="AddressLine2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
@@ -233,16 +818,6 @@
                       name="StateProvince"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CountryRegion]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CountryRegion]"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CountryRegion]"
-                      name="CountryRegion"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -253,40 +828,72 @@
                       name="PostalCode"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[rowguid]"
-                      dataType="guid"
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[rowguid]"
-                      name="rowguid"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      name="CustomerId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
-                      dataType="dbTimeStamp"
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
-                      name="ModifiedDate"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      name="EmailAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressType]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressType]"
+                      name="AddressType"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressID]"
-                      dataType="i4"
-                      name="AddressID" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
                       dataType="wstr"
                       length="60"
                       name="AddressLine1" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine2]"
-                      dataType="wstr"
-                      length="60"
-                      name="AddressLine2" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
                       dataType="wstr"
@@ -298,23 +905,39 @@
                       length="50"
                       name="StateProvince" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CountryRegion]"
-                      dataType="wstr"
-                      length="50"
-                      name="CountryRegion" />
-                    <externalMetadataColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
                       dataType="wstr"
                       length="15"
                       name="PostalCode" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
-                      dataType="guid"
-                      name="rowguid" />
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      dataType="i4"
+                      name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      name="ModifiedDate" />
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmailAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AddressType]"
+                      dataType="wstr"
+                      length="50"
+                      name="AddressType" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -323,22 +946,46 @@
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressID]"
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressID]"
-                      name="AddressID" />
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                      name="CustomerId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      name="EmailAddress" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressType]"
+                      name="AddressType" />
                     <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
                       dataType="wstr"
                       length="60"
                       lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
                       name="AddressLine1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
-                      dataType="wstr"
-                      length="60"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AddressLine2]"
-                      name="AddressLine2" />
                     <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
                       dataType="wstr"
@@ -352,27 +999,11 @@
                       lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StateProvince]"
                       name="StateProvince" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CountryRegion]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CountryRegion]"
-                      name="CountryRegion" />
-                    <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
                       dataType="wstr"
                       length="15"
                       lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
                       name="PostalCode" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowguid]"
-                      dataType="guid"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowguid]"
-                      name="rowguid" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
-                      name="ModifiedDate" />
                     <outputColumn
                       refId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -418,7 +1049,7 @@
                   name="StandardizeOutput">true</property>
                 <property
                   dataType="System.Boolean"
-                  name="ConfidenceOutputColumnExists">true</property>
+                  name="ConfidenceOutputColumnExists">false</property>
                 <property
                   dataType="System.Boolean"
                   name="ReasonOutputColumnExists">true</property>
@@ -429,33 +1060,17 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\DQS Cleansing.Connections[DQS]"
-                  connectionManagerID="Package.ConnectionManagers[DQS Cleansing Connection Manager.localhost]"
-                  connectionManagerRefId="Package.ConnectionManagers[DQS Cleansing Connection Manager.localhost]"
+                  connectionManagerID="Package.ConnectionManagers[DQS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DQS]"
                   name="DQS" />
               </connections>
               <inputs>
                 <input
                   refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input]"
-                  errorRowDisposition="RedirectRow"
+                  errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="DQS Cleansing Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[AddressID]"
-                      cachedDataType="i4"
-                      cachedName="AddressID"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressID]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressID]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressID]}</property>
-                      </properties>
-                    </inputColumn>
                     <inputColumn
                       refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[AddressLine1]"
                       cachedDataType="wstr"
@@ -466,53 +1081,7 @@
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Source]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine1]}</property>
-                        <property
-                          dataType="System.String"
-                          name="DomainName">SimpleAddress</property>
-                        <property
-                          dataType="System.Int64"
-                          name="DomainId">1008</property>
-                        <property
-                          dataType="System.Boolean"
-                          name="CorrectedOutputIsString">false</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="CorrectedOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Output]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="StatusOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Status]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ConfidenceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Confidence]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ReasonOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Reason]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[AddressLine2]"
-                      cachedDataType="wstr"
-                      cachedLength="60"
-                      cachedName="AddressLine2"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressLine2]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine2]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine2]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -526,10 +1095,6 @@
                           containsID="true"
                           dataType="System.Int32"
                           name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[City]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -542,28 +1107,28 @@
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">US - State (2-letter leading)</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1007</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[StateProvince]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[CountryRegion]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="CountryRegion"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CountryRegion]">
-                      <properties>
+                          name="CorrectedOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Output]}</property>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CountryRegion]}</property>
+                          name="StatusOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Status]}</property>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[CountryRegion]}</property>
+                          name="ReasonOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Reason]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -576,43 +1141,117 @@
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">US - Postal Code</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1011</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[PostalCode]}</property>
+                          name="CorrectedOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Output]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Status]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="ReasonOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Reason]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[rowguid]"
-                      cachedDataType="guid"
-                      cachedName="rowguid"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[rowguid]">
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[CustomerId]"
+                      cachedDataType="i4"
+                      cachedName="CustomerId"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[rowguid]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[rowguid]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CustomerId]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[ModifiedDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="ModifiedDate"
-                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]">
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[ModifiedDate]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[FirstName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[LastName]">
+                      <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="ErrorOutputLinageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ModifiedDate]}</property>
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[LastName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[EmailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmailAddress"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[EmailAddress]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[EmailAddress]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="Phone"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Phone]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[AddressType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AddressType"
+                      lineageId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output].Columns[AddressType]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressType]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[Birthdate]"
+                      cachedDataType="dbDate"
+                      cachedName="Birthdate"
+                      lineageId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Match Output].Columns[Birthdate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Birthdate]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -625,46 +1264,11 @@
                   name="DQS Cleansing Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressID]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressID]"
-                      name="AddressID" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Source]"
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1]"
                       dataType="wstr"
                       length="60"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Source]"
-                      name="AddressLine1_Source" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Output]"
-                      dataType="wstr"
-                      length="60"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Output]"
-                      name="AddressLine1_Output" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Status]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Status]"
-                      name="AddressLine1_Status" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Confidence]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Confidence]"
-                      name="AddressLine1_Confidence" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Reason]"
-                      dataType="wstr"
-                      length="4000"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1_Reason]"
-                      name="AddressLine1_Reason" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine2]"
-                      dataType="wstr"
-                      length="60"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine2]"
-                      name="AddressLine2" />
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressLine1]"
+                      name="AddressLine1" />
                     <outputColumn
                       refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]"
                       dataType="wstr"
@@ -672,110 +1276,99 @@
                       lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]"
                       name="City" />
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince]"
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince]"
-                      name="StateProvince" />
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]"
+                      name="StateProvince_Source" />
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CountryRegion]"
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Output]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CountryRegion]"
-                      name="CountryRegion" />
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Output]"
+                      name="StateProvince_Output" />
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode]"
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Status]"
+                      name="StateProvince_Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Reason]"
+                      name="StateProvince_Reason" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode]"
-                      name="PostalCode" />
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]"
+                      name="PostalCode_Source" />
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[rowguid]"
-                      dataType="guid"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[rowguid]"
-                      name="rowguid" />
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Output]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Output]"
+                      name="PostalCode_Output" />
                     <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[ModifiedDate]"
-                      name="ModifiedDate" />
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Status]"
+                      name="PostalCode_Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Reason]"
+                      name="PostalCode_Reason" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CustomerId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[CustomerId]"
+                      name="CustomerId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[EmailAddress]"
+                      name="EmailAddress" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[AddressType]"
+                      name="AddressType" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Birthdate]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Birthdate]"
+                      name="Birthdate" />
                     <outputColumn
                       refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
                       dataType="wstr"
                       length="100"
                       lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
                       name="Record Status" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output]"
-                  isErrorOut="true"
-                  name="DQS Cleansing Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressID]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressID]"
-                      name="AddressID" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine1]"
-                      dataType="wstr"
-                      length="60"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine1]"
-                      name="AddressLine1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine2]"
-                      dataType="wstr"
-                      length="60"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[AddressLine2]"
-                      name="AddressLine2" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[City]"
-                      dataType="wstr"
-                      length="30"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[City]"
-                      name="City" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[StateProvince]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[StateProvince]"
-                      name="StateProvince" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[CountryRegion]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[CountryRegion]"
-                      name="CountryRegion" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[PostalCode]"
-                      dataType="wstr"
-                      length="15"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[PostalCode]"
-                      name="PostalCode" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[rowguid]"
-                      dataType="guid"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[rowguid]"
-                      name="rowguid" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ModifiedDate]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ModifiedDate]"
-                      name="ModifiedDate" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -811,7 +1404,890 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Row Count"
+              refId="Package\Data Flow Task\Invalid Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Invalid Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::InvalidCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Invalid Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Invalid Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Data Flow Task\Invalid Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Invalid Rows OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Invalid Rows OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[CustomerErrors]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StateProvince_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince_Source"
+                      externalMetadataColumnId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[StateProvince_Source]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PostalCode_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode_Source"
+                      externalMetadataColumnId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[PostalCode_Source]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Record Status]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Record Status"
+                      externalMetadataColumnId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Record Status]"
+                      lineageId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      dataType="i4"
+                      name="AddressID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Source]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1_Source" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Output]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1_Output" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Status]"
+                      dataType="wstr"
+                      length="100"
+                      name="AddressLine1_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Confidence]"
+                      dataType="wstr"
+                      length="100"
+                      name="AddressLine1_Confidence" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      name="AddressLine1_Reason" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="30"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      dataType="wstr"
+                      length="50"
+                      name="CountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Record Status]"
+                      dataType="wstr"
+                      length="100"
+                      name="Record Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Multicast.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Data Flow Task\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Unknown Row Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Unknown Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::UnknowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Unknown Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Unknown Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Data Flow Task\Unknown Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Valid Records OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Valid Records OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[CustomerAddress]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Valid Records OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressID]"
+                      cachedDataType="i4"
+                      cachedName="AddressID"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1_Source]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine1_Source"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Source]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Source]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1_Output]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine1_Output"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Output]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Output]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1_Status]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="AddressLine1_Status"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Status]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Status]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1_Confidence]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="AddressLine1_Confidence"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Confidence]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Confidence]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1_Reason]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="AddressLine1_Reason"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Reason]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine1_Reason]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine2]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine2"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[AddressLine2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StateProvince]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[StateProvince]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CountryRegion]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CountryRegion"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[CountryRegion]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rowguid]"
+                      cachedDataType="guid"
+                      cachedName="rowguid"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[rowguid]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Record Status]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Record Status"
+                      externalMetadataColumnId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Record Status]"
+                      lineageId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1].Columns[Record Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressID]"
+                      dataType="i4"
+                      name="AddressID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Source]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1_Source" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Output]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1_Output" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Status]"
+                      dataType="wstr"
+                      length="100"
+                      name="AddressLine1_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Confidence]"
+                      dataType="wstr"
+                      length="100"
+                      name="AddressLine1_Confidence" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine1_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      name="AddressLine1_Reason" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressLine2]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="30"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryRegion]"
+                      dataType="wstr"
+                      length="50"
+                      name="CountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Record Status]"
+                      dataType="wstr"
+                      length="100"
+                      name="Record Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Valid Records OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Valid Records OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Valid Records OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Valid Records OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Correct Rows]"
+              endId="Package\Data Flow Task\Correct Row Count.Inputs[Row Count Input 1]"
+              name="Correct Rows"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Correct Rows]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Corrected Rows]"
+              endId="Package\Data Flow Task\Corrected Row Count.Inputs[Row Count Input 1]"
+              name="Corrected Rows"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Corrected Rows]" />
+            <path
+              refId="Package\Data Flow Task.Paths[DQS Cleansing Output]"
+              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="DQS Cleansing Output"
+              startId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Invalid Rows]"
+              endId="Package\Data Flow Task\Invalid Row Count.Inputs[Row Count Input 1]"
+              name="Invalid Rows"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Invalid Rows]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Customer Birthdate Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Customer Birthdate Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Row Count Output 1]"
+              endId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Data Flow Task\Invalid Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Row Count Output 11]"
+              endId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 1]"
+              name="Row Count Output 1"
+              startId="Package\Data Flow Task\Corrected Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Row Count Output 12]"
+              endId="Package\Data Flow Task\Combine Rows.Inputs[Union All Input 2]"
+              name="Row Count Output 1"
+              startId="Package\Data Flow Task\Correct Row Count.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Union All Output 1]"
+              endId="Package\Data Flow Task\Valid Records OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Data Flow Task\Combine Rows.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Unknown]"
+              endId="Package\Data Flow Task\Unknown Row Count.Inputs[Row Count Input 1]"
+              name="Unknown"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Unknown]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8F02B424-5456-46F5-A09C-70C91BF2C2B0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\DQS Cleansing"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="DQS Cleansing component"
+              name="DQS Cleansing"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int64"
+                  name="KnowledgebaseName"
+                  typeConverter="NOTBROWSABLE">1000004</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataCorrectionComponent</property>
+                <property
+                  dataType="System.String"
+                  name="PackageName">CustomerTransform_DQS</property>
+                <property
+                  dataType="System.String"
+                  name="TaskId">{8F02B424-5456-46F5-A09C-70C91BF2C2B0}</property>
+                <property
+                  dataType="System.Boolean"
+                  name="EncryptConnection">false</property>
+                <property
+                  dataType="System.Boolean"
+                  name="StandardizeOutput">true</property>
+                <property
+                  dataType="System.Boolean"
+                  name="ConfidenceOutputColumnExists">true</property>
+                <property
+                  dataType="System.Boolean"
+                  name="ReasonOutputColumnExists">true</property>
+                <property
+                  dataType="System.Boolean"
+                  name="AppendedDataOutputColumnExists">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\DQS Cleansing.Connections[DQS]"
+                  connectionManagerID="Package.ConnectionManagers[DQS]"
+                  connectionManagerRefId="Package.ConnectionManagers[DQS]"
+                  name="DQS" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\DQS Cleansing.Inputs[DQS Cleansing Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="DQS Cleansing Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[Color]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Color"
+                      lineageId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">test</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1014</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Output]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Status]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="ConfidenceOutputLineageId">#{Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Confidence]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="ReasonOutputLineageId">#{Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Reason]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output]"
+                  name="DQS Cleansing Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Source]"
+                      name="Color_Source" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Output]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Output]"
+                      name="Color_Output" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Status]"
+                      name="Color_Status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Confidence]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Confidence]"
+                      name="Color_Confidence" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Reason]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Color_Reason]"
+                      name="Color_Reason" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
+                      name="Record Status" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+'BL' AS Color
+UNION ALL
+SELECT
+'Black'
+UNION ALL
+SELECT
+'BLK'
+UNION ALL
+SELECT
+'FOO'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      length="5"
+                      lineageId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].Columns[Color]"
+                      name="Color"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="Color" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      name="Color" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Row Count"
               componentClassID="Microsoft.RowCount"
               contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
@@ -820,11 +2296,11 @@
                 <property
                   dataType="System.String"
                   description="Specifies the variable to hold the row count."
-                  name="VariableName">User::CorrectCount</property>
+                  name="VariableName">User::UnknowCount</property>
               </properties>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Row Count.Inputs[Row Count Input 1]"
+                  refId="Package\Data Flow Task 1\Row Count.Inputs[Row Count Input 1]"
                   hasSideEffects="true"
                   name="Row Count Input 1">
                   <externalMetadataColumns />
@@ -832,9 +2308,9 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Row Count.Outputs[Row Count Output 1]"
+                  refId="Package\Data Flow Task 1\Row Count.Outputs[Row Count Output 1]"
                   name="Row Count Output 1"
-                  synchronousInputId="Package\Data Flow Task\Row Count.Inputs[Row Count Input 1]">
+                  synchronousInputId="Package\Data Flow Task 1\Row Count.Inputs[Row Count Input 1]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -842,20 +2318,15 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[DQS Cleansing Error Output]"
-              endId="Package\Data Flow Task\ErrorCount.Inputs[Row Count Input 1]"
-              name="DQS Cleansing Error Output"
-              startId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Error Output]" />
-            <path
-              refId="Package\Data Flow Task.Paths[DQS Cleansing Output]"
-              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              refId="Package\Data Flow Task 1.Paths[DQS Cleansing Output]"
+              endId="Package\Data Flow Task 1\Row Count.Inputs[Row Count Input 1]"
               name="DQS Cleansing Output"
-              startId="Package\Data Flow Task\DQS Cleansing.Outputs[DQS Cleansing Output]" />
+              startId="Package\Data Flow Task 1\DQS Cleansing.Outputs[DQS Cleansing Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task\DQS Cleansing.Inputs[DQS Cleansing Input]"
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task 1\DQS Cleansing.Inputs[DQS Cleansing Input]"
               name="OLE DB Source Output"
-              startId="Package\Data Flow Task\Customer Stage OLE DB Source.Outputs[OLE DB Source Output]" />
+              startId="Package\Data Flow Task 1\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -876,7 +2347,11 @@
         <NodeLayout
           Size="151,42"
           Id="Package\Data Flow Task"
-          TopLeft="5.5,5.5" />
+          TopLeft="381.5,205.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="198,205" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -884,123 +2359,97 @@
     design-time-name="Package\Data Flow Task">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="228,42"
-          Id="Package\Data Flow Task\Customer Stage OLE DB Source"
-          TopLeft="569,186" />
+          Size="179,42"
+          Id="Package\Data Flow Task\Corrected Row Count"
+          TopLeft="470,413.5" />
         <NodeLayout
-          Size="148,42"
-          Id="Package\Data Flow Task\DQS Cleansing"
-          TopLeft="655,323" />
-        <EdgeLayout
-          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="683,228">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="46,95"
-              Start="0,0"
-              End="46,87.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43.5"
-                    Point2="0,47.5"
-                    Point3="4,47.5" />
-                  <mssgle:LineSegment
-                    End="42,47.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="42,47.5"
-                    Point2="46,47.5"
-                    Point3="46,51.5" />
-                  <mssgle:LineSegment
-                    End="46,87.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="234,42"
+          Id="Package\Data Flow Task\Invalid Rows OLE DB Destination"
+          TopLeft="209.5,515.5" />
         <NodeLayout
-          Size="130,42"
-          Id="Package\Data Flow Task\Row Count"
-          TopLeft="450,419" />
+          Size="168,42"
+          Id="Package\Data Flow Task\Correct Row Count"
+          TopLeft="709.5,413.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Data Flow Task\Valid Records OLE DB Destination"
+          TopLeft="459.5,617.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="482,311.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Data Flow Task\Invalid Row Count"
+          TopLeft="244,413.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Data Flow Task\Unknown Row Count"
+          TopLeft="5.5,413.5" />
         <NodeLayout
           Size="130,42"
           Id="Package\Data Flow Task\ErrorCount"
-          TopLeft="998,444" />
+          TopLeft="291.5,311.5" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Data Flow Task\Customer Stage OLE DB Source"
+          TopLeft="445.5,5.5" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Data Flow Task\Combine Rows"
+          TopLeft="504.5,515.5" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[DQS Cleansing Error Output]"
-          TopLeft="752.333333333333,365">
+          Id="Package\Data Flow Task.Paths[Unknown]"
+          TopLeft="515.4,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="310.666666666667,79"
+              EndConnector="-420.9,60.0000000000001"
               Start="0,0"
-              End="310.666666666667,71.5">
+              End="-420.9,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.1069518716577" />
+                    End="0,14.0703336339044" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.1069518716577"
-                    Point2="0,32.1069518716577"
-                    Point3="4,32.1069518716577" />
+                    Point1="0,14.0703336339044"
+                    Point2="0,18.0703336339044"
+                    Point3="-4,18.0703336339044" />
                   <mssgle:LineSegment
-                    End="306.666666666667,32.1069518716577" />
+                    End="-416.9,18.0703336339044" />
                   <mssgle:CubicBezierSegment
-                    Point1="306.666666666667,32.1069518716577"
-                    Point2="310.666666666667,32.1069518716577"
-                    Point3="310.666666666667,36.1069518716577" />
+                    Point1="-416.9,18.0703336339044"
+                    Point2="-420.9,18.0703336339044"
+                    Point3="-420.9,22.0703336339044" />
                   <mssgle:LineSegment
-                    End="310.666666666667,71.5" />
+                    End="-420.9,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="93.0269466145833,37.1069518716577,124.6127734375,11.6630859375"
+              BoundingBox="-231.37587890625,23.0703336339044,41.8517578125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow Task\Conditional Split"
-          TopLeft="685,429" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[DQS Cleansing Output]"
-          TopLeft="705.666666666667,365">
+          Id="Package\Data Flow Task.Paths[Union All Output 1]"
+          TopLeft="578.5,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="56.8333333333334,64"
+              EndConnector="0,60"
               Start="0,0"
-              End="56.8333333333334,56.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.0106951871658" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.0106951871658"
-                    Point2="0,26.0106951871658"
-                    Point3="4,26.0106951871658" />
-                  <mssgle:LineSegment
-                    End="52.8333333333334,26.0106951871658" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.8333333333334,26.0106951871658"
-                    Point2="56.8333333333334,26.0106951871658"
-                    Point3="56.8333333333334,30.0106951871658" />
-                  <mssgle:LineSegment
-                    End="56.8333333333334,56.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1009,9 +2458,301 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Row Count Output 12]"
+          TopLeft="793.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-191.666666666667,60"
+              Start="0,0"
+              End="-191.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6149732620321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6149732620321"
+                    Point2="0,35.6149732620321"
+                    Point3="-4,35.6149732620321" />
+                  <mssgle:LineSegment
+                    End="-187.666666666667,35.6149732620321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-187.666666666667,35.6149732620321"
+                    Point2="-191.666666666667,35.6149732620321"
+                    Point3="-191.666666666667,39.6149732620321" />
+                  <mssgle:LineSegment
+                    End="-191.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Row Count Output 11]"
+          TopLeft="557.333333333333,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Row Count Output 1]"
+          TopLeft="326.5,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Invalid Rows]"
+          TopLeft="544.8,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-218.3,60.0000000000001"
+              Start="0,0"
+              End="-218.3,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.856735566643" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.856735566643"
+                    Point2="0,26.856735566643"
+                    Point3="-4,26.856735566643" />
+                  <mssgle:LineSegment
+                    End="-214.3,26.856735566643" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-214.3,26.856735566643"
+                    Point2="-218.3,26.856735566643"
+                    Point3="-218.3,30.856735566643" />
+                  <mssgle:LineSegment
+                    End="-218.3,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-137.9791796875,31.856735566643,57.658359375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Corrected Rows]"
+          TopLeft="574.2,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.7,60"
+              Start="0,0"
+              End="-14.7,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8567355666429" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8567355666429"
+                    Point2="0,26.8567355666429"
+                    Point3="-4,26.8567355666429" />
+                  <mssgle:LineSegment
+                    End="-10.7,26.8567355666429" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.7,26.8567355666429"
+                    Point2="-14.7,26.8567355666429"
+                    Point3="-14.7,30.8567355666429" />
+                  <mssgle:LineSegment
+                    End="-14.7,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.74009765625,31.8567355666429,70.7801953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Correct Rows]"
+          TopLeft="603.6,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189.9,60"
+              Start="0,0"
+              End="189.9,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0703336339044" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0703336339044"
+                    Point2="0,18.0703336339044"
+                    Point3="4,18.0703336339044" />
+                  <mssgle:LineSegment
+                    End="185.9,18.0703336339044" />
+                  <mssgle:CubicBezierSegment
+                    Point1="185.9,18.0703336339044"
+                    Point2="189.9,18.0703336339044"
+                    Point3="189.9,22.0703336339044" />
+                  <mssgle:LineSegment
+                    End="189.9,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="64.95490234375,23.0703336339044,59.9901953125,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Data Flow Task\Customer Birthdate Lookup"
+          TopLeft="456,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="559.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Data Flow Task\DQS Cleansing"
+          TopLeft="478,202" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="555.75,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.5"
+              Start="0,0"
+              End="0,45">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,16.6953125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[DQS Cleansing Output]"
+          TopLeft="555.75,244">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67.5"
+              Start="0,0"
+              End="0,60">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Data Flow Task\Multicast"
+          TopLeft="970,214" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Invalid Rows OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Valid Records OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\Customer Stage OLE DB Source">
     <Properties>
@@ -1022,6 +2763,127 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Customer Birthdate Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Data Flow Task 1\OLE DB Source"
+          TopLeft="335,287" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Data Flow Task 1\DQS Cleansing"
+          TopLeft="324,405" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+          TopLeft="410,329">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,76"
+              Start="0,0"
+              End="-12,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="-4,38" />
+                  <mssgle:LineSegment
+                    End="-8,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,38"
+                    Point2="-12,38"
+                    Point3="-12,42" />
+                  <mssgle:LineSegment
+                    End="-12,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Data Flow Task 1\Row Count"
+          TopLeft="605,460" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[DQS Cleansing Output]"
+          TopLeft="472,426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="133,55"
+              Start="0,0"
+              End="125.5,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="62.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.5,0"
+                    Point2="66.5,0"
+                    Point3="66.5,4" />
+                  <mssgle:LineSegment
+                    End="66.5,51" />
+                  <mssgle:CubicBezierSegment
+                    Point1="66.5,51"
+                    Point2="66.5,55"
+                    Point3="70.5,55" />
+                  <mssgle:LineSegment
+                    End="125.5,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="58.5,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
