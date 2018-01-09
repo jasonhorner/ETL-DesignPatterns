@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-SJMBD02"
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
-  DTS:DTSID="{3BB1527A-E4AD-4EF2-9D03-43529CE97DC5}"
+  DTS:DTSID="{8DDE3093-B7F9-404B-9C33-3F2C5EB03752}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3006.16"
   DTS:LocaleID="1033"
-  DTS:ObjectName="LoadSalesFactTable"
+  DTS:ObjectName="Load_SalesOrderFactTable"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{94A41042-E115-496C-82E4-1105EA534AF6}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{D0504F91-AFB5-4097-8770-3A97ADDECC2D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -79,15 +79,15 @@
           version="1">
           <components>
             <component
-              refId="Package\Load Sales Fact Table\Assing Unknown Members"
+              refId="Package\Load Sales Fact Table\Assign Unknown Members"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Assing Unknown Members"
+              name="Assign Unknown Members"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load Sales Fact Table\Assing Unknown Members.Inputs[Derived Column Input]"
+                  refId="Package\Load Sales Fact Table\Assign Unknown Members.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -95,31 +95,31 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Output]"
+                  refId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load Sales Fact Table\Assing Unknown Members.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Load Sales Fact Table\Assign Unknown Members.Inputs[Derived Column Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Error Output]"
+                  refId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load Sales Fact Table\Assing Unknown Members.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Load Sales Fact Table\Assign Unknown Members.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -143,11 +143,10 @@
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
  CustomerSk
-,CustomerId
-,CAST(NULL AS Date) AS BeginEffectiveDate
-,CAST(NULL AS Date) AS EndEffectiveDate
-,IsCurrent
-FROM [DW].[CustomerDimension]</property>
+, CustomerId
+
+FROM [DW].[CustomerDimension]
+WHERE IsCurrent = 1</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
@@ -155,11 +154,10 @@ FROM [DW].[CustomerDimension]</property>
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
  CustomerSk
-,CustomerId
-,CAST(NULL AS Date) AS BeginEffectiveDate
-,CAST(NULL AS Date) AS EndEffectiveDate
-,IsCurrent
-FROM [DW].[CustomerDimension]) [refTable]
+, CustomerId
+
+FROM [DW].[CustomerDimension]
+WHERE IsCurrent = 1) [refTable]
 where [refTable].[CustomerId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -191,7 +189,7 @@ where [refTable].[CustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BeginEffectiveDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndEffectiveDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IsCurrent" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1800,7 +1798,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
               refId="Package\Load Sales Fact Table.Paths[Derived Column Output]"
               endId="Package\Load Sales Fact Table\Route Changes.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\Load Sales Fact Table\Assing Unknown Members.Outputs[Derived Column Output]" />
+              startId="Package\Load Sales Fact Table\Assign Unknown Members.Outputs[Derived Column Output]" />
             <path
               refId="Package\Load Sales Fact Table.Paths[IgnoreRows]"
               endId="Package\Load Sales Fact Table\Ignore Count.Inputs[Row Count Input 1]"
@@ -1813,14 +1811,14 @@ where [refTable].[ProductDimensionSk] = ?</property>
               startId="Package\Load Sales Fact Table\Route Changes.Outputs[InsertRows]" />
             <path
               refId="Package\Load Sales Fact Table.Paths[Lookup Match Output]"
+              endId="Package\Load Sales Fact Table\Assign Unknown Members.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Sales Fact Table\Product Dimension Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
               endId="Package\Load Sales Fact Table\Product Dimension Lookup.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Load Sales Fact Table\Customer Dimension Lookup.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
-              endId="Package\Load Sales Fact Table\Assing Unknown Members.Inputs[Derived Column Input]"
-              name="Lookup Match Output"
-              startId="Package\Load Sales Fact Table\Product Dimension Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Sales Fact Table.Paths[OLE DB Source Output]"
               endId="Package\Load Sales Fact Table\Customer Dimension Lookup.Inputs[Lookup Input]"
@@ -1876,121 +1874,77 @@ where [refTable].[ProductDimensionSk] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="150,42"
+          Id="Package\Load Sales Fact Table\Route Changes"
+          TopLeft="596.5,413.5" />
+        <NodeLayout
+          Size="270,42"
+          Id="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination"
+          TopLeft="310.5,617.5" />
+        <NodeLayout
           Size="223,42"
           Id="Package\Load Sales Fact Table\SalesFactTable OLE DB Source"
-          TopLeft="560,5.5" />
+          TopLeft="558.125,8" />
         <NodeLayout
-          Size="214,42"
-          Id="Package\Load Sales Fact Table\Customer Dimension Lookup"
-          TopLeft="564.5,107.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[OLE DB Source Output]"
-          TopLeft="671.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="268,42"
+          Id="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination"
+          TopLeft="641.5,617.5" />
         <NodeLayout
           Size="205,42"
           Id="Package\Load Sales Fact Table\Product Dimension Lookup"
           TopLeft="569,209.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output]"
-          TopLeft="671.5,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="203,42"
-          Id="Package\Load Sales Fact Table\Assing Unknown Members"
-          TopLeft="570,311.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
-          TopLeft="671.5,251.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="244,42"
+          Id="Package\Load Sales Fact Table\SalesFactTable OLE DB Destination"
+          TopLeft="5.5,617.5" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\Load Sales Fact Table\Route Changes"
-          TopLeft="596.5,413.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Derived Column Output]"
-          TopLeft="671.5,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="167,42"
+          Id="Package\Load Sales Fact Table\Update Row Count"
+          TopLeft="362,515.5" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Load Sales Fact Table\Customer Dimension Lookup"
+          TopLeft="563.75,107.5" />
         <NodeLayout
           Size="161,42"
           Id="Package\Load Sales Fact Table\Insert Row Count"
           TopLeft="140,515.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Load Sales Fact Table\Delete Row Count"
+          TopLeft="589.5,515.5" />
+        <NodeLayout
+          Size="202.5,42"
+          Id="Package\Load Sales Fact Table\Assign Unknown Members"
+          TopLeft="570,311.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Load Sales Fact Table\Ignore Count"
+          TopLeft="814,515.5" />
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output]"
+          TopLeft="671.375,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Sales Fact Table.Paths[InsertRows]"
           TopLeft="628.9,455.5">
@@ -2027,90 +1981,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Load Sales Fact Table\Update Row Count"
-          TopLeft="362,515.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[UpdateRows]"
-          TopLeft="657.3,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-211.8,60"
-              Start="0,0"
-              End="-211.8,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.8630338733431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.8630338733431"
-                    Point2="0,26.8630338733431"
-                    Point3="-4,26.8630338733431" />
-                  <mssgle:LineSegment
-                    End="-207.8,26.8630338733431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-207.8,26.8630338733431"
-                    Point2="-211.8,26.8630338733431"
-                    Point3="-211.8,30.8630338733431" />
-                  <mssgle:LineSegment
-                    End="-211.8,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-133.9765234375,31.8630338733431,56.153046875,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Load Sales Fact Table\Delete Row Count"
-          TopLeft="589.5,515.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[DeleteRows]"
-          TopLeft="685.7,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-14.2,60"
-              Start="0,0"
-              End="-14.2,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.8630338733431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.8630338733431"
-                    Point2="0,26.8630338733431"
-                    Point3="-4,26.8630338733431" />
-                  <mssgle:LineSegment
-                    End="-10.2,26.8630338733431" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.2,26.8630338733431"
-                    Point2="-14.2,26.8630338733431"
-                    Point3="-14.2,30.8630338733431" />
-                  <mssgle:LineSegment
-                    End="-14.2,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-33.492578125,31.8630338733431,52.78515625,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Load Sales Fact Table\Ignore Count"
-          TopLeft="814,515.5" />
         <EdgeLayout
           Id="Package\Load Sales Fact Table.Paths[IgnoreRows]"
           TopLeft="714.1,455.5">
@@ -2147,51 +2017,9 @@ where [refTable].[ProductDimensionSk] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="244,42"
-          Id="Package\Load Sales Fact Table\SalesFactTable OLE DB Destination"
-          TopLeft="5.5,617.5" />
         <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Row Count Output 1]"
-          TopLeft="220.5,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-93,60"
-              Start="0,0"
-              End="-93,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-89,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-89,30"
-                    Point2="-93,30"
-                    Point3="-93,34" />
-                  <mssgle:LineSegment
-                    End="-93,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="270,42"
-          Id="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination"
-          TopLeft="310.5,617.5" />
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Row Count Output 11]"
-          TopLeft="445.5,557.5">
+          Id="Package\Load Sales Fact Table.Paths[Derived Column Output]"
+          TopLeft="671.375,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2211,10 +2039,78 @@ where [refTable].[ProductDimensionSk] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="268,42"
-          Id="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination"
-          TopLeft="641.5,617.5" />
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[DeleteRows]"
+          TopLeft="685.7,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.2,60"
+              Start="0,0"
+              End="-14.2,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8630338733431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8630338733431"
+                    Point2="0,26.8630338733431"
+                    Point3="-4,26.8630338733431" />
+                  <mssgle:LineSegment
+                    End="-10.2,26.8630338733431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.2,26.8630338733431"
+                    Point2="-14.2,26.8630338733431"
+                    Point3="-14.2,30.8630338733431" />
+                  <mssgle:LineSegment
+                    End="-14.2,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.492578125,31.8630338733431,52.78515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[UpdateRows]"
+          TopLeft="657.3,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-211.8,60"
+              Start="0,0"
+              End="-211.8,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8630338733431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8630338733431"
+                    Point2="0,26.8630338733431"
+                    Point3="-4,26.8630338733431" />
+                  <mssgle:LineSegment
+                    End="-207.8,26.8630338733431" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-207.8,26.8630338733431"
+                    Point2="-211.8,26.8630338733431"
+                    Point3="-211.8,30.8630338733431" />
+                  <mssgle:LineSegment
+                    End="-211.8,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-133.9765234375,31.8630338733431,56.153046875,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Sales Fact Table.Paths[Row Count Output 12]"
           TopLeft="671.5,557.5">
@@ -2249,9 +2145,147 @@ where [refTable].[ProductDimensionSk] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[Row Count Output 11]"
+          TopLeft="445.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[Row Count Output 1]"
+          TopLeft="220.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93,60"
+              Start="0,0"
+              End="-93,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-89,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89,30"
+                    Point2="-93,30"
+                    Point3="-93,34" />
+                  <mssgle:LineSegment
+                    End="-93,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[OLE DB Source Output]"
+          TopLeft="670.1875,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.5"
+              Start="0,0"
+              End="0,50">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
+          TopLeft="671.125,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Sales Fact Table\Product Dimension Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Sales Fact Table\SalesFactTable OLE DB Source">
     <Properties>
@@ -2284,43 +2318,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Sales Fact Table\Product Dimension Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Sales Fact Table\SalesFactTable OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
