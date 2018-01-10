@@ -1,0 +1,28 @@
+<#@ template tier="10" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Annotations>
+        <Annotation Tag="SQL_CreateDestination">
+
+/* Set Destination Database */
+<# foreach (var database in RootNode.Databases) { #>
+USE <#=database.Name#>;
+GO
+<# } #>
+
+/* Create Destination Schemas */
+<# foreach (var schema in RootNode.Schemas) { #>
+DECLARE @query nvarchar(4000);
+SET @query = 'CREATE SCHEMA [<#=schema.Name#>];';
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'<#=schema.Name#>')
+EXEC(@query);
+GO
+<# } #>
+
+/* Create Destination Tables */
+<# foreach (var table in RootNode.Tables) { #>
+<#=table.GetDropAndCreateDdl()#>
+<# } #>
+        
+        </Annotation>
+    </Annotations>
+</Biml>

@@ -1,0 +1,103 @@
+<#@ template tier="10" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+<Annotations>
+<# foreach (var database in RootNode.Databases) { #>
+<Annotation Tag="SQL_CreateDestination_<#=database.Name#>">
+
+/* Set Destination Database */
+USE [<#=database.Name#>];
+
+
+
+/* Create Destination Schemas */
+<# foreach (var schema in RootNode.Schemas.Where(s => s.Database == database)) { #>
+DECLARE @query nvarchar(4000);
+SET @query = 'CREATE SCHEMA [<#=schema.Name#>];';
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'<#=schema.Name#>')
+EXEC(@query);
+GO
+<# } #>
+
+
+
+/* Create Destination Tables */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database)) { #>
+<#=table.GetDropAndCreateDdl()#>
+<# } #>
+
+
+
+/* Create Destination Procedures */
+/* DELETE */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Delete")) { #>
+CREATE OR ALTER PROCEDURE <#=table.Schema#>.<#=table.GetTag("SourceSchemaName")#>_<#=table.GetTag("SourceTableName")#>_<#=table.GetTag("SupportTableType")#>
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    /* Soft Delete */
+    UPDATE core
+    SET <#=table.GetColumnAssignmentList(c => c.IsUsedInPrimaryKey == false, "core", "del")#>
+    FROM <#=table.GetTag("CoreTableName")#> AS core
+    INNER JOIN <#=table.Schema#>.<#=table.Name#> AS del 
+    ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "del")#>
+    ;
+    
+    /* Hard Delete */
+    /*
+    DELETE FROM core
+    FROM <#=table.GetTag("CoreTableName")#> AS core
+    WHERE EXISTS (
+        SELECT * 
+        FROM <#=table.Schema#>.<#=table.Name#> AS del 
+        WHERE <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "del")#>
+    );
+    */
+    
+    RETURN 0;
+END;
+GO
+<# } #>
+
+/* UPDATE */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Update")) { #>
+CREATE OR ALTER PROCEDURE <#=table.Schema#>.<#=table.GetTag("SourceSchemaName")#>_<#=table.GetTag("SourceTableName")#>_<#=table.GetTag("SupportTableType")#>
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    UPDATE core
+    SET <#=table.GetColumnAssignmentList(c => c.IsUsedInPrimaryKey == false, "core", "upd")#>
+    FROM <#=table.GetTag("CoreTableName")#> AS core
+    INNER JOIN <#=table.Schema#>.<#=table.Name#> AS upd 
+    ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "core", "upd")#>
+    ;
+    
+    RETURN 0;
+END;
+GO
+<# } #>
+
+/* INSERT */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Insert")) { #>
+CREATE OR ALTER PROCEDURE <#=table.Schema#>.<#=table.GetTag("SourceSchemaName")#>_<#=table.GetTag("SourceTableName")#>_<#=table.GetTag("SupportTableType")#>
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    INSERT INTO <#=table.GetTag("CoreTableName")#> (
+        <#=table.GetColumnList()#>
+    )
+    SELECT
+        <#=table.GetColumnList()#>
+    FROM <#=table.Schema#>.<#=table.Name#>
+    
+    RETURN 0;
+END;
+GO
+<# } #>
+
+</Annotation>
+<# } #>
+</Annotations>
+</Biml>

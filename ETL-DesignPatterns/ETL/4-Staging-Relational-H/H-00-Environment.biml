@@ -1,0 +1,80 @@
+<#@ template tier="0" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        /* Store variables used in multiple Biml files in RootNode */
+        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\4-Staging-Relational\Project.params");
+        RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
+        
+        /* Metadata from Excel */
+        int ProjectID = 3;
+        var MetadataConnectionString = Environment.ExpandEnvironmentVariables(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=%ETLDesignPatterns%\Databases\Admin\Manual Scripts\Metadata.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;");
+        DataRow Admin = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", "Admin")).Rows[0];
+        DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Project$] WHERE ProjectID = {0}", ProjectID)).Rows[0];
+        DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["SourceConnectionName"])).Rows[0];
+        DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM [Connection$] WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
+    #>
+    
+    <Connections>
+    	<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml")#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Admin["ConnectionName"], "Admin", Admin["ServerName"], Admin["DatabaseName"], true)#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Source["ConnectionName"], "Source", Source["ServerName"], Source["DatabaseName"], true)#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Destination["ConnectionName"], "Destination", Destination["ServerName"], Destination["DatabaseName"], true)#>
+	</Connections>
+	    
+	<Databases>
+		<Database Name="<#=Destination["DatabaseName"]#>" ConnectionName="<#=Destination["ConnectionName"]#>" />
+	</Databases>
+        
+	<Schemas>
+		<Schema Name="<#=Project["DestinationSchemaName"]#>" DatabaseName="<#=Destination["DatabaseName"]#>" />
+	</Schemas>
+	    
+     <Tables>
+        
+        <# var SourceConnection = SchemaManager.CreateConnectionNode(Source["ConnectionName"].ToString(), Source["ConnectionString"].ToString()); #>
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(new List<string>{"dbo"}, new List<string>{"Customer"}, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
+            
+            <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Delete","_DEL"},{"Update","_UPD"},{"Insert","_INS"}}; #>
+            <# foreach (var supportTable in SupportTables) { #>
+                <Table Name="<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
+                    <Columns>
+                        <# if (supportTable.Key == "Core") { #>
+                            <#=table.Columns.GetBiml()#>
+                        <# } else { #>
+                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == true)) { #>
+                                <#=column.GetBiml()#>
+                            <# } #>
+                            <# foreach (var column in table.Columns.Where(c => c.IsUsedInPrimaryKey == false)) { #>
+                                <Column Name="<#=column.Name#>" DataType="<#=column.DataType#>" Length="<#=column.Length#>" Precision="<#=column.Precision#>" Scale="<#=column.Scale#>" IsNullable="true" />
+                            <# } #>
+                        <# } #>
+    				    <#=CallBimlScript("ETL-TableColumns.biml", supportTable.Key)#>
+                    </Columns>
+                    <Keys>
+                        <PrimaryKey Name="PK_<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>">
+                            <Columns>
+                                <#=table.PreferredKey.Columns.GetBiml()#>
+                            </Columns>
+                        </PrimaryKey>
+                    </Keys>
+                    <Annotations>
+                        <Annotation Tag="CoreTableName"><#=Project["DestinationSchemaName"]#>.<#=table.Schema#>_<#=table.Name#></Annotation>
+                        <Annotation Tag="SupportTableType"><#=supportTable.Key#></Annotation>
+                        <Annotation Tag="SourceConnectionName"><#=Source["ConnectionName"]#></Annotation>
+                        <Annotation Tag="SourceServerName"><#=Source["ServerName"]#></Annotation>
+                        <Annotation Tag="SourceDatabaseName"><#=Source["DatabaseName"]#></Annotation>
+                        <Annotation Tag="SourceSchemaName"><#=table.Schema#></Annotation>
+                        <Annotation Tag="SourceTableName"><#=table.Name#></Annotation>
+                        <Annotation Tag="SourceSchemaQualifiedName"><#=table.SchemaQualifiedName#></Annotation>
+                    </Annotations>
+                </Table>
+            <# } #>
+            
+        <# } #>
+            
+    </Tables>
+    
+</Biml>
