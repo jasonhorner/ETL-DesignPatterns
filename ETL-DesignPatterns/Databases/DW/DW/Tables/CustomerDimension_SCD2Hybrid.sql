@@ -12,7 +12,7 @@
     [City]                  NVARCHAR (50)  NULL,
     [State]                 NVARCHAR (100) NULL,
     [PostalCode]            NVARCHAR (25)  NULL,
-    [CurrentDemographicsSk] INT            NOT NULL,
+    [CurrentDemographicsSk] INT            NULL,
     [SCD1ChangeHashKey]     CHAR (40)      NULL,
     [SCD2ChangeHashKey]     CHAR (40)      NULL,
     [BeginEffectiveDate]    DATE           NULL,

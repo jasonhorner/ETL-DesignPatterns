@@ -12,10 +12,12 @@
     [City]                  NVARCHAR (50)  NULL,
     [State]                 NVARCHAR (100) NULL,
     [PostalCode]            NVARCHAR (25)  NULL,
-    [CurrentDemographicsSk] INT            NOT NULL,
+    [CurrentDemographicsSk] INT            NULL,
     [InsertDate]            DATE           NULL,
     [UpdateDate]            DATE           NULL,
     [ChangeHashKey]         CHAR (40)      NULL,
     CONSTRAINT [Stage_CustomerSCD1_PK] PRIMARY KEY CLUSTERED ([CustomerSk] ASC)
 );
+
+
 
