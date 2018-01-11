@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/5/2018 9:28:49 PM"
@@ -12,7 +12,7 @@
   DTS:ObjectName="Load_CustomerDimension_SCD2"
   DTS:ProtectionLevel="0"
   DTS:VersionBuild="24"
-  DTS:VersionGUID="{5BDE6467-8E15-43ED-A589-A301258E7CC4}"
+  DTS:VersionGUID="{AEB91D7E-84CB-4DBF-A831-E4995E01A256}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -399,8 +399,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Customer Source.Connections[OleDbConnection]"
-                  connectionManagerID="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  connectionManagerID="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:invalid"
+                  connectionManagerRefId="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -723,8 +723,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
+                  connectionManagerRefId="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -988,8 +988,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
+                  connectionManagerRefId="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1150,8 +1150,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
+                  connectionManagerRefId="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>

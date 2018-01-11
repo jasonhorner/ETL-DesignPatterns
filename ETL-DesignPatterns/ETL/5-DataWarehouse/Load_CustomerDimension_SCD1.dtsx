@@ -11,8 +11,8 @@
   DTS:LocaleID="1044"
   DTS:ObjectName="Load_CustomerDimension_SCD1"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{E4E8BDF9-5A7D-4754-9B65-4C2E11177BBC}"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{22E5E1D9-69E4-49F9-9A12-E44C6C2AC81F}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -224,13 +224,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_BOOL)1</property>
+                          name="Expression">(DT_BOOL)0</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_BOOL)1</property>
+                          name="FriendlyExpression">(DT_BOOL)0</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -246,13 +246,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_BOOL)1</property>
+                          name="Expression">(DT_BOOL)0</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_BOOL)1</property>
+                          name="FriendlyExpression">(DT_BOOL)0</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -278,12 +278,12 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[UpdateDate]"
                       dataType="date"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]"
-                      name="ModifiedDate"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[UpdateDate]"
+                      name="UpdateDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -328,6 +328,107 @@
               </outputs>
             </component>
             <component
+              refId="Package\Dataflow\Biml Hash"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="SHA1 hash of columns."
+              name="Biml Hash"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Varigence.Ssis.Hash, Varigence.Ssis.2016, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e9fb56b2a63ffbab</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dataflow\Biml Hash.Inputs[HashInput]"
+                  errorRowDisposition="FailComponent"
+                  name="HashInput">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="FirstName"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LastName"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[EmailAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EmailAddress"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="Phone"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[AddressType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="AddressType"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressType]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[AddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine1"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="City"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[StateProvince]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[StateProvince]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Biml Hash.Inputs[HashInput].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PostalCode"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dataflow\Biml Hash.Outputs[HashOutput]"
+                  exclusionGroup="1"
+                  name="HashOutput"
+                  synchronousInputId="Package\Dataflow\Biml Hash.Inputs[HashInput]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]"
+                      name="SourceChangeHashKey">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Hash SHA1 transformation result column indicator."
+                          name="Hash">Hash</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Dataflow\Customer Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -352,7 +453,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
  c.CustomerId As SourceCustomerId
 ,c.FirstName
 ,c.LastName
@@ -363,7 +464,7 @@
 ,a.City
 ,a.StateProvince
 ,a.PostalCode
-,CAST(NULL as NCHAR(40)) AS SourceChangeHashKey
+--,CAST(NULL as NCHAR(40)) AS SourceChangeHashKey
 FROM [AWLTSRC].[SalesLT_Customer] c
 INNER JOIN [AWLTSRC].[SalesLT_CustomerAddress] ca ON (c.CustomerID = ca.CustomerID)
 INNER JOIN [AWLTSRC].[SalesLT_Address] a ON (ca.AddressID = a.AddressID)
@@ -495,16 +596,6 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                       name="PostalCode"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceChangeHashKey]"
-                      length="40"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]"
-                      name="SourceChangeHashKey"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
@@ -561,11 +652,6 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                       dataType="wstr"
                       length="15"
                       name="PostalCode" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceChangeHashKey]"
-                      dataType="wstr"
-                      length="40"
-                      name="SourceChangeHashKey" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
                       dataType="i4"
@@ -637,12 +723,6 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                       lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
                       name="PostalCode" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceChangeHashKey]"
-                      dataType="wstr"
-                      length="40"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceChangeHashKey]"
-                      name="SourceChangeHashKey" />
-                    <outputColumn
                       refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
                       lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
@@ -684,7 +764,7 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -786,18 +866,19 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
                       lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[CreateDate]" />
                     <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UpdateDate]"
                       cachedDataType="date"
-                      cachedName="ModifiedDate"
+                      cachedName="UpdateDate"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
-                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]" />
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[UpdateDate]" />
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
-                      cachedDataType="wstr"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
                       cachedLength="40"
                       cachedName="SourceChangeHashKey"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
+                      lineageId="Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -877,7 +958,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                       name="UpdateDate" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
-                      dataType="wstr"
+                      codePage="1252"
+                      dataType="str"
                       length="40"
                       name="ChangeHashKey" />
                   </externalMetadataColumns>
@@ -950,19 +1032,19 @@ ORDER BY c.CustomerID, ca.AddressType</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
  c.CustomerId As DestinationCustomerId
 ,CAST(NULL as NCHAR(40)) AS DestinationChangeHashKey
-FROM DW.CustomerDimension c</property>
+FROM DW.CustomerDimension_SCD1 c</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT
  c.CustomerId As DestinationCustomerId
 ,CAST(NULL as NCHAR(40)) AS DestinationChangeHashKey
-FROM DW.CustomerDimension c) [refTable]
+FROM DW.CustomerDimension_SCD1 c) [refTable]
 where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1140,7 +1222,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1216,18 +1298,11 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
                       lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]" />
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="40"
-                      cachedName="SourceChangeHashKey"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UpdateDate]"
                       cachedDataType="date"
-                      cachedName="ModifiedDate"
+                      cachedName="UpdateDate"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
-                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]" />
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[UpdateDate]" />
                     <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
                       cachedDataType="i4"
@@ -1248,6 +1323,20 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       cachedName="AddressLine1"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
                       lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                    <inputColumn
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreateDate]"
+                      cachedDataType="date"
+                      cachedName="CreateDate"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[CreateDate]" />
+                    <inputColumn
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="SourceChangeHashKey"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1323,7 +1412,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       name="UpdateDate" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
-                      dataType="wstr"
+                      codePage="1252"
+                      dataType="str"
                       length="40"
                       name="ChangeHashKey" />
                     <externalMetadataColumn
@@ -1485,10 +1575,11 @@ where [refTable].[DestinationCustomerId] = ?</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[SourceChangeHashKey]"
-                      cachedDataType="wstr"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
                       cachedLength="40"
                       cachedName="SourceChangeHashKey"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
+                      lineageId="Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]" />
                     <inputColumn
                       refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[DestinationChangeHashKey]"
                       cachedDataType="wstr"
@@ -1524,13 +1615,13 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]}</property>
+                      name="Expression">[ISNULL](#{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">SourceCustomerId != DestinationCustomerId</property>
+                      name="FriendlyExpression">ISNULL(DestinationCustomerId)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -1552,7 +1643,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
+                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1580,7 +1671,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
+                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Biml Hash.Outputs[HashOutput].Columns[SourceChangeHashKey]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1668,6 +1759,11 @@ where [refTable].[DestinationCustomerId] = ?</property>
               name="Derived Column Output"
               startId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Dataflow.Paths[HashOutput]"
+              endId="Package\Dataflow\Select Row Count.Inputs[Source_Output_Select Row Count]"
+              name="HashOutput"
+              startId="Package\Dataflow\Biml Hash.Outputs[HashOutput]" />
+            <path
               refId="Package\Dataflow.Paths[Ignore]"
               endId="Package\Dataflow\Ignore Row Count.Inputs[Delete Row Count_Output_Ignore Row Count]"
               name="Ignore"
@@ -1684,7 +1780,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
               startId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Dataflow.Paths[OLE DB Source Output]"
-              endId="Package\Dataflow\Select Row Count.Inputs[Source_Output_Select Row Count]"
+              endId="Package\Dataflow\Biml Hash.Inputs[HashInput]"
               name="OLE DB Source Output"
               startId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output]" />
             <path
@@ -2012,7 +2108,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{3FABF2AB-9A3B-4815-9A8F-66886C973FB5}"
+                  SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
                   SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageError&#xA;                            @PackageExecutionID = ?&#xA;                            ,@ServerExecutionID = ?&#xA;                            ,@BatchID = ?&#xA;                            ,@JobID = ?&#xA;                            ,@PackageID = ?&#xA;                            ,@PackageName = ?&#xA;                            ,@ErrorCode = ?&#xA;                            ,@ErrorDescription = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -2076,7 +2172,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
-                  SQLTask:Connection="{3FABF2AB-9A3B-4815-9A8F-66886C973FB5}"
+                  SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
                   SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionError&#xA;                            @PackageExecutionID = ?;&#xA;                        " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
                   <SQLTask:ParameterBinding
                     SQLTask:ParameterName="0"
@@ -2280,24 +2376,28 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="NaN,NaN"
+          Size="165,42"
           Id="Package.EventHandlers[OnError]\Log Errors\Log Package Error"
-          TopLeft="NaN,NaN" />
+          TopLeft="29.75,5.5" />
         <NodeLayout
-          Size="NaN,NaN"
+          Size="213.5,42"
           Id="Package.EventHandlers[OnError]\Log Errors\Log Package Execution Error"
-          TopLeft="NaN,NaN" />
+          TopLeft="5.50000000000001,107.5" />
         <EdgeLayout
           Id="Package.EventHandlers[OnError]\Log Errors.PrecedenceConstraints[Constraint_Log Package Error_To_Log Package Execution Error]"
-          TopLeft="NaN,NaN">
+          TopLeft="112.25,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="{assembly:Null}"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,0">
+              End="0,52.5">
               <mssgle:Curve.Segments>
-                <assembly:Null />
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
@@ -2310,10 +2410,10 @@ where [refTable].[DestinationCustomerId] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="NaN,NaN"
-          Size="NaN,NaN"
+          PanelSize="224.5,204.5"
+          Size="224.5,247.5"
           Id="Package.EventHandlers[OnError]\Log Errors"
-          TopLeft="NaN,NaN" />
+          TopLeft="5.50000000000004,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -2623,34 +2723,14 @@ where [refTable].[DestinationCustomerId] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dataflow.Paths[Output]"
           TopLeft="541,557.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[OLE DB Source Output]"
-          TopLeft="541,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2692,6 +2772,78 @@ where [refTable].[DestinationCustomerId] = ?</property>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126,49"
+          Id="Package\Dataflow\Biml Hash"
+          TopLeft="685.5,70.25" />
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[OLE DB Source Output]"
+          TopLeft="541,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="207.5,22.75"
+              Start="0,0"
+              End="207.5,15.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.375"
+                    Point2="0,11.375"
+                    Point3="4,11.375" />
+                  <mssgle:LineSegment
+                    End="203.5,11.375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="203.5,11.375"
+                    Point2="207.5,11.375"
+                    Point3="207.5,15.375" />
+                  <mssgle:LineSegment
+                    End="207.5,15.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[HashOutput]"
+          TopLeft="685.5,94.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.5,33.75"
+              Start="0,0"
+              End="-56,33.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-27.75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.75,0"
+                    Point2="-31.75,0"
+                    Point3="-31.75,4" />
+                  <mssgle:LineSegment
+                    End="-31.75,29.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.75,29.75"
+                    Point2="-31.75,33.75"
+                    Point3="-35.75,33.75" />
+                  <mssgle:LineSegment
+                    End="-56,33.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="WWI" DTS:DTSID="{7D5896E0-DCBC-4BEA-9683-EB4D59BCF724}" DTS:refId="WWI" DTS:CreationName="OLEDB">
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="WWI"
+  DTS:DTSID="{7D5896E0-DCBC-4BEA-9683-EB4D59BCF724}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnectionManagerWWIOleDbConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
-    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=localhost;initial catalog=WideWorldImporters;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
   </DTS:ObjectData>
-  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerWWIOleDbConnectionString]</DTS:PropertyExpression>
 </DTS:ConnectionManager>

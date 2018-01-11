@@ -13,7 +13,7 @@
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
   DTS:VersionBuild="21"
-  DTS:VersionGUID="{9B36A068-FDD8-4F51-9405-B1F660526E07}">
+  DTS:VersionGUID="{5D0FC1F2-B891-421C-BC74-ED405D490DAD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -359,7 +359,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\211:invalid} == "New"</property>
+                      name="Expression">#{Package\Data Flow Task\309:invalid} == "New"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -387,7 +387,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Correct"</property>
+                      name="Expression">#{Package\Data Flow Task\309:invalid} == "Correct"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -415,7 +415,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Corrected"</property>
+                      name="Expression">#{Package\Data Flow Task\309:invalid} == "Corrected"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -443,7 +443,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\211:invalid} == "Invalid"</property>
+                      name="Expression">#{Package\Data Flow Task\309:invalid} == "Invalid"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -623,8 +623,8 @@ where [refTable].[CustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Customer Birthdate Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:invalid"
+                  connectionManagerRefId="{7661ADF7-8C35-4CDE-A408-CA523422374E}:invalid"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -777,8 +777,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Customer Stage OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[AWLT Source OLEDB]"
+                  connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:invalid"
+                  connectionManagerRefId="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1491,8 +1491,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Invalid Rows OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:invalid"
+                  connectionManagerRefId="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1742,8 +1742,8 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Valid Records OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
+                  connectionManagerID="{7661ADF7-8C35-4CDE-A408-CA523422374E}:invalid"
+                  connectionManagerRefId="{7661ADF7-8C35-4CDE-A408-CA523422374E}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2225,8 +2225,8 @@ SELECT
               <connections>
                 <connection
                   refId="Package\Data Flow Task 1\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:invalid"
+                  connectionManagerRefId="{0E01D98B-7FD3-4B33-8F4A-2F89F3291294}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>

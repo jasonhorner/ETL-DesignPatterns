@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [DWStage]
+    AUTHORIZATION [dbo];
+

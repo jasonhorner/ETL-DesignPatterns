@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="AuditingAdoNet" DTS:DTSID="{BC65D05B-FE5A-4B4D-969B-6EA0E7C691F8}" DTS:refId="AuditingAdoNet" DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AuditingAdoNet"
+  DTS:DTSID="{BC65D05B-FE5A-4B4D-969B-6EA0E7C691F8}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnectionManagerAuditingAdoNetConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
-    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="Server=.;Database=Admin;Integrated Security=true;"></DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Server=.;Database=Admin;Integrated Security=true;" />
   </DTS:ObjectData>
-  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerAuditingAdoNetConnectionString]</DTS:PropertyExpression>
 </DTS:ConnectionManager>
