@@ -1,6 +1,5 @@
 <#@ property name="TableType" type="String" required="False" #>
 <#
-    
     String TableTypeName;
     try {
         TableTypeName = TableType;
@@ -18,27 +17,34 @@
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
         <Annotation Tag="IsHashKeyColumn">True</Annotation>
-    </Annotations>
-</Column>
-<Column Name="ChangeType" DataType="AnsiStringFixedLength" Length="1" IsNullable="false">
-    <Annotations>
-        <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Update</Annotation>
     </Annotations>
 </Column>
 <# } #>
 
 <# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
-<Column Name="IsDeleted" DataType="Boolean" IsNullable="false">
+<Column Name="ChangeType" DataType="AnsiStringFixedLength" Length="1" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Update</Annotation>
+    </Annotations>
+</Column>
+<# } #>
+
+<# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert" || TableTypeName == "Update" || TableTypeName == "Delete") { #>
+<Column Name="IsDeleted" DataType="Boolean" IsNullable="true">
+    <Annotations>
+        <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Update</Annotation>
     </Annotations>
 </Column>
 <# } #>
 
 <# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert") { #>
-<Column Name="InsertDate" DataType="DateTime2" IsNullable="false">
+<Column Name="InsertDate" DataType="DateTime2" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Insert</Annotation>
     </Annotations>
 </Column>
 <# } #>
@@ -47,14 +53,16 @@
 <Column Name="UpdateDate" DataType="DateTime2" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Update</Annotation>
     </Annotations>
 </Column>
 <# } #>
 
 <# if (TableTypeName == "Core" || TableTypeName == "Staging" || TableTypeName == "Insert") { #>
-<Column Name="InsertPackageExecutionID" DataType="Int32" IsNullable="false">
+<Column Name="InsertPackageExecutionID" DataType="Int32" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Insert</Annotation>
     </Annotations>
 </Column>
 <# } #>
@@ -63,6 +71,7 @@
 <Column Name="UpdatePackageExecutionID" DataType="Int32" IsNullable="true">
     <Annotations>
         <Annotation Tag="IsETLColumn">True</Annotation>
+        <Annotation Tag="ChangeType">Update</Annotation>
     </Annotations>
 </Column>
 <# } #>

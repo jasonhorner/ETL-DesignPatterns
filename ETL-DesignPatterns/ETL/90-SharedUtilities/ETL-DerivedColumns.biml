@@ -1,10 +1,9 @@
 <#@ property name="TableType" type="String" required="False" #>
 <#
-    
     String TableTypeName;
     try {
         TableTypeName = TableType;
-        List<String> ValidTableTypes = new List<String>{"Insert","Update","Delete"};
+        List<String> ValidTableTypes = new List<String>{"Core","Staging","Insert","Update","Delete"};
         if (!ValidTableTypes.Contains(TableTypeName)) {
             return "";
         }
