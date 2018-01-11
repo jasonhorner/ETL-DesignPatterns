@@ -11,8 +11,8 @@
   DTS:LocaleID="1044"
   DTS:ObjectName="Load_CustomerDimension_SCD1"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{D0D0ACA4-BD9E-4A1B-B7A1-5FC2CE24ED08}"
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{D5535B21-384C-45E7-8363-79E12AB679B0}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -2440,33 +2440,29 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="179,42"
-          Id="Package\Dataflow\Split on Change Type"
-          TopLeft="445,522.5" />
-        <NodeLayout
           Size="162,42"
           Id="Package\Dataflow\Select Row Count"
           TopLeft="453.5,216.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Dataflow\Update Row Count"
+          TopLeft="678,624.5" />
         <NodeLayout
           Size="161,42"
           Id="Package\Dataflow\Insert Row Count"
           TopLeft="230,624.5" />
         <NodeLayout
-          Size="126,49"
-          Id="Package\Dataflow\Biml Hash"
-          TopLeft="471.5,107.5" />
-        <NodeLayout
           Size="165,42"
           Id="Package\Dataflow\Ignore Row Count"
           TopLeft="452,624.5" />
         <NodeLayout
+          Size="126,49"
+          Id="Package\Dataflow\Biml Hash"
+          TopLeft="471.5,107.5" />
+        <NodeLayout
           Size="166,42"
           Id="Package\Dataflow\Dimension Lookup"
           TopLeft="451.5,318.5" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Dataflow\Update Row Count"
-          TopLeft="678,624.5" />
         <NodeLayout
           Size="157,42"
           Id="Package\Dataflow\Error Row Count"
@@ -2491,76 +2487,10 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Size="168.5,42"
           Id="Package\Dataflow\Add Audit Columns"
           TopLeft="450.25,420.5" />
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Unused]"
-          TopLeft="483.2,564.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-395.7,60.0000000000001"
-              Start="0,0"
-              End="-395.7,52.5000000000001">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.948316366484"
-                    Point2="0,17.948316366484"
-                    Point3="-4,17.948316366484" />
-                  <mssgle:LineSegment
-                    End="-391.7,17.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-391.7,17.948316366484"
-                    Point2="-395.7,17.948316366484"
-                    Point3="-395.7,21.948316366484" />
-                  <mssgle:LineSegment
-                    End="-395.7,52.5000000000001" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-214.67693359375,22.948316366484,33.6538671875,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Output3]"
-          TopLeft="310.5,666.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="50,60"
-              Start="0,0"
-              End="50,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="4,30" />
-                  <mssgle:LineSegment
-                    End="46,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="46,30"
-                    Point2="50,30"
-                    Point3="50,34" />
-                  <mssgle:LineSegment
-                    End="50,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Dataflow\Split on Change Type"
+          TopLeft="445,522.5" />
         <EdgeLayout
           Id="Package\Dataflow.Paths[Output2]"
           TopLeft="761.5,666.5">
@@ -2827,6 +2757,76 @@ where [refTable].[DestinationCustomerId] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Unused]"
+          TopLeft="483.2,564.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-395.7,60.0000000000001"
+              Start="0,0"
+              End="-395.7,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.948316366484"
+                    Point2="0,17.948316366484"
+                    Point3="-4,17.948316366484" />
+                  <mssgle:LineSegment
+                    End="-391.7,17.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-391.7,17.948316366484"
+                    Point2="-395.7,17.948316366484"
+                    Point3="-395.7,21.948316366484" />
+                  <mssgle:LineSegment
+                    End="-395.7,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-214.67693359375,22.948316366484,33.6538671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Output3]"
+          TopLeft="310.5,666.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,60"
+              Start="0,0"
+              End="50,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="46,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,30"
+                    Point2="50,30"
+                    Point3="50,34" />
+                  <mssgle:LineSegment
+                    End="50,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2836,7 +2836,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2846,7 +2846,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
