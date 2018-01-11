@@ -11,8 +11,8 @@
   DTS:LocaleID="1044"
   DTS:ObjectName="Load_CustomerDimension_SCD1"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{D62CC041-3E89-4FF5-991F-FBD41CA570E0}"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{E4E8BDF9-5A7D-4754-9B65-4C2E11177BBC}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -394,7 +394,7 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Customer Source.Connections[OleDbConnection]"
-                  connectionManagerID="{20F83686-4B28-4AD5-A8F9-A87408D07E79}:external"
+                  connectionManagerID="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:external"
                   connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
@@ -718,7 +718,7 @@ ORDER BY c.CustomerID, ca.AddressType</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
                   connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
@@ -1012,7 +1012,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
                   connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
@@ -1131,7 +1131,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWStage].[CustomerDimension_SCD1]</property>
+                  name="OpenRowset">[DW].[CustomerDimension_SCD1]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1174,7 +1174,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
                   connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
@@ -1327,9 +1327,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       length="40"
                       name="ChangeHashKey" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
                       dataType="dbDate"
-                      name="InsertDate" />
+                      name="CreateDate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1872,7 +1872,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{20F83686-4B28-4AD5-A8F9-A87408D07E79}"
+              SQLTask:Connection="{F20C3938-800C-4B54-8224-FCEF8D9677C5}"
               SQLTask:SqlStatementSource="SELECT 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -1901,7 +1901,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{97C639C8-43B9-424D-85B1-E6691CED076E}"
+              SQLTask:Connection="{F20C3938-800C-4B54-8224-FCEF8D9677C5}"
               SQLTask:SqlStatementSource="TRUNCATE TABLE DW.CustomerDimension" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -1918,7 +1918,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{97C639C8-43B9-424D-85B1-E6691CED076E}"
+              SQLTask:Connection="{F20C3938-800C-4B54-8224-FCEF8D9677C5}"
               SQLTask:SqlStatementSource="TRUNCATE TABLE DWSTAGE.CustomerDimension;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -2171,9 +2171,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
-          IsExpanded="False"
+          IsExpanded="True"
           PanelSize="302,204.5"
-          Size="302,43"
+          Size="302,247.5"
           Id="Package\Truncate Stage Tables"
           TopLeft="5.5,107.5" />
         <EdgeLayout
@@ -2244,18 +2244,18 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="156.5,150.5">
+          TopLeft="156.5,355">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,264.5"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,257">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,257" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2339,13 +2339,13 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Id="Package\Dataflow\Insert Row Count"
           TopLeft="683.5,515.5" />
         <NodeLayout
-          Size="165,42"
-          Id="Package\Dataflow\Ignore Row Count"
-          TopLeft="5.5,515.5" />
-        <NodeLayout
           Size="166,42"
           Id="Package\Dataflow\Dimension Lookup"
           TopLeft="458,209.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Dataflow\Delete Row Count"
+          TopLeft="459,515.5" />
         <NodeLayout
           Size="167,42"
           Id="Package\Dataflow\Update Row Count"
@@ -2355,9 +2355,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Id="Package\Dataflow\Error Row Count"
           TopLeft="462.5,617.5" />
         <NodeLayout
-          Size="164,42"
-          Id="Package\Dataflow\Delete Row Count"
-          TopLeft="459,515.5" />
+          Size="165,42"
+          Id="Package\Dataflow\Ignore Row Count"
+          TopLeft="5.5,515.5" />
         <NodeLayout
           Size="168.5,42"
           Id="Package\Dataflow\Add Audit Columns"
@@ -2370,6 +2370,42 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Size="268,42"
           Id="Package\Dataflow\CustomerDimension OLE DB Destination"
           TopLeft="680,617.5" />
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Insert]"
+          TopLeft="592.3,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.7,60"
+              Start="0,0"
+              End="171.7,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.948316366484"
+                    Point2="0,17.948316366484"
+                    Point3="4,17.948316366484" />
+                  <mssgle:LineSegment
+                    End="167.7,17.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.7,17.948316366484"
+                    Point2="171.7,17.948316366484"
+                    Point3="171.7,21.948316366484" />
+                  <mssgle:LineSegment
+                    End="171.7,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="72.09701171875,22.948316366484,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Dataflow.Paths[Ignore]"
           TopLeft="489.7,455.5">
@@ -2658,42 +2694,6 @@ where [refTable].[DestinationCustomerId] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Insert]"
-          TopLeft="592.3,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="171.7,60"
-              Start="0,0"
-              End="171.7,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.948316366484"
-                    Point2="0,17.948316366484"
-                    Point3="4,17.948316366484" />
-                  <mssgle:LineSegment
-                    End="167.7,17.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="167.7,17.948316366484"
-                    Point2="171.7,17.948316366484"
-                    Point3="171.7,21.948316366484" />
-                  <mssgle:LineSegment
-                    End="171.7,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="72.09701171875,22.948316366484,27.5059765625,9.40234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2737,7 +2737,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2747,7 +2747,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

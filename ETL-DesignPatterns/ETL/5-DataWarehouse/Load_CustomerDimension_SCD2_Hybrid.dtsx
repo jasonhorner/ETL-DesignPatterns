@@ -11,8 +11,8 @@
   DTS:LocaleID="1044"
   DTS:ObjectName="Load_CustomerDimension_SCD2_Hybrid"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{140093A0-1C3B-4EA3-B93E-98FEE45ED285}"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{A3837CDD-184F-448F-840B-22FF4132F823}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -337,8 +337,8 @@ FROM Stage.CustomerDimension</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Customer Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7AE2F2CD-295B-4680-B19C-C05863F9A4B0}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -820,8 +820,8 @@ FROM Stage.CustomerDimension</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:invalid"
+                  connectionManagerRefId="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:invalid"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1176,8 +1176,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1295,7 +1295,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWStage].[CustomerDimension]</property>
+                  name="OpenRowset">[DW].[CustomerDimension_SCD2Hybrid]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1338,8 +1338,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1467,32 +1467,6 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       cachedName="IsCurrent"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
                       lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IsCurrent]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
-                      cachedDataType="i4"
-                      cachedName="SourceCustomerId"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="SourceChangeHashKey"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceChangeHashKey]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationChangeHashKey]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="DestinationChangeHashKey"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationChangeHashKey]"
-                      lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationCustomerId]"
-                      cachedDataType="i4"
-                      cachedName="DestinationCustomerId"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCustomerId]"
-                      lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1502,14 +1476,12 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       name="CustomerSk" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="LastName" />
                     <externalMetadataColumn
@@ -1518,50 +1490,42 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       name="Birthdate" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="AgeBand" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="12"
                       name="MaritalStatus" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="PurchaseFrequency" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="IncomeLevel" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="Address" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="State" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="PostalCode" />
                     <externalMetadataColumn
@@ -1581,23 +1545,19 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       dataType="bool"
                       name="IsCurrent" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
                       dataType="i4"
-                      name="SourceCustomerId" />
+                      name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceChangeHashKey]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SCD1ChangeHashKey]"
                       dataType="wstr"
-                      length="20"
-                      name="SourceChangeHashKey" />
+                      length="40"
+                      name="SCD1ChangeHashKey" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationChangeHashKey]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SCD2ChangeHashKey]"
                       dataType="wstr"
-                      length="20"
-                      name="DestinationChangeHashKey" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCustomerId]"
-                      dataType="i4"
-                      name="DestinationCustomerId" />
+                      length="40"
+                      name="SCD2ChangeHashKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -2001,7 +1961,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{C474012C-14E8-443D-A03C-CA8941EC21D9}"
+          SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
           SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @ServerExecutionID = ?&#xA;        ,@BatchID = ?&#xA;        ,@JobID = ?&#xA;        ,@PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@PackageStartTime = ?;&#xA;    "
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -2070,7 +2030,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{C474012C-14E8-443D-A03C-CA8941EC21D9}"
+          SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
           SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -2674,9 +2634,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Id="Package\Dataflow\Split on Change Type"
           TopLeft="566,311.5" />
         <NodeLayout
-          Size="159,42"
+          Size="159.5,42"
           Id="Package\Dataflow\Customer Source"
-          TopLeft="576,5.5" />
+          TopLeft="571.25,5.5" />
         <NodeLayout
           Size="162,42"
           Id="Package\Dataflow\Select Row Count"
@@ -2837,7 +2797,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dataflow.Paths[Source_Output_Select Row Count]"
-          TopLeft="655.5,47.5">
+          TopLeft="653.25,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3046,7 +3006,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3056,7 +3016,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

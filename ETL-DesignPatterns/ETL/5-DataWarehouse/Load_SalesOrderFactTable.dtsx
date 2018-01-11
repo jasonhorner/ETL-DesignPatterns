@@ -5,21 +5,21 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-SJMBD02"
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
-  DTS:DTSID="{8DDE3093-B7F9-404B-9C33-3F2C5EB03752}"
+  DTS:DTSID="{E7F9BB9A-F9DF-47EC-B1B8-EC79E2C825E1}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3006.16"
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_SalesOrderFactTable"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{D0504F91-AFB5-4097-8770-3A97ADDECC2D}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{C6EA4EEF-E96A-4819-AB31-D436E73DB13F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{41878508-EEB9-4105-9E03-ECC442126DB3}"
+      DTS:DTSID="{946269FA-1E28-4DA0-AB5F-3D6C5904B1EB}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="DeleteRows">
@@ -28,7 +28,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{4F908E06-30F8-491A-960A-1CC26FD40736}"
+      DTS:DTSID="{18F69AD0-4A9A-4388-BC9B-8DD74AB57A74}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="ErrorRows">
@@ -37,7 +37,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{96DD0287-52EE-4B7E-8958-4A2B8BF58D05}"
+      DTS:DTSID="{63EF4D1D-C57F-40FB-8B0D-42E9BCEC7B41}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="IgnoreRows">
@@ -46,7 +46,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{DCBE4C44-55CD-45AF-9092-6C24E35A7103}"
+      DTS:DTSID="{5AB7997C-1C66-4768-AFD6-D8A256419BF9}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="InsertRows">
@@ -55,7 +55,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9D64E7DE-0FAD-4895-85C1-57EE1FB49C96}"
+      DTS:DTSID="{60F53447-B964-436B-9BC2-3E1EC03E28F3}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="UpdateRows">
@@ -68,7 +68,7 @@
       DTS:refId="Package\Load Sales Fact Table"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{F019BB2C-1F35-400C-8FC5-F818A10474E2}"
+      DTS:DTSID="{3D43381F-32BA-4E1B-A036-2026B34A9A4D}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Load Sales Fact Table"
@@ -207,8 +207,8 @@ where [refTable].[CustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\Customer Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -464,8 +464,8 @@ where [refTable].[ProductDimensionSk] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\Product Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -706,7 +706,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DW].[SalesFactTable]</property>
+                  name="OpenRowset">[DW].[OrderStatusFactTable]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -749,8 +749,8 @@ where [refTable].[ProductDimensionSk] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\SalesFactTable OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -996,8 +996,8 @@ where [refTable].[ProductDimensionSk] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7AE2F2CD-295B-4680-B19C-C05863F9A4B0}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{0A19D38B-7E30-4256-8366-B0F989CC49B4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1373,7 +1373,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[DW].[OrderStatusFactTable]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1395,7 +1395,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -1407,7 +1407,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions"></property>
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -1416,6 +1416,8 @@ where [refTable].[ProductDimensionSk] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1426,8 +1428,159 @@ where [refTable].[ProductDimensionSk] = ?</property>
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FactTableSk]"
+                      cachedDataType="i4"
+                      cachedName="FactTableSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FactTableSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[FactTableSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OrderDateSk]"
+                      cachedDataType="i4"
+                      cachedName="OrderDateSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderDateSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderDateSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DueDateSk]"
+                      cachedDataType="i4"
+                      cachedName="DueDateSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DueDateSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[DueDateSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShipDateSk]"
+                      cachedDataType="i4"
+                      cachedName="ShipDateSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipDateSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipDateSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CancelDateSk]"
+                      cachedDataType="i4"
+                      cachedName="CancelDateSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CancelDateSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CancelDateSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BillToAddressId]"
+                      cachedDataType="i4"
+                      cachedName="BillToAddressId"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillToAddressId]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[BillToAddressId]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShipToAddressId]"
+                      cachedDataType="i4"
+                      cachedName="ShipToAddressId"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipToAddressId]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipToAddressId]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerDemographicsSk]"
+                      cachedDataType="i4"
+                      cachedName="CustomerDemographicsSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerDemographicsSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerDemographicsSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentProductSk]"
+                      cachedDataType="i4"
+                      cachedName="CurrentProductSk"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentProductSk]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentProductSk]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesQuantity]"
+                      cachedDataType="ui1"
+                      cachedName="SalesQuantity"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesQuantity]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesQuantity]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesAmount]"
+                      cachedDataType="cy"
+                      cachedName="SalesAmount"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[SalesAmount]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DiscountAmount]"
+                      cachedDataType="cy"
+                      cachedName="DiscountAmount"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DiscountAmount]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountAmount]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TaxAmount]"
+                      cachedDataType="cy"
+                      cachedName="TaxAmount"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmount]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[TaxAmount]" />
+                    <inputColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LineAmount]"
+                      cachedDataType="cy"
+                      cachedName="LineAmount"
+                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineAmount]"
+                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[LineAmount]" />
+                  </inputColumns>
                   <externalMetadataColumns
-                    isUsed="True" />
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FactTableSk]"
+                      dataType="i4"
+                      name="FactTableSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderDateSk]"
+                      dataType="i4"
+                      name="OrderDateSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DueDateSk]"
+                      dataType="i4"
+                      name="DueDateSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipDateSk]"
+                      dataType="i4"
+                      name="ShipDateSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CancelDateSk]"
+                      dataType="i4"
+                      name="CancelDateSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSk]"
+                      dataType="i4"
+                      name="CustomerSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillToAddressId]"
+                      dataType="i4"
+                      name="BillToAddressId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipToAddressId]"
+                      dataType="i4"
+                      name="ShipToAddressId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerDemographicsSk]"
+                      dataType="i4"
+                      name="CustomerDemographicsSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductDimensionSk]"
+                      dataType="i4"
+                      name="ProductDimensionSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentProductSk]"
+                      dataType="i4"
+                      name="CurrentProductSk" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesQuantity]"
+                      dataType="ui1"
+                      name="SalesQuantity" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesAmount]"
+                      dataType="cy"
+                      name="SalesAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DiscountAmount]"
+                      dataType="cy"
+                      name="DiscountAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmount]"
+                      dataType="cy"
+                      name="TaxAmount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineAmount]"
+                      dataType="cy"
+                      name="LineAmount" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
@@ -1471,7 +1624,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DW].[SalesFactTable_UPD]</property>
+                  name="OpenRowset">[DW].[OrderStatusFactTable]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1514,8 +1667,8 @@ where [refTable].[ProductDimensionSk] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{F20C3938-800C-4B54-8224-FCEF8D9677C5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1558,12 +1711,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CancelDateSk]"
                       lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CancelDateSk]" />
                     <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerSk]"
-                      cachedDataType="i4"
-                      cachedName="CustomerSk"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactTable OLE DB Source.CustomerSk]"
-                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerSk]" />
-                    <inputColumn
                       refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BillToAddressId]"
                       cachedDataType="i4"
                       cachedName="BillToAddressId"
@@ -1581,12 +1728,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       cachedName="CustomerDemographicsSk"
                       externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerDemographicsSk]"
                       lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerDemographicsSk]" />
-                    <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductDimensionSk]"
-                      cachedDataType="i4"
-                      cachedName="ProductDimensionSk"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactTable OLE DB Source.ProductDimensionSk]"
-                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductDimensionSk]" />
                     <inputColumn
                       refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentProductSk]"
                       cachedDataType="i4"
@@ -1623,30 +1764,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       cachedName="LineAmount"
                       externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LineAmount]"
                       lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[LineAmount]" />
-                    <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerId]"
-                      cachedDataType="i4"
-                      cachedName="CustomerId"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]" />
-                    <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductId]"
-                      cachedDataType="i4"
-                      cachedName="ProductId"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductId]"
-                      lineageId="Package\Load Sales Fact Table\SalesFactTable OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductId]" />
-                    <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerSk1]"
-                      cachedDataType="i4"
-                      cachedName="CustomerSk"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer Dimension Lookup.CustomerSk]"
-                      lineageId="Package\Load Sales Fact Table\Customer Dimension Lookup.Outputs[Lookup Match Output].Columns[CustomerSk]" />
-                    <inputColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductDimensionSk1]"
-                      cachedDataType="i4"
-                      cachedName="ProductDimensionSk"
-                      externalMetadataColumnId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product Dimension Lookup.ProductDimensionSk]"
-                      lineageId="Package\Load Sales Fact Table\Product Dimension Lookup.Outputs[Lookup Match Output].Columns[ProductDimensionSk]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1671,10 +1788,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       dataType="i4"
                       name="CancelDateSk" />
                     <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactTable OLE DB Source.CustomerSk]"
-                      dataType="i4"
-                      name="SalesFactTable OLE DB Source.CustomerSk" />
-                    <externalMetadataColumn
                       refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BillToAddressId]"
                       dataType="i4"
                       name="BillToAddressId" />
@@ -1686,10 +1799,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerDemographicsSk]"
                       dataType="i4"
                       name="CustomerDemographicsSk" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactTable OLE DB Source.ProductDimensionSk]"
-                      dataType="i4"
-                      name="SalesFactTable OLE DB Source.ProductDimensionSk" />
                     <externalMetadataColumn
                       refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentProductSk]"
                       dataType="i4"
@@ -1715,21 +1824,13 @@ where [refTable].[ProductDimensionSk] = ?</property>
                       dataType="cy"
                       name="LineAmount" />
                     <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSk]"
                       dataType="i4"
-                      name="CustomerId" />
+                      name="CustomerSk" />
                     <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductId]"
+                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductDimensionSk]"
                       dataType="i4"
-                      name="ProductId" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Customer Dimension Lookup.CustomerSk]"
-                      dataType="i4"
-                      name="Customer Dimension Lookup.CustomerSk" />
-                    <externalMetadataColumn
-                      refId="Package\Load Sales Fact Table\SalesFactTable_UPD OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product Dimension Lookup.ProductDimensionSk]"
-                      dataType="i4"
-                      name="Product Dimension Lookup.ProductDimensionSk" />
+                      name="ProductDimensionSk" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1921,6 +2022,30 @@ where [refTable].[ProductDimensionSk] = ?</property>
           Size="141,42"
           Id="Package\Load Sales Fact Table\Ignore Count"
           TopLeft="814,515.5" />
+        <EdgeLayout
+          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
+          TopLeft="671.125,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Sales Fact Table.Paths[Lookup Match Output]"
           TopLeft="671.375,251.5">
@@ -2223,30 +2348,6 @@ where [refTable].[ProductDimensionSk] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Sales Fact Table.Paths[Lookup Match Output1]"
-          TopLeft="671.125,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2269,7 +2370,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2279,7 +2380,7 @@ where [refTable].[ProductDimensionSk] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2319,6 +2420,19 @@ where [refTable].[ProductDimensionSk] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Sales Fact Table\SalesFactTable OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Sales Fact Table\SalesFactTable_DEL OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
