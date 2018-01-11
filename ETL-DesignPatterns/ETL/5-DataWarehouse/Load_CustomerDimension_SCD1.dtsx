@@ -11,8 +11,8 @@
   DTS:LocaleID="1044"
   DTS:ObjectName="Load_CustomerDimension_SCD1"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{68817EEF-F329-4ED0-BB5A-EC1BC2B081D6}"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{D62CC041-3E89-4FF5-991F-FBD41CA570E0}"
   DTS:VersionMajor="0">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
@@ -145,15 +145,15 @@
           version="1">
           <components>
             <component
-              refId="Package\Dataflow\Add Columns"
+              refId="Package\Dataflow\Add Audit Columns"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Add Columns"
+              name="Add Audit Columns"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Dataflow\Add Columns.Inputs[Derived Column Input]"
+                  refId="Package\Dataflow\Add Audit Columns.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -161,18 +161,18 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Dataflow\Add Columns.Outputs[Derived Column Output]"
+                  refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Dataflow\Add Columns.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Dataflow\Add Audit Columns.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[BeginEffectiveDate]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[BeginEffectiveDate]"
                       dataType="date"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[BeginEffectiveDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[BeginEffectiveDate]"
                       name="BeginEffectiveDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -190,11 +190,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[EndEffectiveDate]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[EndEffectiveDate]"
                       dataType="date"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[EndEffectiveDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[EndEffectiveDate]"
                       name="EndEffectiveDate"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -212,11 +212,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[IsCurrent]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[IsCurrent]"
                       dataType="bool"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[IsCurrent]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[IsCurrent]"
                       name="IsCurrent"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -224,21 +224,21 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">NULL(DT_BOOL)</property>
+                          name="Expression">(DT_BOOL)1</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">NULL(DT_BOOL)</property>
+                          name="FriendlyExpression">(DT_BOOL)1</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[IsDeleted]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[IsDeleted]"
                       dataType="bool"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[IsDeleted]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[IsDeleted]"
                       name="IsDeleted"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -246,36 +246,80 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">NULL(DT_BOOL)</property>
+                          name="Expression">(DT_BOOL)1</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">NULL(DT_BOOL)</property>
+                          name="FriendlyExpression">(DT_BOOL)1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[CreateDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[CreateDate]"
+                      name="CreateDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)GETDATE()</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Dataflow\Add Columns.Outputs[Derived Column Error Output]"
+                  refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Dataflow\Add Columns.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Dataflow\Add Audit Columns.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dataflow\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -287,6 +331,7 @@
               refId="Package\Dataflow\Customer Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
               name="Customer Source"
               usesDispositions="true"
               version="7">
@@ -307,11 +352,23 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
-[CustomerSk], [CustomerId] As SourceCustomerId
-, [FirstName], [LastName], [Birthdate], [AgeBand], [MaritalStatus], [PurchaseFrequency], [IncomeLevel], [Address], [City], [State], [PostalCode], [CurrentDemographicsSk], [BeginEffectiveDate], [EndEffectiveDate], [IsCurrent]
-,CAST(NULL as NCHAR(20)) AS SourceChangeHashKey
-FROM Stage.CustomerDimension</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+ c.CustomerId As SourceCustomerId
+,c.FirstName
+,c.LastName
+,c.EmailAddress
+,c.Phone
+,ca.AddressType
+,a.AddressLine1
+,a.City
+,a.StateProvince
+,a.PostalCode
+,CAST(NULL as NCHAR(40)) AS SourceChangeHashKey
+FROM [AWLTSRC].[SalesLT_Customer] c
+INNER JOIN [AWLTSRC].[SalesLT_CustomerAddress] ca ON (c.CustomerID = ca.CustomerID)
+INNER JOIN [AWLTSRC].[SalesLT_Address] a ON (ca.AddressID = a.AddressID)
+WHERE ca.AddressType = 'Main Office' 
+ORDER BY c.CustomerID, ca.AddressType</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -337,423 +394,264 @@ FROM Stage.CustomerDimension</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Customer Source.Connections[OleDbConnection]"
-                  connectionManagerID="{7AE2F2CD-295B-4680-B19C-C05863F9A4B0}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Staging OLEDB]"
+                  connectionManagerID="{20F83686-4B28-4AD5-A8F9-A87408D07E79}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Dataflow\Customer Source.Outputs[Output]"
-                  name="Output">
+                  refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CustomerSk]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[CustomerSk]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CustomerSk]"
-                      name="CustomerSk"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[FirstName]"
-                      length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[FirstName]"
-                      name="FirstName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[LastName]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[LastName]"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[LastName]"
-                      name="LastName"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Birthdate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[Birthdate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Birthdate]"
-                      name="Birthdate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[AgeBand]"
-                      length="25"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[AgeBand]"
-                      name="AgeBand"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[MaritalStatus]"
-                      length="12"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[MaritalStatus]"
-                      name="MaritalStatus"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[PurchaseFrequency]"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PurchaseFrequency]"
-                      name="PurchaseFrequency"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[IncomeLevel]"
-                      length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IncomeLevel]"
-                      name="IncomeLevel"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Address]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[Address]"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Address]"
-                      name="Address"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[City]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[City]"
-                      length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[City]"
-                      name="City"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[State]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[State]"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[State]"
-                      name="State"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[PostalCode]"
-                      length="25"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PostalCode]"
-                      name="PostalCode"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CurrentDemographicsSk]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[CurrentDemographicsSk]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CurrentDemographicsSk]"
-                      name="CurrentDemographicsSk"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[BeginEffectiveDate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[BeginEffectiveDate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[BeginEffectiveDate]"
-                      name="BeginEffectiveDate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[EndEffectiveDate]"
-                      dataType="dbDate"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[EndEffectiveDate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[EndEffectiveDate]"
-                      name="EndEffectiveDate"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IsCurrent]"
-                      dataType="bool"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[IsCurrent]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IsCurrent]"
-                      name="IsCurrent"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[SourceCustomerId]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]"
-                      name="SourceCustomerId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[SourceChangeHashKey]"
-                      length="20"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[EmailAddress]"
+                      name="EmailAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      length="25"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[AddressType]"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressType]"
+                      name="AddressType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      length="60"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]"
+                      name="AddressLine1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="30"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[StateProvince]"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[StateProvince]"
+                      name="StateProvince"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      length="15"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceChangeHashKey]"
+                      length="40"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]"
                       name="SourceChangeHashKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[CustomerSk]"
-                      dataType="i4"
-                      name="CustomerSk" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[LastName]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[Birthdate]"
-                      dataType="dbDate"
-                      name="Birthdate" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
                       length="25"
-                      name="AgeBand" />
+                      name="Phone" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
-                      length="12"
-                      name="MaritalStatus" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      name="PurchaseFrequency" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[AddressType]"
+                      dataType="wstr"
                       length="50"
-                      name="IncomeLevel" />
+                      name="AddressType" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[Address]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      name="Address" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[AddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      name="AddressLine1" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[City]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="30"
                       name="City" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[State]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      name="State" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[StateProvince]"
+                      dataType="wstr"
+                      length="50"
+                      name="StateProvince" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
-                      length="25"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
                       name="PostalCode" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[CurrentDemographicsSk]"
-                      dataType="i4"
-                      name="CurrentDemographicsSk" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceChangeHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="SourceChangeHashKey" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[BeginEffectiveDate]"
-                      dataType="dbDate"
-                      name="BeginEffectiveDate" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[EndEffectiveDate]"
-                      dataType="dbDate"
-                      name="EndEffectiveDate" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[IsCurrent]"
-                      dataType="bool"
-                      name="IsCurrent" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[SourceCustomerId]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
                       dataType="i4"
                       name="SourceCustomerId" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Output].ExternalColumns[SourceChangeHashKey]"
-                      dataType="wstr"
-                      length="20"
-                      name="SourceChangeHashKey" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Dataflow\Customer Source.Outputs[Error]"
+                  refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
-                  name="Error">
+                  name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[CustomerSk]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
                       dataType="i4"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[CustomerSk]"
-                      name="CustomerSk" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[SourceCustomerId]"
-                      dataType="i4"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[SourceCustomerId]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
                       name="SourceCustomerId" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
                       length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[FirstName]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[LastName]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[LastName]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[Birthdate]"
-                      dataType="dbDate"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[Birthdate]"
-                      name="Birthdate" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[EmailAddress]"
+                      name="EmailAddress" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      dataType="wstr"
                       length="25"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[AgeBand]"
-                      name="AgeBand" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      name="Phone" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
-                      length="12"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[MaritalStatus]"
-                      name="MaritalStatus" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[PurchaseFrequency]"
-                      name="PurchaseFrequency" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[AddressType]"
+                      dataType="wstr"
                       length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[IncomeLevel]"
-                      name="IncomeLevel" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[AddressType]"
+                      name="AddressType" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[Address]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[Address]"
-                      name="Address" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[AddressLine1]"
+                      name="AddressLine1" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[City]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[City]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[City]"
                       name="City" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[State]"
-                      codePage="1252"
-                      dataType="str"
-                      length="100"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[State]"
-                      name="State" />
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[StateProvince]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[StateProvince]"
+                      name="StateProvince" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
-                      length="25"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[PostalCode]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
                       name="PostalCode" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[CurrentDemographicsSk]"
-                      dataType="i4"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[CurrentDemographicsSk]"
-                      name="CurrentDemographicsSk" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[BeginEffectiveDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[BeginEffectiveDate]"
-                      name="BeginEffectiveDate" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[EndEffectiveDate]"
-                      dataType="dbDate"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[EndEffectiveDate]"
-                      name="EndEffectiveDate" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[IsCurrent]"
-                      dataType="bool"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[IsCurrent]"
-                      name="IsCurrent" />
-                    <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[SourceChangeHashKey]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceChangeHashKey]"
                       dataType="wstr"
-                      length="20"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[SourceChangeHashKey]"
+                      length="40"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[SourceChangeHashKey]"
                       name="SourceChangeHashKey" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[ErrorCode]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[ErrorCode]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Dataflow\Customer Source.Outputs[Error].Columns[ErrorColumn]"
+                      refId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Error].Columns[ErrorColumn]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -777,7 +675,7 @@ FROM Stage.CustomerDimension</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DW].[CustomerDimension]</property>
+                  name="OpenRowset">[DW].[CustomerDimension_SCD1]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -820,8 +718,8 @@ FROM Stage.CustomerDimension</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -835,120 +733,71 @@ FROM Stage.CustomerDimension</property>
                   <inputColumns>
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[FirstName]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Birthdate]"
-                      cachedDataType="dbDate"
-                      cachedName="Birthdate"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Birthdate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Birthdate]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AgeBand]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="25"
-                      cachedName="AgeBand"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AgeBand]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[AgeBand]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="12"
-                      cachedName="MaritalStatus"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[MaritalStatus]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PurchaseFrequency]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="PurchaseFrequency"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseFrequency]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PurchaseFrequency]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IncomeLevel]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="IncomeLevel"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IncomeLevel]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IncomeLevel]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Address]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="Address"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Address]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="wstr"
+                      cachedLength="30"
                       cachedName="City"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[City]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[State]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="State"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[State]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[City]" />
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PostalCode]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="25"
+                      cachedDataType="wstr"
+                      cachedLength="15"
                       cachedName="PostalCode"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PostalCode]" />
-                    <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentDemographicsSk]"
-                      cachedDataType="i4"
-                      cachedName="CurrentDemographicsSk"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentDemographicsSk]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CurrentDemographicsSk]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]" />
                     <inputColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
                       cachedDataType="i4"
                       cachedName="SourceCustomerId"
                       externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
                     <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BeginEffectiveDate]"
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="AddressLine1"
+                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
+                    <inputColumn
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StateProvince]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StateProvince"
+                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[StateProvince]" />
+                    <inputColumn
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreateDate]"
                       cachedDataType="date"
-                      cachedName="BeginEffectiveDate"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BeginEffectiveDate]"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[BeginEffectiveDate]" />
+                      cachedName="CreateDate"
+                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[CreateDate]" />
                     <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndEffectiveDate]"
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
                       cachedDataType="date"
-                      cachedName="EndEffectiveDate"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndEffectiveDate]"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[EndEffectiveDate]" />
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]" />
                     <inputColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsCurrent]"
-                      cachedDataType="bool"
-                      cachedName="IsCurrent"
-                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
-                      lineageId="Package\Dataflow\Add Columns.Outputs[Derived Column Output].Columns[IsCurrent]" />
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="SourceChangeHashKey"
+                      externalMetadataColumnId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -962,14 +811,12 @@ FROM Stage.CustomerDimension</property>
                       name="CustomerId" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="LastName" />
                     <externalMetadataColumn
@@ -978,50 +825,42 @@ FROM Stage.CustomerDimension</property>
                       name="Birthdate" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="AgeBand" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="12"
                       name="MaritalStatus" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="PurchaseFrequency" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="IncomeLevel" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="Address" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="State" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="PostalCode" />
                     <externalMetadataColumn
@@ -1029,17 +868,18 @@ FROM Stage.CustomerDimension</property>
                       dataType="i4"
                       name="CurrentDemographicsSk" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BeginEffectiveDate]"
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
                       dataType="dbDate"
-                      name="BeginEffectiveDate" />
+                      name="CreateDate" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndEffectiveDate]"
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
                       dataType="dbDate"
-                      name="EndEffectiveDate" />
+                      name="UpdateDate" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
-                      dataType="bool"
-                      name="IsCurrent" />
+                      refId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      dataType="wstr"
+                      length="40"
+                      name="ChangeHashKey" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1111,22 +951,18 @@ FROM Stage.CustomerDimension</property>
                   expressionType="Notify"
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
- CustomerSk As CustomerDimensionSk
-,CustomerId As DestinationCustomerId
-,CAST(NULL as nchar(20)) AS DestinationChangeHashKey
-FROM DW.CustomerDimension
-WHERE IsCurrent = 1</property>
+ c.CustomerId As DestinationCustomerId
+,CAST(NULL as NCHAR(40)) AS DestinationChangeHashKey
+FROM DW.CustomerDimension c</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
- CustomerSk As CustomerDimensionSk
-,CustomerId As DestinationCustomerId
-,CAST(NULL as nchar(20)) AS DestinationChangeHashKey
-FROM DW.CustomerDimension
-WHERE IsCurrent = 1) [refTable]
+ c.CustomerId As DestinationCustomerId
+,CAST(NULL as NCHAR(40)) AS DestinationChangeHashKey
+FROM DW.CustomerDimension c) [refTable]
 where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1158,12 +994,12 @@ where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerDimensionSk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DestinationCustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DestinationChangeHashKey" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DestinationCustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DestinationChangeHashKey" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]};</property>
+                  name="ParameterMap">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1176,8 +1012,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\Dimension Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1190,7 +1026,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       refId="Package\Dataflow\Dimension Lookup.Inputs[Lookup Input].Columns[SourceCustomerId]"
                       cachedDataType="i4"
                       cachedName="SourceCustomerId"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]">
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1219,7 +1055,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       refId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]"
                       dataType="wstr"
                       errorOrTruncationOperation="Copy Column"
-                      length="20"
+                      length="40"
                       lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]"
                       name="DestinationChangeHashKey"
                       truncationRowDisposition="FailComponent">
@@ -1295,7 +1131,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[DWStage].[CustomerDimension]</property>
+                  name="OpenRowset">[DWStage].[CustomerDimension_SCD1]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1338,8 +1174,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
               <connections>
                 <connection
                   refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{2E23A698-5B24-4371-A4B3-6E3964BDB242}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[DW OLEDB]"
+                  connectionManagerID="{97C639C8-43B9-424D-85B1-E6691CED076E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1352,147 +1188,66 @@ where [refTable].[DestinationCustomerId] = ?</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerSk]"
-                      cachedDataType="i4"
-                      cachedName="CustomerSk"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSk]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CustomerSk]" />
-                    <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="FirstName"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[FirstName]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[FirstName]" />
                     <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastName]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
+                      cachedDataType="wstr"
+                      cachedLength="50"
                       cachedName="LastName"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[LastName]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Birthdate]"
-                      cachedDataType="dbDate"
-                      cachedName="Birthdate"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Birthdate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Birthdate]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AgeBand]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="25"
-                      cachedName="AgeBand"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AgeBand]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[AgeBand]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MaritalStatus]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="12"
-                      cachedName="MaritalStatus"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[MaritalStatus]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PurchaseFrequency]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="PurchaseFrequency"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseFrequency]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PurchaseFrequency]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IncomeLevel]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="IncomeLevel"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IncomeLevel]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IncomeLevel]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Address]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="Address"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[Address]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[LastName]" />
                     <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="wstr"
+                      cachedLength="30"
                       cachedName="City"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[City]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[State]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="100"
-                      cachedName="State"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[State]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[City]" />
                     <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PostalCode]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="25"
+                      cachedDataType="wstr"
+                      cachedLength="15"
                       cachedName="PostalCode"
                       externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[PostalCode]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[PostalCode]" />
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentDemographicsSk]"
-                      cachedDataType="i4"
-                      cachedName="CurrentDemographicsSk"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentDemographicsSk]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[CurrentDemographicsSk]" />
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="SourceChangeHashKey"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BeginEffectiveDate]"
-                      cachedDataType="dbDate"
-                      cachedName="BeginEffectiveDate"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BeginEffectiveDate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[BeginEffectiveDate]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndEffectiveDate]"
-                      cachedDataType="dbDate"
-                      cachedName="EndEffectiveDate"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndEffectiveDate]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[EndEffectiveDate]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsCurrent]"
-                      cachedDataType="bool"
-                      cachedName="IsCurrent"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[IsCurrent]" />
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      cachedDataType="date"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      lineageId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output].Columns[ModifiedDate]" />
                     <inputColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
                       cachedDataType="i4"
                       cachedName="SourceCustomerId"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]" />
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceChangeHashKey]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StateProvince]"
                       cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="SourceChangeHashKey"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceChangeHashKey]"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]" />
+                      cachedLength="50"
+                      cachedName="StateProvince"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[StateProvince]" />
                     <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationChangeHashKey]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AddressLine1]"
                       cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="DestinationChangeHashKey"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationChangeHashKey]"
-                      lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]" />
-                    <inputColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationCustomerId]"
-                      cachedDataType="i4"
-                      cachedName="DestinationCustomerId"
-                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCustomerId]"
-                      lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]" />
+                      cachedLength="60"
+                      cachedName="AddressLine1"
+                      externalMetadataColumnId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[AddressLine1]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1502,14 +1257,12 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       name="CustomerSk" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="LastName" />
                     <externalMetadataColumn
@@ -1518,50 +1271,42 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       name="Birthdate" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AgeBand]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="AgeBand" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="12"
                       name="MaritalStatus" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseFrequency]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="PurchaseFrequency" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IncomeLevel]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="IncomeLevel" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="Address" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="100"
                       name="State" />
                     <externalMetadataColumn
                       refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="25"
                       name="PostalCode" />
                     <externalMetadataColumn
@@ -1569,35 +1314,22 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       dataType="i4"
                       name="CurrentDemographicsSk" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BeginEffectiveDate]"
-                      dataType="dbDate"
-                      name="BeginEffectiveDate" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EndEffectiveDate]"
-                      dataType="dbDate"
-                      name="EndEffectiveDate" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
-                      dataType="bool"
-                      name="IsCurrent" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId]"
                       dataType="i4"
-                      name="SourceCustomerId" />
+                      name="CustomerId" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceChangeHashKey]"
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdateDate]"
+                      dataType="dbDate"
+                      name="UpdateDate" />
+                    <externalMetadataColumn
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ChangeHashKey]"
                       dataType="wstr"
-                      length="20"
-                      name="SourceChangeHashKey" />
+                      length="40"
+                      name="ChangeHashKey" />
                     <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationChangeHashKey]"
-                      dataType="wstr"
-                      length="20"
-                      name="DestinationChangeHashKey" />
-                    <externalMetadataColumn
-                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCustomerId]"
-                      dataType="i4"
-                      name="DestinationCustomerId" />
+                      refId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                      dataType="dbDate"
+                      name="InsertDate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1752,20 +1484,15 @@ where [refTable].[DestinationCustomerId] = ?</property>
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[SourceCustomerId]"
-                      cachedDataType="i4"
-                      cachedName="SourceCustomerId"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]" />
-                    <inputColumn
                       refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[SourceChangeHashKey]"
                       cachedDataType="wstr"
-                      cachedLength="20"
+                      cachedLength="40"
                       cachedName="SourceChangeHashKey"
-                      lineageId="Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]" />
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]" />
                     <inputColumn
                       refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[DestinationChangeHashKey]"
                       cachedDataType="wstr"
-                      cachedLength="20"
+                      cachedLength="40"
                       cachedName="DestinationChangeHashKey"
                       lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]" />
                     <inputColumn
@@ -1773,6 +1500,11 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       cachedDataType="i4"
                       cachedName="DestinationCustomerId"
                       lineageId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]" />
+                    <inputColumn
+                      refId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input].Columns[SourceCustomerId]"
+                      cachedDataType="i4"
+                      cachedName="SourceCustomerId"
+                      lineageId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1792,7 +1524,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]}</property>
+                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1820,7 +1552,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
+                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]} != #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1848,7 +1580,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[Output].Columns[SourceChangeHashKey]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
+                      name="Expression">#{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceCustomerId]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationCustomerId]} &amp;&amp; #{Package\Dataflow\Customer Source.Outputs[OLE DB Source Output].Columns[SourceChangeHashKey]} == #{Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output].Columns[DestinationChangeHashKey]}</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -1932,9 +1664,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <paths>
             <path
               refId="Package\Dataflow.Paths[Derived Column Output]"
-              endId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input]"
+              endId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\Dataflow\Add Columns.Outputs[Derived Column Output]" />
+              startId="Package\Dataflow\Add Audit Columns.Outputs[Derived Column Output]" />
             <path
               refId="Package\Dataflow.Paths[Ignore]"
               endId="Package\Dataflow\Ignore Row Count.Inputs[Delete Row Count_Output_Ignore Row Count]"
@@ -1947,34 +1679,34 @@ where [refTable].[DestinationCustomerId] = ?</property>
               startId="Package\Dataflow\Split on Change Type.Outputs[Insert]" />
             <path
               refId="Package\Dataflow.Paths[Lookup Match Output]"
-              endId="Package\Dataflow\Split on Change Type.Inputs[Conditional Split Input]"
+              endId="Package\Dataflow\Add Audit Columns.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Dataflow\Dimension Lookup.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Dataflow.Paths[Output]"
-              endId="Package\Dataflow\Dimension Lookup.Inputs[Lookup Input]"
-              name="Output"
-              startId="Package\Dataflow\Select Row Count.Outputs[Output]" />
+              refId="Package\Dataflow.Paths[OLE DB Source Output]"
+              endId="Package\Dataflow\Select Row Count.Inputs[Source_Output_Select Row Count]"
+              name="OLE DB Source Output"
+              startId="Package\Dataflow\Customer Source.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\Dataflow.Paths[Output1]"
+              refId="Package\Dataflow.Paths[Output]"
               endId="Package\Dataflow\Error Row Count.Inputs[Ignore Row Count_Output_Error Row Count]"
               name="Output"
               startId="Package\Dataflow\Delete Row Count.Outputs[Output]" />
             <path
-              refId="Package\Dataflow.Paths[Output2]"
-              endId="Package\Dataflow\Add Columns.Inputs[Derived Column Input]"
+              refId="Package\Dataflow.Paths[Output1]"
+              endId="Package\Dataflow\Dimension Lookup.Inputs[Lookup Input]"
               name="Output"
-              startId="Package\Dataflow\Insert Row Count.Outputs[Output]" />
+              startId="Package\Dataflow\Select Row Count.Outputs[Output]" />
             <path
-              refId="Package\Dataflow.Paths[Output3]"
+              refId="Package\Dataflow.Paths[Output2]"
               endId="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Output"
               startId="Package\Dataflow\Update Row Count.Outputs[Output]" />
             <path
-              refId="Package\Dataflow.Paths[Source_Output_Select Row Count]"
-              endId="Package\Dataflow\Select Row Count.Inputs[Source_Output_Select Row Count]"
-              name="Source_Output_Select Row Count"
-              startId="Package\Dataflow\Customer Source.Outputs[Output]" />
+              refId="Package\Dataflow.Paths[Output3]"
+              endId="Package\Dataflow\CustomerDimension OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Output"
+              startId="Package\Dataflow\Insert Row Count.Outputs[Output]" />
             <path
               refId="Package\Dataflow.Paths[Unused]"
               endId="Package\Dataflow\Delete Row Count.Inputs[Update Row Count_Output_Delete Row Count]"
@@ -2001,7 +1733,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{C474012C-14E8-443D-A03C-CA8941EC21D9}"
+          SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
           SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStart&#xA;        @ServerExecutionID = ?&#xA;        ,@BatchID = ?&#xA;        ,@JobID = ?&#xA;        ,@PackageID = ?&#xA;        ,@PackageName = ?&#xA;        ,@ParentPackageID = ?&#xA;        ,@ParentPackageName = ?&#xA;        ,@PackageStartTime = ?;&#xA;    "
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -2070,7 +1802,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{C474012C-14E8-443D-A03C-CA8941EC21D9}"
+          SQLTask:Connection="{215FFB90-63E5-4544-ABFD-60DBE314F1A8}"
           SQLTask:SqlStatementSource="EXECUTE Auditing.LogPackageExecutionStop&#xA;        @PackageExecutionID = ?&#xA;        ,@SelectRowCount = ?&#xA;        ,@InsertRowCount = ?&#xA;        ,@UpdateRowCount = ?&#xA;        ,@DeleteRowCount = ?&#xA;        ,@IgnoreRowCount = ?&#xA;        ,@ErrorRowCount = ?;&#xA;    " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -2140,7 +1872,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{E656F42D-C230-4492-B7FA-0901569AC282}"
+              SQLTask:Connection="{20F83686-4B28-4AD5-A8F9-A87408D07E79}"
               SQLTask:SqlStatementSource="SELECT 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -2169,7 +1901,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{7CDFA152-537B-4739-AE56-095D104B1DD0}"
+              SQLTask:Connection="{97C639C8-43B9-424D-85B1-E6691CED076E}"
               SQLTask:SqlStatementSource="TRUNCATE TABLE DW.CustomerDimension" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -2186,7 +1918,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{2E23A698-5B24-4371-A4B3-6E3964BDB242}"
+              SQLTask:Connection="{97C639C8-43B9-424D-85B1-E6691CED076E}"
               SQLTask:SqlStatementSource="TRUNCATE TABLE DWSTAGE.CustomerDimension;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
@@ -2385,15 +2117,15 @@ where [refTable].[DestinationCustomerId] = ?</property>
         <NodeLayout
           Size="121,42"
           Id="Package\Dataflow"
-          TopLeft="112,210.5" />
+          TopLeft="96,415" />
         <NodeLayout
           Size="213,42"
           Id="Package\Log Package Execution Start"
-          TopLeft="66,5.5" />
+          TopLeft="49.9999999999999,5.5" />
         <NodeLayout
           Size="212,42"
           Id="Package\Log Package Execution Stop"
-          TopLeft="66.5000000000001,518.5" />
+          TopLeft="50.5000000000001,722.5" />
         <NodeLayout
           Size="181,42"
           Id="Package\Process Changes\Update Existing Rows"
@@ -2401,64 +2133,52 @@ where [refTable].[DestinationCustomerId] = ?</property>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="192,103"
-          Size="192,146"
+          PanelSize="192,102.5"
+          Size="192,145.5"
           Id="Package\Process Changes"
-          TopLeft="76.5000000000001,312.5" />
+          TopLeft="60.5000000000001,517" />
         <NodeLayout
           Size="247,42"
           Id="Package\Truncate Stage Tables\Truncate Table CustomerDimension"
-          TopLeft="39,98" />
+          TopLeft="27.5,107.5" />
         <NodeLayout
           Size="291,42"
           Id="Package\Truncate Stage Tables\Truncate Table DWStageCustomerDimension"
-          TopLeft="38,23" />
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Truncate Stage Tables.PrecedenceConstraints[Constraint]"
-          TopLeft="183.5,65">
+          TopLeft="151,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-21,33"
+              EndConnector="0,60"
               Start="0,0"
-              End="-21,25.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.5"
-                    Point2="0,16.5"
-                    Point3="-4,16.5" />
-                  <mssgle:LineSegment
-                    End="-17,16.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-17,16.5"
-                    Point2="-21,16.5"
-                    Point3="-21,20.5" />
-                  <mssgle:LineSegment
-                    End="-21,25.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-18.5,21.5,16,16"
+              BoundingBox="-8,18.25,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="False"
-          PanelSize="334,195"
-          Size="334,43"
+          PanelSize="302,204.5"
+          Size="302,43"
           Id="Package\Truncate Stage Tables"
-          TopLeft="5.50000000000003,107.5" />
+          TopLeft="5.5,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="172.5,47.5">
+          TopLeft="156.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2480,7 +2200,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="172.5,252.5">
+          TopLeft="156.5,457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2502,7 +2222,7 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="172.5,458.5">
+          TopLeft="156.5,662.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2524,18 +2244,18 @@ where [refTable].[DestinationCustomerId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="172.5,150.5">
+          TopLeft="156.5,150.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,264.5"
               Start="0,0"
-              End="0,52.5">
+              End="0,257">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,257" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2548,9 +2268,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
           Text="SCD 1: This package demonstrates the load pattern for a table that has SCD Type 1"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="466,60"
+          Size="466,40"
           Id="c683b863-76f3-4d45-a350-42523c21d7f3"
-          TopLeft="513,306" />
+          TopLeft="323.5,723.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2603,118 +2323,62 @@ where [refTable].[DestinationCustomerId] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="164,42"
-          Id="Package\Dataflow\Delete Row Count"
-          TopLeft="573.5,413.5" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\Dataflow\Ignore Row Count"
-          TopLeft="798,413.5" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Dataflow\Update Row Count"
-          TopLeft="346,413.5" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Dataflow\Insert Row Count"
-          TopLeft="124,413.5" />
-        <NodeLayout
-          Size="157,42"
-          Id="Package\Dataflow\Error Row Count"
-          TopLeft="649,515.5" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Dataflow\Select Row Count"
-          TopLeft="574.5,107.5" />
-        <NodeLayout
-          Size="159,42"
+          Size="159.5,42"
           Id="Package\Dataflow\Customer Source"
-          TopLeft="576,5.5" />
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Source_Output_Select Row Count]"
-          TopLeft="655.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Dataflow\Dimension Lookup"
-          TopLeft="572.5,209.5" />
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Output]"
-          TopLeft="655.5,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="461.25,5.5" />
         <NodeLayout
           Size="179,42"
           Id="Package\Dataflow\Split on Change Type"
-          TopLeft="566,311.5" />
+          TopLeft="451.5,413.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Dataflow\Select Row Count"
+          TopLeft="460,107.5" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Dataflow\Insert Row Count"
+          TopLeft="683.5,515.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Dataflow\Ignore Row Count"
+          TopLeft="5.5,515.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Dataflow\Dimension Lookup"
+          TopLeft="458,209.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Dataflow\Update Row Count"
+          TopLeft="231.5,515.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Dataflow\Error Row Count"
+          TopLeft="462.5,617.5" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Dataflow\Delete Row Count"
+          TopLeft="459,515.5" />
+        <NodeLayout
+          Size="168.5,42"
+          Id="Package\Dataflow\Add Audit Columns"
+          TopLeft="456.75,311.5" />
+        <NodeLayout
+          Size="317.5,42"
+          Id="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination"
+          TopLeft="83.375,617.5" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Dataflow\CustomerDimension OLE DB Destination"
+          TopLeft="680,617.5" />
         <EdgeLayout
-          Id="Package\Dataflow.Paths[Lookup Match Output]"
-          TopLeft="655.5,251.5">
+          Id="Package\Dataflow.Paths[Ignore]"
+          TopLeft="489.7,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="-401.7,60.0000000000001"
               Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Insert]"
-          TopLeft="604.2,353.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-399.7,60.0000000000001"
-              Start="0,0"
-              End="-399.7,52.5000000000001">
+              End="-401.7,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2725,62 +2389,84 @@ where [refTable].[DestinationCustomerId] = ?</property>
                     Point2="0,17.948316366484"
                     Point3="-4,17.948316366484" />
                   <mssgle:LineSegment
-                    End="-395.7,17.948316366484" />
+                    End="-397.7,17.948316366484" />
                   <mssgle:CubicBezierSegment
-                    Point1="-395.7,17.948316366484"
-                    Point2="-399.7,17.948316366484"
-                    Point3="-399.7,21.948316366484" />
+                    Point1="-397.7,17.948316366484"
+                    Point2="-401.7,17.948316366484"
+                    Point3="-401.7,21.948316366484" />
                   <mssgle:LineSegment
-                    End="-399.7,52.5000000000001" />
+                    End="-401.7,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-213.60298828125,22.948316366484,27.5059765625,9.40234375"
+              BoundingBox="-216.05794921875,22.948316366484,30.4158984375,11.3359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Dataflow.Paths[Update]"
-          TopLeft="638.4,353.5">
+          Id="Package\Dataflow.Paths[Derived Column Output]"
+          TopLeft="541,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-208.9,60"
+              EndConnector="0,60"
               Start="0,0"
-              End="-208.9,52.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.8313773934527" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.8313773934527"
-                    Point2="0,26.8313773934527"
-                    Point3="-4,26.8313773934527" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Update]"
+          TopLeft="523.9,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-208.9,60.0000000000001"
+              Start="0,0"
+              End="-208.9,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-204.9,26.8313773934527" />
+                    End="0,22.8313773934528" />
                   <mssgle:CubicBezierSegment
-                    Point1="-204.9,26.8313773934527"
-                    Point2="-208.9,26.8313773934527"
-                    Point3="-208.9,30.8313773934527" />
+                    Point1="0,22.8313773934528"
+                    Point2="0,26.8313773934528"
+                    Point3="-4,26.8313773934528" />
                   <mssgle:LineSegment
-                    End="-208.9,52.5" />
+                    End="-204.9,26.8313773934528" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-204.9,26.8313773934528"
+                    Point2="-208.9,26.8313773934528"
+                    Point3="-208.9,30.8313773934528" />
+                  <mssgle:LineSegment
+                    End="-208.9,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-120.73029296875,31.8313773934527,32.5605859375,11.609375"
+              BoundingBox="-120.73029296875,31.8313773934528,32.5605859375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Dataflow.Paths[Unused]"
-          TopLeft="672.6,353.5">
+          TopLeft="558.1,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2815,50 +2501,14 @@ where [refTable].[DestinationCustomerId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Dataflow.Paths[Ignore]"
-          TopLeft="706.8,353.5">
+          Id="Package\Dataflow.Paths[Output3]"
+          TopLeft="764,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="173.7,60"
+              EndConnector="50,60"
               Start="0,0"
-              End="173.7,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.948316366484"
-                    Point2="0,17.948316366484"
-                    Point3="4,17.948316366484" />
-                  <mssgle:LineSegment
-                    End="169.7,17.948316366484" />
-                  <mssgle:CubicBezierSegment
-                    Point1="169.7,17.948316366484"
-                    Point2="173.7,17.948316366484"
-                    Point3="173.7,21.948316366484" />
-                  <mssgle:LineSegment
-                    End="173.7,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="71.64205078125,22.948316366484,30.4158984375,11.3359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Dataflow.Paths[Output1]"
-          TopLeft="655.5,455.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="72,60"
-              Start="0,0"
-              End="72,52.5">
+              End="50,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2869,13 +2519,13 @@ where [refTable].[DestinationCustomerId] = ?</property>
                     Point2="0,30"
                     Point3="4,30" />
                   <mssgle:LineSegment
-                    End="68,30" />
+                    End="46,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="68,30"
-                    Point2="72,30"
-                    Point3="72,34" />
+                    Point1="46,30"
+                    Point2="50,30"
+                    Point3="50,34" />
                   <mssgle:LineSegment
-                    End="72,52.5" />
+                    End="50,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2884,23 +2534,15 @@ where [refTable].[DestinationCustomerId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="268,42"
-          Id="Package\Dataflow\CustomerDimension OLE DB Destination"
-          TopLeft="5.5,617.5" />
-        <NodeLayout
-          Size="141,42"
-          Id="Package\Dataflow\Add Columns"
-          TopLeft="69,515.5" />
         <EdgeLayout
           Id="Package\Dataflow.Paths[Output2]"
-          TopLeft="204.5,455.5">
+          TopLeft="315,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-65,60"
+              EndConnector="-72.8750000000001,60"
               Start="0,0"
-              End="-65,52.5">
+              End="-72.8750000000001,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2911,13 +2553,13 @@ where [refTable].[DestinationCustomerId] = ?</property>
                     Point2="0,30"
                     Point3="-4,30" />
                   <mssgle:LineSegment
-                    End="-61,30" />
+                    End="-68.8750000000001,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="-61,30"
-                    Point2="-65,30"
-                    Point3="-65,34" />
+                    Point1="-68.8750000000001,30"
+                    Point2="-72.8750000000001,30"
+                    Point3="-72.8750000000001,34" />
                   <mssgle:LineSegment
-                    End="-65,52.5" />
+                    End="-72.8750000000001,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2927,8 +2569,8 @@ where [refTable].[DestinationCustomerId] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Dataflow.Paths[Derived Column Output]"
-          TopLeft="139.5,557.5">
+          Id="Package\Dataflow.Paths[Output1]"
+          TopLeft="541,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2948,13 +2590,9 @@ where [refTable].[DestinationCustomerId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="318,42"
-          Id="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination"
-          TopLeft="270.5,515.5" />
         <EdgeLayout
-          Id="Package\Dataflow.Paths[Output3]"
-          TopLeft="429.5,455.5">
+          Id="Package\Dataflow.Paths[Output]"
+          TopLeft="541,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2972,16 +2610,124 @@ where [refTable].[DestinationCustomerId] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[OLE DB Source Output]"
+          TopLeft="541,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Lookup Match Output]"
+          TopLeft="541,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dataflow.Paths[Insert]"
+          TopLeft="592.3,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.7,60"
+              Start="0,0"
+              End="171.7,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.948316366484"
+                    Point2="0,17.948316366484"
+                    Point3="4,17.948316366484" />
+                  <mssgle:LineSegment
+                    End="167.7,17.948316366484" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.7,17.948316366484"
+                    Point2="171.7,17.948316366484"
+                    Point3="171.7,21.948316366484" />
+                  <mssgle:LineSegment
+                    End="171.7,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="72.09701171875,22.948316366484,27.5059765625,9.40234375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Dataflow\Customer Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dataflow\CustomerDimension OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -3005,32 +2751,6 @@ where [refTable].[DestinationCustomerId] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dataflow\CustomerDimension OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Dataflow\DWStage_CustomerDimension OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
