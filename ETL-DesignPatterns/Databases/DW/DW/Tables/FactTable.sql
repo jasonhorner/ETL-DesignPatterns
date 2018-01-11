@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[FactTable] (
-    [FactTableSk]            INT NOT NULL,
+    [FactTableSk]            INT IDENTITY (1, 1) NOT NULL,
     [DateSk]                 INT NULL,
     [CustomerSk]             INT NOT NULL,
     [CustomerDemographicsSk] INT NULL,

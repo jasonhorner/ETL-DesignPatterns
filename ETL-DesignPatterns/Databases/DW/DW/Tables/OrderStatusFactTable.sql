@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[OrderStatusFactTable] (
-    [FactTableSk]            INT        NOT NULL,
+    [FactTableSk]            INT        IDENTITY (1, 1) NOT NULL,
     [OrderDateSk]            INT        NULL,
     [DueDateSk]              INT        NULL,
     [ShipDateSk]             INT        NULL,

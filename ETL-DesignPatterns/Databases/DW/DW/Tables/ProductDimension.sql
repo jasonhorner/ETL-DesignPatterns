@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[ProductDimension] (
-    [ProductDimensionSk]    INT           NOT NULL,
+    [ProductDimensionSk]    INT          IDENTITY (1, 1) NOT NULL,
     [SKU]                   VARCHAR (1)   NULL,
     [ProductName]           VARCHAR (100) NULL,
     [ProductDescription]    VARCHAR (100) NULL,

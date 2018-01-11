@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[InventorySnapshotFact] (
-    [InventorySnapshotSk] INT   NULL,
+    [InventorySnapshotSk] INT   IDENTITY (1, 1) NOT NULL,
     [ProductDimensionSk]  INT   NULL,
     [StoreDimensionSk]    INT   NULL,
     [SnapshotDateSk]      INT   NULL,

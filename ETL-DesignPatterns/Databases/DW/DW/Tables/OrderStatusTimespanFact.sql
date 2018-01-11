@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[OrderStatusTimespanFact] (
-    [TimespanFactSk]    INT           NULL,
+    [TimespanFactSk]    INT            IDENTITY (1, 1) NOT NULL,
     [ProductSk]         INT           NULL,
     [CustomerSk]        INT           NULL,
     [StatusDimensionSk] INT           NULL,

@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[CustomerDimension_SCD2] (
-    [CustomerSk]            INT            NOT NULL,
+    [CustomerSk]            INT            IDENTITY (1, 1) NOT NULL,
     [CustomerId]            INT            NULL,
     [FirstName]             NVARCHAR (50)  NULL,
     [LastName]              NVARCHAR (100) NULL,

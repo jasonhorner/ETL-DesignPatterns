@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [DW].[ShipmentDimension] (
-    [ShipmentDimensionSk]  INT          NOT NULL,
+    [ShipmentDimensionSk]  INT           IDENTITY (1, 1) NOT NULL,
     [HashKey]              NCHAR (20)   NULL,
     [StatusCode]           CHAR (3)     NULL,
     [StatusName]           VARCHAR (50) NULL,

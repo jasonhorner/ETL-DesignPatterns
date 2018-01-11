@@ -62,13 +62,30 @@
     <Folder Include="Scripts\" />
     <Folder Include="Security\" />
     <Folder Include="_Deployment" />
+    <Folder Include="DWStage\" />
+    <Folder Include="DWStage\Tables\" />
+    <Folder Include="DWStage\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="DW\Tables\ProductDimension.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
-    <Build Include="DW\Tables\CustomerDimension.sql" />
     <Build Include="Security\DW.sql" />
     <Build Include="DW\Tables\FactTable.sql" />
+    <Build Include="DW\Tables\ShipmentDimension.sql" />
+    <Build Include="DW\Tables\OrderStatusTimespanFact.sql" />
+    <Build Include="DW\Tables\OrderStatusFactTable_UPD.sql" />
+    <Build Include="DW\Tables\OrderStatusFactTable_DEL.sql" />
+    <Build Include="DW\Tables\OrderStatusFactTable.sql" />
+    <Build Include="DW\Tables\OrderShipmentFactTable.sql" />
+    <Build Include="DW\Tables\InventorySnapshotFact.sql" />
+    <Build Include="DW\Tables\CustomerDimension_SCD2Hybrid.sql" />
+    <Build Include="DW\Tables\CustomerDimension_SCD2.sql" />
+    <Build Include="DW\Tables\CustomerDimension_SCD1.sql" />
+    <Build Include="DWStage\Tables\CustomerDimension_SCD1.sql" />
+    <Build Include="DWStage\Tables\CustomerDimension_SCD2Hybrid.sql" />
+    <Build Include="DWStage\Tables\CustomerDimension_SCD2.sql" />
+    <Build Include="DWStage\Stored Procedures\CustomerMerge.sql" />
+    <Build Include="Security\DWStage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="_Deployment\DW-LOCAL.publish.xml" />
