@@ -13,11 +13,13 @@
     [State]                 NVARCHAR (100) NULL,
     [PostalCode]            NVARCHAR (25)  NULL,
     [CurrentDemographicsSk] INT            NOT NULL,
-    [SCD1ChangeHashKey]     NCHAR (40)     NULL,
-    [SCD2ChangeHashKey]     NCHAR (40)     NULL,
+    [SCD1ChangeHashKey]     CHAR (40)      NULL,
+    [SCD2ChangeHashKey]     CHAR (40)      NULL,
     [BeginEffectiveDate]    DATE           NULL,
     [EndEffectiveDate]      DATE           NULL,
     [IsCurrent]             BIT            NULL,
     CONSTRAINT [DWStage_CustomerSCD2Hybrid_PK] PRIMARY KEY CLUSTERED ([CustomerSk] ASC)
 );
+
+
 
