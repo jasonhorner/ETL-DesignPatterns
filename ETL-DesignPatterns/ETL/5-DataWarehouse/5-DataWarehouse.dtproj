@@ -32,9 +32,14 @@
           <SSIS:Package SSIS:Name="Load_CustomerDimension_SCD1.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Load_CustomerDimension_SCD2.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Load_CustomerDimension_SCD2_Hybrid.dtsx" SSIS:EntryPoint="1" />
+<<<<<<< HEAD
           <SSIS:Package SSIS:Name="Load_ShipmentJunkDimension.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Load_SalesOrderFactTable.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Load_ProductDimension.dtsx" SSIS:EntryPoint="1" />
+=======
+          <SSIS:Package SSIS:Name="Transform_Product.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CustomerTransform_DQS.dtsx" SSIS:EntryPoint="1" />
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="WWIAdoNet.conmgr" />
@@ -630,6 +635,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
+<<<<<<< HEAD
             <SSIS:Parameter SSIS:Name="CM.DWAdoNet.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
@@ -1143,13 +1149,8 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-<<<<<<< HEAD
                     <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-=======
-                    <SSIS:Property SSIS:Name="Value">140</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
->>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
@@ -1194,12 +1195,25 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{5BC3F8D6-67AA-463B-BB16-9485DE707E47}</SSIS:Property>
+=======
+            <SSIS:PackageMetaData SSIS:Name="CustomerTransform_DQS.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{C8221944-524D-4B36-ABBB-FBEC128CC0E2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CustomerTransform_DQS</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">21</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{10F8F216-16B8-4F9B-89B7-ABFBC88C1E08}</SSIS:Property>
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
+<<<<<<< HEAD
                 <SSIS:Parameter SSIS:Name="BatchID">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{06A860D7-B5D0-4590-B4B3-2686D779633D}</SSIS:Property>
@@ -1217,6 +1231,12 @@
                 <SSIS:Parameter SSIS:Name="JobID">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{E4085B63-9EFF-4132-A4F6-18FEE1AB357A}</SSIS:Property>
+=======
+                <SSIS:Parameter SSIS:Name="CM.DQS.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1232,20 +1252,16 @@
                 <SSIS:Parameter SSIS:Name="ParentPackageID">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{FDEB5FEF-647F-4F3F-A38C-26A3D534F4DF}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+=======
+                    <SSIS:Property SSIS:Name="Value">Data Source=localhost</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="ParentPackageName">
+                <SSIS:Parameter SSIS:Name="CM.DQS.ServerName">
                   <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{C4C64B07-B89D-44BC-9312-1EAE2F8F97B8}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
                     <SSIS:Property SSIS:Name="CreationName">
                     </SSIS:Property>
                     <SSIS:Property SSIS:Name="Description">
@@ -1256,6 +1272,35 @@
 <<<<<<< HEAD
                     <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="ParentPackageName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{C4C64B07-B89D-44BC-9312-1EAE2F8F97B8}</SSIS:Property>
+=======
+                    <SSIS:Property SSIS:Name="Value">localhost</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.DQS.TargetServerVersion">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+<<<<<<< HEAD
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+=======
+                    <SSIS:Property SSIS:Name="Value">140</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+>>>>>>> ab76c248615c9569890ae8ecf0a14c8365203edd
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
