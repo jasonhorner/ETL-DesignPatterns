@@ -82,7 +82,7 @@
                         							
                                                     <DerivedColumns Name="Add ETL Columns - Insert">
                                                         <Columns>
-                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Insert")#>
+                    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Insert")#>
                                                         </Columns>
                                                     </DerivedColumns>
                         
@@ -159,7 +159,7 @@
                                                     <DerivedColumns Name="Add ETL Columns - Insert">
                                                         <InputPath OutputPathName="<#=outRCInsert.RowCountPathName.ToString()#>.Output" />
                                                         <Columns>
-                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Insert")#>
+                    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Insert")#>
                                                         </Columns>
                                                     </DerivedColumns>
                                                     
@@ -176,7 +176,7 @@
                                                     <DerivedColumns Name="Add ETL Columns - Update">
                                                         <InputPath OutputPathName="<#=outRCUpdate.RowCountPathName.ToString()#>.Output" />
                                                         <Columns>
-                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Update")#>
+                    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Update")#>
                                                         </Columns>
                                                     </DerivedColumns>
                                                     <!-- End Updated Rows -->
@@ -188,7 +188,7 @@
                                                     <DerivedColumns Name="Add ETL Columns - Delete">
                                                         <InputPath OutputPathName="<#=outRCDelete.RowCountPathName.ToString()#>.Output" />
                                                         <Columns>
-                    				                        <#=CallBimlScript("ETL-DerivedColumns.biml", "Delete")#>
+                    				                        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-DerivedColumns.biml", "Delete")#>
                                                         </Columns>
                                                     </DerivedColumns>
                                                     <!-- End Deleted Rows -->

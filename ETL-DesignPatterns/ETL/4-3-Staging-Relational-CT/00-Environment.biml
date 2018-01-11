@@ -5,7 +5,7 @@
     
     <#
         /* Store variables used in multiple Biml files in RootNode */
-        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\4-Staging-Relational\Project.params");
+        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\4-3-Staging-Relational-CT\Project.params");
         RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
         
         /* Metadata from Excel */
@@ -51,7 +51,7 @@
                                 <Column Name="<#=column.Name#>" DataType="<#=column.DataType#>" Length="<#=column.Length#>" Precision="<#=column.Precision#>" Scale="<#=column.Scale#>" IsNullable="true" />
                             <# } #>
                         <# } #>
-    				    <#=CallBimlScript("ETL-TableColumns.biml", supportTable.Key)#>
+    				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-TableColumns.biml", supportTable.Key)#>
                     </Columns>
                     <Keys>
                         <PrimaryKey Name="PK_<#=table.Schema#>_<#=table.Name#><#=supportTable.Value#>">
