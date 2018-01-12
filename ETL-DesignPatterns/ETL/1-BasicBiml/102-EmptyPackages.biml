@@ -1,0 +1,40 @@
+<!-- 
+Part 1: Basic Biml
+Create five empty packages and one almost empty package
+-->
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	
+	<Packages>
+	
+		<Package Name="EmptyPackage1" />
+		<Package Name="EmptyPackage2" />
+		<Package Name="EmptyPackage3" />
+		<Package Name="EmptyPackage4" />
+		<Package Name="EmptyPackage5"  />
+		    
+	    <Package Name="AlmostEmptyPackage">
+	        <Tasks>
+	        
+	            <!-- Control Flow Tasks (like sequence containers) are added here -->
+	            
+	            <Container Name="Sequence Container">
+	                <Tasks>
+	                
+	                    <Dataflow Name="Data Flow">
+	                        <Transformations>
+	                        
+	                            <!-- Data Flow Transformations are added here -->
+	                                
+	                        </Transformations>
+	                    </Dataflow>
+	                        
+	                </Tasks>
+	            </Container>
+	                
+	        </Tasks>
+	    </Package>
+		    
+	</Packages>
+	
+</Biml>

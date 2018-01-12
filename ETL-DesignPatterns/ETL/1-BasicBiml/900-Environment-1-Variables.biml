@@ -10,10 +10,10 @@
         
         /* Metadatada from Variables */
         var SourceConnectionName = "WWI";
-        var SourceServerName = "localhost";
+        var SourceServerName = ".";
         var SourceDatabaseName = "WideWorldImporters";
         var DestinationConnectionName = "Staging";
-        var DestinationServerName = "localhost";
+        var DestinationServerName = ".";
         var DestinationDatabaseName = "Staging";
         var DestinationSchemaName = "WWISRC";
     #>
@@ -35,7 +35,7 @@
     <Tables>
         <# var SourceConnection = SchemaManager.CreateConnectionNode(SourceConnectionName, String.Format("Data Source={0};Initial Catalog={1};Provider=SQLNCLI11.1;Integrated Security=SSPI;", SourceServerName, SourceDatabaseName)); #>
         <# var TablesToInclude = ExternalDataAccess.GetDataTable(SourceConnection, "SELECT name AS TableName FROM sys.tables WHERE temporal_type <> 1;").AsEnumerable().Select(c => c["TableName"].ToString()).ToList();#>
-        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, TablesToInclude, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
+        <# foreach (var table in SourceConnection.GetDatabaseSchema(null, null, ImportOptions.ExcludeViews | ImportOptions.ExcludeForeignKey | ImportOptions.ExcludeIdentity).TableNodes) { #>
             <Table Name="<#=table.Schema#>_<#=table.Name#>" SchemaName="<#=DestinationDatabaseName#>.<#=DestinationSchemaName#>">
                 <Columns>
                     <#=table.Columns.GetBiml()#>

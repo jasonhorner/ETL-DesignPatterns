@@ -1,0 +1,21 @@
+<!-- 
+Part 3: Don't Repeat Yourself - Tiered Biml Files
+File 3 of 3
+Create master package to execute all packages created in 302-LoadAllTables.biml
+-->
+
+<#@ template tier="3" #>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<Packages>
+		<Package Name="Master_<#=RootNode.OleDbConnections["Destination"].GetTag("Schema")#>" ConstraintMode="Parallel">
+			<Tasks>
+				<# foreach (var package in RootNode.Packages) { #>
+					<ExecutePackage Name="Execute <#=package.Name#>">
+						<ExternalProjectPackage Package="<#=package.PackageFileName#>" />
+					</ExecutePackage>
+				<# } #>
+			</Tasks>
+		</Package>
+	</Packages>
+</Biml>

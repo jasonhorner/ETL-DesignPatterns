@@ -1,0 +1,31 @@
+<# CultureInfo.CurrentCulture = new CultureInfo("nb-NO"); /* en-US nb-NO es-ES hu-HU */ #>
+<# var c = DateTimeFormatInfo.CurrentInfo; #>
+
+INSERT INTO DW.DW.DateDimension (DateKey, Date, DateName, Year, YearMonth, YearWeek, Month, MonthName, Week, Weekday, DayOfYear, DayOfMonth, DayOfWeek)
+VALUES (-1, '19000101', 'Unknown', -1, -1, -1, -1, 'Unknown', -1, 'Unknown', -1, -1, -1)
+GO
+
+<# for (int year = 2018; year <= 2020; year++) { #>
+
+    INSERT INTO DW.DW.DateDimension (DateKey, Date, DateName, Year, YearMonth, YearWeek, Month, MonthName, Week, Weekday, DayOfYear, DayOfMonth, DayOfWeek)
+    VALUES
+    <# for (DateTime date = new DateTime(year,1,1); date <= new DateTime(year,12,31); date = date.AddDays(1)) { #>
+        (
+            <#=date.ToString("yyyyMMdd")#>
+            ,'<#=date.ToString("yyyyMMdd")#>'
+            ,'<#=date.ToString("D")#>'
+            ,<#=date.Year#>
+            ,<#=date.ToString("yyyyMM")#>
+            ,<#=date.Year+""+c.Calendar.GetWeekOfYear(date, c.CalendarWeekRule, c.FirstDayOfWeek).ToString().PadLeft(2, '0')#>
+            ,<#=date.Month#>
+            ,'<#=date.ToString("MMMM")#>'
+            ,<#=c.Calendar.GetWeekOfYear(date, c.CalendarWeekRule, c.FirstDayOfWeek)#>
+            ,'<#=date.ToString("dddd")#>'
+            ,<#=date.DayOfYear#>
+            ,<#=date.Day#>
+            ,<#=Convert.ToByte(date.DayOfWeek)#>
+        )
+    <# } #>
+    GO
+
+<# } #>

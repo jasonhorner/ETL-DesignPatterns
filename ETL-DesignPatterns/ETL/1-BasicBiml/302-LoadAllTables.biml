@@ -1,0 +1,71 @@
+<!-- 
+Part 3: Don't Repeat Yourself - Tiered Biml Files
+File 2 of 3
+Create packages to load all tables from Source to Destination specified in tier 1 Environment file
+-->
+
+<#@ template tier="2" #>
+		
+<# 
+    var sourceMetadata = RootNode.OleDbConnections["Source"].GetDatabaseSchema(ImportOptions.ExcludeViews); // Blog post about GetDatabaseSchema: http://www.cathrinewilhelmsen.net/2015/07/12/biml-extension-methods-getdatabaseschema/
+    var destinationSchema = RootNode.OleDbConnections["Destination"].GetTag("Schema");
+#>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+
+	<Packages>
+		
+		<# foreach (var table in sourceMetadata.TableNodes) { #>
+			
+			<Package Name="Load_<#=destinationSchema#>_<#=table.Schema#>_<#=table.Name#>" ConstraintMode="Linear">
+			
+				<Variables>
+					<Variable Name="NewRows" DataType="Int32">0</Variable>
+				</Variables>
+
+				<Tasks>
+
+					<ExecuteSQL Name="Truncate <#=table.Schema#> <#=table.Name#>" ConnectionName="Destination">
+						<DirectInput>TRUNCATE TABLE <#=destinationSchema#>.<#=table.Schema#>_<#=table.Name#></DirectInput>
+					</ExecuteSQL>	
+
+					<Dataflow Name="Load <#=table.Schema#> <#=table.Name#>">
+						<Transformations>
+
+							<#*<OleDbSource Name="Source <#=table.Schema#> <#=table.Name#>" ConnectionName="Source">
+								<ExternalTableInput Table="<#=table.SchemaQualifiedName#>" />
+							</OleDbSource>
+
+							<DerivedColumns Name="Add LoadDate">
+								<Columns>
+									<Column Name="LoadDate" DataType="DateTime">@[System::StartTime]</Column>
+								</Columns>
+							</DerivedColumns>
+
+							<RowCount Name="Count NewRows" VariableName="User.NewRows" />
+
+							<OleDbDestination Name="Destination <#=table.Schema#> <#=table.Name#>" ConnectionName="Destination">
+								<ExternalTableOutput Table="<#=destinationSchema#>.<#=table.Schema#>_<#=table.Name#>" />
+							</OleDbDestination>*#>
+
+						</Transformations>
+					</Dataflow>
+					
+					<ExecuteSQL Name="Log Rows" ConnectionName="Admin">
+						<DirectInput>INSERT INTO dbo.SSISLog (StartTime, PackageName, NewRows) VALUES (?, ?, ?)</DirectInput>
+						<Parameters>
+							<Parameter Name="0" VariableName="System.StartTime" DataType="DateTime2" Length="-1" />
+							<Parameter Name="1" VariableName="System.PackageName" DataType="AnsiString" Length="-1" />
+							<Parameter Name="2" VariableName="User.NewRows" DataType="Int32" Length="-1" />
+						</Parameters>
+					</ExecuteSQL>
+
+				</Tasks>
+
+			</Package>
+			
+		<# } #>
+			
+	</Packages>
+	
+</Biml>

@@ -1,0 +1,21 @@
+<!-- 
+Part 3: Don't Repeat Yourself - Tiered Biml Files
+File 1 of 3 (use this or 301-Environment-AW.biml)
+Specify the Source and Destination databases
+-->
+	
+<#@ template tier="1" #>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	
+	<Connections>
+		<OleDbConnection Name="Admin" ConnectionString="Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+		<OleDbConnection Name="Source" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+		<OleDbConnection Name="Destination" ConnectionString="Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;">
+			<Annotations>
+				<Annotation Tag="Schema">WWISRC</Annotation>
+			</Annotations>
+		</OleDbConnection>
+	</Connections>
+	
+</Biml>

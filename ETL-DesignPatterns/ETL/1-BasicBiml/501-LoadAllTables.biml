@@ -1,0 +1,55 @@
+<!-- 
+Part 5: Don't Repeat Yourself - CallBimlScript
+-->
+
+<# 
+	var sourceConnection = SchemaManager.CreateConnectionNode("Source", @"Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11;Integrated Security=SSPI;");
+    var sourceMetadata = sourceConnection.GetDatabaseSchema(ImportOptions.ExcludeViews);
+	
+	var sourceConnectionAW = SchemaManager.CreateConnectionNode("Source", @"Data Source=.;Initial Catalog=AdeventureWorks;Provider=SQLNCLI11;Integrated Security=SSPI;");
+    var sourceMetadataAW = sourceConnection.GetDatabaseSchema(ImportOptions.ExcludeViews);
+#>
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+
+	<Connections>	
+		<OleDbConnection Name="Admin" ConnectionString="Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+		<OleDbConnection Name="WWI" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+		<OleDbConnection Name="AW" ConnectionString="Data Source=.;Initial Catalog=AdventureWorks;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+		<OleDbConnection Name="Staging" ConnectionString="Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11;Integrated Security=SSPI;" />
+	</Connections>
+	
+	<Packages>
+		
+		<# foreach (var table in sourceMetadata.TableNodes) { #>
+
+            <#=CallBimlScript(
+                    "502-CallBimlScript-Package.biml",
+                    table,      /* Table */
+                    "Admin",    /* AdminConnection */
+                    "WWI",      /* SourceConnection */
+                    "Staging",  /* DestinationConnection */
+                    "WWISRC",   /* DestinationSchema */
+                    true        /* IncludeLogRows */
+            ) #>
+            
+		<# } #>
+		
+		
+		<# foreach (var tableAW in sourceMetadataAW.TableNodes) { #>
+
+            <#=CallBimlScript(
+                    "502-CallBimlScript-Package.biml",
+                    tableAW,    /* Table */
+                    "Admin",    /* AdminConnection */
+                    "AW",       /* SourceConnection */
+                    "Staging",  /* DestinationConnection */
+                    "AWSRC",    /* DestinationSchema */
+                    false       /* IncludeLogRows */
+            ) #>
+            
+		<# } #>
+			
+	</Packages>
+	
+</Biml>

@@ -1,0 +1,69 @@
+<!-- Start Part 4: Don't Repeat Yourself - Include Files -->
+<ExecuteSQL Name="Log Rows" ConnectionName="Admin">
+	<DirectInput>INSERT INTO dbo.SSISLog (StartTime, PackageName, NewRows, UserName) VALUES (?, ?, ?, ?)</DirectInput>
+	<Parameters>
+		<Parameter Name="0" VariableName="System.StartTime" DataType="DateTime2" Length="-1" />
+		<Parameter Name="1" VariableName="System.PackageName" DataType="AnsiString" Length="-1" />
+		<Parameter Name="2" VariableName="User.NewRows" DataType="Int32" Length="-1" />
+		<Parameter Name="3" VariableName="System.UserName" DataType="AnsiString" Length="-1" />
+	</Parameters>
+</ExecuteSQL>
+<!-- End Include Files -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<#*
+// Version 1 and 2 of the ExecuteSQL Task
+// Used for for copying and pasting in demos. Never type in demos :)
+
+<ExecuteSQL Name="Log Rows" ConnectionName="Admin">
+	<DirectInput>INSERT INTO dbo.SSISLog (StartTime, PackageName, NewRows) VALUES (?, ?, ?)</DirectInput>
+	<Parameters>
+		<Parameter Name="0" VariableName="System.StartTime" DataType="DateTime2" Length="-1" />
+		<Parameter Name="1" VariableName="System.PackageName" DataType="AnsiString" Length="-1" />
+		<Parameter Name="2" VariableName="User.NewRows" DataType="AnsiString" Length="-1" />
+	</Parameters>
+</ExecuteSQL>
+
+<ExecuteSQL Name="Log Rows" ConnectionName="Admin">
+	<DirectInput>INSERT INTO dbo.SSISLog (StartTime, PackageName, NewRows, UserName) VALUES (?, ?, ?, ?)</DirectInput>
+	<Parameters>
+		<Parameter Name="0" VariableName="System.StartTime" DataType="DateTime2" Length="-1" />
+		<Parameter Name="1" VariableName="System.PackageName" DataType="AnsiString" Length="-1" />
+		<Parameter Name="2" VariableName="User.NewRows" DataType="Int32" Length="-1" />
+		<Parameter Name="3" VariableName="System.UserName" DataType="AnsiString" Length="-1" />
+	</Parameters>
+</ExecuteSQL>
+*#>

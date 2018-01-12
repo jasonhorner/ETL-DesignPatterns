@@ -5,15 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-SJMBD02"
   DTS:CreatorName="DESKTOP-SJMBD02\BigJi"
-  DTS:DTSID="{5F5EF6B5-0983-4B1D-9E82-61C86558ADD7}"
+  DTS:DTSID="{3C14179E-F338-4832-83E3-A156577AF27B}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3008.28"
   DTS:LocaleID="1033"
-  DTS:ObjectName="201-CheckFileExists"
+  DTS:ObjectName="CheckFileExists"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{5A22F9B0-3359-4EED-96AA-865578304113}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{B2473961-DD1E-4134-AC96-F820B200D607}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -22,7 +22,7 @@
       DTS:refId="Package\Sequence Container"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{8FA70836-BDFC-4795-854C-C90CA784CC60}"
+      DTS:DTSID="{A84B7073-3E65-4792-A0FE-A6408F27034C}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="Sequence Container">
@@ -32,7 +32,7 @@
           DTS:refId="Package\Sequence Container\CheckFileExists"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:DTSID="{6414B7D1-4B1E-4EF8-82F3-24A4B33D6C3B}"
+          DTS:DTSID="{6E3DDFFF-A866-4BE0-BD14-10D78423B6ED}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="CheckFileExists"
@@ -41,7 +41,7 @@
           <DTS:ObjectData>
             <ScriptProject
               Name="ST_1d0daaed3e8a4b5696d7082f52872b7c"
-              VSTAMajorVersion="3"
+              VSTAMajorVersion="14"
               VSTAMinorVersion="0"
               Language="CSharp" />
           </DTS:ObjectData>
@@ -49,8 +49,9 @@
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Move File"
           DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:DelayValidation="True"
           DTS:Description="File System Task"
-          DTS:DTSID="{3D1989F4-3D14-4A33-8059-7A118549D507}"
+          DTS:DTSID="{C34DA2EE-098B-4527-9352-5EEAE2ED99B3}"
           DTS:ExecutableType="Microsoft.FileSystemTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Move File"
@@ -63,7 +64,7 @@
           DTS:refId="Package\Sequence Container\Process File"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{716EB521-6A86-4C98-B67E-31C035E74919}"
+          DTS:DTSID="{38E48A86-1CC3-47B7-B9F8-59B94FA1F397}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Process File"
@@ -77,8 +78,9 @@
         <DTS:Executable
           DTS:refId="Package\Sequence Container\Rename File"
           DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:DelayValidation="True"
           DTS:Description="File System Task"
-          DTS:DTSID="{CD1612D5-998E-4A7C-A5E7-A1D0FADC67DA}"
+          DTS:DTSID="{B84840DF-B56B-4DDD-A71B-B2EC8C0158B1}"
           DTS:ExecutableType="Microsoft.FileSystemTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Rename File"
@@ -92,7 +94,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{7AC2EA37-7379-46FD-B209-501E2ADB5FF6}"
+          DTS:DTSID="{C9DF01B5-CC20-4DAF-89E2-5AB444CDBD88}"
           DTS:From="Package\Sequence Container\Process File"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -100,7 +102,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{E817B919-3032-4085-AEAD-1F1843B5646C}"
+          DTS:DTSID="{9A6E64CF-3A1F-4C33-AC05-223E711642B5}"
           DTS:From="Package\Sequence Container\Rename File"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -108,7 +110,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{08E30D4E-64ED-45C3-9CC1-D9A870EF44E8}"
+          DTS:DTSID="{6396103C-6A00-41E5-8FAC-2AFB73F6D64A}"
           DTS:From="Package\Sequence Container\CheckFileExists"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"

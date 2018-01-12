@@ -1,0 +1,65 @@
+<!-- 
+Part 1: Basic Biml
+Create one package to load Warehouse.Colors from WideWorldImporters
+-->
+
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+	<Connections>
+		<OleDbConnection Name="Admin" ConnectionString="Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+		<OleDbConnection Name="WWI" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+		<OleDbConnection Name="Staging" ConnectionString="Data Source=.;Initial Catalog=Staging;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+	</Connections>
+	
+	<Packages>
+	
+		<Package Name="Load_Warehouse_Colors" ConstraintMode="Linear">
+			
+			<Variables>
+				<Variable Name="NewRows" DataType="Int32">0</Variable>
+			</Variables>
+			
+			<Tasks>
+				
+				<ExecuteSQL Name="Truncate Warehouse Colors" ConnectionName="Staging">
+					<DirectInput>TRUNCATE TABLE WWISRC.Warehouse_Colors</DirectInput>
+				</ExecuteSQL>
+				
+				<Dataflow Name="Load Warehouse Colors">
+					<Transformations>
+						
+						<OleDbSource Name="Source Warehouse Colors" ConnectionName="WWI">
+							<ExternalTableInput Table="[Warehouse].[Colors]" />
+						</OleDbSource>
+						
+						<DerivedColumns Name="Add LoadDate">
+							<Columns>
+								<Column Name="LoadDate" DataType="DateTime">@[System::StartTime]</Column>
+							</Columns>
+						</DerivedColumns>
+						
+						<RowCount Name="Count NewRows" VariableName="User.NewRows" />
+						
+						<OleDbDestination Name="Destination Warehouse Colors" ConnectionName="Staging">
+							<ExternalTableOutput Table="WWISRC.Warehouse_Colors" />
+						</OleDbDestination>
+						
+					</Transformations>
+				</Dataflow>
+					
+				<ExecuteSQL Name="Log Rows" ConnectionName="Admin">
+					<DirectInput>INSERT INTO dbo.SSISLog (StartTime, PackageName, NewRows) VALUES (?, ?, ?)</DirectInput>
+					<Parameters>
+						<Parameter Name="0" VariableName="System.StartTime" DataType="DateTime2" Length="-1" />
+						<Parameter Name="1" VariableName="System.PackageName" DataType="AnsiString" Length="-1" />
+						<Parameter Name="2" VariableName="User.NewRows" DataType="Int32" Length="-1" />
+					</Parameters>
+				</ExecuteSQL>
+				
+			</Tasks>
+			
+		</Package>
+		    
+	</Packages>
+	
+</Biml>
