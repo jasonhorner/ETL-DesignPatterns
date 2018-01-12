@@ -12,6 +12,14 @@ GO
 /* --------------------------------------------------
 -- Cleanup Views
 -------------------------------------------------- */
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vItemColumn') AND type IN (N'V'))
+	DROP VIEW Meta.vItemColumn;
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vItem') AND type IN (N'V'))
+	DROP VIEW Meta.vItem;
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.vProject') AND type IN (N'V'))
 	DROP VIEW Meta.vProject;
 GO
@@ -31,6 +39,30 @@ GO
 /* --------------------------------------------------
 -- Cleanup Tables
 -------------------------------------------------- */
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ItemColumn') AND type IN (N'U'))
+BEGIN
+    ALTER TABLE Meta.ItemColumn SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.ItemColumn_History;
+    DROP TABLE Meta.ItemColumn;
+END;
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Item') AND type IN (N'U'))
+BEGIN
+    ALTER TABLE Meta.Item SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.Item_History;
+    DROP TABLE Meta.Item;
+END;
+GO
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ItemType') AND type IN (N'U'))
+BEGIN
+    ALTER TABLE Meta.ItemType SET (SYSTEM_VERSIONING = OFF);
+    DROP TABLE Meta.ItemType_History;
+    DROP TABLE Meta.ItemType;
+END;
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Project') AND type IN (N'U'))
 BEGIN
     ALTER TABLE Meta.Project SET (SYSTEM_VERSIONING = OFF);
@@ -156,6 +188,101 @@ END;
 GO
 
 /* --------------------------------------------------
+-- Create Metadata Table: ItemType
+-------------------------------------------------- */
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ItemType') AND type IN (N'U'))
+BEGIN
+    CREATE TABLE Meta.ItemType (
+        ItemTypeID SMALLINT IDENTITY(1, 1) NOT NULL
+       ,ItemType VARCHAR(20) NOT NULL
+       ,ItemTypeDescription VARCHAR(200) NULL
+       ,ValidFrom DATETIME2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo DATETIME2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
+       ,CONSTRAINT PK_ItemType PRIMARY KEY (ItemTypeID)
+       ,CONSTRAINT UQ_ItemType UNIQUE (ItemType)
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ItemType_History));
+END;
+GO
+
+/* --------------------------------------------------
+-- Create Metadata Table: Item
+-------------------------------------------------- */
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.Item') AND type IN (N'U'))
+BEGIN
+    CREATE TABLE Meta.Item (
+        ItemID                            INT           IDENTITY(1, 1) NOT NULL
+       ,ItemName                          VARCHAR(100)  NOT NULL
+       ,ItemDescription                   VARCHAR(1000) NULL
+       ,ItemTypeID                        SMALLINT      NOT NULL
+       ,ConnectionID                      INT           NOT NULL
+       ,ProjectID                         INT           NOT NULL
+       ,TableCompressionType              VARCHAR(5)    NULL
+       ,TableLateArriving                 BIT           NULL
+       ,TableExternalPartitionScheme      VARCHAR(50)   NULL
+       ,TablePartitionSchemeName          VARCHAR(50)   NULL
+       ,TablePartitionColumnName          VARCHAR(50)   NULL
+       ,FlatFileExtension                 VARCHAR(10)   NULL
+       ,FlatFileType                      VARCHAR(15)   NULL     /* Default Biml: Delimited (Delimited, FixedWidth or RaggedRight https://varigence.com/Documentation/Api/Enum/FlatFileType) */
+       ,FlatFileIsUnicode                 BIT           NULL     /* Default Biml: True */
+       ,FlatFileLocale                    VARCHAR(15)   NULL     /* https://www.varigence.com/Documentation/Api/Enum/Language */
+       ,FlatFileCodePage                  INT           NULL     /* Default Biml: 0 */
+       ,FlatFileTextQualifer              VARCHAR(15)   NULL
+       ,FlatFileHeaderRowDelimiter        VARCHAR(15)   NULL     /* Default Biml: CRLF */
+       ,FlatFileHeaderRowsToSkip          INT           NULL     /* Default Biml: 0 */
+       ,FlatFileColumnNamesInFirstDataRow BIT           NULL     /* Default Biml: False */
+       ,FlatFileColumnDelimiter           VARCHAR(15)   NULL
+       ,FlatFileRowDelimiter              VARCHAR(15)   NULL
+       ,FlatFileDataRowsToSkip            INT           NULL     /* Default Biml: 0 */
+       ,SSISLoadPattern                   VARCHAR(20)   NULL     /* TruncLoad / Incremental / Dim / FactSnap / FactTrans */
+       ,SSISParallelDataFlows             TINYINT       NULL
+       ,SSISParallelDataFlowsColumn       VARCHAR(50)   NULL
+       ,ValidFrom                   DATETIME2     GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo                     DATETIME2     GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
+       ,CONSTRAINT PK_Item PRIMARY KEY (ItemID)
+       ,CONSTRAINT UQ_Item UNIQUE (ItemName)
+       ,CONSTRAINT FK_Item_ItemType FOREIGN KEY (ItemTypeID) REFERENCES Meta.ItemType(ItemTypeID)
+       ,CONSTRAINT FK_Item_Project FOREIGN KEY (ProjectID) REFERENCES Meta.Project(ProjectID)
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.Item_History));
+END;
+GO
+
+/* --------------------------------------------------
+-- Create Metadata Table: ItemColumn
+-------------------------------------------------- */
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Meta.ItemColumn') AND type IN (N'U'))
+BEGIN
+    CREATE TABLE Meta.ItemColumn (
+        ItemColumnID                 INT           IDENTITY(1, 1) NOT NULL
+       ,ItemColumnName               VARCHAR(100)  NOT NULL
+       ,ItemID                       INT           NOT NULL
+       ,Ordinal                      INT           NOT NULL
+       ,DataType                     VARCHAR(25)   NOT NULL
+       ,DataTypeLength               INT           NULL
+       ,DataTypePrecision            INT           NULL
+       ,DataTypeScale                INT           NULL
+       ,ChangeType                   VARCHAR(10)   NULL
+       ,IsNullable                   BIT           NULL
+       ,IsPrimaryKey                 BIT           NULL
+       ,IsIdentity                   BIT           NULL
+       ,DerivedColumnReplaceExisting BIT           NULL
+       ,DerivedColumnExpression      VARCHAR(1000) NULL
+       ,ItemColumnDescription        VARCHAR(1000) NULL
+       ,ValidFrom                    DATETIME2     GENERATED ALWAYS AS ROW START HIDDEN NOT NULL
+       ,ValidTo                      DATETIME2     GENERATED ALWAYS AS ROW END HIDDEN NOT NULL
+       ,PERIOD FOR SYSTEM_TIME(ValidFrom, ValidTo)
+       ,CONSTRAINT PK_ItemColumn PRIMARY KEY (ItemColumnID)
+       ,CONSTRAINT UQ_ItemColumnOrdinal UNIQUE (ItemID, Ordinal)
+       ,CONSTRAINT FK_Item FOREIGN KEY (ItemID) REFERENCES Meta.Item (ItemID)
+    )
+    WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Meta.ItemColumn_History));
+END;
+GO
+
+/* --------------------------------------------------
 -- Create Metadata Views
 -------------------------------------------------- */
 CREATE OR ALTER VIEW Meta.vConnection
@@ -188,5 +315,49 @@ AS
     INNER JOIN Meta.ProjectType AS pt ON p.ProjectTypeID = pt.ProjectTypeID
     INNER JOIN Meta.Connection AS sc ON p.SourceConnectionID = sc.ConnectionID
     INNER JOIN Meta.Connection AS dc ON p.DestinationConnectionID = dc.ConnectionID
+    ;
+GO
+
+CREATE OR ALTER VIEW Meta.vItem AS
+    SELECT 
+	    i.ItemName
+	    ,it.ItemType
+		,c.ConnectionName
+	    ,p.ProjectName
+	    ,i.FlatFileExtension
+	    ,i.FlatFileType
+        ,IIF(i.FlatFileIsUnicode = 1, 'true', 'false') AS FlatFileIsUnicode
+        ,IIF(i.FlatFileColumnNamesInFirstDataRow = 1, 'true', 'false') AS FlatFileColumnNamesInFirstDataRow
+		,i.FlatFileColumnDelimiter
+	    ,i.FlatFileRowDelimiter
+	    ,i.SSISLoadPattern
+	    ,i.SSISParallelDataFlows
+	    ,i.SSISParallelDataFlowsColumn
+    FROM Meta.Item AS i
+	INNER JOIN Meta.ItemType AS it ON i.ItemTypeID = it.ItemTypeID
+	INNER JOIN Meta.Connection AS c ON i.ConnectionID = c.ConnectionID
+    INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
+    ;
+GO
+
+CREATE OR ALTER VIEW Meta.vItemColumn AS
+    SELECT 
+	    i.ItemName
+	    ,ic.ItemColumnName
+	    ,ic.Ordinal
+	    ,ic.ChangeType
+        ,IIF(ic.IsNullable = 1, 'true', 'false') AS IsNullable
+        ,IIF(ic.IsPrimaryKey = 1, 'true', 'false') AS IsPrimaryKey
+        ,IIF(ic.IsIdentity = 1, 'true', 'false') AS IsIdentity
+	    ,ic.DataType
+	    ,ic.DataTypeLength
+	    ,ic.DataTypePrecision
+	    ,ic.DataTypeScale
+        ,IIF(ic.DerivedColumnReplaceExisting = 1, 'true', 'false') AS DerivedColumnReplaceExisting
+	    ,ic.DerivedColumnExpression
+		,IIF(ic.Ordinal = (SELECT DISTINCT MAX(icm.Ordinal) OVER (PARTITION BY icm.ItemID) FROM Meta.ItemColumn icm WHERE ic.ItemID = icm.ItemID), i.FlatFileRowDelimiter, i.FlatFileColumnDelimiter) AS FlatFileDelimiter
+    FROM Meta.ItemColumn ic
+    INNER JOIN Meta.Item i ON ic.ItemID = i.ItemID
+    INNER JOIN Meta.Project p ON i.ProjectID = p.ProjectID
     ;
 GO

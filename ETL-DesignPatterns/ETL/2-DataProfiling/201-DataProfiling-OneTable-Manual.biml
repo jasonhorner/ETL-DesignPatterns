@@ -1,7 +1,7 @@
 <Biml xmlns="http://schemas.varigence.com/biml.xsd">
     
     <Connections>
-        <AdoNetConnection Name="WWI" Provider="System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;" />
+        <AdoNetConnection Name="WWI" Provider="System.Data.SqlClient" ConnectionString="Data Source=.;Initial Catalog=WideWorldImporters;Integrated Security=True;" />
         <FileConnection Name="Results.xml" FileUsageType="CreateFile" FilePath="<#=Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\2-DataProfiling\Results.xml")#>" />
     </Connections>
     

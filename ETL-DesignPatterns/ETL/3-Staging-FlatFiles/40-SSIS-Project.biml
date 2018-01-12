@@ -1,0 +1,30 @@
+<#@ template tier="40" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <Projects>
+        
+        <PackageProject Name="Project" ProtectionLevel="DontSaveSensitive">
+            
+            <Connections>
+                <# foreach (var connection in RootNode.Connections.Where(c => c.GetTag("ProjectParameterName") != "")) { #>
+                    <Connection ConnectionName="<#=connection.Name#>" />
+                <# } #>
+            </Connections>
+            
+            <Parameters>
+                <# foreach (var connection in RootNode.Connections.Where(c => c.GetTag("ProjectParameterName") != "")) { #>
+                    <Parameter Name="<#=connection.GetTag("ProjectParameterName")#>" DataType="String" IsSensitive="false" IsRequired="true"><#=connection.RenderedConnectionString#></Parameter>
+                <# } #>
+            </Parameters>
+            
+            <Packages>
+                <# foreach (var package in RootNode.Packages) { #>
+                    <Package PackageName="<#=package.ScopedName#>" IsEntryPoint="<#=(package.Name.Contains("Master") ? "true" : "false")#>" />
+                <# } #>
+            </Packages>
+                
+        </PackageProject>
+            
+    </Projects>
+        
+</Biml>

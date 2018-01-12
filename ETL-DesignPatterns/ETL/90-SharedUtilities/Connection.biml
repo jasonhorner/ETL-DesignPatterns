@@ -3,6 +3,17 @@
 <#@ property name="ServerName" type="String" #>
 <#@ property name="DatabaseName" type="String" #>
 <#@ property name="CreateInProject" type="Boolean" #>
+<#@ property name="IsFlatFile" type="Boolean" required="False" #>
+<#
+    Boolean FlatFile;
+    try {
+        FlatFile = IsFlatFile;
+    } catch (Exception e) {
+        FlatFile = false;
+    }
+    
+#>
+<# if (!FlatFile) { #>
 <OleDbConnection Name="<#=ConnectionName#>" ConnectionString="Data Source=<#=ServerName#>;Initial Catalog=<#=DatabaseName#>;Provider=SQLNCLI11.1;Integrated Security=SSPI;" CreateInProject="<#=CreateInProject#>">
     <Annotations>
         <Annotation Tag="CoreConnectionName"><#=ConnectionName#></Annotation>
@@ -35,3 +46,18 @@
         </Expressions>
     <# } #>
 </AdoNetConnection>
+<# } else { #>
+<FlatFileConnection Name="<#=ConnectionName#>" FilePath="<#=ServerName#>" FileFormat="<#=ConnectionName#>">
+    <Annotations>
+        <Annotation Tag="ConnectionType"><#=ConnectionType#></Annotation>
+        <# if (CreateInProject) { #>
+            <Annotation Tag="ProjectParameterName">ConnectionManager<#=ConnectionName#>FlatFileConnectionString</Annotation>
+        <# } #>
+    </Annotations>
+    <# if (CreateInProject) { #>
+        <Expressions>
+            <Expression ExternalProperty="ConnectionString">@[$Project::ConnectionManager<#=ConnectionName#>FlatFileConnectionString]</Expression>
+        </Expressions>
+    <# } #>
+</FlatFileConnection>
+<# } #>

@@ -1,0 +1,88 @@
+<#@ template tier="0" #>
+<#@ import namespace="System.Data" #>
+<#@ assembly name="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    
+    <#
+        /* Store variables used in multiple Biml files in RootNode */
+        RootNode.ObjectTag["ProjectParametersPath"] = Environment.ExpandEnvironmentVariables(@"%ETLDesignPatterns%\ETL\3-Staging-FlatFiles\Project.params");
+        RootNode.ObjectTag["UtilitiesPath"] = @"..\90-SharedUtilities\";
+        
+        /* Metadata from Database */
+        int ProjectID = 6;
+        var MetadataConnectionString = "Data Source=.;Initial Catalog=Admin;Provider=SQLNCLI11.1;Integrated Security=SSPI;";
+        DataRow Admin = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", "Admin")).Rows[0];
+        DataRow Project = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vProject WHERE ProjectID = {0};", ProjectID)).Rows[0];
+        DataTable SourceFiles = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vItem WHERE ProjectName = '{0}'", Project["ProjectName"]));
+        DataRow Destination = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", Project["DestinationConnectionName"])).Rows[0];
+    #>
+    
+    <Connections>
+    	<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-Connection.biml")#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Admin["ConnectionName"], "Admin", Admin["ServerName"], Admin["DatabaseName"], true)#>
+		<#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Destination["ConnectionName"], "Destination", Destination["ServerName"], Destination["DatabaseName"], true)#>
+	    <# foreach (DataRow SourceFile in SourceFiles.Rows) { #>
+            <# DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", SourceFile["ConnectionName"])).Rows[0]; #>
+	        <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"Connection.biml", Source["ConnectionName"]+"_"+SourceFile["ItemName"], "Source", Source["ConnectionString"]+""+SourceFile["ItemName"]+""+SourceFile["FlatFileExtension"], Source["DatabaseName"], false, true)#>
+        <# } #>
+	</Connections>
+	    
+	<Databases>
+		<Database Name="<#=Destination["DatabaseName"]#>" ConnectionName="<#=Destination["ConnectionName"]#>" />
+	</Databases>
+        
+	<Schemas>
+		<Schema Name="<#=Project["DestinationSchemaName"]#>" DatabaseName="<#=Destination["DatabaseName"]#>" />
+	</Schemas>
+	
+	<FileFormats>
+	    <# foreach (DataRow SourceFile in SourceFiles.Rows) { #>
+            <# DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", SourceFile["ConnectionName"])).Rows[0]; #>
+    	    <FlatFileFormat Name="<#=Source["ConnectionName"]+"_"+SourceFile["ItemName"]#>" IsUnicode="<#=SourceFile["FlatFileIsUnicode"]#>" ColumnNamesInFirstDataRow="<#=SourceFile["FlatFileColumnNamesInFirstDataRow"]#>" Locale="Lcid1033">
+                <Columns>
+                    <# DataTable SourceColumns = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vItemColumn WHERE ItemName = '{0}'", SourceFile["ItemName"])); #>
+            	    <# foreach (DataRow SourceColumn in SourceColumns.Rows) { #>
+                        <Column Name="<#=SourceColumn["ItemColumnName"]#>" DataType="<#=SourceColumn["DataType"]#>" Length="<#=SourceColumn["DataTypeLength"]#>" Precision="<#=SourceColumn["DataTypePrecision"]#>" Scale="<#=SourceColumn["DataTypeScale"]#>" Delimiter="<#=SourceColumn["FlatFileDelimiter"]#>" />
+                    <# } #>
+                </Columns>
+            </FlatFileFormat>
+        <# } #>
+    </FileFormats>
+	    
+    <Tables>
+        
+        <# foreach (DataRow SourceFile in SourceFiles.Rows) { #>
+            
+            <# DataRow Source = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vConnection WHERE ConnectionName = '{0}'", SourceFile["ConnectionName"])).Rows[0]; #>
+            <# var SupportTables = new Dictionary<string, string>{{"Core",""},{"Delete","_DEL"},{"Update","_UPD"},{"Insert","_INS"}}; #>
+            <# foreach (var supportTable in SupportTables) { #>
+                <Table Name="<#=SourceFile["ItemName"]#><#=supportTable.Value#>" SchemaName="<#=Destination["DatabaseName"]#>.<#=Project["DestinationSchemaName"]#>">
+                    <Columns>
+                        <# DataTable SourceColumns = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vItemColumn WHERE ItemName = '{0}'", SourceFile["ItemName"])); #>
+                        <# foreach (DataRow SourceColumn in SourceColumns.Rows) { #>
+                            <Column Name="<#=SourceColumn["ItemColumnName"]#>" DataType="<#=SourceColumn["DataType"]#>" Length="<#=SourceColumn["DataTypeLength"]#>" Precision="<#=SourceColumn["DataTypePrecision"]#>" Scale="<#=SourceColumn["DataTypeScale"]#>" IsNullable="<#=SourceColumn["IsNullable"]#>" />
+                        <# } #>
+    				    <#=CallBimlScript(RootNode.ObjectTag["UtilitiesPath"]+"ETL-TableColumns.biml", supportTable.Key)#>
+                    </Columns>
+                    <Keys>
+                        <PrimaryKey Name="PK_<#=SourceFile["ItemName"]#><#=supportTable.Value#>">
+                            <Columns>
+                                <# DataTable SourceColumnKeys = ExternalDataAccess.GetDataTable(MetadataConnectionString, String.Format("SELECT * FROM meta.vItemColumn WHERE ItemName = '{0}' AND IsPrimaryKey = 'true';", SourceFile["ItemName"])); #>
+                                <# foreach (DataRow SourceColumn in SourceColumnKeys.Rows) { #>
+                                    <Column ColumnName="<#=SourceColumn["ItemColumnName"]#>" />
+                                <# } #>
+                            </Columns>
+                        </PrimaryKey>
+                    </Keys>
+                    <Annotations>
+                        <Annotation Tag="CoreTableName"><#=SourceFile["ItemName"]#></Annotation>
+                        <Annotation Tag="SupportTableType"><#=supportTable.Key#></Annotation>
+                        <Annotation Tag="SourceConnectionName"><#=Source["ConnectionName"]+"_"+SourceFile["ItemName"]#></Annotation>
+                    </Annotations>
+                </Table>
+            <# } #>
+        <# } #>
+            
+    </Tables>
+    
+</Biml>

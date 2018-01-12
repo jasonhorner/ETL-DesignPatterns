@@ -1,0 +1,6 @@
+<#@ property name="InputPath" type="String" #>
+<OleDbDestination Name="Log Flat File Errors" ConnectionName="Auditing">
+    <InputPath OutputPathName="<#=InputPath#>" />
+    <ExternalTableOutput Table="[Auditing].[FlatFileError]"/>
+    <ErrorHandling ErrorRowDisposition="IgnoreFailure" TruncationRowDisposition="IgnoreFailure" />
+</OleDbDestination>

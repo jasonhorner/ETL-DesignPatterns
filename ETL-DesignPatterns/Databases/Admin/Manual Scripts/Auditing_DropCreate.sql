@@ -39,6 +39,10 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.Pack
 	DROP TABLE Auditing.PackageExecution;
 GO
 
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.FlatFileError') AND type IN (N'U'))
+	DROP TABLE Auditing.FlatFileError;
+GO
+
 
 
 /* --------------------------------------------------
@@ -85,6 +89,20 @@ BEGIN
 	   ,ErrorRowCount INT NULL
 	) ON [PRIMARY];
 END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Auditing.FlatFileError') AND type in (N'U'))
+BEGIN
+    CREATE TABLE Auditing.FlatFileError (
+        FlatFileErrorID INT IDENTITY(1, 1) NOT NULL
+       ,PackageName NVARCHAR(255) NOT NULL
+       ,TaskName NVARCHAR(255) NOT NULL
+       ,ErrorDate DATETIME NOT NULL
+       ,ErrorCode INT NOT NULL
+       ,ErrorColumn INT NOT NULL
+       ,ErrorRow NVARCHAR(MAX) NOT NULL
+    );
+END;
 GO
 
 /* --------------------------------------------------

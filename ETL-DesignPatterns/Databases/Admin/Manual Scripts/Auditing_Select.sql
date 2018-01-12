@@ -26,3 +26,5 @@ SELECT TOP (1000) *
 FROM Auditing.PackageError WITH (NOLOCK)
 ORDER BY PackageErrorID DESC;
 
+SELECT TOP (1000) *  
+FROM Auditing.FlatFileError;
