@@ -108,7 +108,7 @@
                         				            <# dynamic outRCSelect; #>
                         				            <#=CallBimlScriptWithOutput(RootNode.ObjectTag["UtilitiesPath"]+"Auditing-RowCount.biml", out outRCSelect, "Select", "CDC Source.Output")#>
                         						    
-                                                    <CustomComponent Name="CDC Splitter" ComponentClassId="{8DC69D45-2AD5-40C6-AAEC-25722F92D6FC}" ComponentTypeName="Attunity.SqlServer.CDCSplit.CdcSplitterComponent, Attunity.SqlServer.CDCSplit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=aa342389a732e31c" ContactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;" UsesDispositions="true" Version="7" ValidateExternalMetadata="true">
+                                                    <#*<CustomComponent Name="CDC Splitter" ComponentClassId="{8DC69D45-2AD5-40C6-AAEC-25722F92D6FC}" ComponentTypeName="Attunity.SqlServer.CDCSplit.CdcSplitterComponent, Attunity.SqlServer.CDCSplit, Version=5.0.0.0, Culture=neutral, PublicKeyToken=aa342389a732e31c" ContactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;" UsesDispositions="true" Version="7" ValidateExternalMetadata="true">
                                                         <InputPaths>
                                                             <InputPath Identifier="Input" OutputPathName="<#=outRCSelect.RowCountPathName.ToString()#>.Output" ErrorOrTruncationOperation="RedirectRow" ErrorRowDisposition="RedirectRow" TruncationRowDisposition="RedirectRow">
                                                                 <InputColumns>
@@ -198,7 +198,9 @@
                                                         
                                                         </OutputPaths>
                                                     
-                                                    </CustomComponent>
+                                                    </CustomComponent>*#>
+                                                    
+                                                    <CdcSplitter Name="CDC Splitter" />
                                                     
                         							<!-- Start New Rows -->
                         							<# dynamic outRCInsert; #>

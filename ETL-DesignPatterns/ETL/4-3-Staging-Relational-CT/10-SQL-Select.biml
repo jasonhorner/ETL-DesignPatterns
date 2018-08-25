@@ -1,0 +1,36 @@
+﻿<#@ template tier="10" #>
+<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+<Annotations>
+<# foreach (var database in RootNode.Databases) { #>
+<Annotation Tag="SQL_CreateDestination_<#=database.Name#>">
+
+
+/* SELECT HASHBYTES */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Staging")) { #>
+SELECT 
+<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True")#>, 
+CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#> 
+FROM <#=table.GetTag("SourceSchemaQualifiedName")#>;
+
+<# } #>
+
+
+/* SELECT CHANGETABLE */
+<# foreach (var table in RootNode.Tables.Where(t => t.Schema.Database == database).Where(t => t.GetTag("SupportTableType") == "Staging")) { #>
+SELECT 
+<#=table.GetColumnList(c => c.IsUsedInPrimaryKey == true, "ct")#>, 
+<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, "core")#>, 
+CONVERT(NCHAR(40), HASHBYTES('SHA1', CONCAT(<#=table.GetColumnList(c => c.GetTag("IsETLColumn") != "True" && c.IsUsedInPrimaryKey == false, null, "'|', CONVERT(NVARCHAR(MAX), [", "])") #>)), 2) AS <#=table.Columns.Where(c => c.GetTag("IsHashKeyColumn") == "True").FirstOrDefault()#>, 
+ct.SYS_CHANGE_OPERATION AS ChangeOperation
+FROM CHANGETABLE(CHANGES <#=table.GetTag("SourceSchemaName")#>.<#=table.GetTag("SourceTableName")#>, ?) AS ct
+LEFT JOIN <#=table.GetTag("SourceSchemaQualifiedName")#> AS core
+ON <#=table.GetColumnComparisonList(c => c.IsUsedInPrimaryKey == true, "ct", "core")#>
+WHERE (SELECT MAX(VALUE.v) FROM (VALUES (ct.SYS_CHANGE_VERSION), (ct.SYS_CHANGE_CREATION_VERSION)) AS VALUE (v)) &lt;= ?;
+
+<# } #>
+    
+    
+</Annotation>
+<# } #>
+</Annotations>
+</Biml>

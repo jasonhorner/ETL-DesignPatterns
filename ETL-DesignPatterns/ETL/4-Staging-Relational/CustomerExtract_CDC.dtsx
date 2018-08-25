@@ -12,8 +12,8 @@
   DTS:ObjectName="CustomerExtract_CDC"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{72111990-9917-4706-BDC8-E474175E44BA}">
+  DTS:VersionBuild="76"
+  DTS:VersionGUID="{C39F099D-77D8-4FA7-B428-B4F71A4D4DBC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -132,7 +132,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="PackageVersion">
       <DTS:VariableValue
-        DTS:DataType="8">1.0.75</DTS:VariableValue>
+        DTS:DataType="8">1.0.76</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -591,8 +591,8 @@
                   <connections>
                     <connection
                       refId="Package\CDC Processing\CDC Initial Load\AWLT Customer Source.Connections[OleDbConnection]"
-                      connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[AWLT Source OLEDB]"
+                      connectionManagerID="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:invalid"
+                      connectionManagerRefId="{41DF449F-FFC3-4F79-AB1D-52CB05CB4D51}:invalid"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2350,7 +2350,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="882.285714285715,102.857142857143"
+          PanelSize="882.285714285715,103.428571428572"
           Size="882.285714285715,146.285714285715"
           Id="Package\CDC Processing\Truncate Staging Tables"
           TopLeft="5.5,5.50000000000009" />
@@ -2593,7 +2593,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Source">
+    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2606,7 +2606,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Destination">
+    design-time-name="Package\CDC Processing\CDC Initial Load\AWLT Customer Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2624,9 +2624,9 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="164,42.2857142857143"
-          Id="Package\CDC Processing\CDC Process\Delete Row Count"
-          TopLeft="673,209.5" />
+          Size="224,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination"
+          TopLeft="202,515.5" />
         <NodeLayout
           Size="148,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\Combine Rows"
@@ -2640,10 +2640,6 @@
           Id="Package\CDC Processing\CDC Process\CDC Splitter"
           TopLeft="466,107.5" />
         <NodeLayout
-          Size="157.142857142858,42.2857142857143"
-          Id="Package\CDC Processing\CDC Process\Error Row Count"
-          TopLeft="455.5,209.5" />
-        <NodeLayout
           Size="162.285714285715,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\Insert Row Count"
           TopLeft="233,209.5" />
@@ -2652,49 +2648,17 @@
           Id="Package\CDC Processing\CDC Process\Decode CDC operation"
           TopLeft="221,413.5" />
         <NodeLayout
-          Size="224,42.2857142857143"
-          Id="Package\CDC Processing\CDC Process\CDC Stage OLE DB Destination"
-          TopLeft="202,515.5" />
+          Size="164,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Delete Row Count"
+          TopLeft="673,209.5" />
+        <NodeLayout
+          Size="157.142857142858,42.2857142857143"
+          Id="Package\CDC Processing\CDC Process\Error Row Count"
+          TopLeft="455.5,209.5" />
         <NodeLayout
           Size="133.714285714286,42.2857142857143"
           Id="Package\CDC Processing\CDC Process\CDC Source"
           TopLeft="467,5.5" />
-        <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[ErrorOutput]"
-          TopLeft="546.8,149.785714285714">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-12.7285714285714,59.7142857142857"
-              Start="0,0"
-              End="-12.7285714285714,52.2142857142857">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.7551020408163" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.7551020408163"
-                    Point2="0,26.7551020408163"
-                    Point3="-4,26.7551020408163" />
-                  <mssgle:LineSegment
-                    End="-8.7285714285714,26.7551020408163" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8.7285714285714,26.7551020408163"
-                    Point2="-12.7285714285714,26.7551020408163"
-                    Point3="-12.7285714285714,30.7551020408163" />
-                  <mssgle:LineSegment
-                    End="-12.7285714285714,52.2142857142857" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-33.1356724330357,31.7551020408163,53.5427734375,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[Derived Column Output]"
           TopLeft="314,455.5">
@@ -2714,7 +2678,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2902,6 +2868,28 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\CDC Processing\CDC Process.Paths[Output]"
+          TopLeft="533.928571428571,47.7857142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.7142857142857"
+              Start="0,0"
+              End="0,52.2142857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.2142857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\CDC Processing\CDC Process.Paths[InsertOutput]"
           TopLeft="521.2,149.785714285714">
           <EdgeLayout.Curve>
@@ -2938,25 +2926,39 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\CDC Processing\CDC Process.Paths[Output]"
-          TopLeft="533.928571428571,47.7857142857143">
+          Id="Package\CDC Processing\CDC Process.Paths[ErrorOutput]"
+          TopLeft="546.8,149.785714285714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.7142857142857"
+              EndConnector="-12.7285714285714,59.7142857142857"
               Start="0,0"
-              End="0,52.2142857142857">
+              End="-12.7285714285714,52.2142857142857">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.2142857142857" />
+                    End="0,22.7551020408163" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.7551020408163"
+                    Point2="0,26.7551020408163"
+                    Point3="-4,26.7551020408163" />
+                  <mssgle:LineSegment
+                    End="-8.7285714285714,26.7551020408163" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.7285714285714,26.7551020408163"
+                    Point2="-12.7285714285714,26.7551020408163"
+                    Point3="-12.7285714285714,30.7551020408163" />
+                  <mssgle:LineSegment
+                    End="-12.7285714285714,52.2142857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-33.1356724330357,31.7551020408163,53.5427734375,11.43359375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

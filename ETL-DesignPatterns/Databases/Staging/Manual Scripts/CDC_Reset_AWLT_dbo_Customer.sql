@@ -21,6 +21,10 @@ BEGIN
 END;
 GO
 
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Admin.ETL.CDCState') AND type IN (N'U'))
+	TRUNCATE TABLE Admin.ETL.CDCState;
+GO
+
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.Customer') AND type IN (N'U'))
 	DROP TABLE dbo.Customer;
 GO
@@ -80,4 +84,3 @@ GO
 SELECT * FROM dbo.Customer;
 
 EXEC sys.sp_cdc_help_change_data_capture @source_schema = 'dbo', @source_name = 'Customer';
- 

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Auditing" DTS:DTSID="{E393E42B-6EB2-4378-9DB7-2FDC2266DFB6}" DTS:refId="Auditing" DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=.;initial catalog=Admin;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
+  </DTS:ObjectData>
+  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerAuditingOleDbConnectionString]</DTS:PropertyExpression>
+</DTS:ConnectionManager>

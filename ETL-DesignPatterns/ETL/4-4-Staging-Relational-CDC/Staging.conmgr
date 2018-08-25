@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ObjectName="Staging" DTS:DTSID="{AB8AF60C-E31A-4061-8CA6-42E27757AADB}" DTS:refId="Staging" DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ConnectionString="data source=localhost;initial catalog=Staging;provider=SQLNCLI11.1;integrated security=SSPI"></DTS:ConnectionManager>
+  </DTS:ObjectData>
+  <DTS:PropertyExpression DTS:Name="ConnectionString">@[$Project::ConnectionManagerStagingOleDbConnectionString]</DTS:PropertyExpression>
+</DTS:ConnectionManager>

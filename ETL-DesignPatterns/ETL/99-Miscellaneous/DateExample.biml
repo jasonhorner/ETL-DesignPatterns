@@ -1,4 +1,4 @@
-<# CultureInfo.CurrentCulture = new CultureInfo("nb-NO"); /* en-US nb-NO es-ES hu-HU */ #>
+<# CultureInfo.CurrentCulture = new CultureInfo("en-US"); /* en-US nb-NO es-ES hu-HU */ #>
 <# var c = DateTimeFormatInfo.CurrentInfo; #>
 
 <# for (int year = 2018; year <= 2020; year++) { #>
@@ -6,6 +6,7 @@
         
         <# var d = date.AddHours(17).AddMinutes(16).AddSeconds(15); #>
     
+        Key Date: <#=d.ToString("yyyyMMdd")#>
         ISO Date: <#=d.ToString("yyyy-MM-dd")#>
         Short Date: <#=d.ToString("d")#>
         Long Date: <#=d.ToString("D")#>
